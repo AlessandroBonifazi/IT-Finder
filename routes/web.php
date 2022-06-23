@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,15 +19,16 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Auth::routes();
-Route::middleware('auth')
-    ->namespace('User')
-    ->name('user.')
-    ->prefix('user')
-    ->group(function(){
-        // Route::get('/ciao', 'HomeController@ciao')->name('home');
-        Route::resource('/ciao', 'UserController');
+Route::middleware("auth")
+    ->namespace("User")
+    ->name("user.")
+    ->prefix("user")
+    ->group(function () {
+        // Route::get("/", "HomeController")->name("home");
+        Route::resource("/", "UserController");
+    });
+
+Route::get("/subscribe", "User/UserController@subscribe")->name("subscribe");
+Route::get("/home", function () {
+    return view("home");
 });
-
-// Route::get('/home', 'HomeController@index')->name('home');
-// Route::get('/ciao', 'HomeController@ciao')->name('ciao');
-

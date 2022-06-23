@@ -14,16 +14,28 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function ciao()
-    {
-        //
-
-    }
     public function index()
     {
         //
-        return view('user.ciao');
+        $users = User::all();
 
+        foreach ($users as $user) {
+            if (!$user->contactInfo) {
+                $user
+                    ->contactInfo()
+                    ->create([
+                        "contact_email" => $user->email,
+                        "phone" => "",
+                        "linkedin" => "",
+                        "github" => "",
+                        "site" => "",
+                    ])
+                    ->save();
+            }
+            $user->contact = $user->contactInfo;
+        }
+        // $contactInfo = Contact::all();
+        return view("user.index", compact("users"));
     }
 
     /**
@@ -56,7 +68,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         //
-        $contact = Contact::all();
+        $contact = Contact::where("user_id", /*$user->id*/ 1)->first();
         dd($contact);
         return $user->contactInfo();
     }
@@ -83,7 +95,7 @@ class UserController extends Controller
     {
         //
         $contact = $user->contactInfo;
-        $contact->github = $request['github'];
+        $contact->github = $request["github"];
     }
 
     /**

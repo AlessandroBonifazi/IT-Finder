@@ -21,6 +21,7 @@
 
 
                                         {{ __('You are logged in!') }}
+                                        <a href="{{ route("user.index") }}">to users</a>
                                     </div>
                                 </div>
                             </div>
