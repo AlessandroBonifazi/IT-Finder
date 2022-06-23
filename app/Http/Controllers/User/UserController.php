@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
-
-use App\User;
+namespace App\Http\Controllers\User;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use App\User;
+use App\Contact;
 
 class UserController extends Controller
 {
@@ -12,9 +14,16 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function ciao()
+    {
+        //
+
+    }
     public function index()
     {
         //
+        return view('user.ciao');
+
     }
 
     /**
@@ -47,6 +56,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         //
+        return $user->contactInfo();
     }
 
     /**
@@ -70,6 +80,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         //
+        $contact = User::contactInfo();
     }
 
     /**
