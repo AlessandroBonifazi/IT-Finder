@@ -56,6 +56,8 @@ class UserController extends Controller
     public function show(User $user)
     {
         //
+        $contact = Contact::all();
+        dd($contact);
         return $user->contactInfo();
     }
 
@@ -80,7 +82,8 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         //
-        $contact = User::contactInfo();
+        $contact = $user->contactInfo;
+        $contact->github = $request['github'];
     }
 
     /**
