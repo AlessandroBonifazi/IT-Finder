@@ -3,13 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Model
+class User extends Authenticatable
 {
     //
-    public function contact() {
-        return $this->hasOne('App\Contact');
-    }
+    // public function contact() {
+    //     return $this->hasOne('App\Contact');
+    // }
     protected $hidden = [
         'password', 'remember_token',
     ];
