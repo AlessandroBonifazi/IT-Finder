@@ -17,6 +17,6 @@ class User extends Model
         'email_verified_at' => 'datetime',
     ];
     protected $fillable = [
-        'name', 'password', 'email'
+        'name', 'email', 'password'
     ];
 }
