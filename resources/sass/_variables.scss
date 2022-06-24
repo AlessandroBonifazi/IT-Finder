@@ -1,19 +1,55 @@
-// Body
-$body-bg: #f8fafc;
-
-// Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
+// ============================== Typography ==============================
+$ff-heading: "Krona One", sans-serif;
+$ff-body: "Raleway", sans-serif;
+$fc-grey-clear: #77878b;
+$fc-grey-dark: #373e40;
+$fc-accent-yellow: $yellow-50;
+$fc-accent-green: $green-80;
+$fc-accent-green-clear: $green-50;
 
 // Colors
-$blue: #3490dc;
-$indigo: #6574cd;
-$purple: #9561e2;
-$pink: #f66d9b;
-$red: #e3342f;
-$orange: #f6993f;
-$yellow: #ffed4a;
-$green: #38c172;
-$teal: #4dc0b5;
-$cyan: #6cb2eb;
+$white: #fff;
+
+// ============================== Layout colors ==============================
+$bg-primary: $white;
+$bg-secondary: #e8e9eb;
+
+//--------- green
+$green-00: #e4f0ef;
+$green-05: #d3e3e1;
+$green-10: #c3d6d4;
+$green-15: #b2cac6;
+$green-20: #a1bdb9;
+$green-30: #80a39e;
+$green-40: #5e8a83;
+$green-50: #3d7068;
+$green-60: #315a53;
+$green-70: #25433e;
+$green-80: #182d2a;
+$green-85: #12221f;
+$green-90: #0c1615;
+$green-95: #060b0a;
+
+//--------- coral
+$coral-40: #ff7885;
+$coral-50: #ff5666;
+$coral-60: #dd4553;
+
+//--------- yellow
+$yellow-40: #ffc968;
+$yellow-50: #ffbc42;
+$yellow-60: #d99f35;
+
+// ============================== Button colors ==============================
+//--------- primary
+$btn-primary-bg: $yellow-50;
+$btn-primary-bg-hoover: $yellow-40;
+$btn-primary-bg-active: $yellow-60;
+//--------- secondary
+$btn-secondary-bg: $coral-50;
+$btn-secondary-bg-hoover: $coral-40;
+$btn-secondary-bg-active: $coral-60;
+//--------- tertiary
+$btn-tertiary-bg: $green-50;
+$btn-tertiary-bg-hoover: $green-40;
+$btn-tertiary-bg-active: $green-60;
