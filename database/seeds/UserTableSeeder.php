@@ -41,30 +41,23 @@ class UserTableSeeder extends Seeder
         ]
     ];
 
-        // for () {
-        //     $newUser = new User();
-        //     $newUser->name = $user['name'];
-        //     $newUser->surname = $user['surname'];
-        //     $newUser->user_name = $user['user_name'];
-        //     $newUser->email = $user['email'];
-        //     $newUser->password = $user['password'];
-        //     $newUser->cv = $user['cv'];
-        //     $newUser->location = $user['location'];
-        //     $newUser->position = $user['position'];
-        //     $newUser->job_experience = $user['job_experience'];
-        //     $newUser->save();
+        foreach ($users as $user) {
+            $newUser = new User();
+            $newUser->name = $user['name'];
+            $newUser->surname = $user['surname'];
+            $newUser->user_name = $user['user_name'];
+            $newUser->email = $user['email'];
+            $newUser->password = $user['password'];
+            $newUser->cv = $user['cv'];
+            $newUser->location = $user['location'];
+            $newUser->position = $user['position'];
+            $newUser->job_experience = $user['job_experience'];
+            $newUser->save();
 
-        //     $user->name = Str::random(10),
-        //     $user->surname = Str::random(10),
-        //     $user->name = Str::random(10),
-        //     $user->name = Str::random(10),
-        //     $user->name = Str::random(10),
-        //     $user->name = Str::random(10),
-        //     $user->name = Str::random(10),
-        //     $user->name = Str::random(10),
+
         }
 
 
 
-    // }
+    }
 }
