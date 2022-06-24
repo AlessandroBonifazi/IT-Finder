@@ -223,21 +223,46 @@ export default {
             github: "",
             site: "",
             displayedForm: 1,
+            userId: this.$route.params.id,
         };
+    },
+    mounted() {
+        this.userId = this.$route.params.id;
+        console.log(this.userId);
     },
     methods: {
         postData() {
             let params = {
-                position: this.position,
-                job_experience: this.job_experience,
-                phone: this.phone,
-                linkedin: this.linkedin,
-                github: this.github,
-                site: this.position,
-                cv: this.description,
+                // id: 1,
+                // position: this.position,
+                // job_experience: this.job_experience,
+                // phone: this.phone,
+                // linkedin: this.linkedin,
+                // github: this.github,
+                // site: this.position,
+                // cv: this.description,
             };
-            //window.axios.post(''+ '')
-            console.log(params);
+            window.axios
+                .post(
+                    `http://127.0.0.1:8000/api/user/${this.$route.params.id}/edit`,
+                    {
+                        // id: 1,
+                        position: this.position,
+                        job_experience: this.job_experience,
+                        phone: this.phone,
+                        linkedin: this.linkedin,
+                        github: this.github,
+                        site: this.position,
+                        cv: this.description,
+                    }
+                )
+                .then((response) => {
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            console.log("params =>", params);
         },
         nextForm() {
             console.log("nextForm", this.displayedForm);
