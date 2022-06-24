@@ -12,7 +12,7 @@ class UserTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run(Faker $faker)
+    public function run()
     {
         //
         // DB::table('users')->insert([
