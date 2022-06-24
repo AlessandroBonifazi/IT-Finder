@@ -6,11 +6,7 @@ const routes = [
     name: 'login',
     component: () => import('../js/pages/LoginComponent.vue')
   },
-   {
-     path: '/signup',
-     name: 'signup',
-     component: () => import('../js/pages/SignUpComponent.vue')
-   },
+
   
 ]
 
