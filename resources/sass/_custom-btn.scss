@@ -1,0 +1,27 @@
+.itf-btn {
+    border-radius: $border-radius-small;
+    border: 1px solid $btn-primary-bg;
+    color: $white;
+    font-size: 1.2rem;
+    font-family: $ff-heading;
+    font-weight: 400;
+    padding: 10px 40px;
+    outline: none;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        background: $btn-primary-bg-hoover;
+        border: 1px solid $btn-primary-bg-hoover;
+    }
+    &:active {
+        background: $btn-primary-bg-active;
+        border: 1px solid $btn-primary-bg-active;
+    }
+}
+.itf-btn-primary {
+    background: $btn-primary-bg;
+}
+// .itf-btn-secondary {
+// }

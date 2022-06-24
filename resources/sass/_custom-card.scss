@@ -1,0 +1,49 @@
+@import "_variables";
+
+.itf-card {
+    background: $bg-primary;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow-primary;
+    overflow: hidden;
+
+    &-header {
+        padding: 15px 30px;
+        background: $green-60;
+
+        .itf-card-title {
+            line-height: 1;
+            margin: 0;
+            font-size: 1.2rem;
+            color: $white;
+            font-family: $ff-heading;
+        }
+    }
+    &-body {
+        padding: 15px 30px;
+    }
+    .itf-form-box {
+        padding: 15px 0px;
+
+        .itf-form-label {
+            font-size: 0.9rem;
+            color: $fc-grey-dark;
+            font-family: $ff-heading;
+        }
+        .itf-form-control {
+            border-radius: $border-radius-small;
+            border: 1px solid $fc-grey-clear;
+            padding: 10px;
+            font-size: 1.2rem;
+            color: $fc-grey-dark;
+            font-family: $ff-body;
+            font-weight: 400;
+            outline: none;
+            width: 100%;
+
+            &:focus {
+                border: 1px solid $fc-accent-yellow;
+                outline: 2px solid $fc-accent-yellow;
+            }
+        }
+    }
+}
