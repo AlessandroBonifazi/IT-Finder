@@ -3,7 +3,7 @@ import { createRouter, createWebHistory} from 'vue-router'
 const routes = [
   {
     path: '/',
-    name: 'login',
+    name: 'guest-home',
     component: () => import('../js/pages/LoginComponent.vue')
   },
    {
