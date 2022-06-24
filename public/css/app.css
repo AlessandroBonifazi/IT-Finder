@@ -1,5 +1,84 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
+.itf-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0px 7px 10px -3px rgba(74, 106, 101, 0.26);
+  overflow: hidden;
+}
+
+.itf-card-header {
+  padding: 15px 30px;
+  background: #315a53;
+}
+
+.itf-card-header .itf-card-title {
+  line-height: 1;
+  margin: 0;
+  font-size: 1.2rem;
+  color: #fff;
+  font-family: "Krona One", sans-serif;
+}
+
+.itf-card-body {
+  padding: 15px 30px;
+}
+
+.itf-card .itf-form-box {
+  padding: 15px 0px;
+}
+
+.itf-card .itf-form-box .itf-form-label {
+  font-size: 0.9rem;
+  color: #373e40;
+  font-family: "Krona One", sans-serif;
+}
+
+.itf-card .itf-form-box .itf-form-control {
+  border-radius: 10px;
+  border: 1px solid #77878b;
+  padding: 10px;
+  font-size: 1.2rem;
+  color: #373e40;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+  outline: none;
+  width: 100%;
+}
+
+.itf-card .itf-form-box .itf-form-control:focus {
+  border: 1px solid #ffbc42;
+  outline: 2px solid #ffbc42;
+}
+
+.itf-btn {
+  border-radius: 10px;
+  border: 1px solid #ffbc42;
+  color: #fff;
+  font-size: 1.2rem;
+  font-family: "Krona One", sans-serif;
+  font-weight: 400;
+  padding: 10px 40px;
+  outline: none;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.itf-btn:hover {
+  background: #ffc968;
+  border: 1px solid #ffc968;
+}
+
+.itf-btn:active {
+  background: #d99f35;
+  border: 1px solid #d99f35;
+}
+
+.itf-btn-primary {
+  background: #ffbc42;
+}
+
 /*!
  * Bootstrap v4.6.1 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
@@ -10951,5 +11030,9 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+}
+
+body {
+  background: #e8e9eb;
 }
 

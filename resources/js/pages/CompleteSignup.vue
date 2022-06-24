@@ -1,43 +1,209 @@
 <template>
-  <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-
-                <div class="card">
-                    <div class="card-header">
-                        <h2>Your Info</h2>
+    <div class="container">
+        <div class="row justify-content-end align-items-center vh-100">
+            <div class="col-md-6">
+                <!-- ================= FIRST FORM ================= -->
+                <div
+                    class="itf-card"
+                    :class="displayedForm === 1 ? 'd-block' : 'd-none'"
+                >
+                    <div class="itf-card-header">
+                        <h3 class="itf-card-title">
+                            Tell us more about yourself
+                        </h3>
                     </div>
-
-                    <div class="card-body">
+                    <div class="itf-card-body">
                         <div class="mb-3 d-flex flex-column">
-                             <!--DESCRIPTION-->
-                             <label for="description" class="form-label mt-2">Description</label>
-                            <textarea v-model="description" placeholder="add description"></textarea>
-                            <!--POSITION-->
-                             <label for="position" class="form-label mt-2">Position</label>
-                            <input type="text" class="form-control" id="position" placeholder="name" v-model="position">
-                            <!--JOB EXPERIENCE-->
-                             <label for="job-experience" class="form-label mt-2">Job Experience</label>
-                            <input type="text" class="form-control" id="job-experience" placeholder="Front end " v-model="job_experience">
-                            <!--linkedin-->
-                            <label for="linkedin" class="form-label mt-2">Linkedin</label>
-                            <input type="text" class="form-control" id="linkedin" placeholder="name@example.com" v-model="linkedin">
-                            <!--GITHUB-->
-                             <label for="github" class="form-label mt-2">Github</label>
-                            <input type="text" class="form-control" id="github" placeholder="github" v-model="github">
-                            <!--SITE-->
-                             <label for="site" class="form-label mt-2">Site</label>
-                            <input type="text" class="form-control" id="site" placeholder="site" v-model="site">
-                            <!--PHONE NUMBER-->
-                             <label for="phone-number" class="form-label mt-2">Phone Number</label>
-                            <input type="text" class="form-control" id="phone-number" placeholder="phone number" v-model="phone">
-
-                            <button class="btn btn-primary justify-self-center mt-4" @click="()=>{postData()}">NEXT</button>
-                            
-                            
+                            <div class="itf-form-box">
+                                <label for="position" class="itf-form-label"
+                                    >What is your job position?</label
+                                >
+                                <input
+                                    type="text"
+                                    class="itf-form-control"
+                                    id="position"
+                                    placeholder="Full Stack Developer"
+                                    v-model="position"
+                                />
+                            </div>
+                            <div class="itf-form-box">
+                                <label
+                                    for="job_experience"
+                                    class="itf-form-label"
+                                    >Years of experience?</label
+                                >
+                                <input
+                                    type="number"
+                                    class="itf-form-control"
+                                    id="job_experience"
+                                    placeholder="3"
+                                    v-model="job_experience"
+                                    min="0"
+                                    max="100"
+                                />
+                            </div>
+                            <button
+                                class="itf-btn itf-btn-primary"
+                                @click="
+                                    () => {
+                                        nextForm();
+                                    }
+                                "
+                            >
+                                NEXT
+                            </button>
                         </div>
                     </div>
                 </div>
+                <!-- ================= FIRST FORM END ================= -->
+                <!-- ================= SECOND FORM ================= -->
+                <div
+                    class="itf-card"
+                    :class="displayedForm === 2 ? 'd-block' : 'd-none'"
+                >
+                    <div class="itf-card-header">
+                        <h3 class="itf-card-title">
+                            Tell us more about yourself
+                        </h3>
+                    </div>
+                    <div class="itf-card-body">
+                        <div class="mb-3 d-flex flex-column">
+                            <div class="itf-form-box">
+                                <label for="location" class="itf-form-label"
+                                    >Where do you live?</label
+                                >
+                                <input
+                                    type="text"
+                                    class="itf-form-control"
+                                    id="location"
+                                    placeholder="Milan, Italy"
+                                    v-model="location"
+                                />
+                            </div>
+                            <button
+                                class="itf-btn itf-btn-primary"
+                                @click="
+                                    () => {
+                                        nextForm();
+                                    }
+                                "
+                            >
+                                NEXT
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- ================= SECOND FORM END ================= -->
+                <!-- ================= THIRD FORM ================= -->
+                <div
+                    class="itf-card"
+                    :class="displayedForm === 3 ? 'd-block' : 'd-none'"
+                >
+                    <div class="itf-card-header">
+                        <h3 class="itf-card-title">
+                            Tell us more about yourself
+                        </h3>
+                    </div>
+                    <div class="itf-card-body">
+                        <div class="mb-3 d-flex flex-column">
+                            <div class="itf-form-box">
+                                <label for="location" class="itf-form-label"
+                                    >Describe yourself</label
+                                >
+                                <textarea
+                                    class="itf-form-control"
+                                    id="description"
+                                    rows="3"
+                                    v-model="description"
+                                >
+                                </textarea>
+                            </div>
+                            <button
+                                class="itf-btn itf-btn-primary"
+                                @click="
+                                    () => {
+                                        nextForm();
+                                    }
+                                "
+                            >
+                                NEXT
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- ================= THIRD FORM END ================= -->
+                <!-- ================= FOURTH FORM ================= -->
+                <div
+                    class="itf-card"
+                    :class="displayedForm === 4 ? 'd-block' : 'd-none'"
+                >
+                    <div class="itf-card-header">
+                        <h3 class="itf-card-title">Ok, how to contact you?</h3>
+                    </div>
+                    <div class="itf-card-body">
+                        <div class="mb-3 d-flex flex-column">
+                            <div class="itf-form-box">
+                                <label for="phone" class="itf-form-label"
+                                    >Phone number</label
+                                >
+                                <input
+                                    type="text"
+                                    class="itf-form-control"
+                                    id="phone"
+                                    placeholder="+10 0000 000"
+                                    v-model="phone"
+                                />
+                            </div>
+                            <div class="itf-form-box">
+                                <label for="linkedin" class="itf-form-label"
+                                    >Linkedin</label
+                                >
+                                <input
+                                    type="text"
+                                    class="itf-form-control"
+                                    id="linkedin"
+                                    placeholder="linkedin/itexpert"
+                                    v-model="linkedin"
+                                />
+                            </div>
+                            <div class="itf-form-box">
+                                <label for="github" class="itf-form-label"
+                                    >Github</label
+                                >
+                                <input
+                                    type="text"
+                                    class="itf-form-control"
+                                    id="github"
+                                    placeholder="github/itexpert"
+                                    v-model="github"
+                                />
+                            </div>
+                            <div class="itf-form-box">
+                                <label for="site" class="itf-form-label"
+                                    >Site</label
+                                >
+                                <input
+                                    type="text"
+                                    class="itf-form-control"
+                                    id="site"
+                                    placeholder="www.ITExpert.com"
+                                    v-model="site"
+                                />
+                            </div>
+                            <button
+                                class="itf-btn itf-btn-primary"
+                                @click="
+                                    () => {
+                                        postData();
+                                    }
+                                "
+                            >
+                                FINALLY, FINISH
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- ================= FOURTH FORM END ================= -->
             </div>
         </div>
     </div>
@@ -45,37 +211,43 @@
 
 <script>
 export default {
-    name: 'CompleteSignUp',
-    data(){
+    name: "CompleteSignUp",
+    data() {
         return {
-            position: ' ', 
-            job_experience: ' ',
-            phone: ' ',
-            linkedin: ' ',
-            github: ' ',
-            site: ' ',
-            description: ' ',
-        }
+            position: "",
+            job_experience: "",
+            location: "",
+            description: "",
+            phone: "",
+            linkedin: "",
+            github: "",
+            site: "",
+            displayedForm: 1,
+        };
     },
-    methods:{
-        postData(){
+    methods: {
+        postData() {
             let params = {
-                position: this.position, 
+                position: this.position,
                 job_experience: this.job_experience,
                 phone: this.phone,
                 linkedin: this.linkedin,
                 github: this.github,
                 site: this.position,
                 cv: this.description,
-            }
+            };
             //window.axios.post(''+ '')
-            console.log(params)
-        }
-    }
-
-}
+            console.log(params);
+        },
+        nextForm() {
+            console.log("nextForm", this.displayedForm);
+            this.displayedForm++;
+        },
+    },
+};
 </script>
 
-<style>
-
+<style lang="scss">
+@import "../../sass/variables";
+@import "../../sass/_custom-card";
 </style>
