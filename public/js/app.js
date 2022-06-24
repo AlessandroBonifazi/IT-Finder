@@ -53203,13 +53203,13 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     path: '/',
     name: 'guest-home',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../js/pages/MainPageComponent.vue */ "./resources/js/pages/MainPageComponent.vue"));
+      return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../js/pages/MainPageComponent.vue */ "./resources/js/pages/MainPageComponent.vue"));
     }
   }, {
     path: '/user/complete-signup',
     name: 'complete-signup',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../js/pages/CompleteSignup.vue */ "./resources/js/pages/CompleteSignup.vue"));
+      return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../js/pages/CompleteSignup.vue */ "./resources/js/pages/CompleteSignup.vue"));
     }
   } //  {
   //    path: '/signup',
@@ -53247,8 +53247,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\robin\Desktop\Boolean\Progetto finale\IT-Finder\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\robin\Desktop\Boolean\Progetto finale\IT-Finder\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\mykha\Documents\GitHub\boolean_projects\php\IT-Finder\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\mykha\Documents\GitHub\boolean_projects\php\IT-Finder\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
