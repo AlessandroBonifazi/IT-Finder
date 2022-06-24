@@ -2035,7 +2035,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AppComponent"
 });
@@ -37631,12 +37630,7 @@ var render = function () {
   return _c("div", [
     _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "row" }, [
-        _c(
-          "div",
-          { staticClass: "col-md-12" },
-          [_c("router-view"), _vm._v(" "), _c("h1", [_vm._v("CIao")])],
-          1
-        ),
+        _c("div", { staticClass: "col-md-12" }, [_c("router-view")], 1),
       ]),
     ]),
   ])
@@ -53210,6 +53204,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     name: 'guest-home',
     component: function component() {
       return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../js/pages/MainPageComponent.vue */ "./resources/js/pages/MainPageComponent.vue"));
+    }
+  }, {
+    path: '/user/complete-signup',
+    name: 'complete-signup',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../js/pages/CompleteSignup.vue */ "./resources/js/pages/CompleteSignup.vue"));
     }
   } //  {
   //    path: '/signup',
