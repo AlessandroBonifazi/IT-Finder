@@ -19,7 +19,7 @@ class UserController extends Controller
         //
         $users = User::all();
         $contacts = Contact::all();
-        return response()->json(['contact'=>$contacts, 'user'=>$users]);
+        return response()->json(["contact" => $contacts, "user" => $users]);
     }
 
     /**
@@ -77,23 +77,24 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         //
-        $request->validate([
-            'phone'=> 'max:20',
-            'linkedin'=> 'max:50',
-            'github'=> 'max:50',
-            'site'=>'max:50',
-        ]);
+        // $request->validate([
+        //     'phone'=> 'max:20',
+        //     'linkedin'=> 'max:50',
+        //     'github'=> 'max:50',
+        //     'site'=>'max:50',
+        // ]);
+        $user->update($request->all());
+        return response()->json($user);
 
-        $userData = $request->all();
-        $user->fill($userData);
-        $user->contactInfo()->update([
-            "phone" => "",
-            "linkedin" => "",
-            "github" => "",
-            "site" => "",
-        ]);
-        return redirect()->route('user.index');
-
+        // $userData = $request->all();
+        // $user->fill($userData);
+        // $user->contactInfo()->update([
+        //     "phone" => "",
+        //     "linkedin" => "",
+        //     "github" => "",
+        //     "site" => "",
+        // ]);
+        // return redirect()->route('user.index');
     }
 
     /**
