@@ -74,27 +74,23 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        //
-        // $request->validate([
-        //     'phone'=> 'max:20',
-        //     'linkedin'=> 'max:50',
-        //     'github'=> 'max:50',
-        //     'site'=>'max:50',
-        // ]);
-        $user->update($request->all());
+        $user = User::find($id);
+        $user->job_experience = $request->job_experience;
+        $user->position = $request->position;
+        $user->location = $request->location;
+        $user->cv = $request->description;
+        $user->contactInfo()->create([
+            "contact_email" => $user->email,
+            "phone" => $request->phone,
+            "linkedin" => $request->linkedin,
+            "github" => $request->github,
+            "site" => $request->site,
+        ]);
+        $user->save();
+        // ! this is for testing in the final version we will add the redirect to somewhere else
         return response()->json($user);
-
-        // $userData = $request->all();
-        // $user->fill($userData);
-        // $user->contactInfo()->update([
-        //     "phone" => "",
-        //     "linkedin" => "",
-        //     "github" => "",
-        //     "site" => "",
-        // ]);
-        // return redirect()->route('user.index');
     }
 
     /**
