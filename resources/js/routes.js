@@ -11,6 +11,11 @@ const router = new VueRouter({
     name: 'guest-home',
     component: () => import('../js/pages/MainPageComponent.vue')
   },
+  {
+    path: '/user-profile',
+    name: 'user-profile',
+    component: () => import('../js/pages/UserProfile.vue')
+  },
   //  {
   //    path: '/signup',
   //    name: 'signup',
