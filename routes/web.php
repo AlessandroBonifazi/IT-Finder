@@ -14,11 +14,8 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Auth::routes();
+
 Route::middleware("auth")
     ->namespace("User")
     ->name("user.")
@@ -28,7 +25,6 @@ Route::middleware("auth")
         Route::resource("/", "UserController");
     });
 
-Route::get("/subscribe", "User/UserController@subscribe")->name("subscribe");
-Route::get("/home", function () {
-    return view("home");
-});
+Route::get('{any?}', function(){
+    return view('guest.home');
+})->where("any", ".*");
