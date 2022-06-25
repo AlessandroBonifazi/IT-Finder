@@ -80,14 +80,26 @@ class UserController extends Controller
         $user->job_experience = $request->job_experience;
         $user->position = $request->position;
         $user->location = $request->location;
-        $user->cv = $request->description;
-        $user->contactInfo()->create([
-            "contact_email" => $user->email,
-            "phone" => $request->phone,
-            "linkedin" => $request->linkedin,
-            "github" => $request->github,
-            "site" => $request->site,
-        ]);
+        $user->cv = $request->cv;
+        if ($user->contactInfo()->exists()) {
+            $user
+                ->contactInfo()
+                ->update([
+                    "contact_email" => $user->email,
+                    "phone" => $request->phone,
+                    "linkedin" => $request->linkedin,
+                    "github" => $request->github,
+                    "site" => $request->site,
+                ]);
+        } else {
+            $user->contactInfo()->create([
+                "contact_email" => $user->email,
+                "phone" => $request->phone,
+                "linkedin" => $request->linkedin,
+                "github" => $request->github,
+                "site" => $request->site,
+            ]);
+        }
         $user->save();
         // ! this is for testing in the final version we will add the redirect to somewhere else
         return response()->json($user);
