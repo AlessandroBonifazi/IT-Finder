@@ -34,10 +34,10 @@
             </div>
         </div>
 
-        <!--USER BODY-->
-        <div class="row">
+        <!--USER TECH-->
+        <div class="row mt-2 mb-2">
             <div class="col-12 d-flex flex-column">
-                <h2>Tech Stack</h2>
+                <h2 class="krona green-80">Tech Stack</h2>
                 <div class="techs"></div>
             </div>
         </div>
@@ -45,7 +45,7 @@
         <!--USER CONTACTS-->
         <div class="row">
             <div class="col-12">
-                <h2>Contacts</h2>
+                <h2 class="krona green-80">Contacts</h2>
                 <div class="contacts">
                     <!-- ! This Links are making bugs alarm because of variables that don't exist at the moment   -->
                     <!-- <a :href="{{dev.email}}"></a>
@@ -63,17 +63,21 @@
         <!--USER BUTTONS-->
         <div class="row">
             <div class="col-12 d-flex">
-                <button class="btn btn-primary edit"></button>
-                <button class="btn btn-primary boost"></button>
+                <button class="btn btn-primary edit">EDIT PROFILE</button>
+                <button class="btn btn-primary boost coral">
+                    BOOST PROFILE
+                </button>
             </div>
         </div>
     </div>
 </template>
+
 <script>
 export default {
     name: "UserCardComponent",
 };
 </script>
+
 <style lang="scss" scoped>
 // ! This is a wrong import link
 // @import '../sass/_variables.scss/'
