@@ -1,6 +1,6 @@
 <template>
     <div class="container d-flex flex-column">
-        <!--USER HEADER-->
+        <!--USER INFO-->
         <div class="row user-info d-flex">
             <div class="col-6 user-img d-flex">
                 <img :src="{{dev.img}}" alt="">
