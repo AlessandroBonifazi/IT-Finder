@@ -2168,30 +2168,22 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     postData: function postData() {
-      var params = {// id: 1,
-        // position: this.position,
-        // job_experience: this.job_experience,
-        // phone: this.phone,
-        // linkedin: this.linkedin,
-        // github: this.github,
-        // site: this.position,
-        // cv: this.description,
-      };
+      console.log("postData", this.userId, this.position, this.job_experience, this.location, this.description, this.phone, this.linkedin, this.github, this.site);
       window.axios.post("http://127.0.0.1:8000/api/user/".concat(this.$route.params.id, "/edit"), {
         // id: 1,
         position: this.position,
         job_experience: this.job_experience,
         phone: this.phone,
+        location: this.location,
         linkedin: this.linkedin,
         github: this.github,
-        site: this.position,
+        site: this.site,
         cv: this.description
       }).then(function (response) {
         console.log(response.data);
       })["catch"](function (error) {
         console.log(error);
       });
-      console.log("params =>", params);
     },
     nextForm: function nextForm() {
       console.log("nextForm", this.displayedForm);
@@ -38847,7 +38839,7 @@ var render = function () {
                       "label",
                       {
                         staticClass: "itf-form-label",
-                        attrs: { for: "location" },
+                        attrs: { for: "description" },
                       },
                       [_vm._v("Describe yourself")]
                     ),

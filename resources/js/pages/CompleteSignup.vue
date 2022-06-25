@@ -107,7 +107,7 @@
                     <div class="itf-card-body">
                         <div class="mb-3 d-flex flex-column">
                             <div class="itf-form-box">
-                                <label for="location" class="itf-form-label"
+                                <label for="description" class="itf-form-label"
                                     >Describe yourself</label
                                 >
                                 <textarea
@@ -232,16 +232,18 @@ export default {
     },
     methods: {
         postData() {
-            let params = {
-                // id: 1,
-                // position: this.position,
-                // job_experience: this.job_experience,
-                // phone: this.phone,
-                // linkedin: this.linkedin,
-                // github: this.github,
-                // site: this.position,
-                // cv: this.description,
-            };
+            console.log(
+                "postData",
+                this.userId,
+                this.position,
+                this.job_experience,
+                this.location,
+                this.description,
+                this.phone,
+                this.linkedin,
+                this.github,
+                this.site
+            );
             window.axios
                 .post(
                     `http://127.0.0.1:8000/api/user/${this.$route.params.id}/edit`,
@@ -250,9 +252,10 @@ export default {
                         position: this.position,
                         job_experience: this.job_experience,
                         phone: this.phone,
+                        location: this.location,
                         linkedin: this.linkedin,
                         github: this.github,
-                        site: this.position,
+                        site: this.site,
                         cv: this.description,
                     }
                 )
@@ -262,7 +265,6 @@ export default {
                 .catch((error) => {
                     console.log(error);
                 });
-            console.log("params =>", params);
         },
         nextForm() {
             console.log("nextForm", this.displayedForm);
