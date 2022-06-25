@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        <!--USER BODY-->
+        <!--USER TECH-->
         <div class="row">
             <div class="col-12 d-flex flex-column">
                 <h2 class="krona green-80">Tech Stack</h2>
