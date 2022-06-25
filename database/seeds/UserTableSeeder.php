@@ -15,6 +15,9 @@ class UserTableSeeder extends Seeder
 
     public function run(Faker $faker)
     {
+        $position=['Front-End', 'Back-End', 'Full-Stack', 'Developer', 'App Developer', 'Web Design'];
+
+
         //
         for($i=0; $i < 2; $i++){
             $user = new User();
@@ -25,7 +28,7 @@ class UserTableSeeder extends Seeder
             $user->password = $faker->password();
             $user->cv = $faker->realText($maxNbChars = 20, $indexSize = 1);
             $user->location = $faker->city();
-            // $user->position = $faker->position;
+            $user->position = $faker->randomElement($position);
             $user->job_experience = $faker->numberBetween(1,10);
             $user->save();
             $user->contactInfo()->create([
