@@ -5,6 +5,7 @@ Vue.use(VueRouter);
 
 import MainPage from "../js/pages/MainPageComponent.vue";
 import CompleteSignup from "../js/pages/CompleteSignup.vue";
+import RegisterPage from "../js/pages/RegisterPage.vue";
 
 const router = new VueRouter({
     mode: "history",
@@ -15,15 +16,15 @@ const router = new VueRouter({
             component: MainPage,
         },
         {
-            path: "/user/complete-signup",
+            path: "/user/complete-signup/:id",
             name: "complete-signup",
             component: CompleteSignup,
         },
-        //  {
-        //    path: '/signup',
-        //    name: 'signup',
-        //    component: () => import('../js/pages/SignUpComponent.vue')
-        //  },
+        {
+            path: "/register",
+            name: "register",
+            component: RegisterPage,
+        },
     ],
 });
 

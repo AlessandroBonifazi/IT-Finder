@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -29,7 +30,12 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = "/user/complete-signup/";
+    public function redirectTo()
+    {
+        $user_id = Auth::user()->id;
+        return "/user/complete-signup/" . $user_id;
+    }
 
     /**
      * Create a new controller instance.
@@ -76,7 +82,5 @@ class RegisterController extends Controller
             "email" => $data["email"],
             "password" => Hash::make($data["password"]),
         ]);
-        // ->contactInfo()
-        // ->create();
     }
 }
