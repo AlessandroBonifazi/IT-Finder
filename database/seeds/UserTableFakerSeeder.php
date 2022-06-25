@@ -5,7 +5,7 @@ use Faker\Generator as Faker;
 use App\User;
 
 
-class UserTableFakeSeeder extends Seeder
+class UserTableFakerSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,7 +18,7 @@ class UserTableFakeSeeder extends Seeder
         for($i=0; $i < 5; $i++){
             $user = new User();
             $user->name = $faker->firstName();
-            $user->surname = $faker->lastName();
+            // $user->surname = $faker->lastName();
             // $user->user_name = $faker->user_name;
             $user->email = $faker->email();
             $user->password = $faker->password();
@@ -27,6 +27,13 @@ class UserTableFakeSeeder extends Seeder
             // $user->position = $faker->position;
             $user->job_experience = $faker->numberBetween(1,10);
             $user->save();
+            $user->contactInfo()->create([
+            "contact_email"=> $faker->email(),
+            "phone" => $faker->phone(),
+            "linkedin" => $faker->url(),
+            "github" => $faker->url(),
+            "site" => $faker->url(),
+            ]);
 
         }
     }
