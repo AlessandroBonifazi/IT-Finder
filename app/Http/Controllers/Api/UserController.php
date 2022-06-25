@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 use App\User;
 use App\Contact;
 
@@ -76,33 +78,6 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
-        $user->job_experience = $request->job_experience;
-        $user->position = $request->position;
-        $user->location = $request->location;
-        $user->cv = $request->cv;
-        if ($user->contactInfo()->exists()) {
-            $user
-                ->contactInfo()
-                ->update([
-                    "contact_email" => $user->email,
-                    "phone" => $request->phone,
-                    "linkedin" => $request->linkedin,
-                    "github" => $request->github,
-                    "site" => $request->site,
-                ]);
-        } else {
-            $user->contactInfo()->create([
-                "contact_email" => $user->email,
-                "phone" => $request->phone,
-                "linkedin" => $request->linkedin,
-                "github" => $request->github,
-                "site" => $request->site,
-            ]);
-        }
-        $user->save();
-        // ! this is for testing in the final version we will add the redirect to somewhere else
-        return response()->json($user);
     }
 
     /**
@@ -115,4 +90,45 @@ class UserController extends Controller
     {
         //
     }
+    public function completeRegistration(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->job_experience = $request->job_experience;
+        $user->position = $request->position;
+        $user->location = $request->location;
+        $user->cv = $request->cv;
+        if ($user->contactInfo()->exists()) {
+            $user->contactInfo()->update([
+                "contact_email" => $user->email,
+                "phone" => $request->phone,
+                "linkedin" => $request->linkedin,
+                "github" => $request->github,
+                "site" => $request->site,
+            ]);
+        } else {
+            $user->contactInfo()->create([
+                "contact_email" => $user->email,
+                "phone" => $request->phone,
+                "linkedin" => $request->linkedin,
+                "github" => $request->github,
+                "site" => $request->site,
+            ]);
+        }
+        $user->save();
+
+        // ! this is for testing in the final version we will add the redirect to somewhere else
+        return response()->json([
+            "success" => true,
+        ]);
+    }
+
+    // public function loggedUser()
+    // {
+    //     $user = Auth::user();
+
+    //     return response()->json([
+    //         "success" => true,
+    //         "user" => $user,
+    //     ]);
+    // }
 }
