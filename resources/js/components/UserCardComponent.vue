@@ -1,12 +1,14 @@
 <template>
     <div class="container d-flex flex-column">
         <!--USER INFO-->
-        <div class="row user-info d-flex">
+        <div class="row user-info d-flex mt-2 mb-2">
+
             <div class="col-6 user-img d-flex">
                 <img :src="{{dev.img}}" alt="">
                 <div class="rating col-6">{{dev.rating}}</div>
             </div>
-            <div class="col-6 user-info">
+
+            <div class="col-6 user-info mt-2">
                 <h1 class="krona">{{dev.name}}</h1>
                 <span class="raleway">{{dev.position}}</span>
                 <h3 class="raleway">{{dev.experience}}</h3>
@@ -15,7 +17,7 @@
         </div>
 
         <!--USER TECH-->
-        <div class="row">
+        <div class="row mt-2 mb-2">
             <div class="col-12 d-flex flex-column">
                 <h2 class="krona green-80">Tech Stack</h2>
                 <div class="techs"></div>
@@ -25,7 +27,7 @@
         </div>
 
          <!--USER CONTACTS-->
-        <div class="row">
+        <div class="row mt-2 mb-2">
             <div class="col-12">
                 <h2 class="krona green-80">Contacts</h2>
                 <div class="contacts">
