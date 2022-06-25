@@ -1,5 +1,6 @@
 <template>
     <div class="container d-flex flex-column">
+        
         <!--USER INFO-->
         <div class="row user-info d-flex mt-2 mb-2">
 
