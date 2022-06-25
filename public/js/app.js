@@ -2168,6 +2168,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     postData: function postData() {
+      var _this = this;
+
       console.log("postData", this.userId, this.position, this.job_experience, this.location, this.description, this.phone, this.linkedin, this.github, this.site);
       window.axios.post("http://127.0.0.1:8000/api/user/".concat(this.$route.params.id, "/edit"), {
         // id: 1,
@@ -2181,6 +2183,10 @@ __webpack_require__.r(__webpack_exports__);
         cv: this.description
       }).then(function (response) {
         console.log(response.data);
+
+        if (response.data.success) {
+          _this.$router.push("/");
+        }
       })["catch"](function (error) {
         console.log(error);
       });
@@ -2209,8 +2215,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'MainPage'
+  name: "MainPage",
+  data: function data() {
+    return {
+      user: {}
+    };
+  },
+  methods: {
+    logout: function logout() {
+      window.axios.post("/logout").then(function () {// this.$router.push("/");
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -39138,16 +39165,29 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    [
+      _c("h1", [_vm._v("Main")]),
+      _vm._v(" "),
+      _c("router-link", { attrs: { to: "/register" } }, [_vm._v("register")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          on: {
+            click: function () {
+              _vm.logout()
+            },
+          },
+        },
+        [_vm._v("\n        Logout\n    ")]
+      ),
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("Main")])])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

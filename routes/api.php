@@ -22,7 +22,4 @@ Route::middleware("auth:api")->get("/user", function (Request $request) {
 // Route::get("/contact", "Api\UserController@update")->name("user.index");
 // Route::get("/contact", "Api\ContactController@show")->name("user.show");
 
-Route::post("/user/{id}/edit", "Api\UserController@update");
-// ->name(
-//     "user.update"
-// );
+Route::post("/user/{id}/edit", "Api\UserController@completeRegistration");
