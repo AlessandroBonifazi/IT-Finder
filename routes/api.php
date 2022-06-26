@@ -23,3 +23,4 @@ Route::middleware("auth:api")->get("/user", function (Request $request) {
 // Route::get("/contact", "Api\ContactController@show")->name("user.show");
 
 Route::post("/user/{id}/edit", "Api\UserController@completeRegistration");
+Route::get("/user/{id}", "Api\UserController@index")->name("user.index");
