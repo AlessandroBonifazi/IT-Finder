@@ -16,12 +16,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
-        $users = User::all();
-        $contacts = Contact::all();
-        return response()->json(["contact" => $contacts, "user" => $users]);
+        $user = User::find($id);
+        return response()->json($user);
     }
 
     /**
