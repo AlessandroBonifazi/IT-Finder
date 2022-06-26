@@ -97,7 +97,8 @@ export default {
                     email: this.email,
                 })
                 .then((response) => {
-                    console.log(response.data);
+                    // ! check if registration was successful and reload the page to redirect to complete signup page
+                    if (response.status == 201) window.location.reload();
                 })
                 .catch((error) => {
                     console.log(error);
