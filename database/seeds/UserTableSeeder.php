@@ -5,6 +5,7 @@ use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 use App\User;
 
+
 class UserTableSeeder extends Seeder
 {
     /**
@@ -12,59 +13,47 @@ class UserTableSeeder extends Seeder
      *
      * @return void
      */
+
     public function run(Faker $faker)
     {
+        $position=['Front-End', 'Back-End', 'Full-Stack', 'Developer', 'App Developer', 'Web Design'];
+
+
         //
-        // DB::table('users')->insert([
-        //     'name' => Str::random(10),
-        //     'email' => Str::random(10).'@gmail.com',
-        //     'password' => Hash::make('password'),
-        //     'surname' => Str::random(10),
-        //     'location' => Str::random(10),
-        //     'position' => Str::random(10),
-        //     'cv' => Str::random(10),
-        //     'job-experience' => Str::random(10),
-
-        // ]);
-
-        $users = [
-            [
-               'name' => 'Lucio',  
-               'surname' => 'Melis',  
-               'user_name' => 'luciolucio',  
-               'email' => 'lucio@lucio.it',  
-               'password' => '12345678',  
-               'cv' => 'userCV',  
-               'location' => 'cagliari',  
-               'position' => 'web dev',  
-               'job_experience' => 3,  
-        ]
-    ];
-
-        // for () {
-        //     $newUser = new User();
-        //     $newUser->name = $user['name'];
-        //     $newUser->surname = $user['surname'];
-        //     $newUser->user_name = $user['user_name'];
-        //     $newUser->email = $user['email'];
-        //     $newUser->password = $user['password'];
-        //     $newUser->cv = $user['cv'];
-        //     $newUser->location = $user['location'];
-        //     $newUser->position = $user['position'];
-        //     $newUser->job_experience = $user['job_experience'];
-        //     $newUser->save();
-
-        //     $user->name = Str::random(10),
-        //     $user->surname = Str::random(10),
-        //     $user->name = Str::random(10),
-        //     $user->name = Str::random(10),
-        //     $user->name = Str::random(10),
-        //     $user->name = Str::random(10),
-        //     $user->name = Str::random(10),
-        //     $user->name = Str::random(10),
+        for($i=0; $i < 5; $i++){
+            $user = new User();
+            $user->name = $faker->firstName();
+            $user->surname = $faker->lastName();
+            $user->user_name = $faker->userName();
+            $user->email = $faker->email();
+            $user->password = $faker->password();
+            $user->cv = $faker->realText($maxNbChars = 20, $indexSize = 1);
+            $user->location = $faker->city();
+            $user->position = $faker->randomElement($position);
+            $user->job_experience = $faker->numberBetween(1,10);
+            $user->save();
+            // contact seed
+            $user->contactInfo()->create([
+            "contact_email"=> $faker->email(),
+            "phone" => $faker->phoneNumber(),
+            "linkedin" => $faker->url(),
+            "github" => $faker->url(),
+            "site" => $faker->url(),
+            ]);
+            // message seed
+            $user->messages()->create([
+                "user_id"=> $faker->numberBetween(1,5),
+                "content"=>  $faker->realText($maxNbChars = 50, $indexSize = 1),
+                "user_name"=> $faker->userName(),
+                "email"=> $faker->email(),
+            ]);
+            // reviews seed
+            $user->reviews()->create([
+                "user_id"=> $faker->numberBetween(1,5),
+                "content"=>  $faker->realText($maxNbChars = 50, $indexSize = 1),
+                "user_name"=> $faker->userName(),
+                "valutation"=> $faker->numberBetween(1,5),
+            ]);
         }
-
-
-
-    // }
+    }
 }
