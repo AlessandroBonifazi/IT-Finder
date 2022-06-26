@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use App\Contact;
+use App\Message;
+use App\Review;
 
 class UserController extends Controller
 {
@@ -53,7 +55,9 @@ class UserController extends Controller
     {
         //
         $contacts = Contact::find($id);
-        return response()->json($contacts);
+        $messages = Message::find($id);
+        $reviews = Review::find($id);
+        return response()->json($contacts, $messages, $reviews);
     }
 
     /**
@@ -81,6 +85,7 @@ class UserController extends Controller
         $user->position = $request->position;
         $user->location = $request->location;
         $user->cv = $request->description;
+        // contacts
         $user->contactInfo()->create([
             "contact_email" => $user->email,
             "phone" => $request->phone,
@@ -88,6 +93,16 @@ class UserController extends Controller
             "github" => $request->github,
             "site" => $request->site,
         ]);
+        // promo
+        $user->promos()->update([
+
+        ]);
+        // add tecnologies
+        $user->tecnologies()->create([
+            "name" => $request->name,
+            "logo" => $request->logo,
+        ]);
+
         $user->save();
         // ! this is for testing in the final version we will add the redirect to somewhere else
         return response()->json($user);
@@ -102,5 +117,15 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        $user = User::findOrFail($id);
+        $user->contactInfo()->sync([]);
+        $user->messages()->sync([]);
+        $user->reviews()->sync([]);
+        $user->tecnologies()->sync([]);
+        $user->promos()->sync([]);
+        $user->delete();
+        // ! this is for testing in the final version we will add the redirect to somewhere else
+        return response()->json($user);
+
     }
 }
