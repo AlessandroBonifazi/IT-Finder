@@ -17,7 +17,7 @@ class CreatePromosTable extends Migration
             $table->id();
             $table->tinyInteger('duration');
             $table->string('type');
-            $table->float('price', 3,2);
+            $table->float('price', 5,2);
             $table->timestamps();
         });
     }
