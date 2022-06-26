@@ -4,7 +4,6 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 use App\User;
-use App\Message;
 
 
 class UserTableSeeder extends Seeder
@@ -21,7 +20,7 @@ class UserTableSeeder extends Seeder
 
 
         //
-        for($i=0; $i < 2; $i++){
+        for($i=0; $i < 5; $i++){
             $user = new User();
             $user->name = $faker->firstName();
             $user->surname = $faker->lastName();
@@ -43,10 +42,17 @@ class UserTableSeeder extends Seeder
             ]);
             // message seed
             $user->messages()->create([
-                "user_id"=> $faker->numberBetween(1,2),
+                "user_id"=> $faker->numberBetween(1,5),
                 "content"=>  $faker->realText($maxNbChars = 50, $indexSize = 1),
                 "user_name"=> $faker->userName(),
                 "email"=> $faker->email(),
+            ]);
+            // reviews seed
+            $user->reviews()->create([
+                "user_id"=> $faker->numberBetween(1,5),
+                "content"=>  $faker->realText($maxNbChars = 50, $indexSize = 1),
+                "user_name"=> $faker->userName(),
+                "valutation"=> $faker->numberBetween(1,5),
             ]);
         }
     }
