@@ -9,6 +9,56 @@
                 >
                     <div class="itf-card-header">
                         <h3 class="itf-card-title">
+                            Hello there, {{ userName }}
+                        </h3>
+                    </div>
+                    <div class="itf-card-body">
+                        <div class="mb-3 d-flex flex-column">
+                            <div class="itf-form-box">
+                                <label for="position" class="itf-form-label"
+                                    >What is your name?</label
+                                >
+                                <input
+                                    type="text"
+                                    class="itf-form-control"
+                                    id="name"
+                                    placeholder="Jhon"
+                                    v-model="name"
+                                />
+                            </div>
+                            <div class="itf-form-box">
+                                <label for="surname" class="itf-form-label"
+                                    >And your last name?</label
+                                >
+                                <input
+                                    type="text"
+                                    class="itf-form-control"
+                                    id="surname"
+                                    placeholder="Doe"
+                                    v-model="surname"
+                                />
+                            </div>
+                            <button
+                                class="itf-btn itf-btn-primary"
+                                @click="
+                                    () => {
+                                        nextForm();
+                                    }
+                                "
+                            >
+                                NEXT
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- ================= FIRST FORM END ================= -->
+                <!-- ================= SECOND FORM ================= -->
+                <div
+                    class="itf-card"
+                    :class="displayedForm === 2 ? 'd-block' : 'd-none'"
+                >
+                    <div class="itf-card-header">
+                        <h3 class="itf-card-title">
                             Tell us more about yourself
                         </h3>
                     </div>
@@ -55,11 +105,11 @@
                         </div>
                     </div>
                 </div>
-                <!-- ================= FIRST FORM END ================= -->
-                <!-- ================= SECOND FORM ================= -->
+                <!-- ================= SECOND FORM END ================= -->
+                <!-- ================= THIRD FORM ================= -->
                 <div
                     class="itf-card"
-                    :class="displayedForm === 2 ? 'd-block' : 'd-none'"
+                    :class="displayedForm === 3 ? 'd-block' : 'd-none'"
                 >
                     <div class="itf-card-header">
                         <h3 class="itf-card-title">
@@ -93,11 +143,11 @@
                         </div>
                     </div>
                 </div>
-                <!-- ================= SECOND FORM END ================= -->
-                <!-- ================= THIRD FORM ================= -->
+                <!-- ================= THIRD FORM END ================= -->
+                <!-- ================= FOURTH FORM ================= -->
                 <div
                     class="itf-card"
-                    :class="displayedForm === 3 ? 'd-block' : 'd-none'"
+                    :class="displayedForm === 4 ? 'd-block' : 'd-none'"
                 >
                     <div class="itf-card-header">
                         <h3 class="itf-card-title">
@@ -131,11 +181,11 @@
                         </div>
                     </div>
                 </div>
-                <!-- ================= THIRD FORM END ================= -->
-                <!-- ================= FOURTH FORM ================= -->
+                <!-- ================= FOURTH FORM END ================= -->
+                <!-- ================= FIFTH FORM ================= -->
                 <div
                     class="itf-card"
-                    :class="displayedForm === 4 ? 'd-block' : 'd-none'"
+                    :class="displayedForm === 5 ? 'd-block' : 'd-none'"
                 >
                     <div class="itf-card-header">
                         <h3 class="itf-card-title">Ok, how to contact you?</h3>
@@ -203,7 +253,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- ================= FOURTH FORM END ================= -->
+                <!-- ================= FIFTH FORM END ================= -->
             </div>
         </div>
     </div>
@@ -224,13 +274,26 @@ export default {
             site: "",
             displayedForm: 1,
             userId: this.$route.params.id,
+            userName: "",
         };
     },
     mounted() {
         this.userId = this.$route.params.id;
         console.log(this.userId);
+        this.getUserName();
+    },
+    computed: {
+        userName() {
+            return this.userName;
+        },
     },
     methods: {
+        getUserName() {
+            window.axios.get("/api/user/" + this.userId).then((response) => {
+                this.userName = response.data.user_name;
+                console.log(this.userName);
+            });
+        },
         postData() {
             console.log(
                 "postData",

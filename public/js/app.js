@@ -2146,6 +2146,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CompleteSignUp",
   data: function data() {
@@ -2159,16 +2209,31 @@ __webpack_require__.r(__webpack_exports__);
       github: "",
       site: "",
       displayedForm: 1,
-      userId: this.$route.params.id
+      userId: this.$route.params.id,
+      userName: ""
     };
   },
   mounted: function mounted() {
     this.userId = this.$route.params.id;
     console.log(this.userId);
+    this.getUserName();
+  },
+  computed: {
+    userName: function userName() {
+      return this.userName;
+    }
   },
   methods: {
-    postData: function postData() {
+    getUserName: function getUserName() {
       var _this = this;
+
+      window.axios.get("/api/user/" + this.userId).then(function (response) {
+        _this.userName = response.data.user_name;
+        console.log(_this.userName);
+      });
+    },
+    postData: function postData() {
+      var _this2 = this;
 
       console.log("postData", this.userId, this.position, this.job_experience, this.location, this.description, this.phone, this.linkedin, this.github, this.site);
       window.axios.post("http://127.0.0.1:8000/api/user/".concat(this.$route.params.id, "/edit"), {
@@ -2185,7 +2250,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response.data);
 
         if (response.data.success) {
-          _this.$router.push("/");
+          _this2.$router.push("/");
         }
       })["catch"](function (error) {
         console.log(error);
@@ -2333,7 +2398,7 @@ __webpack_require__.r(__webpack_exports__);
   name: "RegisterPage",
   data: function data() {
     return {
-      name: "",
+      user_name: "",
       password: "",
       password_confirmation: "",
       email: ""
@@ -2342,12 +2407,13 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     register: function register() {
       window.axios.post("http://127.0.0.1:8000/register", {
-        name: this.name,
+        user_name: this.user_name,
         password: this.password,
         password_confirmation: this.password_confirmation,
         email: this.email
       }).then(function (response) {
-        console.log(response.data);
+        // ! check if registration was successful and reload the page to redirect to complete signup page
+        if (response.status == 201) window.location.reload();
       })["catch"](function (error) {
         console.log(error);
       });
@@ -38680,6 +38746,116 @@ var render = function () {
               class: _vm.displayedForm === 1 ? "d-block" : "d-none",
             },
             [
+              _c("div", { staticClass: "itf-card-header" }, [
+                _c("h3", { staticClass: "itf-card-title" }, [
+                  _vm._v(
+                    "\n                        Hello there, " +
+                      _vm._s(_vm.userName) +
+                      "\n                    "
+                  ),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "itf-card-body" }, [
+                _c("div", { staticClass: "mb-3 d-flex flex-column" }, [
+                  _c("div", { staticClass: "itf-form-box" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "itf-form-label",
+                        attrs: { for: "position" },
+                      },
+                      [_vm._v("What is your name?")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.name,
+                          expression: "name",
+                        },
+                      ],
+                      staticClass: "itf-form-control",
+                      attrs: { type: "text", id: "name", placeholder: "Jhon" },
+                      domProps: { value: _vm.name },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.name = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "itf-form-box" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "itf-form-label",
+                        attrs: { for: "surname" },
+                      },
+                      [_vm._v("And your last name?")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.surname,
+                          expression: "surname",
+                        },
+                      ],
+                      staticClass: "itf-form-control",
+                      attrs: {
+                        type: "text",
+                        id: "surname",
+                        placeholder: "Doe",
+                      },
+                      domProps: { value: _vm.surname },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.surname = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "itf-btn itf-btn-primary",
+                      on: {
+                        click: function () {
+                          _vm.nextForm()
+                        },
+                      },
+                    },
+                    [
+                      _vm._v(
+                        "\n                            NEXT\n                        "
+                      ),
+                    ]
+                  ),
+                ]),
+              ]),
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "itf-card",
+              class: _vm.displayedForm === 2 ? "d-block" : "d-none",
+            },
+            [
               _vm._m(0),
               _vm._v(" "),
               _c("div", { staticClass: "itf-card-body" }, [
@@ -38785,7 +38961,7 @@ var render = function () {
             "div",
             {
               staticClass: "itf-card",
-              class: _vm.displayedForm === 2 ? "d-block" : "d-none",
+              class: _vm.displayedForm === 3 ? "d-block" : "d-none",
             },
             [
               _vm._m(1),
@@ -38854,7 +39030,7 @@ var render = function () {
             "div",
             {
               staticClass: "itf-card",
-              class: _vm.displayedForm === 3 ? "d-block" : "d-none",
+              class: _vm.displayedForm === 4 ? "d-block" : "d-none",
             },
             [
               _vm._m(2),
@@ -38919,7 +39095,7 @@ var render = function () {
             "div",
             {
               staticClass: "itf-card",
-              class: _vm.displayedForm === 4 ? "d-block" : "d-none",
+              class: _vm.displayedForm === 5 ? "d-block" : "d-none",
             },
             [
               _vm._m(3),
@@ -39223,8 +39399,11 @@ var render = function () {
                 _c("div", { staticClass: "itf-form-box" }, [
                   _c(
                     "label",
-                    { staticClass: "itf-form-label", attrs: { for: "name" } },
-                    [_vm._v("Name")]
+                    {
+                      staticClass: "itf-form-label",
+                      attrs: { for: "user_name" },
+                    },
+                    [_vm._v("Username")]
                   ),
                   _vm._v(" "),
                   _c("input", {
@@ -39232,19 +39411,23 @@ var render = function () {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.name,
-                        expression: "name",
+                        value: _vm.user_name,
+                        expression: "user_name",
                       },
                     ],
                     staticClass: "itf-form-control",
-                    attrs: { type: "text", id: "name", placeholder: "name" },
-                    domProps: { value: _vm.name },
+                    attrs: {
+                      type: "text",
+                      id: "user_name",
+                      placeholder: "user_name",
+                    },
+                    domProps: { value: _vm.user_name },
                     on: {
                       input: function ($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.name = $event.target.value
+                        _vm.user_name = $event.target.value
                       },
                     },
                   }),

@@ -9,15 +9,15 @@
                     <div class="itf-card-body">
                         <div class="mb-3 d-flex flex-column">
                             <div class="itf-form-box">
-                                <label for="name" class="itf-form-label"
-                                    >Name</label
+                                <label for="user_name" class="itf-form-label"
+                                    >Username</label
                                 >
                                 <input
                                     type="text"
                                     class="itf-form-control"
-                                    id="name"
-                                    placeholder="name"
-                                    v-model="name"
+                                    id="user_name"
+                                    placeholder="user_name"
+                                    v-model="user_name"
                                 />
                             </div>
                             <div class="itf-form-box">
@@ -81,7 +81,7 @@ export default {
     name: "RegisterPage",
     data() {
         return {
-            name: "",
+            user_name: "",
             password: "",
             password_confirmation: "",
             email: "",
@@ -91,7 +91,7 @@ export default {
         register() {
             window.axios
                 .post(`http://127.0.0.1:8000/register`, {
-                    name: this.name,
+                    user_name: this.user_name,
                     password: this.password,
                     password_confirmation: this.password_confirmation,
                     email: this.email,
