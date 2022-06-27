@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSpecsUsersTable extends Migration
+class CreateSpecializationUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateSpecsUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('specs_users', function (Blueprint $table) {
+        Schema::create('specialization_user', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->unsigned()->references('id')->on('users');
 
-            $table->unsignedBigInteger('spec_id');
-            $table->foreign('spec_id')->unsigned()->references('id')->on('specializations');
+            $table->unsignedBigInteger('specialization_id');
+            $table->foreign('specialization_id')->unsigned()->references('id')->on('specializations');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateSpecsUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('specs_users');
+        Schema::dropIfExists('specialization_user');
     }
 }

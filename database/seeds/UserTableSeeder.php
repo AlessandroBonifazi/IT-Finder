@@ -16,7 +16,7 @@ class UserTableSeeder extends Seeder
 
     public function run(Faker $faker)
     {
-        $position=['Front-End', 'Back-End', 'Full-Stack', 'Developer', 'App Developer', 'Web Design'];
+        $specs=['Front-End', 'Back-End', 'Full-Stack', 'Developer', 'App Developer', 'Web Design'];
 
 
         //
@@ -29,7 +29,6 @@ class UserTableSeeder extends Seeder
             $user->password = $faker->password();
             $user->cv = $faker->realText($maxNbChars = 20, $indexSize = 1);
             $user->location = $faker->city();
-            $user->position = $faker->randomElement($position);
             $user->job_experience = $faker->numberBetween(1,10);
             $user->save();
             // contact seed
@@ -53,6 +52,11 @@ class UserTableSeeder extends Seeder
                 "content"=>  $faker->realText($maxNbChars = 50, $indexSize = 1),
                 "user_name"=> $faker->userName(),
                 "valutation"=> $faker->numberBetween(1,5),
+            ]);
+            // specs seed
+            $user->specializations()->create([
+                // "user_id"=> $faker->numberBetween(1,5),
+                "specialization"=>  $faker->randomElement($specs),
             ]);
         }
     }
