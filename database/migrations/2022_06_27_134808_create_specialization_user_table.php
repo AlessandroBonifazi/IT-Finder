@@ -19,7 +19,6 @@ class CreateSpecializationUserTable extends Migration
 
             $table->unsignedBigInteger('specialization_id');
             $table->foreign('specialization_id')->unsigned()->references('id')->on('specializations');
-            $table->timestamps();
         });
     }
 
