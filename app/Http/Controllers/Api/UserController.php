@@ -8,6 +8,7 @@ use App\User;
 use App\Contact;
 use App\Message;
 use App\Review;
+use App\Tecnology;
 
 class UserController extends Controller
 {
@@ -54,10 +55,11 @@ class UserController extends Controller
     public function show($id)
     {
         //
-        $contacts = Contact::find($id);
-        $messages = Message::find($id);
-        $reviews = Review::find($id);
-        return response()->json($contacts, $messages, $reviews);
+        $user = User::findOrFail($id);
+        $contacts = Contact::where('user_id', $id)->get();
+        $messages = Message::where('user_id', $id)->get();
+        $reviews = Review::where('user_id', $id)->get();
+        return response()->json([$user, $contacts, $messages, $reviews]);
     }
 
     /**
@@ -69,6 +71,10 @@ class UserController extends Controller
     public function edit($id)
     {
         //
+        $user = User::findOrFail($id);
+        $contacts = Contact::where('user_id', $id)->get();
+        $tecnologies = Tecnology::all();
+        return response()->json([$user, $contacts, $tecnologies]);
     }
 
     /**
@@ -95,7 +101,7 @@ class UserController extends Controller
         ]);
         // promo
         $user->promos()->update([
-
+            // ******** //
         ]);
         // add tecnologies
         $user->tecnologies()->create([
