@@ -51,6 +51,17 @@
   outline: 2px solid #ffbc42;
 }
 
+.itf-card .itf-form-box .itf-is-invalid {
+  border: 1px solid #ff5666;
+  outline: 2px solid #ff5666;
+}
+
+.itf-card .itf-form-box .itf-invalid-feedback {
+  color: #ff5666;
+  font-size: 0.9rem;
+  font-family: "Raleway", sans-serif;
+}
+
 .itf-btn {
   border-radius: 10px;
   border: 1px solid #ffbc42;
