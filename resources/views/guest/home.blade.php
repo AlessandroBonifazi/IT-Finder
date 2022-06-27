@@ -24,8 +24,58 @@
 
 <body>
     <div id="app">
+        {{-- <form  method="GET" action="" >
 
+            <input type="search" class="form-control" name="search">Search Name
+
+            <input type="submit" value="search"> --}}
+
+            {{-- @if ()
+
+            @endif --}}
+
+
+        {{-- </form> --}}
+        <form action="{{ route('search') }}" method="GET">
+            <input type="text" name="search"/>
+            <button type="submit">Search</button>
+        </form>
+
+        @if($users->isNotEmpty())
+    @foreach ($users as $user)
+        <div class="post-list">
+            <p>{{ $user->name }}</p>
+            {{-- <p>{{ $user->position }}</p> --}}
+        </div>
+    @endforeach
+@else
+    <div>
+        <h2>No users found</h2>
     </div>
+@endif
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+           <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Username</th>
+      <th scope="col">email</th>
+        <th scope="col">github</th>
+        <th scope="col">linkedin</th>
+        <th scope="col">phone</th>
+        <th scope="col">created_at</th>
+        <th scope="col">updated_at</th>
+
+    </tr>
+  </thead>
+  <tbody>
+      {{-- @foreach ($users as $user)
+       {{$user->name}}
+       @endforeach --}}
+
 </body>
 
 </html>

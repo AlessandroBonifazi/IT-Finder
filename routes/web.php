@@ -19,6 +19,11 @@ Route::get("/register", "Auth\RegisterController@showRegistrationForm")->name(
     "register"
 );
 
+Route::get("/search", "Api\UserController@searchByName")->name(
+    "search"
+);
+
+
 // Route::middleware("auth")
 //     ->namespace("User")
 //     ->name("user.")

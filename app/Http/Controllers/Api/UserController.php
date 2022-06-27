@@ -22,8 +22,9 @@ class UserController extends Controller
      */
     public function index($id)
     {
-        $user = User::find($id);
-        return response()->json($user);
+
+        // $user = User::find($id);
+        // return response()->json($user);
     }
 
     /**
@@ -53,6 +54,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function show($id)
     {
         //
@@ -156,6 +158,20 @@ class UserController extends Controller
         return response()->json([
             "success" => true,
         ]);
+    }
+
+    public function searchByName(Request $request){
+        // $users= User::all();
+        $search = $request->input('search');
+
+        // Search in the title and body columns from the posts table
+        $users = User::query()
+            ->where('name', 'LIKE', "%{$search}%")
+            ->get();
+
+        // Return the search view with the resluts compacted
+        return view('guest.home', compact('users'));
+
     }
 
     // public function loggedUser()
