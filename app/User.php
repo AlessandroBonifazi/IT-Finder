@@ -57,4 +57,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany("App\Promo");
     }
+
+    public function specializations()
+    {
+        return $this->belongsToMany("App\Specialization");
+    }
 }
