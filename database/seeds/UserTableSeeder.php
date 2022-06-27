@@ -16,7 +16,7 @@ class UserTableSeeder extends Seeder
 
     public function run(Faker $faker)
     {
-        $specs=['Front-End', 'Back-End', 'Full-Stack', 'Developer', 'App Developer', 'Web Design'];
+        $specs=['Front-End Developer', 'Back-End Developer', 'Full-Stack Developer', 'Middle-tier Developer', 'Mobile Developer', 'DevOps Developer', 'Web Design', 'Game Developer', 'Software Developer', 'Data Scientist Developer', 'Security Developer', 'Desktop Developer', 'Graphics Developer', 'Big Data Developer', 'CRM Developer'];
 
 
         //
@@ -55,7 +55,6 @@ class UserTableSeeder extends Seeder
             ]);
             // specs seed
             $user->specializations()->create([
-                // "user_id"=> $faker->numberBetween(1,5),
                 "specialization"=>  $faker->randomElement($specs),
             ]);
         }
