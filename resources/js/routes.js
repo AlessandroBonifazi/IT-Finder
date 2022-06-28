@@ -7,6 +7,7 @@ Vue.use(VueRouter);
 // ! Its safer and avoid many bugs
 import MainPage from "./pages/MainPageComponent.vue";
 import UserProfile from "./pages/UserProfile.vue";
+import MessagesTableComponent from "./components/MessagesTableComponent"
 
 const router = new VueRouter({
     mode: "history",
@@ -20,6 +21,11 @@ const router = new VueRouter({
             path: "/user-profile",
             name: "user-profile",
             component: UserProfile,
+        },
+        {
+            path: "/messages-table",
+            name: "messages-table",
+            component: MessagesTableComponent,
         },
     ],
 });
