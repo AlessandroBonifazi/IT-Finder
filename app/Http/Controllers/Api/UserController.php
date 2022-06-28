@@ -162,11 +162,9 @@ class UserController extends Controller
     }
 
     public function search(Request $request, User $user){
-        // $users= User::all();
         $search = $request->input('search');
 
-
-        // Search by name
+        // Search by name spec and valutation
         $users = User::query()
             ->where('name', 'LIKE', "%{$search}%")
             ->orWhereHas('specializations', function ($q) use ($search){
@@ -174,12 +172,10 @@ class UserController extends Controller
             }) ->orWhereHas('reviews', function ($q) use ($search){
                 $q->where('valutation', 'LIKE', "%{$search}%");
             })
-
             ->get();
 
         // Return the search view with the results compacted
         return view('guest.home', compact('users'));
-
     }
 
     // public function loggedUser()
