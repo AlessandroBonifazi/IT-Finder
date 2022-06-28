@@ -1,0 +1,35 @@
+@import "_variables";
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.steps {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.step {
+}
+.step-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $green-60;
+}
+.step-circle.active {
+    background: $yellow-50;
+    color: $white;
+}
+.step-circle.completed {
+    background: $green-60;
+    color: $white;
+}

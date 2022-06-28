@@ -2,7 +2,7 @@
     border-radius: $border-radius-small;
     border: 1px solid $btn-primary-bg;
     color: $white;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-family: $ff-heading;
     font-weight: 400;
     padding: 10px 40px;
@@ -12,16 +12,34 @@
     transition: all 0.3s ease-in-out;
 
     &:hover {
+        transition: all 0.3s ease-in-out;
         background: $btn-primary-bg-hoover;
         border: 1px solid $btn-primary-bg-hoover;
     }
     &:active {
+        transition: all 0.1s ease-in-out;
         background: $btn-primary-bg-active;
         border: 1px solid $btn-primary-bg-active;
     }
 }
 .itf-btn-primary {
     background: $btn-primary-bg;
+}
+.itf-btn-primary-outline {
+    background: $yellow-05;
+    border: 1px solid $btn-primary-bg;
+    color: $btn-primary-bg;
+
+    &:hover {
+        background: $yellow-10;
+        border: 1px solid $yellow-60;
+        color: $yellow-60;
+    }
+    &:active {
+        background: $btn-primary-bg-active;
+        border: 1px solid $btn-primary-bg-active;
+        color: $white;
+    }
 }
 // .itf-btn-secondary {
 // }
