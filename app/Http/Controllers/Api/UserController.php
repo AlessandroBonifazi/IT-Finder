@@ -123,7 +123,6 @@ class UserController extends Controller
         }
         $user->save();
 
-        // ! this is for testing in the final version we will add the redirect to somewhere else
         return response()->json([
             "success" => true,
         ]);
