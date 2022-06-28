@@ -165,12 +165,16 @@ class UserController extends Controller
         // $users= User::all();
         $search = $request->input('search');
 
+
         // Search by name
         $users = User::query()
             ->where('name', 'LIKE', "%{$search}%")
             ->orWhereHas('specializations', function ($q) use ($search){
                 $q->where('specialization', 'LIKE', "%{$search}%");
+            }) ->orWhereHas('reviews', function ($q) use ($search){
+                $q->where('valutation', 'LIKE', "%{$search}%");
             })
+
             ->get();
 
         // Return the search view with the results compacted
