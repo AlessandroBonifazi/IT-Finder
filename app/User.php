@@ -42,4 +42,24 @@ class User extends Authenticatable
     {
         return $this->belongsToMany("App\Tecnology");
     }
+
+    public function messages()
+    {
+        return $this->hasMany("App\Message");
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany("App\Review");
+    }
+
+    public function promos()
+    {
+        return $this->belongsToMany("App\Promo");
+    }
+
+    public function specializations()
+    {
+        return $this->belongsToMany("App\Specialization");
+    }
 }

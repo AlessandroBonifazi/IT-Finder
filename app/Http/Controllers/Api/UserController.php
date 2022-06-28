@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 use App\User;
 use App\Contact;
+use App\Message;
+use App\Review;
+use App\Tecnology;
+use App\Specialization;
 
 class UserController extends Controller
 {
@@ -59,8 +63,12 @@ class UserController extends Controller
     public function show($id)
     {
         //
-        $contacts = Contact::find($id);
-        return response()->json($contacts);
+        $user = User::findOrFail($id);
+        $contacts = Contact::where('user_id', $id)->get();
+        $messages = Message::where('user_id', $id)->get();
+        $reviews = Review::where('user_id', $id)->get();
+        $specs = Specialization::where('user_id', $id)->get();
+        return response()->json([$user, $contacts, $messages, $reviews, $specs]);
     }
 
     /**
@@ -72,6 +80,11 @@ class UserController extends Controller
     public function edit($id)
     {
         //
+        $user = User::findOrFail($id);
+        $contacts = Contact::where('user_id', $id)->get();
+        $tecnologies = Tecnology::all();
+        $specs = Specialization::all();
+        return response()->json([$user, $contacts, $tecnologies, $specs]);
     }
 
     /**
@@ -83,6 +96,19 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = User::find($id);
+        // promo
+        $user->promos()->update([
+            //
+        ]);
+        // add specs
+        $user->specializations()->create([
+            "specialization" => $request->specialization,
+        ]);
+
+        $user->save();
+        // ! this is for testing in the final version we will add the redirect to somewhere else
+        return response()->json($user);
     }
 
     /**
@@ -94,7 +120,19 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        $user = User::findOrFail($id);
+        $user->contactInfo()->sync([]);
+        $user->messages()->sync([]);
+        $user->reviews()->sync([]);
+        $user->tecnologies()->sync([]);
+        $user->specializations()->sync([]);
+        $user->promos()->sync([]);
+        $user->delete();
+        // ! this is for testing in the final version we will add the redirect to somewhere else
+        return response()->json($user);
+
     }
+
     public function completeRegistration(Request $request, $id)
     {
         $user = User::find($id);
