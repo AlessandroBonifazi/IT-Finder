@@ -45,46 +45,36 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12">
-                   <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">id</th>
-                        <th scope="col">Username</th>
-                        <th scope="col">email</th>
-                          <th scope="col">github</th>
-                          <th scope="col">linkedin</th>
-                          <th scope="col">phone</th>
-                          <th scope="col">created_at</th>
-                          <th scope="col">updated_at</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        @if($users->isNotEmpty())
-                        @foreach ($users as $user)
-                            <div class="post-list">
-                                <p>{{ $user->name }}</p>
-                                <p>{{ $user->specializations }}</p>
-                            </div>
-                        @endforeach
-                        @else
-                            <div>
-                                <h2>No users found</h2>
-                            </div>
-                        @endif
-
-                        {{-- @if($users->isNotEmpty())
-                        @foreach ($users as $user)
-                            <div class="post-list">
-                                <p>{{ $user->name }}</p>
-                                <p>{{ $user->position }}</p>
-                            </div>
-                        @endforeach
-                        @else
-                            <div>
-                                <h2>No users found</h2>
-                            </div>
-                        @endif --}}
-                    </tbody>
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">id</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">email</th>
+                              <th scope="col">github</th>
+                              <th scope="col">linkedin</th>
+                              <th scope="col">phone</th>
+                              <th scope="col">created_at</th>
+                              <th scope="col">updated_at</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            @if($users->isNotEmpty())
+                            @foreach ($users as $user)
+                                <div class="post-list">
+                                    <p>{{ $user->name }}</p>
+                                    <p>{{ $user->specializations }}</p>
+                                </div>
+                            @endforeach
+                            @else
+                                <div>
+                                    <h2>No users found</h2>
+                                </div>
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
     </div>
