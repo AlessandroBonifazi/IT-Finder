@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
 
 use App\User;
 use App\Contact;
@@ -160,16 +161,19 @@ class UserController extends Controller
         ]);
     }
 
-    public function searchByName(Request $request){
+    public function search(Request $request, User $user){
         // $users= User::all();
         $search = $request->input('search');
 
-        // Search in the title and body columns from the posts table
+        // Search by name
         $users = User::query()
             ->where('name', 'LIKE', "%{$search}%")
+            ->orWhereHas('specializations', function ($q) use ($search){
+                $q->where('specialization', 'LIKE', "%{$search}%");
+            })
             ->get();
 
-        // Return the search view with the resluts compacted
+        // Return the search view with the results compacted
         return view('guest.home', compact('users'));
 
     }
