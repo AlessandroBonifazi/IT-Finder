@@ -2,6 +2,51 @@
     <div class="container">
         <div class="row justify-content-end align-items-center vh-100">
             <div class="col-md-6">
+                <ul class="steps">
+                    <li class="step step-success">
+                        <div class="step-content">
+                            <span
+                                :class="
+                                    displayedForm == 1
+                                        ? 'step-circle active'
+                                        : displayedForm > 1
+                                        ? 'step-circle completed'
+                                        : ' step-circle'
+                                "
+                                >1</span
+                            >
+                            <!-- <span class="step-text">Step 1</span> -->
+                        </div>
+                    </li>
+                    <li class="step step-active">
+                        <div class="step-content">
+                            <span
+                                :class="
+                                    displayedForm == 2
+                                        ? 'step-circle active'
+                                        : displayedForm > 2
+                                        ? 'step-circle completed'
+                                        : ' step-circle'
+                                "
+                                >2</span
+                            >
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-content">
+                            <span
+                                :class="
+                                    displayedForm == 3
+                                        ? 'step-circle active'
+                                        : displayedForm > 3
+                                        ? 'step-circle completed'
+                                        : ' step-circle'
+                                "
+                                >3</span
+                            >
+                        </div>
+                    </li>
+                </ul>
                 <!-- ================= FIRST FORM ================= -->
                 <div
                     class="itf-card"
@@ -23,7 +68,7 @@
                                     class="itf-form-control"
                                     id="name"
                                     placeholder="Jhon"
-                                    v-model="name"
+                                    v-model="params.name"
                                 />
                             </div>
                             <div class="itf-form-box">
@@ -35,19 +80,51 @@
                                     class="itf-form-control"
                                     id="surname"
                                     placeholder="Doe"
-                                    v-model="surname"
+                                    v-model="params.surname"
                                 />
                             </div>
-                            <button
-                                class="itf-btn itf-btn-primary"
-                                @click="
-                                    () => {
-                                        nextForm();
-                                    }
-                                "
+                            <div class="itf-form-box">
+                                <label for="location" class="itf-form-label"
+                                    >Where do you live?</label
+                                >
+                                <input
+                                    type="text"
+                                    class="itf-form-control"
+                                    id="location"
+                                    placeholder="Milan, Italy"
+                                    v-model="params.location"
+                                />
+                            </div>
+                            <div class="d-flex">
+                                <button
+                                    v-if="displayedForm !== 1"
+                                    class="itf-btn itf-btn-primary-outline mr-1"
+                                    @click="
+                                        () => {
+                                            prevForm();
+                                        }
+                                    "
+                                >
+                                    PREVIOUS
+                                </button>
+                                <button
+                                    class="itf-btn itf-btn-primary"
+                                    @click="
+                                        () => {
+                                            nextForm();
+                                        }
+                                    "
+                                >
+                                    NEXT
+                                </button>
+                            </div>
+                            <a
+                                href=""
+                                class="itf-skip-link"
+                                @click.prevent="skipForm"
                             >
-                                NEXT
-                            </button>
+                                Skip for the moment</a
+                            >
                         </div>
                     </div>
                 </div>
@@ -73,7 +150,7 @@
                                     class="itf-form-control"
                                     id="position"
                                     placeholder="Full Stack Developer"
-                                    v-model="position"
+                                    v-model="params.position"
                                 />
                             </div>
                             <div class="itf-form-box">
@@ -87,21 +164,37 @@
                                     class="itf-form-control"
                                     id="job_experience"
                                     placeholder="3"
-                                    v-model="job_experience"
+                                    v-model="params.job_experience"
                                     min="0"
                                     max="100"
                                 />
                             </div>
-                            <button
-                                class="itf-btn itf-btn-primary"
-                                @click="
-                                    () => {
-                                        nextForm();
-                                    }
-                                "
+                            <div class="d-flex">
+                                <button
+                                    v-if="displayedForm !== 1"
+                                    class="itf-btn itf-btn-primary-outline mr-1"
+                                    @click="
+                                        () => {
+                                            prevForm();
+                                        }
+                                    "
+                                >
+                                    PREVIOUS
+                                </button>
+                                <button
+                                    class="itf-btn itf-btn-primary"
+                                    @click="
+                                        () => {
+                                            nextForm();
+                                        }
+                                    "
+                                >
+                                    NEXT
+                                </button>
+                            </div>
+                            <a href="" class="itf-skip-link" @click="skipForm">
+                                Skip for the moment</a
                             >
-                                NEXT
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -110,82 +203,6 @@
                 <div
                     class="itf-card"
                     :class="displayedForm === 3 ? 'd-block' : 'd-none'"
-                >
-                    <div class="itf-card-header">
-                        <h3 class="itf-card-title">
-                            Tell us more about yourself
-                        </h3>
-                    </div>
-                    <div class="itf-card-body">
-                        <div class="mb-3 d-flex flex-column">
-                            <div class="itf-form-box">
-                                <label for="location" class="itf-form-label"
-                                    >Where do you live?</label
-                                >
-                                <input
-                                    type="text"
-                                    class="itf-form-control"
-                                    id="location"
-                                    placeholder="Milan, Italy"
-                                    v-model="location"
-                                />
-                            </div>
-                            <button
-                                class="itf-btn itf-btn-primary"
-                                @click="
-                                    () => {
-                                        nextForm();
-                                    }
-                                "
-                            >
-                                NEXT
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- ================= THIRD FORM END ================= -->
-                <!-- ================= FOURTH FORM ================= -->
-                <div
-                    class="itf-card"
-                    :class="displayedForm === 4 ? 'd-block' : 'd-none'"
-                >
-                    <div class="itf-card-header">
-                        <h3 class="itf-card-title">
-                            Tell us more about yourself
-                        </h3>
-                    </div>
-                    <div class="itf-card-body">
-                        <div class="mb-3 d-flex flex-column">
-                            <div class="itf-form-box">
-                                <label for="description" class="itf-form-label"
-                                    >Describe yourself</label
-                                >
-                                <textarea
-                                    class="itf-form-control"
-                                    id="description"
-                                    rows="3"
-                                    v-model="description"
-                                >
-                                </textarea>
-                            </div>
-                            <button
-                                class="itf-btn itf-btn-primary"
-                                @click="
-                                    () => {
-                                        nextForm();
-                                    }
-                                "
-                            >
-                                NEXT
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- ================= FOURTH FORM END ================= -->
-                <!-- ================= FIFTH FORM ================= -->
-                <div
-                    class="itf-card"
-                    :class="displayedForm === 5 ? 'd-block' : 'd-none'"
                 >
                     <div class="itf-card-header">
                         <h3 class="itf-card-title">Ok, how to contact you?</h3>
@@ -201,7 +218,7 @@
                                     class="itf-form-control"
                                     id="phone"
                                     placeholder="+10 0000 000"
-                                    v-model="phone"
+                                    v-model="params.phone"
                                 />
                             </div>
                             <div class="itf-form-box">
@@ -213,7 +230,7 @@
                                     class="itf-form-control"
                                     id="linkedin"
                                     placeholder="linkedin/itexpert"
-                                    v-model="linkedin"
+                                    v-model="params.linkedin"
                                 />
                             </div>
                             <div class="itf-form-box">
@@ -225,7 +242,7 @@
                                     class="itf-form-control"
                                     id="github"
                                     placeholder="github/itexpert"
-                                    v-model="github"
+                                    v-model="params.github"
                                 />
                             </div>
                             <div class="itf-form-box">
@@ -237,23 +254,39 @@
                                     class="itf-form-control"
                                     id="site"
                                     placeholder="www.ITExpert.com"
-                                    v-model="site"
+                                    v-model="params.site"
                                 />
                             </div>
-                            <button
-                                class="itf-btn itf-btn-primary"
-                                @click="
-                                    () => {
-                                        postData();
-                                    }
-                                "
+                            <div class="d-flex">
+                                <button
+                                    v-if="displayedForm !== 1"
+                                    class="itf-btn itf-btn-primary-outline mr-1"
+                                    @click="
+                                        () => {
+                                            prevForm();
+                                        }
+                                    "
+                                >
+                                    PREVIOUS
+                                </button>
+                                <button
+                                    class="itf-btn itf-btn-primary"
+                                    @click="
+                                        () => {
+                                            nextForm();
+                                        }
+                                    "
+                                >
+                                    SUBMIT
+                                </button>
+                            </div>
+                            <a href="" class="itf-skip-link" @click="skipForm">
+                                Skip for the moment</a
                             >
-                                FINALLY, FINISH
-                            </button>
                         </div>
                     </div>
                 </div>
-                <!-- ================= FIFTH FORM END ================= -->
+                <!-- ================= THIRD FORM END ================= -->
             </div>
         </div>
     </div>
@@ -264,14 +297,18 @@ export default {
     name: "CompleteSignUp",
     data() {
         return {
-            position: "",
-            job_experience: "",
-            location: "",
-            description: "",
-            phone: "",
-            linkedin: "",
-            github: "",
-            site: "",
+            params: {
+                position: "",
+                job_experience: "",
+                location: "",
+                phone: "",
+                cv: "",
+                linkedin: "",
+                github: "",
+                site: "",
+                name: "",
+                surname: "",
+            },
             displayedForm: 1,
             userId: this.$route.params.id,
             userName: "",
@@ -279,47 +316,22 @@ export default {
     },
     mounted() {
         this.userId = this.$route.params.id;
-        console.log(this.userId);
+        // console.log(this.userId);
         this.getUserName();
-    },
-    computed: {
-        userName() {
-            return this.userName;
-        },
     },
     methods: {
         getUserName() {
-            window.axios.get("/api/user/" + this.userId).then((response) => {
+            window.axios.get("/api/getUser/" + this.userId).then((response) => {
                 this.userName = response.data.user_name;
-                console.log(this.userName);
+                // return response.data.user_name;
             });
         },
         postData() {
-            console.log(
-                "postData",
-                this.userId,
-                this.position,
-                this.job_experience,
-                this.location,
-                this.description,
-                this.phone,
-                this.linkedin,
-                this.github,
-                this.site
-            );
             window.axios
                 .post(
-                    `http://127.0.0.1:8000/api/user/${this.$route.params.id}/edit`,
+                    `http://127.0.0.1:8000/api/user/${this.$route.params.id}/completeRegistration`,
                     {
-                        // id: 1,
-                        position: this.position,
-                        job_experience: this.job_experience,
-                        phone: this.phone,
-                        location: this.location,
-                        linkedin: this.linkedin,
-                        github: this.github,
-                        site: this.site,
-                        cv: this.description,
+                        ...this.params,
                     }
                 )
                 .then((response) => {
@@ -333,8 +345,31 @@ export default {
                 });
         },
         nextForm() {
-            console.log("nextForm", this.displayedForm);
+            // console.log("nextForm", this.displayedForm);
             this.displayedForm++;
+        },
+        prevForm() {
+            // console.log("prevForm", this.displayedForm);
+            this.displayedForm--;
+        },
+        skipForm() {
+            // console.log("skipForm", this.displayedForm);
+            this.setEmptyParams();
+            this.displayedForm = 3;
+            this.postData();
+        },
+        setEmptyParams() {
+            if (this.params.position === "") this.position = "/";
+            if (this.params.job_experience === "")
+                this.params.job_experience = "0";
+            if (this.params.location === "") this.params.location = "/";
+            if (this.params.cv === "") this.params.cv = "/";
+            if (this.params.phone === "") this.params.phone = "/";
+            if (this.params.linkedin === "") this.params.linkedin = "/";
+            if (this.params.github === "") this.params.github = "/";
+            if (this.params.site === "") this.params.site = "/";
+            if (this.params.name === "") this.params.name = "/";
+            if (this.params.surname === "") this.params.surname = "/";
         },
     },
 };

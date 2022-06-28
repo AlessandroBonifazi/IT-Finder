@@ -21,6 +21,13 @@ class UserController extends Controller
         $user = User::find($id);
         return response()->json($user);
     }
+    public function getUser($id)
+    {
+        $user = User::find($id);
+
+        $user->contacts = $user->contactInfo();
+        return response()->json($user);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -91,6 +98,8 @@ class UserController extends Controller
     public function completeRegistration(Request $request, $id)
     {
         $user = User::find($id);
+        $user->name = $request->name;
+        $user->surname = $request->surname;
         $user->job_experience = $request->job_experience;
         $user->position = $request->position;
         $user->location = $request->location;
@@ -114,7 +123,6 @@ class UserController extends Controller
         }
         $user->save();
 
-        // ! this is for testing in the final version we will add the redirect to somewhere else
         return response()->json([
             "success" => true,
         ]);

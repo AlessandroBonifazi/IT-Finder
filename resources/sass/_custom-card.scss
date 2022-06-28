@@ -23,12 +23,12 @@
     }
     .itf-form-box {
         padding: 15px 0px;
-
         .itf-form-label {
             font-size: 0.9rem;
             color: $fc-grey-dark;
             font-family: $ff-heading;
         }
+
         .itf-form-control {
             border-radius: $border-radius-small;
             border: 1px solid $fc-grey-clear;
@@ -45,5 +45,20 @@
                 outline: 2px solid $fc-accent-yellow;
             }
         }
+        .itf-is-invalid {
+            border: 1px solid $coral-50;
+            outline: 2px solid $coral-50;
+        }
+        .itf-invalid-feedback {
+            color: $coral-50;
+            font-size: 0.9rem;
+            font-family: $ff-body;
+        }
+    }
+    .itf-skip-link {
+        color: $green-40;
+        font-size: 0.9rem;
+        font-family: $ff-body;
+        margin: 10px 0;
     }
 }
