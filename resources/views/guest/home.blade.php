@@ -23,7 +23,19 @@
 </head>
 
 <body>
-    <div id="app">
+    {{-- <div id="app"> --}}
+        {{-- <form  method="GET" action="" >
+
+            <input type="search" class="form-control" name="search">Search Name
+
+            <input type="submit" value="search"> --}}
+
+            {{-- @if ()
+
+            @endif --}}
+
+
+        {{-- </form> --}}
 
         <form action="{{ route('user.search') }}" method="GET">
             <input type="text" name="search"/>
@@ -36,39 +48,46 @@
                    <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Specialization</th>
+                        <th scope="col">id</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">email</th>
+                          <th scope="col">github</th>
+                          <th scope="col">linkedin</th>
+                          <th scope="col">phone</th>
+                          <th scope="col">created_at</th>
+                          <th scope="col">updated_at</th>
                       </tr>
                     </thead>
                     <tbody>
-
-
                         @if($users->isNotEmpty())
                         @foreach ($users as $user)
-                        <tr>
-                            <td>
+                            <div class="post-list">
                                 <p>{{ $user->name }}</p>
-                            </td>
-
-                            <td>
-                                @foreach ($user['specializations'] as $item)
-                                {{$item->specialization}}
-
-                                @endforeach
-                            </td>
-                        </tr>
+                                <p>{{ $user->specializations }}</p>
+                            </div>
                         @endforeach
                         @else
                             <div>
                                 <h2>No users found</h2>
                             </div>
                         @endif
+
+                        {{-- @if($users->isNotEmpty())
+                        @foreach ($users as $user)
+                            <div class="post-list">
+                                <p>{{ $user->name }}</p>
+                                <p>{{ $user->position }}</p>
+                            </div>
+                        @endforeach
+                        @else
+                            <div>
+                                <h2>No users found</h2>
+                            </div>
+                        @endif --}}
                     </tbody>
-                </div>
-
-            </div>
         </div>
-    </div>
 
+    </div>
+</body>
 
 </html>
