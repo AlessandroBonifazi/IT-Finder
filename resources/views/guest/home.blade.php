@@ -26,18 +26,18 @@
 
 <body>
     <div id="app">
-        <form action="{{ route('user.search') }}" method="GET">
+        {{-- <form action="{{ route('user.search') }}" method="GET">
             <input type="text" name="search" />
             <select name="search" id="">
                 {{-- @foreach ($users as $prova) --}}
-                <option value='' selected disabled hidden>Choose a valutation</option>
+                {{-- <option value='' selected disabled hidden>Choose a valutation</option>
                 <option value='1'>1</option>
                 <option value='2'>2</option>
                 <option value='3'>3</option>
                 <option value='4'>4</option>
-                <option value='5'>5</option>
+                <option value='5'>5</option> --}}
                 {{-- @endforeach --}}
-            </select>
+            {{-- </select>
             <button type="submit">Search</button>
         </form>
 
@@ -67,8 +67,8 @@
                                         <td>
                                             @foreach ($user['reviews'] as $item)
                                                 {{ $item->valutation }}
-                                            @endforeach
-                                        </td>
+                                            @endforeach --}}
+                                        {{-- </td>
                                     </tr>
                                 @endforeach
                             @else
@@ -79,7 +79,7 @@
                         </tbody>
                 </div>
 
-            </div>
+            </div> --}}
         </div>
     </div>
 
