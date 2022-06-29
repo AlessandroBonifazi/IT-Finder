@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tecnology extends Model
+class Technology extends Model
 {
     //
     public function users()
