@@ -28,4 +28,5 @@ Route::post(
 );
 Route::get("/getUser/{id}", "Api\UserController@getUser")->name("user.getUser");
 
-Route::get("/payment/make", "PaymentsController@make")->name("payment.make");
+Route::get("/payment/generate", "Api\Payment\PaymentController@generate");
+Route::post("/payment/make/payment", "Api\Payment\PaymentController@makePayment");
