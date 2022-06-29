@@ -55,7 +55,7 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the s pecified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

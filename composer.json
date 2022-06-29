@@ -45,6 +45,7 @@
     },
     "autoload-dev": {
         "psr-4": {
+            "Webkul\\Braintree\\": "packages/Webkul/Braintree/src/",
             "Tests\\": "tests/"
         }
     },

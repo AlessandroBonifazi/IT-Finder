@@ -162,6 +162,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+        Webkul\Braintree\Providers\BraintreeServiceProvider::class,
+
         /*
          * Package Service Providers...
          */
