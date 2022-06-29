@@ -2,9 +2,7 @@
     <div class="itf-user-card">
         <div class="itf-user-card-header">
             <div class="itf-user-card-header-avatar">
-                <img
-                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-                />
+                <img :src="handleImgPath(user.img_path)" />
             </div>
             <div class="itf-user-card-header-content">
                 <h2 class="itf-name">{{ user.name }} {{ user.surname }}</h2>
@@ -20,18 +18,11 @@
             <div class="tech-stack-list" v-if="user.technologies">
                 <div
                     class="tech-stack-list-item"
-                    v-for="tech in user.technologies"
-                    :key="tech.name"
+                    v-for="tech in user.technologies.slice(0, 5)"
+                    :key="tech.name + '-' + user.name"
                 >
-                    <!-- <div class="tech-stack-list-item-icon">
-                        <img
-                            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-                        />
-                    </div> -->
-                    <div class="tech-stack-list-item-content">
-                        <h3 class="tech-stack-list-item-content-title">
-                            {{ tech.name }}
-                        </h3>
+                    <div class="tech-stack-list-item-icon">
+                        <img :src="tech.logo" />
                     </div>
                 </div>
             </div>
@@ -61,6 +52,19 @@ export default {
         user: {
             type: Object,
             required: true,
+        },
+    },
+    methods: {
+        handleImgPath(imgPath) {
+            if (imgPath) {
+                imgPath = imgPath.split("/");
+                imgPath[imgPath.length - 1] = "300";
+                imgPath[imgPath.length - 2] = "300";
+                imgPath = imgPath.join("/");
+                return imgPath;
+            } else {
+                return "https://via.placeholder.com/150";
+            }
         },
     },
 };
@@ -123,10 +127,9 @@ export default {
 .itf-user-card-body {
     .tech-stack-list {
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 20px;
+        gap: 5px;
 
         &-item {
             width: 40%;

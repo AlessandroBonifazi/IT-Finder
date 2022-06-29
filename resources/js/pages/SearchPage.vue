@@ -95,8 +95,113 @@
                                 :user="user"
                             />
                         </div>
+                        <div class="pagination-box">
+                            <nav aria-label="...">
+                                <ul
+                                    class="itf-pagination"
+                                    v-if="pagination.totalRecords > 12"
+                                >
+                                    <li
+                                        :class="
+                                            'itf-page-item' +
+                                            (pagination.currentPage === 1
+                                                ? ' disabled'
+                                                : '')
+                                        "
+                                    >
+                                        <a
+                                            :class="
+                                                'itf-page-link' +
+                                                (pagination.currentPage === 1
+                                                    ? ' disabled'
+                                                    : '')
+                                            "
+                                            href="#"
+                                            tabindex="-1"
+                                            @click="
+                                                () => {
+                                                    if (
+                                                        pagination.currentPage ===
+                                                        1
+                                                    )
+                                                        return;
+                                                    getSearch(
+                                                        pagination.currentPage -
+                                                            1
+                                                    );
+                                                    scrollToTop();
+                                                }
+                                            "
+                                            >Previous</a
+                                        >
+                                    </li>
+                                    <li
+                                        :class="
+                                            'itf-page-item' +
+                                            (pagination.currentPage === n
+                                                ? ' active'
+                                                : '')
+                                        "
+                                        v-for="n in pagination.totalPages"
+                                        :key="n"
+                                    >
+                                        <a
+                                            class="itf-page-link"
+                                            href="#"
+                                            @click.prevent="
+                                                () => {
+                                                    if (
+                                                        n !=
+                                                        pagination.currentPage
+                                                    ) {
+                                                        getSearch(n);
+                                                        scrollToTop();
+                                                    }
+                                                }
+                                            "
+                                            >{{ n }}</a
+                                        >
+                                    </li>
+                                    <li
+                                        :class="
+                                            'itf-page-item' +
+                                            (pagination.currentPage ===
+                                            pagination.totalPages
+                                                ? ' disabled'
+                                                : '')
+                                        "
+                                    >
+                                        <a
+                                            :class="
+                                                'itf-page-link' +
+                                                (pagination.currentPage ===
+                                                pagination.totalPages
+                                                    ? ' disabled'
+                                                    : '')
+                                            "
+                                            href="#"
+                                            tabindex="+1"
+                                            @click="
+                                                () => {
+                                                    if (
+                                                        pagination.currentPage ===
+                                                        pagination.totalPages
+                                                    )
+                                                        return;
+                                                    getSearch(
+                                                        pagination.currentPage +
+                                                            1
+                                                    );
+                                                    scrollToTop();
+                                                }
+                                            "
+                                            >Next</a
+                                        >
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
                     </div>
-                    <h2>Main Content</h2>
                 </div>
             </div>
         </div>
@@ -104,7 +209,6 @@
 </template>
 
 <script>
-import Axios from "axios";
 import UserCard from "./../components/UserCard.vue";
 export default {
     components: {
@@ -116,24 +220,35 @@ export default {
             specializations: {},
             selectedSpecializations: [],
             users: [],
+            pagination: {
+                currentPage: 1,
+                totalPages: 1,
+                totalRecords: 0,
+            },
         };
     },
     mounted() {
         this.getSpecializations();
+        this.getSearch();
     },
     methods: {
-        getSearch() {
+        getSearch(page) {
             // console.log(this.searchQuery, specializations);
             window.axios
                 .get(`http://127.0.0.1:8000/api/advancedSearch`, {
                     params: {
                         value: this.searchQuery,
                         specializations: this.selectedSpecializations,
+                        page: page || 1,
                     },
                 })
                 .then((response) => {
                     console.log(response.data);
-                    this.users = response.data;
+                    this.users = response.data.data;
+                    this.pagination.totalPages = response.data.last_page;
+                    this.pagination.currentPage = response.data.current_page;
+                    this.pagination.totalRecords = response.data.total;
+                    // console.log(this.pagination);
                 })
                 .catch((error) => {
                     console.log(error);
@@ -158,6 +273,12 @@ export default {
                 this.selectedSpecializations.push(id);
             }
             console.log(this.selectedSpecializations);
+        },
+        scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
         },
     },
 };
@@ -254,6 +375,62 @@ export default {
         justify-content: flex-start;
         align-items: center;
         gap: 20px;
+    }
+    .pagination-box {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        .itf-pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+            border-radius: $border-radius-small;
+            overflow: hidden;
+
+            .itf-page-item {
+                min-width: 40px;
+                height: 40px;
+                background: $white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                transition: all 0.3s ease-in-out;
+                margin: 0;
+                padding: 5px;
+                &:hover {
+                    background: $green-40;
+                }
+                &:hover .itf-page-link {
+                    color: $white;
+                }
+                &.active {
+                    background: $green-60;
+                }
+                &.active .itf-page-link {
+                    color: $white;
+                }
+                .itf-page-link {
+                    transition: all 0.3s ease-in-out;
+                    color: $fc-grey-dark;
+                    font-size: 1rem;
+                    font-weight: normal;
+                    font-family: $ff-body;
+                    &.disabled {
+                        color: $fc-grey-dark;
+                        cursor: not-allowed;
+                    }
+                }
+                &.disabled {
+                    opacity: 0.5;
+                    cursor: not-allowed;
+                }
+            }
+        }
     }
 }
 </style>
