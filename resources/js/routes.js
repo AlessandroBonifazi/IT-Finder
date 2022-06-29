@@ -8,10 +8,20 @@ import CompleteSignup from "../js/pages/CompleteSignup.vue";
 import RegisterPage from "../js/pages/RegisterPage.vue";
 import UserDashboard from "../js/pages/UserDashboard.vue";
 import SearchPage from "../js/pages/SearchPage.vue";
+import UserProfile from "../js/pages/UserProfile.vue";
+// ! IMPORTANT: for our convention we import pages like this.
+// ! Its safer and avoid many bugs
+import MessagesTable from "./pages/MessagesTable.vue"
+
 
 const router = new VueRouter({
     mode: "history",
     routes: [
+        {
+            path: "/user-profile",
+            name: "user-profile",
+            component: UserProfile,
+        },
         {
             path: "/",
             name: "guest-home",
@@ -33,19 +43,18 @@ const router = new VueRouter({
             component: UserDashboard,
         },
         {
+
             path: "/search",
             name: "search",
             component: SearchPage,
         },
+        {
+            path: "/messages-table",
+            name: "messages-table",
+            component: MessagesTable,
+
+        },
     ],
 });
-
-// const router = createRouter({
-//   history: createWebHistory(process.env.BASE_URL),
-//   mode: 'history',
-//   linkExactActiveClass: 'active',
-//   linkActiveClass: 'active',
-//   routes
-// })
 
 export default router;
