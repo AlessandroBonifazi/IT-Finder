@@ -12,6 +12,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://js.braintreegateway.com/web/dropin/1.8.1/js/dropin.min.js"></script>
 
     <!-- Fonts -->
    <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,6 +26,41 @@
 
 <body>
     <div id="app">
+
+        <!--TEST PAGAMENTO-->
+
+
+        <div class="container">
+        <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+        <div id="dropin-container"></div>
+        <button id="submit-button">Request payment method</button>
+        </div>
+        </div>
+        </div>
+        <script>
+         import Braintree\ClientToken;
+
+    var button = document.querySelector('#submit-button');
+
+    braintree.dropin.create({
+      authorization: "{{ ClientToken::generate() }}",
+      container: '#dropin-container'
+    }, function (createErr, instance) {
+      button.addEventListener('click', function () {
+        instance.requestPaymentMethod(function (err, payload) {
+          $.get('{{ route('payment.process') }}', {payload}, function (response) {
+            if (response.success) {
+              alert('Payment successfull!');
+            } else {
+              alert('Payment failed');
+            }
+          }, 'json');
+        });
+      });
+    });
+  </script>
+
 
     </div>
 </body>

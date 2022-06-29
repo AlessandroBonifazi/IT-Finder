@@ -27,3 +27,5 @@ Route::post(
     "Api\UserController@completeRegistration"
 );
 Route::get("/getUser/{id}", "Api\UserController@getUser")->name("user.getUser");
+
+Route::get("/payment/make", "PaymentsController@make")->name("payment.make");
