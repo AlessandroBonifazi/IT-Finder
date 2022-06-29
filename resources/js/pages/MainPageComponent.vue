@@ -1,9 +1,9 @@
 <template>
     <div class="m-0 p-0">
         <!-- banner -->
-        <div class="row my-5 justify-content-start mx-5">
-            <div class="col-6">
-                <h1 class="krona green-55">Your Next <span class="krona yellow-60"> IT </span>Specialist is Here</h1>
+        <div class="row my-5 justify-content-start mx-5 px-5">
+            <div class="col-5 mx-5 px-5">
+                <h1 class="krona green-55 mb-4 mt-5">Your Next <span class="krona yellow-60"> IT </span>Specialist is Here</h1>
                 <p>
                     Search and find best IT Specialist from all around the world
                     for your one million project idea or business
@@ -22,13 +22,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-center mb-4">
-                        <h2 class="yellow-60 krona">
+                        <h2 class="yellow-60 krona m-3">
                             What kind of specialist do you need?
                         </h2>
                     </div>
                 </div>
             </div>
-            <div class="row flex-wrap justify-content-center">
+            <div class="row specialist flex-wrap justify-content-center">
                 <div class="col-3 text-center my-2 krona bg-green-60 py-3 mx-1 align-self-center">
                     <a href="#" class="green-40">Front-End</a>
                 </div>
@@ -195,8 +195,13 @@ export default {
 }
 
 //BODY
+.specialist a:hover{
+    color: white;
+}
 .discover{
     background-color: $btn-primary-bg;
+    font-size: 20px;
+    box-shadow: $box-shadow-secondary;
 }
 .discover:hover{
     background-color: $btn-primary-bg-hoover;
