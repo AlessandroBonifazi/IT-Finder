@@ -5,12 +5,15 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
+// Import QueryBuilder
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 
 use App\User;
 use App\Contact;
 use App\Message;
 use App\Review;
-use App\Tecnology;
+use App\Technology;
 use App\Specialization;
 
 class UserController extends Controller
@@ -22,8 +25,8 @@ class UserController extends Controller
      */
     public function index($id)
     {
-        $user = User::find($id);
-        return response()->json($user);
+        // $user = User::find($id);
+        // return response()->json($user);
     }
     public function getUser($id)
     {
@@ -60,15 +63,22 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function show($id)
     {
         //
         $user = User::findOrFail($id);
-        $contacts = Contact::where('user_id', $id)->get();
-        $messages = Message::where('user_id', $id)->get();
-        $reviews = Review::where('user_id', $id)->get();
-        $specs = Specialization::where('user_id', $id)->get();
-        return response()->json([$user, $contacts, $messages, $reviews, $specs]);
+        $contacts = Contact::where("user_id", $id)->get();
+        $messages = Message::where("user_id", $id)->get();
+        $reviews = Review::where("user_id", $id)->get();
+        $specs = Specialization::where("user_id", $id)->get();
+        return response()->json([
+            $user,
+            $contacts,
+            $messages,
+            $reviews,
+            $specs,
+        ]);
     }
 
     /**
@@ -81,10 +91,10 @@ class UserController extends Controller
     {
         //
         $user = User::findOrFail($id);
-        $contacts = Contact::where('user_id', $id)->get();
-        $tecnologies = Tecnology::all();
+        $contacts = Contact::where("user_id", $id)->get();
+        $technologies = Technology::all();
         $specs = Specialization::all();
-        return response()->json([$user, $contacts, $tecnologies, $specs]);
+        return response()->json([$user, $contacts, $technologies, $specs]);
     }
 
     /**
@@ -124,13 +134,12 @@ class UserController extends Controller
         $user->contactInfo()->sync([]);
         $user->messages()->sync([]);
         $user->reviews()->sync([]);
-        $user->tecnologies()->sync([]);
+        $user->technologies()->sync([]);
         $user->specializations()->sync([]);
         $user->promos()->sync([]);
         $user->delete();
         // ! this is for testing in the final version we will add the redirect to somewhere else
         return response()->json($user);
-
     }
 
     public function completeRegistration(Request $request, $id)
@@ -166,13 +175,50 @@ class UserController extends Controller
         ]);
     }
 
-    // public function loggedUser()
-    // {
-    //     $user = Auth::user();
+    public function search(Request $request, User $user)
+    {
+        $search = $request->value;
+        $specializationIdArray = $request->specializations;
 
-    //     return response()->json([
-    //         "success" => true,
-    //         "user" => $user,
-    //     ]);
-    // }
+        $query = $user->newQuery();
+
+        if (!empty($request->value) && $request->value != "AllUsers") {
+            $query->where(function (EloquentBuilder $query) use ($search) {
+                $query
+                    ->where("name", "like", "%" . $search . "%")
+                    ->orWhere("surname", "like", "%" . $search . "%")
+                    ->orWhereHas("specializations", function ($q) use (
+                        $search
+                    ) {
+                        $q->where(
+                            "specialization",
+                            "like",
+                            "%" . $search . "%"
+                        );
+                    });
+            });
+        }
+        if (!empty($specializationIdArray)) {
+            $query->whereHas("specializations", function ($q) use (
+                $specializationIdArray
+            ) {
+                $q->whereIn("id", $specializationIdArray);
+            });
+        }
+        $users = $query->paginate(12);
+
+        // if (!empty($specializationIdArray)) {
+        //     $users = $users->orWhereHas("specializations", function ($q) use (
+        //         $specializationIdArray
+        //     ) {
+        //         $q->whereIn("specialization_id", $specializationIdArray);
+        //     });
+        // }
+        foreach ($users as $user) {
+            $user->specializations;
+            $user->technologies;
+        }
+
+        return response()->json($users);
+    }
 }

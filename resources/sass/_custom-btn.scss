@@ -1,16 +1,17 @@
 .itf-btn {
     border-radius: $border-radius-small;
-    border: 1px solid $btn-primary-bg;
     color: $white;
     font-size: 1rem;
     font-family: $ff-heading;
     font-weight: 400;
     padding: 10px 40px;
     outline: none;
-    width: 100%;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-
+}
+.itf-btn-primary {
+    border: 1px solid $btn-primary-bg;
+    background: $btn-primary-bg;
     &:hover {
         transition: all 0.3s ease-in-out;
         background: $btn-primary-bg-hoover;
@@ -21,9 +22,6 @@
         background: $btn-primary-bg-active;
         border: 1px solid $btn-primary-bg-active;
     }
-}
-.itf-btn-primary {
-    background: $btn-primary-bg;
 }
 .itf-btn-primary-outline {
     background: $yellow-05;
@@ -41,5 +39,35 @@
         color: $white;
     }
 }
-// .itf-btn-secondary {
-// }
+.itf-btn-secondary {
+    border: 1px solid $btn-secondary-bg;
+    background: $btn-secondary-bg;
+    &:hover {
+        background: $btn-secondary-bg-hoover;
+        border: 1px solid $btn-secondary-bg-hoover;
+    }
+    &:active {
+        background: $btn-secondary-bg-active;
+        border: 1px solid $btn-secondary-bg-active;
+    }
+}
+.itf-btn-tertiary {
+    border: 1px solid $btn-tertiary-bg;
+    background: $btn-tertiary-bg;
+    &:hover {
+        background: $btn-tertiary-bg-hoover;
+        border: 1px solid $btn-tertiary-bg-hoover;
+    }
+    &:active {
+        background: $btn-tertiary-bg-active;
+        border: 1px solid $btn-tertiary-bg-active;
+    }
+}
+.itf-btn-small {
+    font-size: 0.8rem;
+    padding: 12px 24px;
+}
+
+.itf-btn-full-width {
+    width: 100%;
+}
