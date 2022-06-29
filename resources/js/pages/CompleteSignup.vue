@@ -141,7 +141,7 @@
                     </div>
                     <div class="itf-card-body">
                         <div class="mb-3 d-flex flex-column">
-                            <div class="itf-form-box">
+                            <!-- <div class="itf-form-box">
                                 <label for="position" class="itf-form-label"
                                     >What is your job position?</label
                                 >
@@ -152,6 +152,27 @@
                                     placeholder="Full Stack Developer"
                                     v-model="params.position"
                                 />
+                            </div> -->
+                            <div class="itf-form-box">
+                                <label for="position" class="itf-form-label"
+                                    >What is your job position?*</label
+                                >
+                                <select
+                                    class="itf-form-control"
+                                    id="position"
+                                    v-model="params.specialization"
+                                >
+                                    <option value="">
+                                        Select your position
+                                    </option>
+                                    <option
+                                        :value="specialization.id"
+                                        v-for="specialization in specializations"
+                                        :key="specialization.id"
+                                    >
+                                        {{ specialization.specialization }}
+                                    </option>
+                                </select>
                             </div>
                             <div class="itf-form-box">
                                 <label
@@ -273,7 +294,7 @@
                                     class="itf-btn itf-btn-primary"
                                     @click="
                                         () => {
-                                            nextForm();
+                                            postData();
                                         }
                                     "
                                 >
@@ -298,7 +319,7 @@ export default {
     data() {
         return {
             params: {
-                position: "",
+                specialization: "",
                 job_experience: "",
                 location: "",
                 phone: "",
@@ -312,14 +333,27 @@ export default {
             displayedForm: 1,
             userId: this.$route.params.id,
             userName: "",
+            specializations: [],
         };
     },
     mounted() {
         this.userId = this.$route.params.id;
         // console.log(this.userId);
         this.getUserName();
+        this.getSpecializations();
     },
     methods: {
+        getSpecializations() {
+            window.axios
+                .get("http://127.0.0.1:8000/api/specializations")
+                .then((response) => {
+                    this.specializations = response.data;
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
         getUserName() {
             window.axios.get("/api/getUser/" + this.userId).then((response) => {
                 this.userName = response.data.user_name;

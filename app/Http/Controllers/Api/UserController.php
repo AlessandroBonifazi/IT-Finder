@@ -148,9 +148,13 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->surname = $request->surname;
         $user->job_experience = $request->job_experience;
-        $user->position = $request->position;
+        // $user->position = $request->position;
         $user->location = $request->location;
         $user->cv = $request->cv;
+        if ($request->specialization) {
+            $specialization = Specialization::find($request->specialization);
+            $user->specializations()->attach($specialization);
+        }
         if ($user->contactInfo()->exists()) {
             $user->contactInfo()->update([
                 "contact_email" => $user->email,
