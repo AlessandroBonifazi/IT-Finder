@@ -24,4 +24,7 @@ Route::middleware("auth:api")->get("/user", function (Request $request) {
 
 Route::post("/user/{id}/edit", "Api\UserController@completeRegistration");
 Route::get("/user/{id}", "Api\UserController@index")->name("user.index");
-// Route::get("/search", "Api\UserController@search")->name("search");
+Route::get("/advancedSearch", "Api\UserController@search")->name("search");
+Route::get("/specializations", "Api\SpecializationController@index")->name(
+    "specialization.index"
+);
