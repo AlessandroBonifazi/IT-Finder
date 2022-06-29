@@ -174,7 +174,7 @@ class UserController extends Controller
 
         $query = $user->newQuery();
 
-        if (!empty($request->value)) {
+        if (!empty($request->value) && $request->value != "AllUsers") {
             $query->where(function (EloquentBuilder $query) use ($search) {
                 $query
                     ->where("name", "like", "%" . $search . "%")
@@ -190,7 +190,14 @@ class UserController extends Controller
                     });
             });
         }
-        $users = $query->get();
+        if (!empty($specializationIdArray)) {
+            $query->whereHas("specializations", function ($q) use (
+                $specializationIdArray
+            ) {
+                $q->whereIn("id", $specializationIdArray);
+            });
+        }
+        $users = $query->paginate(12);
 
         // if (!empty($specializationIdArray)) {
         //     $users = $users->orWhereHas("specializations", function ($q) use (
@@ -201,7 +208,7 @@ class UserController extends Controller
         // }
         foreach ($users as $user) {
             $user->specializations;
-            // $user->technologies;
+            $user->technologies;
         }
 
         return response()->json($users);
