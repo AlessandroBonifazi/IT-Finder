@@ -19,6 +19,7 @@ class PaymentController extends Controller
     }
 
     public function makePayment(Request $request, Gateway $gateway){
+
         $promo = Promo::find($request->promo);
 
         $result = $gateway->transaction()->sale([
