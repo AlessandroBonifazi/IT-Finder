@@ -38,9 +38,9 @@ class User extends Authenticatable
         return $this->hasOne("App\Contact");
     }
 
-    public function tecnologies()
+    public function technologies()
     {
-        return $this->belongsToMany("App\Tecnology");
+        return $this->belongsToMany("App\Technology");
     }
 
     public function messages()
