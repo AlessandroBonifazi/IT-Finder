@@ -1,5 +1,6 @@
 <template>
     <div class="container-fluid m-0 p-0">
+        <HeaderComponent />
         <!-- hero -->
         <div class="row m-0 p-0">
             <div class="col-12 m-0 p-0">
@@ -210,9 +211,11 @@
 
 <script>
 import UserCard from "./../components/UserCard.vue";
+import HeaderComponent from "./../components/HeaderComponent.vue";
 export default {
     components: {
         UserCard,
+        HeaderComponent,
     },
     data() {
         return {
