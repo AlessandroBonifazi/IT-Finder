@@ -2439,6 +2439,78 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "MainPage",
   data: function data() {
@@ -40020,6 +40092,128 @@ var staticRenderFns = [
             ]),
             _vm._v(" "),
             _c("button", { staticClass: "btn" }, [_vm._v("Discover More")]),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-12 text-center" }, [
+            _c("h2", [_vm._v("What kind of specialist do you need?")]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row flex-wrap" }, [
+            _c("div", { staticClass: "col-3" }, [
+              _c("a", { attrs: { href: "#" } }, [_vm._v("Front-End")]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-3" }, [
+              _c("a", { attrs: { href: "#" } }, [_vm._v("Back-End")]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-3" }, [
+              _c("a", { attrs: { href: "#" } }, [_vm._v("Mobile")]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-3" }, [
+              _c("a", { attrs: { href: "#" } }, [_vm._v("Analyst")]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-3" }, [
+              _c("a", { attrs: { href: "#" } }, [_vm._v("Web Developer")]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-3" }, [
+              _c("a", { attrs: { href: "#" } }, [_vm._v("Web Developer")]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-3" }, [
+              _c("a", { attrs: { href: "#" } }, [_vm._v("Web Developer")]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-3" }, [
+              _c("a", { attrs: { href: "#" } }, [_vm._v("Web Developer")]),
+            ]),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-12" }, [
+              _c("h2", [_vm._v("Our best specialist")]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-4" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-4" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-4" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-4" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-4" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-4" }),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-12" }, [
+              _c("button", { staticClass: "btn" }, [_vm._v("Discover More")]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-5" }, [
+              _c("h1", [
+                _vm._v("Find the talent needed to get your business growing."),
+              ]),
+              _vm._v(" "),
+              _c("button", { staticClass: "btn" }, [_vm._v("Get Started")]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-5" }, [
+              _c("img", { attrs: { src: "", alt: "" } }),
+              _vm._v(" "),
+              _c("img", { attrs: { src: "", alt: "" } }),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-5 d-flex flex-column" }, [
+              _c("div", { staticClass: "next-job" }, [
+                _c("h3", [_vm._v("Title")]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab magni sapiente neque recusandae reiciendis, perspiciatis magnam ducimus maxime voluptatibus natus!"
+                  ),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "next-job" }, [
+                _c("h3", [_vm._v("Title")]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab magni sapiente neque recusandae reiciendis, perspiciatis magnam ducimus maxime voluptatibus natus!"
+                  ),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "next-job" }, [
+                _c("h3", [_vm._v("Title")]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab magni sapiente neque recusandae reiciendis, perspiciatis magnam ducimus maxime voluptatibus natus!"
+                  ),
+                ]),
+              ]),
+            ]),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "row" }, [
+            _vm._v("\n                footer\n            "),
           ]),
         ]),
       ]),
