@@ -1,14 +1,14 @@
 <template>
     <div class="m-0 p-0">
         <!-- banner -->
-        <div class="row my-5">
+        <div class="row my-5 justify-content-start mx-5">
             <div class="col-6">
-                <h1 class="krona">Your Next IT Specialist is Here</h1>
+                <h1 class="krona green-55">Your Next <span class="krona yellow-60"> IT </span>Specialist is Here</h1>
                 <p>
                     Search and find best IT Specialist from all around the world
                     for your one million project idea or business
                 </p>
-                <button class="btn">Discover More</button>
+                <button class="btn discover">Discover More</button>
             </div>
         </div>
         <!-- specialist role -->
@@ -64,7 +64,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h2>Our best specialist</h2>
+                    <h2 class="krona green-55">Our best specialist</h2>
                 </div>
 
                 <div class="row">
@@ -77,27 +77,40 @@
                 </div>
 
                 <div class="col-12 d-flex justify-content-center">
-                    <button class="btn">Discover More</button>
+                    <button class="btn discover">Discover More</button>
                 </div>
             </div>
             <!-- specialist banner -->
-            <div class="row bg-green my-5">
-                <div class="col-5">
-                    <h1>
-                        Find the talent needed to get your business growing.
-                    </h1>
-                    <button class="btn">Get Started</button>
+            <div class="row bg-green my-5 find-talent d-flex">
+                <div class="col-12 bg-green-55 d-flex">
+                    <div class="row d-flex">
+                        <div class="col-6 my-5 mx-3">
+
+                            <h1 class="krona find-talent-title">
+                                Find the talent needed to get your business <span class="krona yellow-60">growing</span>.
+                            </h1>
+                             <button class="btn get-started px-5 mt-3">Get Started</button>
+
+                        </div>
+
+                        <div class="col-6 talent-img">
+                            <img src="" alt="talent">
+                        </div>
+                       
+                    </div>
+                    
                 </div>
             </div>
             <!-- find next job section -->
             <div class="row my-5">
                 <div class="col-5">
+                    <h2 class="krona green-55">Find your next job</h2>
                     <img src="" alt="" />
                     <img src="" alt="" />
                 </div>
                 <div class="col-5 offset-2 d-flex flex-column">
                     <div class="next-job">
-                        <h3>Title</h3>
+                        <h3 class="krona green-55">Title</h3>
                         <p>
                             Lorem, ipsum dolor sit amet consectetur adipisicing
                             elit. Ab magni sapiente neque recusandae reiciendis,
@@ -106,7 +119,7 @@
                         </p>
                     </div>
                     <div class="next-job">
-                        <h3>Title</h3>
+                        <h3 class="krona green-55">Title</h3>
                         <p>
                             Lorem, ipsum dolor sit amet consectetur adipisicing
                             elit. Ab magni sapiente neque recusandae reiciendis,
@@ -115,7 +128,7 @@
                         </p>
                     </div>
                     <div class="next-job">
-                        <h3>Title</h3>
+                        <h3 class="krona green-55">Title</h3>
                         <p>
                             Lorem, ipsum dolor sit amet consectetur adipisicing
                             elit. Ab magni sapiente neque recusandae reiciendis,
@@ -165,6 +178,9 @@ export default {
 .green-40{
     color: $green-40;
 }
+.green-55 {
+    color: $green-55;
+}
 .bg-green-55 {
     background-color: $green-55;
 }
@@ -177,5 +193,31 @@ export default {
 .bg-green-50{
     background-color: $green-50;
 }
+
 //BODY
+.discover{
+    background-color: $btn-primary-bg;
+}
+.discover:hover{
+    background-color: $btn-primary-bg-hoover;
+}
+.discover:active{
+    background-color: $btn-primary-bg-active;
+    color: white;
+}
+.get-started{
+    background-color: $btn-tertiary-bg;
+    
+}
+.discover, .get-started{
+    color: white;
+    border: none;
+    border-radius: 8px;
+}
+.find-talent{
+    border-radius: 8px;
+}
+.find-talent-title{
+    color: white;
+}
 </style>
