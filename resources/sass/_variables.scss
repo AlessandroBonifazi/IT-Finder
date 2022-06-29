@@ -14,6 +14,7 @@ $green-20: #a1bdb9;
 $green-30: #80a39e;
 $green-40: #5e8a83;
 $green-50: #3d7068;
+$green-55: #123c35;
 $green-60: #315a53;
 $green-70: #25433e;
 $green-80: #182d2a;
@@ -58,6 +59,9 @@ $btn-tertiary-bg-active: $green-60;
 
 // ============================== Box Shadows ==============================
 $box-shadow-primary: 0px 7px 10px -3px rgba(74, 106, 101, 0.26);
+$box-shadow-secondary: 0px 7px 10px -3px #ffbc42;
+
+
 
 // ============================== Border Radius ==============================
 $border-radius: 20px;
