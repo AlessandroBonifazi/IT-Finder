@@ -7,10 +7,16 @@ import MainPage from "../js/pages/MainPageComponent.vue";
 import CompleteSignup from "../js/pages/CompleteSignup.vue";
 import RegisterPage from "../js/pages/RegisterPage.vue";
 import UserDashboard from "../js/pages/UserDashboard.vue";
+import UserProfile from "../js/pages/UserProfile.vue";
 
 const router = new VueRouter({
     mode: "history",
     routes: [
+        {
+            path: "/user-profile",
+            name: "user-profile",
+            component: UserProfile,
+        },
         {
             path: "/",
             name: "guest-home",
@@ -33,13 +39,5 @@ const router = new VueRouter({
         },
     ],
 });
-
-// const router = createRouter({
-//   history: createWebHistory(process.env.BASE_URL),
-//   mode: 'history',
-//   linkExactActiveClass: 'active',
-//   linkActiveClass: 'active',
-//   routes
-// })
 
 export default router;
