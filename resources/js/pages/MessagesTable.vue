@@ -1,5 +1,5 @@
 <template>
-      <div class="row messages-container p-0">
+      <div class="row messages-container p-0 rounded">
 
         <!--CONTAINER-LEFT-->
         <div class="container-left d-flex flex-column col-5 p-0">
@@ -8,6 +8,7 @@
                 <h2>Clients</h2>
             </div>
 
+            <!--SEARCH BAR-->
             <div class="search d-flex justify-content-center">
                 <input type="text" placeholder="Search..." class="mx-4 my-3">
             </div>
@@ -17,20 +18,22 @@
         </div>
 
         <!--CONTAINER-RIGHT-->
-        <div class="container-right col-7 border p-0">
-
+        <div class="container-right col-7 p-0">
+            <ActiveMessage/>
         </div>
       </div>
 </template>
 
 
 <script>
-import MessagesListComponent from "./MessagesListComponent.vue"
+import MessagesListComponent from "../components/MessagesListComponent.vue"
+import ActiveMessage from "../components/ActiveMessage.vue"
 
 export default {
-    name: "MessagesTableComponent",
+    name: "MessagesTable",
     components:{
-        MessagesListComponent
+        MessagesListComponent,
+        ActiveMessage
     }
 }
 </script>
@@ -69,6 +72,7 @@ export default {
 }
 .messages-container{
     box-shadow: $box-shadow-primary;
+    background-color: $white;
 }
 .reply{
     background-color: $btn-secondary-bg;
