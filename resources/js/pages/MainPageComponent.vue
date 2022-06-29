@@ -82,18 +82,18 @@
             </div>
             <!-- specialist banner -->
             <div class="row bg-green my-5 find-talent d-flex">
-                <div class="col-12 bg-green-55 d-flex">
+                <div class="col-12 bg-green-55 d-flex specialist-banner">
                     <div class="row d-flex">
-                        <div class="col-6 my-5 mx-3">
+                        <div class="col-5 my-5 mx-3">
 
                             <h1 class="krona find-talent-title">
                                 Find the talent needed to get your business <span class="krona yellow-60">growing</span>.
                             </h1>
-                             <button class="btn get-started px-5 mt-3">Get Started</button>
+                             <button class="btn get-started px-5 mt-5">Get Started</button>
 
                         </div>
 
-                        <div class="col-6 talent-img">
+                        <div class="col-7 talent-img">
                             <img src="" alt="talent">
                         </div>
                        
@@ -212,6 +212,7 @@ export default {
 }
 .get-started{
     background-color: $btn-tertiary-bg;
+    font-size: 20px;
     
 }
 .discover, .get-started{
@@ -224,5 +225,9 @@ export default {
 }
 .find-talent-title{
     color: white;
+    font-size: 28px;
+}
+.specialist-banner{
+    border-radius: 9px;
 }
 </style>
