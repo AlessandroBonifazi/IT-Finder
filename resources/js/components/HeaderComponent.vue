@@ -32,6 +32,7 @@
                                 >
                                     Login
                                 </button>
+                                <a href="/register">reg</a>
                             </div>
                         </div>
                     </div>
@@ -60,7 +61,7 @@ export default {
             this.$router.push("/login");
         },
         register() {
-            this.$router.push("/register");
+            this.$router.push("/register-front");
             // window.location.reload();
         },
         searchRedirect() {

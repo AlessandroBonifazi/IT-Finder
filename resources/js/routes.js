@@ -27,21 +27,21 @@ const router = new VueRouter({
             name: "guest-home",
             component: MainPage,
         },
+        // {
+        //     path: "/user/dashboard:id",
+        //     name: "complete-signup",
+        //     component: CompleteSignup,
+        // },
         {
-            path: "/user/complete-signup/:id",
-            name: "complete-signup",
-            component: CompleteSignup,
-        },
-        {
-            path: "/register",
+            path: "/register-front",
             name: "register",
             component: RegisterPage,
         },
-        {
-            path: "/dashboard/:id",
-            name: "dashboard",
-            component: UserDashboard,
-        },
+        // {
+        //     path: "/dashboard/:id",
+        //     name: "dashboard",
+        //     component: UserDashboard,
+        // },
         {
 
             path: "/search",

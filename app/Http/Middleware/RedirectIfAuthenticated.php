@@ -20,7 +20,7 @@ class RedirectIfAuthenticated
     {
         if (Auth::guard($guard)->check()) {
             $user_id = Auth::user()->id;
-            return redirect("/user/complete-signup/" . $user_id);
+            return redirect("/user/dashboard");
         }
 
         return $next($request);

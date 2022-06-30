@@ -30,11 +30,11 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    // protected $redirectTo = "/user/complete-signup/";
+    // protected $redirectTo = "/user/user/dashboard";
     public function redirectTo()
     {
         $user_id = Auth::user()->id;
-        return "/user/complete-signup/" . $user_id;
+        return "/user/dashboard";
     }
 
     /**

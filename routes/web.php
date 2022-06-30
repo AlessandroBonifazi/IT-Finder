@@ -19,19 +19,21 @@ Route::get("/register", "Auth\RegisterController@showRegistrationForm")->name(
     "register"
 );
 
+
 // Route::get("/search", "Api\UserController@search")->name("user.search");
 // Route::get("/", "Api\UserController@searchBySpec")->name(
 //     "search"
 // );
 
-// Route::middleware("auth")
-//     ->namespace("User")
-//     ->name("user.")
-//     ->prefix("user")
-//     ->group(function () {
-//         // Route::get("/", "HomeController")->name("home");
-//         Route::resource("/", "UserController");
-//     });
+Route::middleware("auth")
+    ->namespace("User")
+    ->name("user.")
+    ->prefix("user")
+    ->group(function () {
+        // Route::get("/", "HomeController")->name("home");
+        // Route::resource("/", "UserController");
+        Route::get("/dashboard", "UserController@dashboard");
+    });
 
 Route::get("{any?}", function () {
     return view("guest.home");
