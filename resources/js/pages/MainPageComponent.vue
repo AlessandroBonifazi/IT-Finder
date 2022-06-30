@@ -14,6 +14,10 @@
                 </p>
                 <button class="btn discover">Discover More</button>
             </div>
+
+            <div class="col-4">
+                <img class="jumbotron" src="public\img\Frame 2.png" alt="">
+            </div>
         </div>
         <!-- specialist role -->
         <svg
@@ -282,5 +286,9 @@ export default {
 }
 .specialist-banner {
     border-radius: 9px;
+}
+.jumbotron{
+    width: 100px;
+    height: 100px;
 }
 </style>
