@@ -21,7 +21,7 @@ class PaymentController extends Controller
 
     public function makePayment(OrderRequest $request, Gateway $gateway){
 
-        $promo = Promo::find($request->promo);
+        $promo = Promo::find($request->id);
 
         $result = $gateway->transaction()->sale([
             'amount' => $promo->price,
