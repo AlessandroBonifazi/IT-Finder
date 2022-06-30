@@ -72,13 +72,14 @@ class UserController extends Controller
         $messages = Message::where("user_id", $id)->get();
         $reviews = Review::where("user_id", $id)->get();
         $specs = Specialization::where("user_id", $id)->get();
-        return response()->json([
-            $user,
-            $contacts,
-            $messages,
-            $reviews,
-            $specs,
-        ]);
+        // return response()->json([
+        //     $user,
+        //     $contacts,
+        //     $messages,
+        //     $reviews,
+        //     $specs,
+        // ]);
+        return view('auth.dashboard', compact('user', 'contacts'));
     }
 
     /**

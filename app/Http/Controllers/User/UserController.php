@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Contact;
 
@@ -17,25 +18,8 @@ class UserController extends Controller
     public function index()
     {
         //
-        $users = User::all();
 
-        foreach ($users as $user) {
-            if (!$user->contactInfo) {
-                $user
-                    ->contactInfo()
-                    ->create([
-                        "contact_email" => $user->email,
-                        "phone" => "",
-                        "linkedin" => "",
-                        "github" => "",
-                        "site" => "",
-                    ])
-                    ->save();
-            }
-            $user->contact = $user->contactInfo;
-        }
-        // $contactInfo = Contact::all();
-        return view("user.index", compact("users"));
+        // return view('auth.dashboard');
     }
 
     /**
@@ -107,5 +91,10 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+
+    public function dashboard() {
+        $user = Auth::user();
+        return view('auth.dashboard', compact('user'));
     }
 }

@@ -71,32 +71,31 @@
 
 .itf-btn {
   border-radius: 10px;
-  border: 1px solid #ffbc42;
   color: #fff;
   font-size: 1rem;
   font-family: "Krona One", sans-serif;
   font-weight: 400;
   padding: 10px 40px;
   outline: none;
-  width: 100%;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
 
-.itf-btn:hover {
+.itf-btn-primary {
+  border: 1px solid #ffbc42;
+  background: #ffbc42;
+}
+
+.itf-btn-primary:hover {
   transition: all 0.3s ease-in-out;
   background: #ffc968;
   border: 1px solid #ffc968;
 }
 
-.itf-btn:active {
+.itf-btn-primary:active {
   transition: all 0.1s ease-in-out;
   background: #d99f35;
   border: 1px solid #d99f35;
-}
-
-.itf-btn-primary {
-  background: #ffbc42;
 }
 
 .itf-btn-primary-outline {
@@ -115,6 +114,45 @@
   background: #d99f35;
   border: 1px solid #d99f35;
   color: #fff;
+}
+
+.itf-btn-secondary {
+  border: 1px solid #ff5666;
+  background: #ff5666;
+}
+
+.itf-btn-secondary:hover {
+  background: #ff7885;
+  border: 1px solid #ff7885;
+}
+
+.itf-btn-secondary:active {
+  background: #dd4553;
+  border: 1px solid #dd4553;
+}
+
+.itf-btn-tertiary {
+  border: 1px solid #3d7068;
+  background: #3d7068;
+}
+
+.itf-btn-tertiary:hover {
+  background: #5e8a83;
+  border: 1px solid #5e8a83;
+}
+
+.itf-btn-tertiary:active {
+  background: #315a53;
+  border: 1px solid #315a53;
+}
+
+.itf-btn-small {
+  font-size: 0.8rem;
+  padding: 12px 24px;
+}
+
+.itf-btn-full-width {
+  width: 100%;
 }
 
 ul {

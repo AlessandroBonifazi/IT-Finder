@@ -182,7 +182,11 @@ export default {
                 })
                 .then((response) => {
                     // ! check if registration was successful and reload the page to redirect to complete signup page
-                    if (response.status == 201) window.location.reload();
+                    console.log(response);
+                    if (response.status == 201)
+                        window.location.replace(
+                            "http://127.0.0.1:8000/user/dashboard"
+                        );
                 })
                 .catch((error) => {
                     console.log(error);

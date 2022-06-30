@@ -371,7 +371,7 @@ export default {
                 .then((response) => {
                     console.log(response.data);
                     if (response.data.success) {
-                        this.$router.push(`/dashboard/${this.userId}`);
+                        this.$router.push(`/user/dashboard`);
                     }
                 })
                 .catch((error) => {

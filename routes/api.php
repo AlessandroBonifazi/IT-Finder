@@ -23,7 +23,7 @@ Route::middleware("auth:api")->get("/user", function (Request $request) {
 // Route::get("/user", "Api\UserController@show")->name("user.show");
 
 Route::post(
-    "/user/{id}/completeRegistration",
+    "/{id}/completeRegistration",
     "Api\UserController@completeRegistration"
 );
 Route::get("/user/{id}", "Api\UserController@index")->name("user.index");
