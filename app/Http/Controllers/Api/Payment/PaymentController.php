@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Api\Payment;
 
-use Braintree\Gateway;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Promo;
+use Braintree\Gateway;
+use Illuminate\Http\Request;
+use App\Http\Requests\Orders\OrderRequest;
+use App\Http\Controllers\Controller;
 
 class PaymentController extends Controller
 {
@@ -18,7 +19,7 @@ class PaymentController extends Controller
         return response()->json($data,200);
     }
 
-    public function makePayment(Request $request, Gateway $gateway){
+    public function makePayment(OrderRequest $request, Gateway $gateway){
 
         $promo = Promo::find($request->promo);
 
