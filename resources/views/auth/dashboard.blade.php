@@ -1,103 +1,131 @@
 @extends('layouts.app')
 {{-- @dd($user); --}}
 @section('content')
-    <div class="row">
-        <div class="col-sm-6 col-md-6 col-lg-6 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-5 d-flex align-items-center">
-                            <canvas id="UsersDoughnutChart" class="400x160 mb-4 mb-md-0" height="200"></canvas>
-                        </div>
-                        <div class="col-md-7">
-                            <h4 class="card-title font-weight-medium mb-0 d-none d-md-block">Active Users</h4>
-                            <div class="wrapper mt-4">
-                                <div class="d-flex justify-content-between mb-2">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 font-weight-medium">67,550</p>
-                                        <small class="text-muted ml-2">Email account</small>
+    <div class="row h-100 my-5">
+        <div class="col-2">
+            <div class="row d-flex flex-column h-100 bg-light py-0 my-0">
+                {{-- Nav --}}
+                <nav id="sidebarMenu" class="col-2 ">
+                    <div class="sidebar-sticky pt-3">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Profilo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Messaggi</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Recensioni</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Promo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Statistiche</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <div class="col-9 offset-1">
+            <div class="row">
+                {{-- Statistiche --}}
+                <div class="col-5 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <h4 class="card-title font-weight-medium mb-0 d-none d-md-block">Statistiche</h4>
+                                    <div class="wrapper mt-4">
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <div class="d-flex align-items-center">
+                                                <p class="mb-0 font-weight-medium">67,550</p>
+                                                <small class="text-muted ml-2">Messaggi</small>
+                                            </div>
+                                            <p class="mb-0 font-weight-medium">80%</p>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 88%"
+                                                aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
                                     </div>
-                                    <p class="mb-0 font-weight-medium">80%</p>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 88%"
-                                        aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="wrapper mt-4">
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <div class="d-flex align-items-center">
+                                                <p class="mb-0 font-weight-medium">21,435</p>
+                                                <small class="text-muted ml-2">Recensioni</small>
+                                            </div>
+                                            <p class="mb-0 font-weight-medium">34%</p>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 34%"
+                                                aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="wrapper mt-4">
-                                <div class="d-flex justify-content-between mb-2">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 font-weight-medium">21,435</p>
-                                        <small class="text-muted ml-2">Requests</small>
-                                    </div>
-                                    <p class="mb-0 font-weight-medium">34%</p>
+                        </div>
+                    </div>
+                </div>
+                {{-- Profilo --}}
+                <div class="col-4 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="">
+                                <div class="">
+                                    <img src="" />
                                 </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 34%"
-                                        aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="">
+                                    <h2 class="">Nome Cognome</h2>
+                                    <h3 class="">
+                                        specializzazione
+                                    </h3>
+                                    <p class="">
+                                        anni di esperienza
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-6 col-lg-6 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-7">
-                            <h4 class="card-title font-weight-medium mb-3">Amount Due</h4>
-                            <h1 class="font-weight-medium mb-0">$5998</h1>
-                            <p class="text-muted">Milestone Completed</p>
-                            <p class="mb-0">Payment for next week</p>
+                {{-- Messaggi --}}
+                <div class="col-md-4 grid-margin stretch-card my-2">
+                    <div class="card">
+                        <div class="card-body py-5">
+                            <ul>
+                                <li>
+                                    <p>messaggio</p>
+                                </li>
+                                <li>
+                                    <p>messaggio</p>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="col-md-5 d-flex align-items-end mt-4 mt-md-0">
-                            <canvas id="conversionBarChart" height="150"></canvas>
+                    </div>
+                </div>
+                {{-- Recensioni --}}
+                <div class="col-md-4 grid-margin stretch-card my-2">
+                    <div class="card">
+                        <div class="card-body py-5">
+                            <ul>
+                                <li>
+                                    <p>recensione</p>
+                                </li>
+                                <li>
+                                    <p>recensione</p>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body py-5">
-                    <div class="d-flex flex-row justify-content-center align-items">
-                        <i class="mdi mdi-facebook text-facebook icon-lg"></i>
-                        <div class="ml-3">
-                            <h6 class="text-facebook font-weight-semibold mb-0">2.62 Subscribers</h6>
-                            <p class="text-muted card-text">You main list growing</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body py-5">
-                    <div class="d-flex flex-row justify-content-center align-items">
-                        <i class="mdi mdi-google-plus text-google icon-lg"></i>
-                        <div class="ml-3">
-                            <h6 class="text-google font-weight-semibold mb-0">3.4k Followers</h6>
-                            <p class="text-muted card-text">You main list growing</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body py-5">
-                    <div class="d-flex flex-row justify-content-center align-items">
-                        <i class="mdi mdi-twitter text-twitter icon-lg"></i>
-                        <div class="ml-3">
-                            <h6 class="text-twitter font-weight-semibold mb-0">3k followers</h6>
-                            <p class="text-muted card-text">You main list growing</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
     </div>
 
     {{-- template examples --}}
