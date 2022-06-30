@@ -189,16 +189,15 @@
                 </div>
             </div>
         </div>
-        <!-- footer -->
-        <div class="container my-5">
-            <div class="row">footer</div>
-        </div>
+
         <a href="#" @click="logout">logout</a>
+        <FooterComponent />
     </div>
 </template>
 
 <script>
 import HeaderComponent from "./../components/HeaderComponent.vue";
+import FooterComponent from "./../components/FooterComponent.vue";
 export default {
     name: "MainPage",
     data() {
@@ -214,7 +213,7 @@ export default {
             });
         },
     },
-    components: { HeaderComponent },
+    components: { HeaderComponent, FooterComponent },
 };
 </script>
 
