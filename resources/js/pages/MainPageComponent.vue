@@ -12,7 +12,7 @@
             </div>
 
             <div class="col-4">
-                <img class="jumbotron" src="public\img\Frame 2.png" alt="">
+                <img class="jumbotron" src="public\img\Frame 2.png" alt="jumbotron">
             </div>
         </div>
         <!-- specialist role -->
@@ -85,10 +85,10 @@
                 </div>
             </div>
             <!-- specialist banner -->
-            <div class="row bg-green my-5 find-talent d-flex">
-                <div class="col-12 bg-green-55 d-flex specialist-banner">
-                    <div class="row d-flex">
-                        <div class="col-5 my-5 mx-3">
+            <div class="row bg-green my-5 find-talent d-flex ">
+                <div class="col-12 bg-green-55 d-flex specialist-banner justify-content-center mb-5">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-6 my-5 py-5 px-5">
 
                             <h1 class="krona find-talent-title">
                                 Find the talent needed to get your business <span class="krona yellow-60">growing</span>.
@@ -97,8 +97,8 @@
 
                         </div>
 
-                        <div class="col-7 talent-img">
-                            <img src="" alt="talent">
+                        <div class="col-6 talent-img p-0 d-flex">
+                            <img src="img\unsplash_3TLl_97HNJo.png" alt="talent">
                         </div>
                        
                     </div>
@@ -106,13 +106,13 @@
                 </div>
             </div>
             <!-- find next job section -->
-            <div class="row my-5">
-                <div class="col-5">
-                    <h2 class="krona green-55">Find your next job</h2>
-                    <img src="" alt="" />
-                    <img src="" alt="" />
+            <div class="row my-5 py-5 justify-content-center">
+                <div class="col-6 p-0">
+                    <h2 class="krona green-55 mb-5">Find your next job</h2>
+                    <img class="frame-28" src="img\Frame 28.png" alt="" />
+                    <img class="position-absolute frame-29" src="img\Frame 29.png" alt="" />
                 </div>
-                <div class="col-5 offset-2 d-flex flex-column">
+                <div class="col-5 d-flex flex-column">
                     <div class="next-job">
                         <h3 class="krona green-55">Title</h3>
                         <p>
@@ -199,6 +199,9 @@ export default {
 }
 
 //BODY
+svg{
+    width: 100%;
+}
 .specialist a:hover{
     color: white;
 }
@@ -229,7 +232,11 @@ export default {
 }
 .find-talent-title{
     color: white;
-    font-size: 28px;
+    font-size: 30px;
+}
+.talent-img img{
+    height: 392px;
+    justify-content: center;
 }
 .specialist-banner{
     border-radius: 9px;
@@ -237,5 +244,13 @@ export default {
 .jumbotron{
     width: 100px;
     height: 100px;
+}
+.frame-28{
+    height: 60%;
+}
+.frame-29{
+    height: 28%;
+    right: 37px;
+    top: 324px;
 }
 </style>

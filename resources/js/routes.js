@@ -8,6 +8,7 @@ import CompleteSignup from "../js/pages/CompleteSignup.vue";
 import RegisterPage from "../js/pages/RegisterPage.vue";
 import UserDashboard from "../js/pages/UserDashboard.vue";
 import UserProfile from "../js/pages/UserProfile.vue";
+import DevDetail from "../js/pages/DevDetail.vue";
 
 const router = new VueRouter({
     mode: "history",
@@ -36,6 +37,11 @@ const router = new VueRouter({
             path: "/dashboard/:id",
             name: "dashboard",
             component: UserDashboard,
+        },
+        {
+            path: "/dev-detail",
+            name: "devdetail",
+            component: DevDetail,
         },
     ],
 });
