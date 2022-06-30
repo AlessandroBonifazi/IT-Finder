@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Api\Products;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Promo;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\ProductResource;
 
 class ProductController extends Controller
 {
     public function index(Request $request){
         $promos = Promo::all();
-        return response()->json($promos,200);
+        return ProductResource::collection($promos);
     }
 }
