@@ -1,14 +1,18 @@
 <template>
     <div class="m-0 p-0">
         <!-- banner -->
-        <div class="row my-5 justify-content-start mx-5 px-5">
-            <div class="col-5 mx-5 px-5">
+        <div class="row my-5 justify-content-start mx-5 px-5 d-flex">
+            <div class="col-6 mx-5 px-5">
                 <h1 class="krona green-55 mb-4 mt-5">Your Next <span class="krona yellow-60"> IT </span>Specialist is Here</h1>
                 <p>
                     Search and find best IT Specialist from all around the world
                     for your one million project idea or business
                 </p>
                 <button class="btn discover">Discover More</button>
+            </div>
+
+            <div class="col-4">
+                <img class="jumbotron" src="public\img\Frame 2.png" alt="">
             </div>
         </div>
         <!-- specialist role -->
@@ -229,5 +233,9 @@ export default {
 }
 .specialist-banner{
     border-radius: 9px;
+}
+.jumbotron{
+    width: 100px;
+    height: 100px;
 }
 </style>
