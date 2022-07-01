@@ -16,7 +16,7 @@
             </div>
 
             <div class="col-4">
-                <img class="jumbotron" src="public\img\Frame 2.png" alt="jumbotron">
+                <img class="jumbotron" src="public/img/Frame 2.png" alt="jumbotron">
             </div>
         </div>
         <!-- specialist role -->
@@ -243,6 +243,9 @@ export default {
 }
 .bg-green-60 {
     background-color: $green-60;
+}
+.yellow-50{
+    color: $fc-accent-yellow;
 }
 .yellow-60 {
     color: $yellow-60;
