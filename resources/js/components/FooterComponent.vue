@@ -6,10 +6,10 @@
                     <div class="col-md-3 col-sm-6">
                         <!--Column1-->
                         <div class="footer-pad">
-                            <h4>Contatti</h4>
+                            <h4>Contacts</h4>
                             <ul class="list-unstyled">
                                 <li>
-                                    <i class="fa fa-linkedin"></i>
+                                    <i class="fa-brands fa-linkedin-in"></i>
                                     <a
                                         href="https://www.linkedin.com/in/tymofyeyev/"
                                         class="icoLinkedin"
@@ -19,7 +19,7 @@
                                     >
                                 </li>
                                 <li>
-                                    <i class="fa fa-linkedin"></i>
+                                    <i class="fa-brands fa-linkedin-in"></i>
                                     <a
                                         href="https://www.linkedin.com/in/erik-schievenin-8971256b/"
                                         class="icoLinkedin"
@@ -29,7 +29,7 @@
                                     >
                                 </li>
                                 <li>
-                                    <i class="fa fa-linkedin"></i>
+                                    <i class="fa-brands fa-linkedin-in"></i>
                                     <a
                                         href="https://www.linkedin.com/in/alessandro-bonifazi-0693b6217/"
                                         class="icoLinkedin"
@@ -39,7 +39,7 @@
                                     >
                                 </li>
                                 <li>
-                                    <i class="fa fa-linkedin"></i>
+                                    <i class="fa-brands fa-linkedin-in"></i>
                                     <a
                                         href="https://www.linkedin.com/in/robin-costanzo-0502a11b9/"
                                         class="icoLinkedin"
@@ -49,7 +49,7 @@
                                     >
                                 </li>
                                 <li>
-                                    <i class="fa fa-linkedin"></i>
+                                    <i class="fa-brands fa-linkedin-in"></i>
                                     <a
                                         href="https://www.linkedin.com/in/gioia-ascari-978199196/"
                                         class="icoLinkedin"
@@ -59,7 +59,7 @@
                                     >
                                 </li>
                                 <li>
-                                    <i class="fa fa-linkedin"></i>
+                                    <i class="fa-brands fa-linkedin-in"></i>
                                     <a
                                         href="https://www.linkedin.com/in/antonio-iorio-8954bb242/"
                                         class="icoLinkedin"
@@ -74,32 +74,22 @@
                     <div class="col-md-3 col-sm-6">
                         <!--Column1-->
                         <div class="footer-pad">
-                            <h4>Heading 2</h4>
+                            <h4>Services</h4>
                             <ul class="list-unstyled">
-                                <li><a href="#">Website Tutorial</a></li>
-                                <li><a href="#">Accessibility</a></li>
-                                <li><a href="#">Disclaimer</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">FAQs</a></li>
-                                <li><a href="#">Webmaster</a></li>
+                                <li>
+                                    <a href="#" @click="register"> Register </a>
+                                </li>
+                                <li>
+                                    <a href="#" @click="login"> Login </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" @click="searchRedirect">
+                                        Search your specialist
+                                    </a>
+                                </li>
                             </ul>
                         </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <h4>Follow Us</h4>
-                        <ul class="social-network social-circle">
-                            <li>
-                                <a href="#" class="icoFacebook" title="Facebook"
-                                    ><i class="fa fa-facebook"></i
-                                ></a>
-                            </li>
-                            <li>
-                                <a href="#" class="icoLinkedin" title="Linkedin"
-                                    ><i class="fa fa-linkedin"></i
-                                ></a>
-                            </li>
-                        </ul>
                     </div>
                 </div>
                 <div class="row">
@@ -117,6 +107,23 @@
 <script>
 export default {
     name: "FooterComponent",
+    methods: {
+        logout() {
+            window.axios.post("/logout").then(() => {
+                // this.$router.push("/");
+            });
+        },
+        login() {
+            this.$router.push("/login");
+        },
+        register() {
+            this.$router.push("/register");
+            // window.location.reload();
+        },
+        searchRedirect() {
+            this.$router.push("/search");
+        },
+    },
 };
 </script>
 
