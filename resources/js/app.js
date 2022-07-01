@@ -4,11 +4,12 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+require("./bootstrap");
+require("./backoffice/completeRegistration");
 
-window.Vue = require('vue');
-// window.axios = require("axios");
-// window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+window.Vue = require("vue");
+window.axios = require("axios");
+window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
 /**
  * The following block of code may be used to automatically register your
@@ -29,8 +30,6 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-
-
- const app = new Vue({
-     el: "#app",
- });
+const app = new Vue({
+    el: "#app",
+});

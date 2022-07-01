@@ -19,7 +19,6 @@ Route::get("/register", "Auth\RegisterController@showRegistrationForm")->name(
     "register"
 );
 
-
 // Route::get("/search", "Api\UserController@search")->name("user.search");
 // Route::get("/", "Api\UserController@searchBySpec")->name(
 //     "search"
@@ -32,7 +31,15 @@ Route::middleware("auth")
     ->group(function () {
         // Route::get("/", "HomeController")->name("home");
         // Route::resource("/", "UserController");
-        Route::get("/dashboard", "UserController@dashboard");
+        Route::put(
+            "/update-profile/{id}",
+            "UserController@updateProfile"
+        )->name("update-profile");
+        Route::get(
+            "/complete-registration",
+            "UserController@completeRegistration"
+        )->name("complete-registration");
+        Route::get("/dashboard", "UserController@dashboard")->name("dashboard");
     });
 
 Route::get("{any?}", function () {

@@ -182,14 +182,19 @@ export default {
                 })
                 .then((response) => {
                     // ! check if registration was successful and reload the page to redirect to complete signup page
-                    console.log(response);
-                    if (response.status == 201)
+                    console.log("register response", response);
+
+                    if (response.status == 201) {
+                        window.location.replace(
+                            "http://127.0.0.1:8000/user/complete-registration"
+                        );
+                    } else if (response.data.includes("<!doctype html>")) {
                         window.location.replace(
                             "http://127.0.0.1:8000/user/dashboard"
                         );
+                    }
                 })
                 .catch((error) => {
-                    console.log(error);
                     console.log(error.response.data);
                     if (error.response.data.errors.user_name) {
                         this.user_nameValidationMessage =
