@@ -52,15 +52,6 @@
                                             <li class="list-group-item w-75">{{ $message->content }}</li>
                                         </ul>
                                     @endforeach
-
-                                    <ul class="list-group list-group-horizontal my-1">
-                                        <li class="list-group-item">Contact Name</li>
-                                        <li class="list-group-item w-75">messagge</li>
-                                    </ul>
-                                    <ul class="list-group list-group-horizontal my-1">
-                                        <li class="list-group-item">Contact Name</li>
-                                        <li class="list-group-item w-75">messagge</li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>
