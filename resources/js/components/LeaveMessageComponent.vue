@@ -8,17 +8,17 @@
         <form class="p-3 mt-2">
             <div class="mb-3">
                 <label for="name" class="form-label krona dark-grey">Name</label>
-                <input type="text" class="form-control" id="name">
+                <input type="text" class="form-control" id="name" v-model="params.name">
             </div>
 
             <div class="mb-3">
                 <label for="email" class="form-label krona dark-grey">Email</label>
-                <input type="email" class="form-control" id="email">
+                <input type="email" class="form-control" id="email" v-model="params.email">
             </div>
 
             <div class="mb-3">
                 <label for="message" class="form-label krona dark-grey">Message</label>
-                <input type="text" class="form-control message" id="message">
+                <input type="text" class="form-control message" id="message" v-model="params.message">
             </div>
         </form>
         <div class="send d-flex justify-content-end px-3">
@@ -34,7 +34,16 @@
 <script>
 
 export default {
-    name: 'LeaveMessageComponent'
+    name: 'LeaveMessageComponent',
+     data() {
+        return {
+            params: {
+                name: "",
+                email: "",
+                message: "",
+            },
+        };
+    },
 }
 </script>
 
