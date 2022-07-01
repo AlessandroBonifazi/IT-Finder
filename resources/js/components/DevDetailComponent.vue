@@ -23,8 +23,8 @@
                 </div>
 
                 <!--ABOUT ME-->
-                <div class="about-me col-8 my-5 p-0">
-                    <h5 class="krona green-55">About Me</h5>
+                <div class="about-me col-8 my-4 p-0">
+                    <h5 class="krona green-55 my-2">About Me</h5>
                     <p>Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi. 
 
                     </p>
@@ -32,13 +32,13 @@
                 
                 <!--TECHNOLOGIES STACK-->
                 <div class="technlogies-stack col-5 my-4 p-0">
-                    <h5 class="krona green-55">My Technologies Stack</h5>
+                    <h5 class="krona green-55 my-2">My Technologies Stack</h5>
                 </div>
 
                 <!--PEOPLE'S REVIEWS-->
                 <div class="reviews d-flex flex-column col-10 p-0 my-4">
                     <div class="d-flex justify-content-between">
-                        <h5 class="krona green-55">People’s Reviews</h5>
+                        <h5 class="krona green-55 my-2">People’s Reviews</h5>
                         <button class="btn px-4">Leave a new Review</button>
                     </div>
                     
@@ -53,7 +53,7 @@
 
                 <!--CONTACT-->
                 <div class="contact-section mt-5 p-0">
-                    <h5 class="krona green-55">How to contact me</h5>
+                    <h5 class="krona green-55 my-2">How to contact me</h5>
 
                     <div class="contact d-flex">
                         <p class="mx-2">logo</p>
