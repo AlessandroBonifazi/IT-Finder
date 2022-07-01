@@ -34,7 +34,7 @@ class RegisterController extends Controller
     public function redirectTo()
     {
         $user_id = Auth::user()->id;
-        return "/user/dashboard";
+        return "/user/update-profile";
     }
 
     /**
