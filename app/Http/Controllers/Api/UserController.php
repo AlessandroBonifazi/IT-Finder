@@ -213,30 +213,14 @@ class UserController extends Controller
         }
 
         if (!empty($reviews)) {
-            $query->whereHas("reviews", function ($j) use (
-                $reviews
-            ) {
-                // $average= DB::select('select * from users where active = ?', [1])
-
-                $j->whereRaw('(select AVG(valutation)) >='. $reviews);
-
-                // $j->groupBy('name')->avg('valutation')->whereIn("valutation", '>=', $reviews);
-
-                // ("valutation", '>=', $reviews)
-                // ->groupBy('')->avg('');
-            });
-
+            $query->join('reviews', 'users.id', '=', 'reviews.user_id')
+            ->select('users.*')
+            ->groupBy('reviews.user_id')
+            ->havingRaw('AVG(reviews.valutation) >= ?', [$reviews]);
         }
 
         $users = $query->paginate(12);
 
-        // if (!empty($specializationIdArray)) {
-        //     $users = $users->orWhereHas("specializations", function ($q) use (
-        //         $specializationIdArray
-        //     ) {
-        //         $q->whereIn("specialization_id", $specializationIdArray);
-        //     });
-        // }
         foreach ($users as $user) {
             $user->specializations;
             $user->technologies;
