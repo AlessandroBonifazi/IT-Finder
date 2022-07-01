@@ -149,7 +149,7 @@ export default {
     top: -65px;
 }
 .dev-img{
-    width: 200px;
+    width: 188px;
     object-fit: cover;
 }
 .rating{
