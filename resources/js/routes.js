@@ -9,9 +9,9 @@ import RegisterPage from "../js/pages/RegisterPage.vue";
 import UserDashboard from "../js/pages/UserDashboard.vue";
 import SearchPage from "../js/pages/SearchPage.vue";
 import UserProfile from "../js/pages/UserProfile.vue";
+import DevDetail from "../js/pages/DevDetail.vue";
 // ! IMPORTANT: for our convention we import pages like this.
 // ! Its safer and avoid many bugs
-import MessagesTable from "./pages/MessagesTable.vue"
 
 
 const router = new VueRouter({
@@ -49,9 +49,9 @@ const router = new VueRouter({
             component: SearchPage,
         },
         {
-            path: "/messages-table",
-            name: "messages-table",
-            component: MessagesTable,
+            path: "/dev-detail",
+            name: "dev-detail",
+            component: DevDetail,
 
         },
     ],
