@@ -1,5 +1,5 @@
 @extends('layouts.app')
-{{-- @dd($user); --}}
+{{-- @dd($messages); --}}
 @section('content')
     <div class="row h-100 mt-5">
         <div class="col-sm-2 col-md-2">
@@ -44,10 +44,15 @@
                                     {{-- title --}}
                                     <h5 class="card-title">Messages</h5>
 
-                                    <ul class="list-group list-group-horizontal my-1">
-                                        <li class="list-group-item">Contact Name</li>
-                                        <li class="list-group-item w-75">messagge</li>
-                                    </ul>
+                                    @foreach ($messages as $message)
+                                        <ul class="list-group list-group-horizontal my-1">
+                                            <li class="list-group-item">{{ $message->user_name }}
+                                                {{ $message->created_at }}
+                                            </li>
+                                            <li class="list-group-item w-75">{{ $message->content }}</li>
+                                        </ul>
+                                    @endforeach
+
                                     <ul class="list-group list-group-horizontal my-1">
                                         <li class="list-group-item">Contact Name</li>
                                         <li class="list-group-item w-75">messagge</li>
