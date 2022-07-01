@@ -34,3 +34,4 @@ Route::get("/advancedSearch", "Api\UserController@search")->name("search");
 Route::get("/specializations", "Api\SpecializationController@index")->name(
     "specialization.index"
 );
+Route::get("/best-users", "Api\UserController@bestUsers")->name("best-users");
