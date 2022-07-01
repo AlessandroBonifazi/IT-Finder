@@ -131,7 +131,8 @@ class UserController extends Controller
     public function dashboard()
     {
         $user = Auth::user();
-        return view("auth.dashboard", compact("user"));
+        $specializations = $user->specializations;
+        return view("auth.dashboard", compact("user", "specializations"));
     }
     public function completeRegistration()
     {

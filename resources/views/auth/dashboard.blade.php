@@ -133,12 +133,14 @@
                                 </div>
                                 {{-- details --}}
                                 <div class="card-body">
-                                    <h5 class="card-title">Nome Cognome</h5>
-                                    <p class="card-text">Descrizione</p>
-
+                                    <h5 class="card-title">{{ $user->name }} {{ $user->surname }}</h5>
+                                    <p class="card-text">{{ $user->location }}</p>
                                 </div>
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Specializzazioni</li>
+                                    {{-- @dd($specializations); --}}
+                                    @foreach ($specializations as $specialization)
+                                        <li class="list-group-item">{{ $specialization->specialization }}</li>
+                                    @endforeach
                                     <li class="list-group-item"><a href="">link</a></li>
                                     <li class="list-group-item">Promo</li>
                                 </ul>

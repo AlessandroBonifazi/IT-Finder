@@ -189,9 +189,9 @@ export default {
                             "http://127.0.0.1:8000/user/complete-registration"
                         );
                     } else if (response.data.includes("<!doctype html>")) {
-                        window.location.replace(
-                            "http://127.0.0.1:8000/user/dashboard"
-                        );
+                        // window.location.replace(
+                        //     "http://127.0.0.1:8000/user/dashboard"
+                        // );
                     }
                 })
                 .catch((error) => {
