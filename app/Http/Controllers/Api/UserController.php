@@ -184,7 +184,7 @@ class UserController extends Controller
     {
         $search = $request->value;
         $specializationIdArray = $request->specializations;
-        $valutation = $request->valutation;
+        $valutation = $request->reviews;
 
         $query = $user->newQuery();
 
@@ -213,14 +213,13 @@ class UserController extends Controller
         }
 
         if (!empty($valutation)) {
-            $query->whereHas("validation", function ($j) use (
-                $validation
+            $query->whereHas("valutation", function ($j) use (
+                $valutation
             ) {
-                $j->whereIn("id", $validation);
+                $j->whereIn("id", $valutation);
             });
         }
 
-        }
         $users = $query->paginate(12);
 
         // if (!empty($specializationIdArray)) {
@@ -233,6 +232,7 @@ class UserController extends Controller
         foreach ($users as $user) {
             $user->specializations;
             $user->technologies;
+            $user->validation;
         }
 
         return response()->json($users);
