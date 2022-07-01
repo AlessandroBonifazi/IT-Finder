@@ -5,7 +5,10 @@
                 <img :src="handleImgPath(user.img_path)" />
             </div>
             <div class="itf-user-card-header-content">
-                <h2 class="itf-name">{{ user.name }} {{ user.surname }}</h2>
+                <h2 class="itf-name">
+                    {{ user.name }} {{ user.surname }}
+                    {{ user.reviews[0].valutation }}
+                </h2>
                 <h3 class="itf-position" v-if="user.specializations[0]">
                     {{ user.specializations[0].specialization }}
                 </h3>

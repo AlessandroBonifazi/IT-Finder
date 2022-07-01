@@ -2127,6 +2127,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "UserCard",
   props: {
@@ -3426,6 +3429,50 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3444,13 +3491,13 @@ __webpack_require__.r(__webpack_exports__);
         totalPages: 1,
         totalRecords: 0
       },
-      valutations: {},
-      selectedValutations: []
+      valutations: 5,
+      selectedValutations: [],
+      reviews: ""
     };
   },
   mounted: function mounted() {
     this.getSpecializations();
-    this.getValutations();
     this.getSearch();
   },
   methods: {
@@ -3462,7 +3509,7 @@ __webpack_require__.r(__webpack_exports__);
         params: {
           value: this.searchQuery,
           specializations: this.selectedSpecializations,
-          valution: this.valutation,
+          reviews: this.reviews,
           page: page || 1
         }
       }).then(function (response) {
@@ -3479,7 +3526,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       window.axios.get("http://127.0.0.1:8000/api/specializations").then(function (response) {
-        _this2.specializations = response.data; // console.log(response.data);
+        _this2.specializations = response.data;
+        console.log("specialization", response.data);
       })["catch"](function (error) {
         console.log(error);
       });
@@ -3494,15 +3542,6 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       console.log(this.selectedSpecializations);
-    },
-    getValutations: function getValutations() {
-      var _this3 = this;
-
-      window.axios.get("http://127.0.0.1:8000/api/reviews").then(function (response) {
-        _this3.valutations = response.data; // console.log(response.data);
-      })["catch"](function (error) {
-        console.log(error);
-      });
     },
     handleValutSelection: function handleValutSelection(id) {
       if (this.selectedValutations.includes(id)) {
@@ -40516,7 +40555,15 @@ var render = function () {
       _vm._v(" "),
       _c("div", { staticClass: "itf-user-card-header-content" }, [
         _c("h2", { staticClass: "itf-name" }, [
-          _vm._v(_vm._s(_vm.user.name) + " " + _vm._s(_vm.user.surname)),
+          _vm._v(
+            "\n                " +
+              _vm._s(_vm.user.name) +
+              " " +
+              _vm._s(_vm.user.surname) +
+              "\n                " +
+              _vm._s(_vm.user.reviews[0].valutation) +
+              "\n            "
+          ),
         ]),
         _vm._v(" "),
         _vm.user.specializations[0]
@@ -42235,9 +42282,9 @@ var render = function () {
                               },
                               [
                                 _vm._v(
-                                  "\n                      " +
+                                  "\n                                            " +
                                     _vm._s(spec.specialization) +
-                                    "\n                    "
+                                    "\n                                        "
                                 ),
                               ]
                             ),
@@ -42255,48 +42302,56 @@ var render = function () {
                   _vm._m(3),
                   _vm._v(" "),
                   _c("div", { staticClass: "sidebar-item-body" }, [
-                    _c(
-                      "div",
-                      { staticClass: "sidebar-item-body-content" },
-                      _vm._l(_vm.valutations, function (valut) {
-                        return _c(
-                          "div",
-                          {
-                            key: valut.id,
-                            staticClass: "sidebar-item-body-content-item",
+                    _c("div", { staticClass: "sidebar-item-body-content" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.reviews,
+                              expression: "reviews",
+                            },
+                          ],
+                          on: {
+                            change: function ($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function (o) {
+                                  return o.selected
+                                })
+                                .map(function (o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.reviews = $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            },
                           },
-                          [
-                            _c("input", {
-                              staticClass:
-                                "sidebar-item-body-content-item-input",
-                              attrs: { type: "checkbox", id: valut.id },
-                              on: {
-                                click: function () {
-                                  _vm.handleValutSelection(valut.id)
-                                },
-                              },
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "label",
-                              {
-                                staticClass:
-                                  "sidebar-item-body-content-item-label",
-                                attrs: { for: valut.id },
-                              },
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("All"),
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.valutations, function (valut) {
+                            return _c(
+                              "option",
+                              { key: valut, domProps: { value: valut } },
                               [
                                 _vm._v(
-                                  "\n                      " +
-                                    _vm._s(valut.valutation) +
-                                    "\n                    "
+                                  "\n                                            " +
+                                    _vm._s(valut) +
+                                    "\n                                        "
                                 ),
                               ]
-                            ),
-                          ]
-                        )
-                      }),
-                      0
-                    ),
+                            )
+                          }),
+                        ],
+                        2
+                      ),
+                    ]),
                   ]),
                 ]),
               ]),
@@ -42337,7 +42392,11 @@ var render = function () {
                       staticClass: "itf-btn itf-btn-primary itf-btn-small",
                       on: { click: _vm.getSearch },
                     },
-                    [_vm._v("\n                Search\n              ")]
+                    [
+                      _vm._v(
+                        "\n                                Search\n                            "
+                      ),
+                    ]
                   ),
                 ]),
               ]),
@@ -42501,11 +42560,13 @@ var staticRenderFns = [
                 "div",
                 {
                   staticClass:
-                    "\n                col-12\n                h-100\n                d-flex\n                justify-content-center\n                align-items-center\n              ",
+                    "col-12 h-100 d-flex justify-content-center align-items-center",
                 },
                 [
                   _c("h1", { staticClass: "hero-title" }, [
-                    _vm._v("Search for best IT Specialists"),
+                    _vm._v(
+                      "\n                                Search for best IT Specialists\n                            "
+                    ),
                   ]),
                 ]
               ),
@@ -42529,7 +42590,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "sidebar-item-header" }, [
       _c("h4", { staticClass: "sidebar-item-title" }, [
-        _vm._v("Specialization"),
+        _vm._v(
+          "\n                                    Specialization\n                                "
+        ),
       ]),
     ])
   },
@@ -59259,7 +59322,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! H:\Hard disk 6TB\Boolean\LEZIONI\Esercizi\Project\IT-Finder\resources\js\front-app.js */"./resources/js/front-app.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\php\IT-Finder\resources\js\front-app.js */"./resources/js/front-app.js");
 
 
 /***/ })

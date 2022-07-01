@@ -184,7 +184,7 @@ class UserController extends Controller
     {
         $search = $request->value;
         $specializationIdArray = $request->specializations;
-        $valutation = $request->reviews;
+        $reviews = $request->reviews;
 
         $query = $user->newQuery();
 
@@ -212,12 +212,20 @@ class UserController extends Controller
             });
         }
 
-        if (!empty($valutation)) {
-            $query->whereHas("valutation", function ($j) use (
-                $valutation
+        if (!empty($reviews)) {
+            $query->whereHas("reviews", function ($j) use (
+                $reviews
             ) {
-                $j->whereIn("id", $valutation);
+                // $average= DB::select('select * from users where active = ?', [1])
+
+                $j->whereRaw('(select AVG(valutation)) >='. $reviews);
+
+                // $j->groupBy('name')->avg('valutation')->whereIn("valutation", '>=', $reviews);
+
+                // ("valutation", '>=', $reviews)
+                // ->groupBy('')->avg('');
             });
+
         }
 
         $users = $query->paginate(12);
@@ -232,7 +240,7 @@ class UserController extends Controller
         foreach ($users as $user) {
             $user->specializations;
             $user->technologies;
-            $user->validation;
+            $user->reviews;
         }
 
         return response()->json($users);
