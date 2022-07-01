@@ -9,13 +9,13 @@
                     <div class="sidebar-sticky pt-3">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Dashboard</a>
+                                <a class="nav-link" href="{{ route('user.dashboard') }}">Dashboard</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Profile</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Messagges</a>
+                                <a class="nav-link" href="{{ route('user.messages') }}">Messagges</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Reviews</a>
