@@ -12,19 +12,19 @@
                                 <a class="nav-link" href="#">Dashboard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Profilo</a>
+                                <a class="nav-link" href="#">Profile</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Messaggi</a>
+                                <a class="nav-link" href="#">Messagges</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Recensioni</a>
+                                <a class="nav-link" href="#">Reviews</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Promo</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Statistiche</a>
+                                <a class="nav-link" href="#">Statistics</a>
                             </li>
                         </ul>
                     </div>
@@ -35,37 +35,34 @@
         <div class="col-9 offset-1">
             <div class="row">
                 {{-- Statistiche --}}
-                <div class="col-5 grid-margin stretch-card">
+                <div class="col-sm-12 col-md-6 col-lg-8 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
+                            <h4 class="card-title font-weight-medium mb-0 d-none d-md-block">Statistics</h4>
+
                             <div class="row">
-                                <div class="col-md-7">
-                                    <h4 class="card-title font-weight-medium mb-0 d-none d-md-block">Statistiche</h4>
-                                    <div class="wrapper mt-4">
-                                        <div class="d-flex justify-content-between mb-2">
-                                            <div class="d-flex align-items-center">
-                                                <p class="mb-0 font-weight-medium">67,550</p>
-                                                <small class="text-muted ml-2">Messaggi</small>
-                                            </div>
-                                            <p class="mb-0 font-weight-medium">80%</p>
-                                        </div>
-                                        <div class="progress">
-                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 88%"
-                                                aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
+                                <div class="col-sm-12 col-md-6 col-lg-3">
+                                    <div>
+                                        <h2>4.5</h2>
+                                        <h5>Valutation</h5>
                                     </div>
-                                    <div class="wrapper mt-4">
-                                        <div class="d-flex justify-content-between mb-2">
-                                            <div class="d-flex align-items-center">
-                                                <p class="mb-0 font-weight-medium">21,435</p>
-                                                <small class="text-muted ml-2">Recensioni</small>
-                                            </div>
-                                            <p class="mb-0 font-weight-medium">34%</p>
-                                        </div>
-                                        <div class="progress">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 34%"
-                                                aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-3">
+                                    <div>
+                                        <h2>21</h2>
+                                        <h5>Total Reviews</h5>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-3">
+                                    <div>
+                                        <h2>21</h2>
+                                        <h5>Total Messages</h5>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-3">
+                                    <div>
+                                        <h2>21</h2>
+                                        <h5>Total Views</h5>
                                     </div>
                                 </div>
                             </div>
@@ -73,58 +70,78 @@
                     </div>
                 </div>
                 {{-- Profilo --}}
-                <div class="col-4 grid-margin stretch-card">
-                    <div class="card">
+                <div class="col-sm-12 col-md-5 col-lg-4 col-xl-3 grid-margin ">
+                    <div class="card d-flex">
+                        {{-- title --}}
                         <div class="card-body">
-                            <div class="">
-                                <div class="">
-                                    <img src="" />
-                                </div>
-                                <div class="">
-                                    <h2 class="">Nome Cognome</h2>
-                                    <h3 class="">
-                                        specializzazione
-                                    </h3>
-                                    <p class="">
-                                        anni di esperienza
-                                    </p>
-                                </div>
-                            </div>
+                            <h5 class="card-title">Profile</h5>
                         </div>
+                        {{-- img --}}
+                        <div class="d-flex justify-content-center">
+                            <img src="/img/img-placeholder.png" class="card-img-top rounded-circle" style="width: 190px"
+                                alt="profile-img">
+                        </div>
+                        {{-- details --}}
+                        <div class="card-body">
+                            <h5 class="card-title">Nome Cognome</h5>
+                            <p class="card-text">Descrizione</p>
+
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            {{-- <li class="list-group-item">Specializzazioni</li> --}}
+                            <li class="list-group-item"><a href="">link</a></li>
+                            <li class="list-group-item">Promo</li>
+                        </ul>
                     </div>
                 </div>
                 {{-- Messaggi --}}
-                <div class="col-md-4 grid-margin stretch-card my-2">
+                <div class="col-sm-12 col-md-6 col-lg-4 grid-margin stretch-card my-2">
                     <div class="card">
                         <div class="card-body py-5">
-                            <ul>
-                                <li>
-                                    <p>messaggio</p>
-                                </li>
-                                <li>
-                                    <p>messaggio</p>
-                                </li>
+                            {{-- title --}}
+                            <h5 class="card-title">Messages</h5>
+
+                            <ul class="list-group list-group-horizontal my-1">
+                                <li class="list-group-item">Contact Name</li>
+                                <li class="list-group-item w-75">messagge</li>
+                            </ul>
+                            <ul class="list-group list-group-horizontal my-1">
+                                <li class="list-group-item">Contact Name</li>
+                                <li class="list-group-item w-75">messagge</li>
+                            </ul>
+                            <ul class="list-group list-group-horizontal my-1">
+                                <li class="list-group-item">Contact Name</li>
+                                <li class="list-group-item w-75">messagge</li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 {{-- Recensioni --}}
-                <div class="col-md-4 grid-margin stretch-card my-2">
+                <div class="col-sm-12 col-md-6 col-lg-4 grid-margin stretch-card my-2">
                     <div class="card">
                         <div class="card-body py-5">
-                            <ul>
-                                <li>
-                                    <p>recensione</p>
-                                </li>
-                                <li>
-                                    <p>recensione</p>
-                                </li>
+                            {{-- title --}}
+                            <h5 class="card-title">Reviews</h5>
+
+                            <ul class="list-group list-group-horizontal my-1">
+                                <li class="list-group-item">Contact Name</li>
+                                <li class="list-group-item w-75">review</li>
+                            </ul>
+                            <ul class="list-group list-group-horizontal my-1">
+                                <li class="list-group-item">Contact Name</li>
+                                <li class="list-group-item w-75">review</li>
+                            </ul>
+                            <ul class="list-group list-group-horizontal my-1">
+                                <li class="list-group-item">Contact Name</li>
+                                <li class="list-group-item w-75">review</li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
+    </div>
 
     </div>
 
