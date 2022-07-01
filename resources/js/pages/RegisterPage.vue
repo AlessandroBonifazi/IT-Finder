@@ -185,7 +185,7 @@ export default {
                     console.log(response);
                     if (response.status == 201)
                         window.location.replace(
-                            "http://127.0.0.1:8000/user/dashboard"
+                            "http://127.0.0.1:8000/user/complete-registration"
                         );
                 })
                 .catch((error) => {

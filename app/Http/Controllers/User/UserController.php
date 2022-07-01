@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Contact;
+use App\Specialization;
 
 class UserController extends Controller
 {
@@ -77,9 +78,41 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
-        $contact = $user->contactInfo;
-        $contact->github = $request["github"];
+    }
+
+    public function updateProfile(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->surname = $request->surname;
+        $user->job_experience = $request->job_experience;
+        // $user->position = $request->position;
+        $user->location = $request->location;
+        $user->cv = $request->cv;
+        if ($request->specialization) {
+            $specialization = Specialization::find($request->specialization);
+            $user->specializations()->attach($specialization);
+        }
+        if ($user->contactInfo()->exists()) {
+            $user->contactInfo()->update([
+                "contact_email" => $user->email,
+                "phone" => $request->phone,
+                "linkedin" => $request->linkedin,
+                "github" => $request->github,
+                "site" => $request->site,
+            ]);
+        } else {
+            $user->contactInfo()->create([
+                "contact_email" => $user->email,
+                "phone" => $request->phone,
+                "linkedin" => $request->linkedin,
+                "github" => $request->github,
+                "site" => $request->site,
+            ]);
+        }
+        $user->save();
+
+        return redirect()->route("user.dashboard");
     }
 
     /**
@@ -93,8 +126,18 @@ class UserController extends Controller
         //
     }
 
-    public function dashboard() {
+    public function dashboard()
+    {
         $user = Auth::user();
-        return view('auth.dashboard', compact('user'));
+        return view("auth.dashboard", compact("user"));
+    }
+    public function completeRegistration()
+    {
+        $user = Auth::user();
+        $specializations = Specialization::all();
+        return view(
+            "auth.complete-registration",
+            compact("user", "specializations")
+        );
     }
 }
