@@ -8,8 +8,8 @@ require("./bootstrap");
 require("./backoffice/completeRegistration");
 
 window.Vue = require("vue");
-// window.axios = require("axios");
-// window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+window.axios = require("axios");
+window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
 /**
  * The following block of code may be used to automatically register your

@@ -52,7 +52,7 @@
                     </li>
                 </ul> --}}
                 <!-- ================= FIRST FORM ================= -->
-                    <form action="{{ route('user.update-profile', $user->id)}}" method="POST">
+                    <form action="{{ route('user.update-profile', $user->id)}}" method="POST" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                 <div
@@ -68,7 +68,7 @@
                     <div class="itf-card-body">
                         <div class="mb-3 d-flex flex-column">
                             <div class="itf-form-box">
-                                <label for="position" class="itf-form-label"
+                                <label for="name" class="itf-form-label"
                                     >What is your name?</label
                                 >
                                 <input
@@ -89,6 +89,17 @@
                                     id="surname"
                                     name="surname"
                                     placeholder="Doe"
+                                />
+                            </div>
+                             <div class="itf-form-box">
+                                <label for="img_path" class="itf-form-label"
+                                    >Load your profile Image</label
+                                >
+                                <input
+                                    type="file"
+                                    class="itf-form-control"
+                                    id="img_path"
+                                    name="img_path"
                                 />
                             </div>
                             <div class="itf-form-box">
@@ -125,7 +136,7 @@
                 <!-- ================= FIRST FORM END ================= -->
                 <!-- ================= SECOND FORM ================= -->
                 <div
-                    class="itf-card"
+                    class="itf-card d-none"
                     id="form2"
                 >
                     <div class="itf-card-header">
@@ -135,38 +146,28 @@
                     </div>
                     <div class="itf-card-body">
                         <div class="mb-3 d-flex flex-column">
-                            <!-- <div class="itf-form-box">
-                                <label for="position" class="itf-form-label"
-                                    >What is your job position?</label
-                                >
-                                <input
-                                    type="text"
-                                    class="itf-form-control"
-                                    id="position"
-                                    placeholder="Full Stack Developer"
-                                    v-model="params.position"
-                                />
-                            </div> -->
+
                             <div class="itf-form-box">
                                 <label for="position" class="itf-form-label"
-                                    >What is your job position?*</label
+                                    >What is your Specialization?</label
                                 >
-                                <select
-                                    class="itf-form-control"
-                                    id="specialization"
-                                    name="specialization"
+                                    <div class="itf-checkbox-list">
+                                        @foreach ($specializations as $specialization)
+                                        <div class="itf-checkbox-list-item">
+                                            <input
+                                            type="checkbox"
+                                            class="itf-checkbox"
+                                            name="specializations[]"
+                                            value="{{ $specialization->id }}"
+                                            id="{{ $specialization->specialization }}"/>
+                                            <label class="itf-checkbox-list-item-label" for="{{ $specialization->specialization }}">
+                                                {{ $specialization->specialization }} </label>
+                                            </div>
 
-                                >
-                                    <option value="">
-                                        Select your position
-                                    </option>
-                                    @foreach ($specializations as $specialization)
-                                    <option value="{{ $specialization->id }}">
-                                        {{ $specialization->specialization }}
-                                    </option>
-                                    @endforeach
 
-                                </select>
+                                        @endforeach
+                                    </div>
+
                             </div>
                             <div class="itf-form-box">
                                 <label
@@ -210,7 +211,7 @@
                 <!-- ================= SECOND FORM END ================= -->
                 <!-- ================= THIRD FORM ================= -->
                 <div
-                    class="itf-card"
+                    class="itf-card d-none"
                     id="form3"
                 >
                     <div class="itf-card-header">

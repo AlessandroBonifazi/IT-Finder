@@ -6,8 +6,8 @@
             </div>
             <div class="itf-user-card-header-content">
                 <h2 class="itf-name">{{ user.name }} {{ user.surname }}</h2>
-                <h3 class="itf-position" v-if="user.specializations[0]">
-                    {{ user.specializations[0].specialization }}
+                <h3 class="itf-position" v-if="user.specializations">
+                    {{ handleSpecializations(user.specializations) }}
                 </h3>
                 <p class="experience">
                     +{{ user.job_experience }} anni di esperienza
@@ -56,15 +56,25 @@ export default {
     },
     methods: {
         handleImgPath(imgPath) {
-            if (imgPath) {
+            if (imgPath.includes("http")) {
                 imgPath = imgPath.split("/");
                 imgPath[imgPath.length - 1] = "300";
                 imgPath[imgPath.length - 2] = "300";
                 imgPath = imgPath.join("/");
                 return imgPath;
+            } else if (imgPath.includes("img_path")) {
+                return "/storage/" + imgPath;
             } else {
                 return "https://via.placeholder.com/150";
             }
+        },
+        handleSpecializations(specialization) {
+            let render = "";
+            specialization.forEach((specialization) => {
+                render += specialization.specialization + " | ";
+            });
+            render = render.slice(0, -2);
+            return render;
         },
     },
 };

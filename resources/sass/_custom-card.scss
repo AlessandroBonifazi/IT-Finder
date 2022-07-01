@@ -62,3 +62,23 @@
         margin: 10px 0;
     }
 }
+.itf-checkbox-list {
+    padding: 15px 30px;
+    max-height: 250px;
+    overflow-y: auto;
+    border-radius: $border-radius-small;
+    border: 1px solid $fc-grey-clear;
+
+    .itf-checkbox-list-item {
+        margin-bottom: 10px;
+        .itf-checkbox-list-item-label {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: $fc-grey-dark;
+            font-family: $ff-body;
+        }
+        .itf-checkbox {
+            margin-right: 10px;
+        }
+    }
+}

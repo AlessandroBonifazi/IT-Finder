@@ -17,19 +17,19 @@ window.addEventListener("DOMContentLoaded", () => {
     function displayForm(form) {
         switch (form) {
             case 1:
-                form1.style.display = "block";
-                form2.style.display = "none";
-                form3.style.display = "none";
+                form1.classList.remove("d-none");
+                form2.classList.add("d-none");
+                form3.classList.add("d-none");
                 break;
             case 2:
-                form1.style.display = "none";
-                form2.style.display = "block";
-                form3.style.display = "none";
+                form1.classList.add("d-none");
+                form2.classList.remove("d-none");
+                form3.classList.add("d-none");
                 break;
             case 3:
-                form1.style.display = "none";
-                form2.style.display = "none";
-                form3.style.display = "block";
+                form1.classList.add("d-none");
+                form2.classList.add("d-none");
+                form3.classList.remove("d-none");
                 break;
         }
     }

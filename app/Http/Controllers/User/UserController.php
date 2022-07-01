@@ -89,9 +89,8 @@ class UserController extends Controller
         // $user->position = $request->position;
         $user->location = $request->location;
         $user->cv = $request->cv;
-        if ($request->specialization) {
-            $specialization = Specialization::find($request->specialization);
-            $user->specializations()->attach($specialization);
+        if ($request->specializations) {
+            $user->specializations()->sync($request->specializations);
         }
         if ($user->contactInfo()->exists()) {
             $user->contactInfo()->update([
@@ -109,6 +108,9 @@ class UserController extends Controller
                 "github" => $request->github,
                 "site" => $request->site,
             ]);
+        }
+        if ($request->hasFile("img_path")) {
+            $user->img_path = $request->img_path->store("img_path", "public");
         }
         $user->save();
 
