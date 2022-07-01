@@ -2,7 +2,7 @@
 <div>
     <div class="row jumbotron m-0"></div>
     <div class="col-12">
-        <div class="row d-flex container">
+        <div class="d-flex container">
             <div class=" col-10">
 
                 <!--IMG AND PROFILE-->
@@ -23,7 +23,7 @@
                 </div>
 
                 <!--ABOUT ME-->
-                <div class="about-me col-8">
+                <div class="about-me col-8 my-4 p-0">
                     <h5 class="krona green-55">About Me</h5>
                     <p>Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi. 
 
@@ -31,19 +31,25 @@
                 </div>
                 
                 <!--TECHNOLOGIES STACK-->
-                <div class="technlogies-stack col-5">
+                <div class="technlogies-stack col-5 my-4 p-0">
                     <h5 class="krona green-55">My Technologies Stack</h5>
                 </div>
 
                 <!--PEOPLE'S REVIEWS-->
-                <div class="reviews d-flex col-7 justify-content-between">
-                    <h5 class="krona green-55">People’s Reviews</h5>
-                    <button class="btn">Leave new Reviews</button>
+                <div class="reviews d-flex flex-column col-8 p-0 my-4">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="krona green-55">People’s Reviews</h5>
+                        <button class="btn px-5">Leave new Reviews</button>
+                    </div>
+                    
+                    <ReviewsComponent/>
                 </div>
         
             </div>
 
-            <div class="col-2">a</div>
+            <div class="col-2">
+                <LeaveCommentComponent/>
+            </div>
     
         </div>
     </div>
@@ -54,9 +60,15 @@
 </template>
 
 <script>
+import ReviewsComponent from "./ReviewsListComponent.vue"
+import LeaveCommentComponent from "./LeaveCommentComponent.vue"
 
 export default {
-    name: 'DevDetailComponent'
+    name: 'DevDetailComponent',
+    components:{
+        ReviewsComponent,
+        LeaveCommentComponent
+    }
 }
 </script>
 
@@ -129,5 +141,7 @@ export default {
 .btn:active{
     background-color: $btn-tertiary-bg-active;
 }
-
+.about-me p{
+    font-size: 14px;
+}
 </style>

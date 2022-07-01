@@ -3,7 +3,7 @@
         <!-- banner -->
         <div class="row my-5 justify-content-start mx-5 px-5 d-flex">
             <div class="col-6 mx-5 px-5">
-                <h1 class="krona green-55 mb-4 mt-5">Your Next <span class="krona yellow-60"> IT </span>Specialist is Here</h1>
+                <h1 class="krona green-55 mb-4 mt-5">Your Next <span class="krona yellow-50"> IT </span>Specialist is Here</h1>
                 <p>
                     Search and find best IT Specialist from all around the world
                     for your one million project idea or business
@@ -12,7 +12,7 @@
             </div>
 
             <div class="col-4">
-                <img class="jumbotron" src="public\img\Frame 2.png" alt="jumbotron">
+                <img class="jumbotron" src="public/img/Frame 2.png" alt="jumbotron">
             </div>
         </div>
         <!-- specialist role -->
@@ -190,6 +190,9 @@ export default {
 }
 .bg-green-60{
     background-color: $green-60;
+}
+.yellow-50{
+    color: $fc-accent-yellow;
 }
 .yellow-60 {
     color: $yellow-60;

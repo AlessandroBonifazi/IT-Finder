@@ -1,13 +1,13 @@
 <template>
-    <div>
-        
+    <div class="leave-comment-container">
+        a
     </div>
 </template>
 
 <script>
 
 export default {
-    name: 'ReviesComponent'
+    name: 'LeaveCommentComponent'
 }
 </script>
 
@@ -32,6 +32,9 @@ export default {
 }
 .bg-green-60{
     background-color: $green-60;
+}
+.yellow-50{
+    color: $fc-accent-yellow;
 }
 .yellow-60 {
     color: $yellow-60;
