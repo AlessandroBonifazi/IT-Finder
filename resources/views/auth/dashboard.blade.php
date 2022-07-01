@@ -81,8 +81,9 @@
 
                                     @foreach ($messages as $message)
                                         <ul class="list-group list-group-horizontal my-1">
-                                            <li class="list-group-item">{{ $message->user_name }}
-                                                {{ $message->created_at }}
+                                            <li class="list-group-item">
+                                                <h5>{{ $message->user_name }}</h5>
+                                                <span>{{ $message->created_at }}</span>
                                             </li>
                                             <li class="list-group-item w-75">{{ $message->content }}</li>
                                         </ul>
