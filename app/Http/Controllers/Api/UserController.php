@@ -184,6 +184,7 @@ class UserController extends Controller
     {
         $search = $request->value;
         $specializationIdArray = $request->specializations;
+        $valutation = $request->valutation;
 
         $query = $user->newQuery();
 
@@ -209,6 +210,16 @@ class UserController extends Controller
             ) {
                 $q->whereIn("id", $specializationIdArray);
             });
+        }
+
+        if (!empty($valutation)) {
+            $query->whereHas("validation", function ($j) use (
+                $validation
+            ) {
+                $j->whereIn("id", $validation);
+            });
+        }
+
         }
         $users = $query->paginate(12);
 
