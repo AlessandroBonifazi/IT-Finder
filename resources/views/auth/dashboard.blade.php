@@ -72,24 +72,21 @@
                             </div>
                         </div>
                         {{-- Messaggi --}}
-                        <div class="col-md-12 col-lg-6 grid-margin stretch-card my-3">
+                        <div style="height: 500px;"
+                            class="col-md-12 col-lg-6 grid-margin stretch-card my-3 overflow-auto h-100">
                             <div class="card">
-                                <div class="card-body py-5">
+                                <div class="card-body py-5 overflow-auto">
                                     {{-- title --}}
                                     <h5 class="card-title">Messages</h5>
 
-                                    <ul class="list-group list-group-horizontal my-1">
-                                        <li class="list-group-item">Contact Name</li>
-                                        <li class="list-group-item w-75">messagge</li>
-                                    </ul>
-                                    <ul class="list-group list-group-horizontal my-1">
-                                        <li class="list-group-item">Contact Name</li>
-                                        <li class="list-group-item w-75">messagge</li>
-                                    </ul>
-                                    <ul class="list-group list-group-horizontal my-1">
-                                        <li class="list-group-item">Contact Name</li>
-                                        <li class="list-group-item w-75">messagge</li>
-                                    </ul>
+                                    @foreach ($messages as $message)
+                                        <ul class="list-group list-group-horizontal my-1">
+                                            <li class="list-group-item">{{ $message->user_name }}
+                                                {{ $message->created_at }}
+                                            </li>
+                                            <li class="list-group-item w-75">{{ $message->content }}</li>
+                                        </ul>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

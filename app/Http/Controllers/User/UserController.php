@@ -133,7 +133,8 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $specializations = $user->specializations;
-        return view("auth.dashboard", compact("user", "specializations"));
+        $messages = $user->messages->take(3);
+        return view("auth.dashboard", compact("user", "specializations", "messages"));
     }
 
     public function completeRegistration()
