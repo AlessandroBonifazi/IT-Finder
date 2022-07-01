@@ -15,22 +15,14 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Auth::routes();
-Route::get("/register", "Auth\RegisterController@showRegistrationForm")->name(
-    "register"
-);
 
-// Route::get("/search", "Api\UserController@search")->name("user.search");
-// Route::get("/", "Api\UserController@searchBySpec")->name(
-//     "search"
-// );
+Route::get("/register", "Auth\RegisterController@showRegistrationForm")->name("register");
 
 Route::middleware("auth")
     ->namespace("User")
     ->name("user.")
     ->prefix("user")
     ->group(function () {
-        // Route::get("/", "HomeController")->name("home");
-        // Route::resource("/", "UserController");
         Route::put(
             "/update-profile/{id}",
             "UserController@updateProfile"
