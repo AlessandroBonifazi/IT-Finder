@@ -36,6 +36,10 @@ export default {
 .green-55 {
     color: $green-55;
 }
+
+.bg-green-40{
+    background-color: $green-40;
+}
 .bg-green-55 {
     background-color: $green-55;
 }

@@ -3,7 +3,7 @@
     <div class="row jumbotron m-0"></div>
     <div class="col-12">
         <div class="d-flex container">
-            <div class=" col-10">
+            <div class=" col-9 p-0">
 
                 <!--IMG AND PROFILE-->
                 <div class="d-flex flex-column">
@@ -13,7 +13,7 @@
 
                     </div>
 
-                    <div class="info align-self-center mt-5 mx-3">
+                    <div class="info align-self-center mt-3">
                         <h1 class="krona dark-grey">Lucio Melis</h1>
                         <p class="raleway coral-50">Full Stack Web Developer
                             <span class="mx-2">|</span>
@@ -23,7 +23,7 @@
                 </div>
 
                 <!--ABOUT ME-->
-                <div class="about-me col-8 my-4 p-0">
+                <div class="about-me col-8 my-5 p-0">
                     <h5 class="krona green-55">About Me</h5>
                     <p>Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi. 
 
@@ -36,10 +36,10 @@
                 </div>
 
                 <!--PEOPLE'S REVIEWS-->
-                <div class="reviews d-flex flex-column col-8 p-0 my-4">
+                <div class="reviews d-flex flex-column col-10 p-0 my-4">
                     <div class="d-flex justify-content-between">
                         <h5 class="krona green-55">People’s Reviews</h5>
-                        <button class="btn px-5">Leave new Reviews</button>
+                        <button class="btn px-4">Leave a new Review</button>
                     </div>
                     
                     <ReviewsComponent/>
@@ -47,10 +47,37 @@
         
             </div>
 
-            <div class="col-2">
-                <LeaveCommentComponent/>
+            <div class="col-3 p-0 message-section d-flex flex-column">
+
+                <LeaveMessageComponent/>
+
+                <!--CONTACT-->
+                <div class="contact-section mt-5 p-0">
+                    <h5 class="krona green-55">How to contact me</h5>
+
+                    <div class="contact d-flex">
+                        <p class="mx-2">logo</p>
+                        <p class="raleway clear-grey">linkedin</p>
+                    </div>
+
+                    <div class="contact d-flex">
+                        <p class="mx-2">logo</p>
+                        <p class="raleway clear-grey">linkedin</p>
+                    </div>
+
+                    <div class="contact d-flex">
+                        <p class="mx-2">logo</p>
+                        <p class="raleway clear-grey">linkedin</p>
+                    </div>
+
+                    <div class="contact d-flex">
+                        <p class="mx-2">logo</p>
+                        <p class="raleway clear-grey">linkedin</p>
+                    </div>
+
+                </div>
             </div>
-    
+
         </div>
     </div>
 
@@ -61,13 +88,13 @@
 
 <script>
 import ReviewsComponent from "./ReviewsListComponent.vue"
-import LeaveCommentComponent from "./LeaveCommentComponent.vue"
+import LeaveMessageComponent from "./LeaveMessageComponent.vue"
 
 export default {
     name: 'DevDetailComponent',
     components:{
         ReviewsComponent,
-        LeaveCommentComponent
+        LeaveMessageComponent
     }
 }
 </script>
@@ -107,6 +134,9 @@ export default {
     color: $fc-grey-dark;
 }
 //BODY
+.info{
+    margin-right: 96px;
+}
 .dev-detail-container{
     margin-right: 0px;
 }
@@ -134,6 +164,7 @@ export default {
     background-color: $btn-tertiary-bg;
     color: white;
     border-radius: 8px;
+    box-shadow: $box-shadow-primary;
 }
 .btn:hover{
     background-color: $btn-tertiary-bg-hoover;
@@ -142,6 +173,12 @@ export default {
     background-color: $btn-tertiary-bg-active;
 }
 .about-me p{
+    font-size: 14px;
+}
+.message-section{
+    border-radius: 8px;
+}
+.contact-section h5{
     font-size: 14px;
 }
 </style>
