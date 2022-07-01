@@ -40,6 +40,7 @@ Route::middleware("auth")
             "UserController@completeRegistration"
         )->name("complete-registration");
         Route::get("/dashboard", "UserController@dashboard")->name("dashboard");
+        Route::get("/messages", "UserController@getMessages")->name("messages");
     });
 
 Route::get("{any?}", function () {

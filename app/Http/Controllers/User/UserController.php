@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Contact;
 use App\Specialization;
+use App\Message;
 
 class UserController extends Controller
 {
@@ -134,6 +135,7 @@ class UserController extends Controller
         $specializations = $user->specializations;
         return view("auth.dashboard", compact("user", "specializations"));
     }
+
     public function completeRegistration()
     {
         $user = Auth::user();
@@ -142,5 +144,12 @@ class UserController extends Controller
             "auth.complete-registration",
             compact("user", "specializations")
         );
+    }
+
+    public function getMessages()
+    {
+        $user = Auth::user();
+        $messages = $user->messages;
+        return view("auth.messages", compact("user", "messages"));
     }
 }
