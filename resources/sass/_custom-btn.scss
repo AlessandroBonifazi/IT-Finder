@@ -1,7 +1,7 @@
 .itf-btn {
     border-radius: $border-radius-small;
     color: $white;
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-family: $ff-heading;
     font-weight: 400;
     padding: 10px 40px;
@@ -63,11 +63,30 @@
         border: 1px solid $btn-tertiary-bg-active;
     }
 }
+.itf-btn-tertiary-outline {
+    background: $green-05;
+    border: 1px solid $btn-tertiary-bg;
+    color: $btn-tertiary-bg;
+
+    &:hover {
+        background: $green-10;
+        border: 1px solid $green-60;
+        color: $green-60;
+    }
+    &:active {
+        background: $btn-tertiary-bg-active;
+        border: 1px solid $btn-tertiary-bg-active;
+        color: $white;
+    }
+}
 .itf-btn-small {
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     padding: 12px 24px;
 }
 
 .itf-btn-full-width {
     width: 100%;
+}
+.itf-btn-icon {
+    padding: 8px 9px;
 }
