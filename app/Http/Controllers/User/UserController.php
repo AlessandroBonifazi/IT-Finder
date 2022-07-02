@@ -132,9 +132,18 @@ class UserController extends Controller
     public function dashboard()
     {
         $user = Auth::user();
+        $contacts = $user->contactInfo;
         $specializations = $user->specializations;
         $messages = $user->messages->take(3);
-        return view("auth.dashboard", compact("user", "specializations", "messages"));
+        return view("auth.dashboard", compact("user", "specializations", "messages", "contacts"));
+    }
+
+    public function profile()
+    {
+        $user = Auth::user();
+        $contacts = $user->contactInfo;
+        $specializations = $user->specializations;
+        return view("auth.profile", compact("user", "contacts", "specializations"));
     }
 
     public function completeRegistration()
@@ -153,4 +162,5 @@ class UserController extends Controller
         $messages = $user->messages;
         return view("auth.messages", compact("user", "messages"));
     }
+
 }
