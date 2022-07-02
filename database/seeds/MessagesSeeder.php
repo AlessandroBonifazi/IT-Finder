@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Auth;
 use Faker\Generator as Faker;
-use App\User;
 use App\Message;
 
 class MessagesSeeder extends Seeder
@@ -17,9 +15,10 @@ class MessagesSeeder extends Seeder
     public function run(Faker $faker)
     {
         //
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $message = new Message();
-            $message->user_id = 205;
+            // specific id      \v/
+            $message->user_id = 207;
             $message->content = $faker->realText($maxNbChars = 50, $indexSize = 1);
             $message->user_name = $faker->userName();
             $message->email = $faker->email();
