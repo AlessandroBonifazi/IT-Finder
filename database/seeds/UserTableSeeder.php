@@ -68,7 +68,6 @@ class UserTableSeeder extends Seeder
                 "valutation" => $faker->numberBetween(1, 5),
             ]);
             // specs seed
-
             $specializations = Specialization::all();
 
             $user->specializations()->attach(
@@ -77,7 +76,7 @@ class UserTableSeeder extends Seeder
                     ->pluck("id")
                     ->toArray()
             );
-
+            // technology seed
             $technologies = App\Technology::all();
 
             $user->technologies()->attach(
