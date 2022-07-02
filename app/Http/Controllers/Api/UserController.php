@@ -185,9 +185,10 @@ class UserController extends Controller
         $search = $request->value;
         $specializationIdArray = $request->specializations;
         $reviews = $request->reviews;
+        $reviewsNum = $request->reviewsNum;
 
         $query = $user->newQuery();
-
+        // Filter: name, surname, spec
         if (!empty($request->value) && $request->value != "AllUsers") {
             $query->where(function (EloquentBuilder $query) use ($search) {
                 $query
@@ -204,6 +205,7 @@ class UserController extends Controller
                     });
             });
         }
+        // Filter: spec
         if (!empty($specializationIdArray)) {
             $query->whereHas("specializations", function ($q) use (
                 $specializationIdArray
@@ -211,13 +213,18 @@ class UserController extends Controller
                 $q->whereIn("id", $specializationIdArray);
             });
         }
-
+        // Filter: valutation avg
         if (!empty($reviews)) {
             $query->join('reviews', 'users.id', '=', 'reviews.user_id')
             ->select('users.*')
             ->groupBy('reviews.user_id')
             ->havingRaw('AVG(reviews.valutation) >= ?', [$reviews]);
         }
+        // Filter: reviews number
+        // if (!empty($reviewsNum)) {
+        //     $query->
+
+        // }
 
         $users = $query->paginate(12);
 
@@ -225,6 +232,7 @@ class UserController extends Controller
             $user->specializations;
             $user->technologies;
             $user->reviews;
+            $user->reviewsNum;
         }
 
         return response()->json($users);

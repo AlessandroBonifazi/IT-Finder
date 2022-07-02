@@ -70,7 +70,7 @@
                         <div class="sidebar-body">
                             <div class="sidebar-item">
                                 <div class="sidebar-item-header">
-                                    <h4 class="sidebar-item-title">Reviews</h4>
+                                    <h4 class="sidebar-item-title">Rating</h4>
                                 </div>
                                 <div class="sidebar-item-body">
                                     <div class="sidebar-item-body-content">
@@ -84,31 +84,32 @@
                                                 {{ valut }}
                                             </option>
                                         </select>
-                                        <!-- <div
-                                            v-for="valut in valutations"
-                                            :key="valut"
-                                            class="sidebar-item-body-content-item"
-                                        >
-                                            {{ valut }}
-                                            <input
-                                                type="checkbox"
-                                                :id="valut"
-                                                class="sidebar-item-body-content-item-input"
-                                                @click="
-                                                    () => {
-                                                        handleValutSelection(
-                                                            valut
-                                                        );
-                                                    }
-                                                "
-                                            />
-                                            <label
-                                                :for="valut"
-                                                class="sidebar-item-body-content-item-label"
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Reviews Number filter -->
+                        <div class="sidebar-body">
+                            <div class="sidebar-item">
+                                <div class="sidebar-item-header">
+                                    <h4 class="sidebar-item-title">
+                                        N Reviews
+                                    </h4>
+                                </div>
+                                <div class="sidebar-item-body">
+                                    <div class="sidebar-item-body-content">
+                                        <select v-model="reviewsNum">
+                                            <option value="">All</option>
+                                            <option
+                                                v-for="range in reviewsNum"
+                                                :key="range"
+                                                :value="range"
                                             >
-                                                {{ valut.valutation }}
-                                            </label>
-                                        </div> -->
+                                                <!-- fix brutto vero da finire -->
+                                                > {{ range }}0
+                                            </option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -277,6 +278,11 @@ export default {
                 totalRecords: 0,
             },
             valutations: 5,
+            // reviewsNumber: {
+            //     range: "> 10",
+            //     range: "> 20",
+            // },
+            reviewsNum: 2,
             selectedValutations: [],
             reviews: "",
         };
