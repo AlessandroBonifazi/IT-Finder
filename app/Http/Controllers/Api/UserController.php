@@ -220,13 +220,6 @@ class UserController extends Controller
             ->havingRaw('AVG(reviews.valutation) >= ?', [$reviews]);
         }
         // Filter: reviews number
-
-        // SELECT users.id, users.name, COUNT(reviews.id)
-        // FROM users
-        // INNER JOIN reviews on reviews.user_id = users.id
-        // GROUP BY users.id
-        // HAVING COUNT(reviews.id) > 10
-
         if (!empty($reviewsNum)) {
             $query->join('reviews', 'users.id', '=', 'reviews.user_id')
             ->select('users.*')
