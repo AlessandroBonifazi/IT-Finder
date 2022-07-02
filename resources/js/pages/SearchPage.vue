@@ -101,14 +101,8 @@
                                     <div class="sidebar-item-body-content">
                                         <select v-model="reviewsNum">
                                             <option value="">All</option>
-                                            <option
-                                                v-for="range in reviewsNum"
-                                                :key="range"
-                                                :value="range"
-                                            >
-                                                <!-- fix brutto vero da finire -->
-                                                > {{ range }}0
-                                            </option>
+                                            <option :value="10">10+</option>
+                                            <option :value="20">20+</option>
                                         </select>
                                     </div>
                                 </div>
@@ -278,13 +272,9 @@ export default {
                 totalRecords: 0,
             },
             valutations: 5,
-            // reviewsNumber: {
-            //     range: "> 10",
-            //     range: "> 20",
-            // },
-            reviewsNum: 2,
             selectedValutations: [],
             reviews: "",
+            reviewsNum: "",
         };
     },
     mounted() {
@@ -300,6 +290,7 @@ export default {
                         value: this.searchQuery,
                         specializations: this.selectedSpecializations,
                         reviews: this.reviews,
+                        reviewsNum: this.reviewsNum,
                         page: page || 1,
                     },
                 })

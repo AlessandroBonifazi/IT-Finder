@@ -186,7 +186,6 @@ class UserController extends Controller
         $specializationIdArray = $request->specializations;
         $reviews = $request->reviews;
         $reviewsNum = $request->reviewsNum;
-
         $query = $user->newQuery();
         // Filter: name, surname, spec
         if (!empty($request->value) && $request->value != "AllUsers") {
@@ -221,10 +220,19 @@ class UserController extends Controller
             ->havingRaw('AVG(reviews.valutation) >= ?', [$reviews]);
         }
         // Filter: reviews number
-        // if (!empty($reviewsNum)) {
-        //     $query->
 
-        // }
+        // SELECT users.id, users.name, COUNT(reviews.id)
+        // FROM users
+        // INNER JOIN reviews on reviews.user_id = users.id
+        // GROUP BY users.id
+        // HAVING COUNT(reviews.id) > 10
+
+        if (!empty($reviewsNum)) {
+            $query->join('reviews', 'users.id', '=', 'reviews.user_id')
+            ->select('users.*')
+            ->groupBy('reviews.user_id')
+            ->havingRaw("COUNT(reviews.user_id) >= ?", [$reviewsNum]);
+        }
 
         $users = $query->paginate(12);
 
