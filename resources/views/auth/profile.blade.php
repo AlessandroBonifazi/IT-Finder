@@ -34,7 +34,7 @@
 
         <div class="col-sm-10 col-md-10 col-lg-9 offset-lg-1">
             <div class="row">
-                <div class="col-10">
+                <div class="col-6">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Details</h5>
@@ -61,7 +61,13 @@
                             <li class="list-group-item">Linkedin: <a
                                     href="">{{ $user->contactInfo->linkedin }}</a></li>
                             <li class="list-group-item">Site: <a href="">{{ $user->contactInfo->site }}</a></li>
+                            {{-- <li class="list-group-item">CV: {{ $user->cv }}</li> --}}
                             <li class="list-group-item">Promo</li>
+                            <li class="list-group-item">
+                                <button class="btn btn-primary">
+                                    <a class="text-white" href="{{ route('user.edit', [$user->id]) }}">Edit</a>
+                                </button>
+                            </li>
                         </ul>
                     </div>
                 </div>
