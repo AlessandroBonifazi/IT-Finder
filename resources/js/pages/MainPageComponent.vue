@@ -1,6 +1,7 @@
 <template>
     <div class="m-0 p-0">
         <HeaderComponent />
+
         <!-- banner -->
         <div class="row my-5 justify-content-start mx-5 px-5">
             <div class="col-5 mx-5 px-5">
@@ -193,16 +194,17 @@
                 </div>
             </div>
         </div>
-        <!-- footer -->
-        <div class="container my-5">
-            <div class="row">footer</div>
-        </div>
+
         <a href="#" @click="logout">logout</a>
+        <FooterComponent />
+        <ScrollerComponent />
     </div>
 </template>
 
 <script>
 import HeaderComponent from "./../components/HeaderComponent.vue";
+import FooterComponent from "./../components/FooterComponent.vue";
+import ScrollerComponent from "./../components/ScrollerComponent.vue";
 export default {
     name: "MainPage",
     data() {
@@ -218,7 +220,7 @@ export default {
             });
         },
     },
-    components: { HeaderComponent },
+    components: { HeaderComponent, FooterComponent, ScrollerComponent },
 };
 </script>
 
