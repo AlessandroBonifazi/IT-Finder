@@ -1,19 +1,20 @@
 <template>
     <div>
-        <DevDetailComponent/>
+        <HeaderComponent />
+        <DevDetailComponent />
     </div>
 </template>
 
 <script>
-import DevDetailComponent from "../components/DevDetailComponent.vue"
+import HeaderComponent from "../components/HeaderComponent.vue";
+import DevDetailComponent from "../components/DevDetailComponent.vue";
 
 export default {
-    name: 'DevDetail',
-    components:{
-        DevDetailComponent
-    }
-}
+    name: "DevDetail",
+    components: {
+        DevDetailComponent,
+        HeaderComponent,
+    },
+};
 </script>
-<style lang="">
-    
-</style>
+<style lang=""></style>

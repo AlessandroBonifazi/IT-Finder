@@ -83,7 +83,7 @@ export default {
         },
         viewProfile() {
             this.$router.push({
-                name: "user-profile",
+                name: "dev-detail",
                 params: {
                     id: this.user.id,
                 },
