@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-Route::get("/register", "Auth\RegisterController@showRegistrationForm")->name("register");
+Route::get("/register", "Auth\RegisterController@showRegistrationForm")->name(
+    "register"
+);
 
 Route::middleware("auth")
     ->namespace("User")
@@ -35,6 +37,7 @@ Route::middleware("auth")
         Route::get("/profile", "UserController@profile")->name("profile");
         Route::get("/{id}/edit", "UserController@edit")->name("edit");
         Route::get("/messages", "UserController@getMessages")->name("messages");
+        Route::get("/logout", "UserController@logout")->name("logout");
         // Route::resource('/', "UserController");
     });
 
