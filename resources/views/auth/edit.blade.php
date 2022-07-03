@@ -66,48 +66,56 @@
                 </div>
                 {{-- Contact-Email --}}
                 <div class="form-group">
-                    <label for="content">Contact Email</label>
-                    <input class="form-control" type="text" name="contact_email" id="contact_email" value="">
+                    <label for="contact_email">Contact Email</label>
+                    <input class="form-control" type="text" name="contact_email" id="contact_email"
+                        value="{{ old('contact_email', $user->contactInfo->contact_email) }}">
                     @error('contact_email')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 {{-- Contact-phone --}}
                 <div class="form-group">
-                    <label for="content">Phone</label>
-                    <input class="form-control" type="text" name="phone" id="phone" value="">
+                    <label for="phone">Phone</label>
+                    <input class="form-control" type="text" name="phone" id="phone"
+                        value="{{ old('phone', $user->contactInfo->phone) }}">
                     @error('phone')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 {{-- Contact-linkedin --}}
                 <div class="form-group">
-                    <label for="content">Linkedin</label>
-                    <input class="form-control" type="text" name="linkedin" id="linkedin" value="">
+                    <label for="linkedin">Linkedin</label>
+                    <input class="form-control" type="text" name="linkedin" id="linkedin"
+                        value="{{ old('linkedin', $user->contactInfo->linkedin) }}">
                     @error('linkedin')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 {{-- Contact-github --}}
                 <div class="form-group">
-                    <label for="content">Github</label>
-                    <input class="form-control" type="text" name="github" id="github" value="">
+                    <label for="github">Github</label>
+                    <input class="form-control" type="text" name="github" id="github"
+                        value="{{ old('github', $user->contactInfo->github) }}">
                     @error('github')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 {{-- Contact-site --}}
                 <div class="form-group">
-                    <label for="content">Site</label>
-                    <input class="form-control" type="text" name="site" id="site" value="">
+                    <label for="site">Site</label>
+                    <input class="form-control" type="text" name="site" id="site"
+                        value="{{ old('site', $user->contactInfo->site) }}">
                     @error('site')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
+
+
                 {{-- PSW --}}
                 <div class="form-group">
                     <label for="content">Password</label>
-                    <input class="form-control" type="password" name="password" id="password" value="">
+                    <input class="form-control" type="password" name="password" id="password"
+                        value="{{ old('password', $user->password) }}">
                     @error('email')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -122,7 +130,7 @@
                     @enderror
                 </div>
                 {{-- Specializations --}}
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="title">Specializations</label>
                     <select name="specialization_id">
                         <option value="">Add Specializations</option>
@@ -137,7 +145,7 @@
                     @error('specialization_id')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
-                </div>
+                </div> --}}
                 {{-- Contacts --}}
                 {{-- <div class="form-group">
                     <label for="content">Contenuto</label>

@@ -54,7 +54,8 @@
                             @foreach ($specializations as $specialization)
                                 <li class="list-group-item">{{ $specialization->specialization }}</li>
                             @endforeach
-                            <li class="list-group-item">Email: {{ $user->contactInfo->contact_email }}</li>
+                            <li class="list-group-item">Email: {{ $user->email }}</li>
+                            <li class="list-group-item">Business Email: {{ $user->contactInfo->contact_email }}</li>
                             <li class="list-group-item">Phone: {{ $user->contactInfo->phone }}</li>
                             <li class="list-group-item">Github: <a href="">{{ $user->contactInfo->github }}</a>
                             </li>
@@ -66,8 +67,6 @@
                             <li class="list-group-item">
                                 <button class="btn btn-primary">
                                     <a class="text-white" href="{{ route('user.edit', $user->id) }}">Edit</a>
-                                    {{-- <a class="text-white"
-                                        href="{{ action('User\UserController@edit', $user->id) }}">Edit</a> --}}
                                 </button>
                             </li>
                         </ul>

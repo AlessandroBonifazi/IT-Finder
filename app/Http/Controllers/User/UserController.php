@@ -88,16 +88,14 @@ class UserController extends Controller
 
     public function updateProfile(Request $request, User $user, $id)
     {
-        $userData = $request->all();
-        $user->fill($userData);
-        // $user = User::find($id);
-        // $user->name = $request->name;
-        // $user->surname = $request->surname;
-        // $user->email = $request->email;
-        // $user->password = $request->password;
-        // $user->job_experience = $request->job_experience;
-        // $user->location = $request->location;
-        // $user->cv = $request->cv;
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->surname = $request->surname;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->job_experience = $request->job_experience;
+        $user->location = $request->location;
+        $user->cv = $request->cv;
         if ($request->specializations) {
             $user->specializations()->sync($request->specializations);
         }
