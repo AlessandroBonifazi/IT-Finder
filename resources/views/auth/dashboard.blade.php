@@ -26,6 +26,11 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Statistics</a>
                             </li>
+                            <li class="nav-item">
+                                <form action="{{ route('user.logout') }}" method="get">
+                                    <button class="nav-link" type="submit" >Logout</button>
+                                </form>
+                            </li>
                         </ul>
                     </div>
                 </nav>
@@ -139,7 +144,9 @@
                                     @foreach ($specializations as $specialization)
                                         <li class="list-group-item">{{ $specialization->specialization }}</li>
                                     @endforeach
-                                    <li class="list-group-item"><a href="">{{ $user->contactInfo->github }}</a></li>
+                                    {{-- @if ($user->contactInfo->github)
+                                        <li class="list-group-item">Github: {{ $user->contactInfo->github }}</li>
+                                    @endif --}}
                                     <li class="list-group-item">Promo</li>
                                 </ul>
                             </div>
