@@ -65,9 +65,17 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit()
     {
         //
+        // if (!$user) {
+        //     abort(404);
+        // }
+        $user = Auth::user();
+        $specializations = Specialization::all();
+        $contacts = $user->contactInfo();
+
+        return view('auth.edit', compact('user', 'specializations', 'contacts'));
     }
 
     /**
@@ -77,17 +85,15 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
-    {
-    }
 
-    public function updateProfile(Request $request, $id)
+    public function updateProfile(Request $request, User $user, $id)
     {
         $user = User::find($id);
         $user->name = $request->name;
         $user->surname = $request->surname;
+        $user->email = $request->email;
+        $user->password = $request->password;
         $user->job_experience = $request->job_experience;
-        // $user->position = $request->position;
         $user->location = $request->location;
         $user->cv = $request->cv;
         if ($request->specializations) {
@@ -95,6 +101,7 @@ class UserController extends Controller
         }
         if ($user->contactInfo()->exists()) {
             $user->contactInfo()->update([
+                "user_id" => $user->id,
                 "contact_email" => $user->email,
                 "phone" => $request->phone,
                 "linkedin" => $request->linkedin,
@@ -103,6 +110,7 @@ class UserController extends Controller
             ]);
         } else {
             $user->contactInfo()->create([
+                "user_id" => $user->id,
                 "contact_email" => $user->email,
                 "phone" => $request->phone,
                 "linkedin" => $request->linkedin,
@@ -115,7 +123,7 @@ class UserController extends Controller
         }
         $user->save();
 
-        return redirect()->route("user.dashboard");
+        return redirect()->route("user.profile");
     }
 
     /**
@@ -132,9 +140,18 @@ class UserController extends Controller
     public function dashboard()
     {
         $user = Auth::user();
+        $contacts = $user->contactInfo;
         $specializations = $user->specializations;
         $messages = $user->messages->take(3);
-        return view("auth.dashboard", compact("user", "specializations", "messages"));
+        return view("auth.dashboard", compact("user", "specializations", "messages", "contacts"));
+    }
+
+    public function profile()
+    {
+        $user = Auth::user();
+        $contacts = $user->contactInfo;
+        $specializations = $user->specializations;
+        return view("auth.profile", compact("user", "contacts", "specializations"));
     }
 
     public function completeRegistration()
@@ -153,4 +170,5 @@ class UserController extends Controller
         $messages = $user->messages;
         return view("auth.messages", compact("user", "messages"));
     }
+
 }

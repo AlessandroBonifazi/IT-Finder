@@ -32,7 +32,10 @@ Route::middleware("auth")
             "UserController@completeRegistration"
         )->name("complete-registration");
         Route::get("/dashboard", "UserController@dashboard")->name("dashboard");
+        Route::get("/profile", "UserController@profile")->name("profile");
+        Route::get("/{id}/edit", "UserController@edit")->name("edit");
         Route::get("/messages", "UserController@getMessages")->name("messages");
+        // Route::resource('/', "UserController");
     });
 
 Route::get("{any?}", function () {

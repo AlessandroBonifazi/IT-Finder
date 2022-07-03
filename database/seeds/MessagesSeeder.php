@@ -18,7 +18,7 @@ class MessagesSeeder extends Seeder
         for ($i = 0; $i < 10; $i++) {
             $message = new Message();
             // specific id      \v/
-            $message->user_id = 207;
+            $message->user_id = 104;
             $message->content = $faker->realText($maxNbChars = 50, $indexSize = 1);
             $message->user_name = $faker->userName();
             $message->email = $faker->email();

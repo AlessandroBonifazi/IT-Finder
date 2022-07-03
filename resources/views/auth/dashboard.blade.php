@@ -12,7 +12,7 @@
                                 <a class="nav-link" href="{{ route('user.dashboard') }}">Dashboard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Profile</a>
+                                <a class="nav-link" href="{{ route('user.profile') }}">Profile</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('user.messages') }}">Messagges</a>
@@ -139,7 +139,7 @@
                                     @foreach ($specializations as $specialization)
                                         <li class="list-group-item">{{ $specialization->specialization }}</li>
                                     @endforeach
-                                    <li class="list-group-item"><a href="">link</a></li>
+                                    <li class="list-group-item"><a href="">{{ $user->contactInfo->github }}</a></li>
                                     <li class="list-group-item">Promo</li>
                                 </ul>
                             </div>
