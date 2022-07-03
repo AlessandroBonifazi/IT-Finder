@@ -89,13 +89,14 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function updateProfile(Request $request, User $user, $id)
+    public function updateProfile(Request $request, $id)
     {
         $user = User::find($id);
         $user->name = $request->name;
         $user->surname = $request->surname;
-        $user->email = $request->email;
-        $user->password = $request->password;
+        // ! comment lines creates a bug and we cant update the password like this
+        // $user->email = $request->email;
+        // $user->password = $request->password;
         $user->job_experience = $request->job_experience;
         $user->location = $request->location;
         $user->cv = $request->cv;
@@ -105,7 +106,7 @@ class UserController extends Controller
         if ($user->contactInfo()->exists()) {
             $user->contactInfo()->update([
                 "user_id" => $user->id,
-                "contact_email" => $user->email,
+                "contact_email" => $user->email ? $user->email : "/",
                 "phone" => $request->phone,
                 "linkedin" => $request->linkedin,
                 "github" => $request->github,
@@ -114,7 +115,7 @@ class UserController extends Controller
         } else {
             $user->contactInfo()->create([
                 "user_id" => $user->id,
-                "contact_email" => $user->email,
+                "contact_email" => $user->email ? $user->email : "/",
                 "phone" => $request->phone,
                 "linkedin" => $request->linkedin,
                 "github" => $request->github,
@@ -178,5 +179,10 @@ class UserController extends Controller
         $user = Auth::user();
         $messages = $user->messages;
         return view("auth.messages", compact("user", "messages"));
+    }
+    public function logout()
+    {
+        Auth::logout();
+        return redirect("/");
     }
 }
