@@ -32,7 +32,11 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
-        $user->contacts = $user->contactInfo();
+        $user->contacts = $user->contactInfo;
+        $user->messages = $user->messages;
+        $user->reviews = $user->reviews;
+        $user->technologies = $user->technologies;
+        $user->specializations = $user->specializations;
         return response()->json($user);
     }
 
@@ -214,17 +218,19 @@ class UserController extends Controller
         }
         // Filter: valutation avg
         if (!empty($reviews)) {
-            $query->join('reviews', 'users.id', '=', 'reviews.user_id')
-            ->select('users.*')
-            ->groupBy('reviews.user_id')
-            ->havingRaw('AVG(reviews.valutation) >= ?', [$reviews]);
+            $query
+                ->join("reviews", "users.id", "=", "reviews.user_id")
+                ->select("users.*")
+                ->groupBy("reviews.user_id")
+                ->havingRaw("AVG(reviews.valutation) >= ?", [$reviews]);
         }
         // Filter: reviews number
         if (!empty($reviewsNum)) {
-            $query->join('reviews', 'users.id', '=', 'reviews.user_id')
-            ->select('users.*')
-            ->groupBy('reviews.user_id')
-            ->havingRaw("COUNT(reviews.user_id) >= ?", [$reviewsNum]);
+            $query
+                ->join("reviews", "users.id", "=", "reviews.user_id")
+                ->select("users.*")
+                ->groupBy("reviews.user_id")
+                ->havingRaw("COUNT(reviews.user_id) >= ?", [$reviewsNum]);
         }
 
         $users = $query->paginate(12);

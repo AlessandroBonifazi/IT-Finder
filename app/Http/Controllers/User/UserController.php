@@ -73,9 +73,12 @@ class UserController extends Controller
         // }
         $user = Auth::user();
         $specializations = Specialization::all();
-        $contacts = $user->contactInfo();
+        $contacts = $user->contactInfo;
 
-        return view('auth.edit', compact('user', 'specializations', 'contacts'));
+        return view(
+            "auth.edit",
+            compact("user", "specializations", "contacts")
+        );
     }
 
     /**
@@ -143,7 +146,10 @@ class UserController extends Controller
         $contacts = $user->contactInfo;
         $specializations = $user->specializations;
         $messages = $user->messages->take(3);
-        return view("auth.dashboard", compact("user", "specializations", "messages", "contacts"));
+        return view(
+            "auth.dashboard",
+            compact("user", "specializations", "messages", "contacts")
+        );
     }
 
     public function profile()
@@ -151,7 +157,10 @@ class UserController extends Controller
         $user = Auth::user();
         $contacts = $user->contactInfo;
         $specializations = $user->specializations;
-        return view("auth.profile", compact("user", "contacts", "specializations"));
+        return view(
+            "auth.profile",
+            compact("user", "contacts", "specializations")
+        );
     }
 
     public function completeRegistration()
@@ -170,5 +179,4 @@ class UserController extends Controller
         $messages = $user->messages;
         return view("auth.messages", compact("user", "messages"));
     }
-
 }
