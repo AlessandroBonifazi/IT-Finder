@@ -68,6 +68,14 @@ class UserController extends Controller
     public function edit(User $user)
     {
         //
+        if (!$user) {
+            abort(404);
+        }
+        // $user = User::findOrFail($id);
+        $specializations = Specialization::all();
+        $contacts = $user->contactInfo;
+
+        return view('auth.edit', compact('user', 'specializations', 'contacts'));
     }
 
     /**
@@ -77,17 +85,15 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
-    {
-    }
 
     public function updateProfile(Request $request, $id)
     {
         $user = User::find($id);
         $user->name = $request->name;
         $user->surname = $request->surname;
+        $user->email = $request->email;
+        $user->password = $request->password;
         $user->job_experience = $request->job_experience;
-        // $user->position = $request->position;
         $user->location = $request->location;
         $user->cv = $request->cv;
         if ($request->specializations) {
@@ -115,7 +121,7 @@ class UserController extends Controller
         }
         $user->save();
 
-        return redirect()->route("user.dashboard");
+        return redirect()->route("user.profile");
     }
 
     /**
