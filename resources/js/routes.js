@@ -13,7 +13,6 @@ import DevDetail from "../js/pages/DevDetail.vue";
 // ! IMPORTANT: for our convention we import pages like this.
 // ! Its safer and avoid many bugs
 
-
 const router = new VueRouter({
     mode: "history",
     routes: [
@@ -43,16 +42,14 @@ const router = new VueRouter({
         //     component: UserDashboard,
         // },
         {
-
             path: "/search",
             name: "search",
             component: SearchPage,
         },
         {
-            path: "/dev-detail",
+            path: "/dev-detail/:id",
             name: "dev-detail",
             component: DevDetail,
-
         },
     ],
 });
