@@ -71,11 +71,11 @@ class UserController extends Controller
         if (!$user) {
             abort(404);
         }
-        // $user = User::findOrFail($id);
+        $userID = $user->id;
         $specializations = Specialization::all();
-        $contacts = $user->contactInfo;
+        $contacts = $user->contactInfo();
 
-        return view('auth.edit', compact('user', 'specializations', 'contacts'));
+        return view('auth.edit', compact('user', 'userID', 'specializations', 'contacts'));
     }
 
     /**
@@ -86,21 +86,24 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function updateProfile(Request $request, $id)
+    public function updateProfile(Request $request, User $user, $id)
     {
-        $user = User::find($id);
-        $user->name = $request->name;
-        $user->surname = $request->surname;
-        $user->email = $request->email;
-        $user->password = $request->password;
-        $user->job_experience = $request->job_experience;
-        $user->location = $request->location;
-        $user->cv = $request->cv;
+        $userData = $request->all();
+        $user->fill($userData);
+        // $user = User::find($id);
+        // $user->name = $request->name;
+        // $user->surname = $request->surname;
+        // $user->email = $request->email;
+        // $user->password = $request->password;
+        // $user->job_experience = $request->job_experience;
+        // $user->location = $request->location;
+        // $user->cv = $request->cv;
         if ($request->specializations) {
             $user->specializations()->sync($request->specializations);
         }
         if ($user->contactInfo()->exists()) {
             $user->contactInfo()->update([
+                "user_id" => $user->id,
                 "contact_email" => $user->email,
                 "phone" => $request->phone,
                 "linkedin" => $request->linkedin,
@@ -109,6 +112,7 @@ class UserController extends Controller
             ]);
         } else {
             $user->contactInfo()->create([
+                "user_id" => $user->id,
                 "contact_email" => $user->email,
                 "phone" => $request->phone,
                 "linkedin" => $request->linkedin,

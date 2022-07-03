@@ -65,7 +65,9 @@
                             <li class="list-group-item">Promo</li>
                             <li class="list-group-item">
                                 <button class="btn btn-primary">
-                                    <a class="text-white" href="{{ route('user.edit', [$user->id]) }}">Edit</a>
+                                    <a class="text-white" href="{{ route('user.edit', $user->id) }}">Edit</a>
+                                    {{-- <a class="text-white"
+                                        href="{{ action('User\UserController@edit', $user->id) }}">Edit</a> --}}
                                 </button>
                             </li>
                         </ul>

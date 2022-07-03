@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <div class="col-sm-10 col-md-10 col-lg-9 offset-lg-1">
+        <div class="col-sm-10 col-md-10 col-lg-6 offset-lg-1 my-5">
             {{-- @dd($user); --}}
             <form action="{{ route('user.update-profile', $user->id) }}" method="post">
                 @csrf
@@ -61,6 +61,51 @@
                     <input class="form-control" type="text" name="email" id="email"
                         value="{{ old('email', $user->email) }}">
                     @error('email')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                {{-- Contact-Email --}}
+                <div class="form-group">
+                    <label for="content">Contact Email</label>
+                    <input class="form-control" type="text" name="contact_email" id="contact_email"
+                        value="{{ old('contact_email', $user->contact_email) }}">
+                    @error('contact_email')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                {{-- Contact-phone --}}
+                <div class="form-group">
+                    <label for="content">Phone</label>
+                    <input class="form-control" type="text" name="phone" id="phone"
+                        value="{{ old('phone', $user->phone) }}">
+                    @error('phone')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                {{-- Contact-linkedin --}}
+                <div class="form-group">
+                    <label for="content">Linkedin</label>
+                    <input class="form-control" type="text" name="linkedin" id="linkedin"
+                        value="{{ old('linkedin', $user->linkedin) }}">
+                    @error('linkedin')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                {{-- Contact-github --}}
+                <div class="form-group">
+                    <label for="content">Github</label>
+                    <input class="form-control" type="text" name="github" id="github"
+                        value="{{ old('github', $user->github) }}">
+                    @error('github')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                {{-- Contact-site --}}
+                <div class="form-group">
+                    <label for="content">Site</label>
+                    <input class="form-control" type="text" name="site" id="site"
+                        value="{{ old('site', $user->site) }}">
+                    @error('site')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
