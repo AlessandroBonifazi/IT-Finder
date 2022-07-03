@@ -65,17 +65,17 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit()
     {
         //
-        if (!$user) {
-            abort(404);
-        }
-        $userID = $user->id;
+        // if (!$user) {
+        //     abort(404);
+        // }
+        $user = Auth::user();
         $specializations = Specialization::all();
         $contacts = $user->contactInfo();
 
-        return view('auth.edit', compact('user', 'userID', 'specializations', 'contacts'));
+        return view('auth.edit', compact('user', 'specializations', 'contacts'));
     }
 
     /**

@@ -33,7 +33,7 @@
         </div>
 
         <div class="col-sm-10 col-md-10 col-lg-6 offset-lg-1 my-5">
-            {{-- @dd($user); --}}
+            {{-- @dd($contacts); --}}
             <form action="{{ route('user.update-profile', $user->id) }}" method="post">
                 @csrf
                 @method('PUT')
@@ -67,8 +67,7 @@
                 {{-- Contact-Email --}}
                 <div class="form-group">
                     <label for="content">Contact Email</label>
-                    <input class="form-control" type="text" name="contact_email" id="contact_email"
-                        value="{{ old('contact_email', $user->contact_email) }}">
+                    <input class="form-control" type="text" name="contact_email" id="contact_email" value="">
                     @error('contact_email')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -76,8 +75,7 @@
                 {{-- Contact-phone --}}
                 <div class="form-group">
                     <label for="content">Phone</label>
-                    <input class="form-control" type="text" name="phone" id="phone"
-                        value="{{ old('phone', $user->phone) }}">
+                    <input class="form-control" type="text" name="phone" id="phone" value="">
                     @error('phone')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -85,8 +83,7 @@
                 {{-- Contact-linkedin --}}
                 <div class="form-group">
                     <label for="content">Linkedin</label>
-                    <input class="form-control" type="text" name="linkedin" id="linkedin"
-                        value="{{ old('linkedin', $user->linkedin) }}">
+                    <input class="form-control" type="text" name="linkedin" id="linkedin" value="">
                     @error('linkedin')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -94,8 +91,7 @@
                 {{-- Contact-github --}}
                 <div class="form-group">
                     <label for="content">Github</label>
-                    <input class="form-control" type="text" name="github" id="github"
-                        value="{{ old('github', $user->github) }}">
+                    <input class="form-control" type="text" name="github" id="github" value="">
                     @error('github')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -103,8 +99,7 @@
                 {{-- Contact-site --}}
                 <div class="form-group">
                     <label for="content">Site</label>
-                    <input class="form-control" type="text" name="site" id="site"
-                        value="{{ old('site', $user->site) }}">
+                    <input class="form-control" type="text" name="site" id="site" value="">
                     @error('site')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -112,8 +107,7 @@
                 {{-- PSW --}}
                 <div class="form-group">
                     <label for="content">Password</label>
-                    <input class="form-control" type="password" name="password" id="password"
-                        value="{{ old('password', $user->password) }}">
+                    <input class="form-control" type="password" name="password" id="password" value="">
                     @error('email')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
