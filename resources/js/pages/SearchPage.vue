@@ -65,6 +65,49 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Valutation/Reviews -->
+                        <div class="sidebar-body">
+                            <div class="sidebar-item">
+                                <div class="sidebar-item-header">
+                                    <h4 class="sidebar-item-title">Rating</h4>
+                                </div>
+                                <div class="sidebar-item-body">
+                                    <div class="sidebar-item-body-content">
+                                        <select v-model="reviews">
+                                            <option value="">All</option>
+                                            <option
+                                                v-for="valut in valutations"
+                                                :key="valut"
+                                                :value="valut"
+                                            >
+                                                {{ valut }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Reviews Number filter -->
+                        <div class="sidebar-body">
+                            <div class="sidebar-item">
+                                <div class="sidebar-item-header">
+                                    <h4 class="sidebar-item-title">
+                                        N Reviews
+                                    </h4>
+                                </div>
+                                <div class="sidebar-item-body">
+                                    <div class="sidebar-item-body-content">
+                                        <select v-model="reviewsNum">
+                                            <option value="">All</option>
+                                            <option :value="10">10+</option>
+                                            <option :value="20">20+</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-9 m-0 p-0 overflow-hidden">
@@ -228,6 +271,10 @@ export default {
                 totalPages: 1,
                 totalRecords: 0,
             },
+            valutations: 5,
+            selectedValutations: [],
+            reviews: "",
+            reviewsNum: "",
         };
     },
     mounted() {
@@ -242,6 +289,8 @@ export default {
                     params: {
                         value: this.searchQuery,
                         specializations: this.selectedSpecializations,
+                        reviews: this.reviews,
+                        reviewsNum: this.reviewsNum,
                         page: page || 1,
                     },
                 })
@@ -262,12 +311,13 @@ export default {
                 .get("http://127.0.0.1:8000/api/specializations")
                 .then((response) => {
                     this.specializations = response.data;
-                    // console.log(response.data);
+                    console.log("specialization", response.data);
                 })
                 .catch((error) => {
                     console.log(error);
                 });
         },
+
         handleSpecSelection(id) {
             if (this.selectedSpecializations.includes(id)) {
                 this.selectedSpecializations =
@@ -277,6 +327,18 @@ export default {
             }
             console.log(this.selectedSpecializations);
         },
+
+        handleValutSelection(id) {
+            if (this.selectedValutations.includes(id)) {
+                this.selectedValutations = this.selectedValutations.filter(
+                    (id) => id !== id
+                );
+            } else {
+                this.selectedValutations.push(id);
+            }
+            console.log(this.selectedValutations);
+        },
+
         scrollToTop() {
             window.scrollTo({
                 top: 0,

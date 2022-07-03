@@ -9,13 +9,13 @@
                     <div class="sidebar-sticky pt-3">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Dashboard</a>
+                                <a class="nav-link" href="{{ route('user.dashboard') }}">Dashboard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Profile</a>
+                                <a class="nav-link" href="{{ route('user.profile') }}">Profile</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Messagges</a>
+                                <a class="nav-link" href="{{ route('user.messages') }}">Messagges</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Reviews</a>
@@ -72,24 +72,22 @@
                             </div>
                         </div>
                         {{-- Messaggi --}}
-                        <div class="col-md-12 col-lg-6 grid-margin stretch-card my-3">
+                        <div style="height: 500px;"
+                            class="col-md-12 col-lg-6 grid-margin stretch-card my-3 overflow-auto h-100">
                             <div class="card">
-                                <div class="card-body py-5">
+                                <div class="card-body py-5 overflow-auto">
                                     {{-- title --}}
                                     <h5 class="card-title">Messages</h5>
 
-                                    <ul class="list-group list-group-horizontal my-1">
-                                        <li class="list-group-item">Contact Name</li>
-                                        <li class="list-group-item w-75">messagge</li>
-                                    </ul>
-                                    <ul class="list-group list-group-horizontal my-1">
-                                        <li class="list-group-item">Contact Name</li>
-                                        <li class="list-group-item w-75">messagge</li>
-                                    </ul>
-                                    <ul class="list-group list-group-horizontal my-1">
-                                        <li class="list-group-item">Contact Name</li>
-                                        <li class="list-group-item w-75">messagge</li>
-                                    </ul>
+                                    @foreach ($messages as $message)
+                                        <ul class="list-group list-group-horizontal my-1">
+                                            <li class="list-group-item">
+                                                <h5>{{ $message->user_name }}</h5>
+                                                <span>{{ $message->created_at }}</span>
+                                            </li>
+                                            <li class="list-group-item w-75">{{ $message->content }}</li>
+                                        </ul>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -141,7 +139,7 @@
                                     @foreach ($specializations as $specialization)
                                         <li class="list-group-item">{{ $specialization->specialization }}</li>
                                     @endforeach
-                                    <li class="list-group-item"><a href="">link</a></li>
+                                    <li class="list-group-item"><a href="">{{ $user->contactInfo->github }}</a></li>
                                     <li class="list-group-item">Promo</li>
                                 </ul>
                             </div>

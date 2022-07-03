@@ -161,17 +161,17 @@
                 </div>
             </div>
         </div>
-        <!-- footer -->
-        <div class="container container-md my-5">
-            <div class="row">footer</div>
-        </div>
         <a href="#" @click="logout">logout</a>
+        <FooterComponent />
+        <ScrollerComponent />
     </div>
 </template>
 
 <script>
 import HeaderComponent from "./../components/HeaderComponent.vue";
 import UserCard from "./../components/UserCard.vue";
+import FooterComponent from "./../components/FooterComponent.vue";
+import ScrollerComponent from "./../components/ScrollerComponent.vue";
 export default {
     name: "MainPage",
     data() {
@@ -196,7 +196,12 @@ export default {
             });
         },
     },
-    components: { HeaderComponent, UserCard },
+    components: {
+        HeaderComponent,
+        FooterComponent,
+        ScrollerComponent,
+        UserCard,
+    },
 };
 </script>
 
