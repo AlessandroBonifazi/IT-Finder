@@ -36,6 +36,7 @@
             </div>
             <div class="button-section">
                 <button
+                    @click="viewProfile"
                     class="itf-btn itf-btn-primary-outline itf-btn-full-width itf-btn-small"
                 >
                     View Profile
@@ -75,6 +76,14 @@ export default {
             });
             render = render.slice(0, -2);
             return render;
+        },
+        viewProfile() {
+            this.$router.push({
+                name: "user-profile",
+                params: {
+                    id: this.user.id,
+                },
+            });
         },
     },
 };
