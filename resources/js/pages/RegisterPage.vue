@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <HeaderComponent class="position-absolute" />
         <div class="row justify-content-end align-items-center vh-100">
             <div class="col-md-6">
                 <div class="itf-card">
@@ -149,6 +150,7 @@
 </template>
 
 <script>
+import HeaderComponent from "../components/HeaderComponent.vue";
 export default {
     name: "RegisterPage",
     data() {
@@ -167,6 +169,9 @@ export default {
                 "Password confirmation is required",
             emailValidationMessage: "Email is required",
         };
+    },
+    components: {
+        HeaderComponent,
     },
     methods: {
         register() {

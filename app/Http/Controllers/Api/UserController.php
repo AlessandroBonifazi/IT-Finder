@@ -79,7 +79,7 @@ class UserController extends Controller
         //     $reviews,
         //     $specs,
         // ]);
-        return view('auth.dashboard', compact('user', 'contacts'));
+        return view("auth.dashboard", compact("user", "contacts"));
     }
 
     /**
@@ -224,6 +224,16 @@ class UserController extends Controller
             $user->technologies;
         }
 
+        return response()->json($users);
+    }
+
+    public function bestUsers()
+    {
+        $users = User::take(6)->get();
+        $users->each(function ($user) {
+            $user->specializations;
+            $user->technologies;
+        });
         return response()->json($users);
     }
 }

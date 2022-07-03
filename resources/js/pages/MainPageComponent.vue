@@ -1,145 +1,109 @@
 <template>
     <div class="m-0 p-0">
-        <HeaderComponent />
-        <!-- banner -->
-        <div class="row my-5 justify-content-start mx-5 px-5">
-            <div class="col-5 mx-5 px-5">
-                <h1 class="krona green-55 mb-4 mt-5">
-                    Your Next
-                    <span class="krona yellow-60"> IT </span>Specialist is Here
-                </h1>
-                <p>
-                    Search and find best IT Specialist from all around the world
-                    for your one million project idea or business
-                </p>
-                <button class="btn discover">Discover More</button>
+        <div class="hero">
+            <HeaderComponent />
+            <div class="hero-img-bg d-none d-md-block">
+                <div class="hero-color-bg"></div>
             </div>
-
-            <div class="col-4">
-                <img class="jumbotron" src="public/img/Frame 2.png" alt="jumbotron">
+            <div class="hero-img-bg-full d-md-none">
+                <div class="hero-color-bg-full"></div>
             </div>
-        </div>
-        <!-- specialist role -->
-        <svg
-            width="1519"
-            height="240"
-            viewBox="0 0 1519 240"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-        >
-            <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M-1 182.559H95.5358C190.631 182.559 383.702 182.559 575.333 149.053C766.964 115.546 960.036 48.5316 1151.67 19.8114C1343.3 -8.90886 1536.37 0.664558 1631.46 5.45127L1728 10.238V240H1631.46C1536.37 240 1343.3 240 1151.67 240C960.036 240 766.964 240 575.333 240C383.702 240 190.631 240 95.5358 240H-1V182.559Z"
-                fill="#14453D"
-            />
-            <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M-1 182.559H95.5358C190.631 182.559 383.702 182.559 575.333 149.053C766.964 115.546 960.036 48.5316 1151.67 19.8114C1343.3 -8.90886 1536.37 0.664558 1631.46 5.45127L1728 10.238V240H1631.46C1536.37 240 1343.3 240 1151.67 240C960.036 240 766.964 240 575.333 240C383.702 240 190.631 240 95.5358 240H-1V182.559Z"
-                fill="#123C35"
-            />
-            <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M-1 182.559H95.5358C190.631 182.559 383.702 182.559 575.333 149.053C766.964 115.546 960.036 48.5316 1151.67 19.8114C1343.3 -8.90886 1536.37 0.664558 1631.46 5.45127L1728 10.238V240H1631.46C1536.37 240 1343.3 240 1151.67 240C960.036 240 766.964 240 575.333 240C383.702 240 190.631 240 95.5358 240H-1V182.559Z"
-                stroke="black"
-            />
-        </svg>
-
-        <div class="container-fluid bg-green-55">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 text-center mb-4">
-                        <h2 class="yellow-60 krona m-3">
-                            What kind of specialist do you need?
-                        </h2>
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div
+                        class="col-12 col-md-7 hero-content text-center text-md-left"
+                    >
+                        <h1 class="hero-title itf-main-title">
+                            Your Next
+                            <span class="hero-title__accent itf-main-title">
+                                IT </span
+                            >Specialist is Here
+                        </h1>
+                        <p class="hero-subtitle itf-subtitle">
+                            Search and find best IT Specialist from all around
+                            the world for your one million project idea or
+                            business
+                        </p>
+                        <button class="itf-btn itf-btn-primary">
+                            Discover More
+                        </button>
                     </div>
                 </div>
             </div>
-            <div class="row specialist flex-wrap justify-content-center">
-                <div
-                    class="col-3 text-center my-2 krona bg-green-60 py-3 mx-1 align-self-center"
-                >
-                    <a href="#" class="green-40">Front-End</a>
-                </div>
-                <div
-                    class="col-3 text-center my-2 krona bg-green-60 py-3 mx-1 align-self-center"
-                >
-                    <a href="#" class="green-40">Back-End</a>
-                </div>
-                <div
-                    class="col-3 text-center my-2 krona bg-green-60 py-3 mx-1 align-self-center"
-                >
-                    <a href="#" class="green-40">Mobile</a>
-                </div>
-                <div
-                    class="col-3 text-center my-2 krona bg-green-60 py-3 mx-1 align-self-center"
-                >
-                    <a href="#" class="green-40">Analyst</a>
-                </div>
-                <div
-                    class="col-3 text-center my-2 krona bg-green-60 py-3 mx-1 align-self-center"
-                >
-                    <a href="#" class="green-40">Web Developer</a>
-                </div>
-                <div
-                    class="col-3 text-center my-2 krona bg-green-60 py-3 mx-1 align-self-center"
-                >
-                    <a href="#" class="green-40">Web Developer</a>
-                </div>
-                <div
-                    class="col-3 text-center my-2 krona bg-green-60 py-3 mx-1 align-self-center"
-                >
-                    <a href="#" class="green-40">Web Developer</a>
-                </div>
-                <div
-                    class="col-3 text-center my-2 krona bg-green-60 py-3 mx-1 align-self-center"
-                >
-                    <a href="#" class="green-40">Web Developer</a>
+        </div>
+        <!-- specialist role -->
+        <div class="wave-top">
+            <img src="img\Vector.svg" alt="" />
+        </div>
+        <div class="container-fluid green-bg">
+            <div class="row">
+                <div class="container container-md">
+                    <div class="row">
+                        <div class="col-12 col-md-12 text-center mb-4">
+                            <h2 class="itf-section-title-yellow itf-main-title">
+                                What kind of specialist do you need?
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="row flex-wrap justify-content-center">
+                        <div class="col col-md search-tile">
+                            <h3>Front End</h3>
+                        </div>
+                        <div class="col col-md search-tile">
+                            <h3>Front End</h3>
+                        </div>
+                        <div class="col col-md search-tile">
+                            <h3>Front End</h3>
+                        </div>
+                        <div class="col col-md search-tile">
+                            <h3>Front End</h3>
+                        </div>
+                        <div class="col col-md search-tile">
+                            <h3>Front End</h3>
+                        </div>
+                        <div class="col col-md search-tile">
+                            <h3>Front End</h3>
+                        </div>
+                        <div class="col col-md search-tile">
+                            <h3>Front End</h3>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <svg
-            width="1519"
-            height="269"
-            viewBox="0 0 1519 269"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-        >
-            <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M-1 253.407L71.0417 259.44C143.083 265.474 287.167 277.541 431.25 259.44C575.333 241.34 719.417 193.072 863.5 187.038C1007.58 181.005 1151.67 217.206 1295.75 199.105C1439.83 181.005 1583.92 108.603 1655.96 72.4019L1728 36.201V0H1655.96C1583.92 0 1439.83 0 1295.75 0C1151.67 0 1007.58 0 863.5 0C719.417 0 575.333 0 431.25 0C287.167 0 143.083 0 71.0417 0H-1V253.407Z"
-                fill="#123C35"
-            />
-        </svg>
+        <div class="wave-bottom">
+            <img src="img\Vector-1.svg" alt="" />
+        </div>
 
         <!-- promo specialist -->
-        <div class="container">
+        <div class="container container-md best-spec-container">
             <div class="row">
-                <div class="col-12 text-center">
+                <div class="col-12 col-md-12 text-center">
                     <h2 class="krona green-55">Our best specialist</h2>
                 </div>
 
-                <div class="row">
-                    <div class="col-4"></div>
-                    <div class="col-4"></div>
-                    <div class="col-4"></div>
-                    <div class="col-4"></div>
-                    <div class="col-4"></div>
-                    <div class="col-4"></div>
+                <div class="row users-wrapper">
+                    <UserCard
+                        class="col-10 col-md-5 col-lg-3"
+                        v-for="user in users"
+                        :key="user.id"
+                        :user="user"
+                    />
                 </div>
 
-                <div class="col-12 d-flex justify-content-center">
-                    <button class="btn discover">Discover More</button>
+                <div class="col-12 col-md-12 d-flex justify-content-center">
+                    <button class="itf-btn itf-btn-primary">
+                        Discover More
+                    </button>
                 </div>
             </div>
             <!-- specialist banner -->
             <div class="row bg-green my-5 find-talent d-flex">
-                <div class="col-12 bg-green-55 d-flex specialist-banner">
+                <div
+                    class="col-12 col-md-12 bg-green-55 d-flex specialist-banner"
+                >
                     <div class="row d-flex">
-                        <div class="col-5 my-5 mx-3">
+                        <div class="col-5 col-md-5 my-5 mx-3">
                             <h1 class="krona find-talent-title">
                                 Find the talent needed to get your business
                                 <span class="krona yellow-60">growing</span>.
@@ -149,7 +113,7 @@
                             </button>
                         </div>
 
-                        <div class="col-7 talent-img">
+                        <div class="col-7 col-md-7 talent-img">
                             <img src="" alt="talent" />
                         </div>
                     </div>
@@ -157,12 +121,16 @@
             </div>
             <!-- find next job section -->
             <div class="row my-5 py-5 justify-content-center">
-                <div class="col-6 p-0">
+                <div class="col-6 col-md-6 p-0">
                     <h2 class="krona green-55 mb-5">Find your next job</h2>
                     <img class="frame-28" src="img\Frame 28.png" alt="" />
-                    <img class="position-absolute frame-29" src="img\Frame 29.png" alt="" />
+                    <img
+                        class="position-absolute frame-29"
+                        src="img\Frame 29.png"
+                        alt=""
+                    />
                 </div>
-                <div class="col-5 d-flex flex-column">
+                <div class="col-5 col-md-5 d-flex flex-column">
                     <div class="next-job">
                         <h3 class="krona green-55">Title</h3>
                         <p>
@@ -194,7 +162,7 @@
             </div>
         </div>
         <!-- footer -->
-        <div class="container my-5">
+        <div class="container container-md my-5">
             <div class="row">footer</div>
         </div>
         <a href="#" @click="logout">logout</a>
@@ -203,13 +171,18 @@
 
 <script>
 import HeaderComponent from "./../components/HeaderComponent.vue";
+import UserCard from "./../components/UserCard.vue";
 export default {
     name: "MainPage",
     data() {
         return {
-            user: {},
+            users: {},
         };
     },
+    mounted() {
+        this.getUsers();
+    },
+
     methods: {
         logout() {
             window.axios.post("/logout").then(() => {
@@ -217,13 +190,159 @@ export default {
                 console.log("logout");
             });
         },
+        getUsers() {
+            window.axios.get("/api/best-users").then((response) => {
+                this.users = response.data;
+            });
+        },
     },
-    components: { HeaderComponent },
+    components: { HeaderComponent, UserCard },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "./../../sass/app";
+
+.hero {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+
+    @include media-breakpoint-up(md) {
+        height: 80vh;
+    }
+
+    &-img-bg {
+        background: url("../../../public/img/hero-img.jpg") no-repeat center
+            center;
+        background-size: cover;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 60%;
+        height: 100%;
+        z-index: -1;
+        .hero-color-bg {
+            background: linear-gradient(
+                90deg,
+                $bg-secondary 12.91%,
+                rgba(249, 246, 255, 0) 40.1%
+            );
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+    }
+    &-img-bg-full {
+        background: url("../../../public/img/hero-img.jpg") no-repeat center
+            center;
+        background-size: cover;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        .hero-color-bg-full {
+            background: #f2f4f3da;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+    }
+    .hero-title {
+        font-family: $ff-heading;
+        font-weight: bold;
+        color: $green-70;
+        .hero-title__accent {
+            color: $fc-accent-yellow;
+        }
+    }
+    .hero-subtitle {
+        font-family: $ff-body;
+        font-weight: normal;
+        color: $fc-grey-dark;
+        margin: 30px 0 40px 0;
+    }
+}
+.wave-top {
+    overflow: hidden;
+    margin: -2px 0;
+    margin-top: -130px;
+    z-index: -1;
+    img {
+        width: 110%;
+    }
+}
+.wave-bottom {
+    overflow: hidden;
+    margin: -2px 0;
+    z-index: -1;
+    img {
+        width: 110%;
+    }
+}
+.green-bg {
+    background: $green-70;
+    min-height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.itf-section-title-yellow {
+    color: $fc-accent-yellow;
+    font-family: $ff-heading;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+.search-tile {
+    background: $green-60;
+    min-width: 250px;
+    max-width: 300px;
+    height: 50px;
+    margin: 5px;
+    border-radius: 10px;
+    box-shadow: 0px 8px 15px 2px rgba(27, 54, 50, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+        cursor: pointer;
+        background: $green-70;
+        transform: scale(0.98);
+        box-shadow: 0px 4px 10px -2px rgba(27, 54, 50, 0.7);
+    }
+    h3 {
+        font-family: $ff-heading;
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: $green-40;
+        margin: 0;
+    }
+}
+.best-spec-container {
+    padding: 100px 0;
+}
+.users-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    gap: 20px;
+}
 
 //UTILITIES
 .krona {
@@ -244,7 +363,7 @@ export default {
 .bg-green-60 {
     background-color: $green-60;
 }
-.yellow-50{
+.yellow-50 {
     color: $fc-accent-yellow;
 }
 .yellow-60 {
@@ -287,21 +406,21 @@ export default {
     color: white;
     font-size: 30px;
 }
-.talent-img img{
+.talent-img img {
     height: 392px;
     justify-content: center;
 }
 .specialist-banner {
     border-radius: 9px;
 }
-.jumbotron{
+.jumbotron {
     width: 100px;
     height: 100px;
 }
-.frame-28{
+.frame-28 {
     height: 60%;
 }
-.frame-29{
+.frame-29 {
     height: 28%;
     right: 37px;
     top: 324px;
