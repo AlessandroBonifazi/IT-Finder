@@ -18,7 +18,7 @@
                                 <a class="nav-link" href="{{ route('user.messages') }}">Messagges</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Reviews</a>
+                                <a class="nav-link" href="{{ route('user.reviews') }}">Reviews</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Promo</a>
@@ -59,4 +59,6 @@
                     </div>
                 </div>
             </div>
-        @endsection
+        </div>
+    </div>
+@endsection
