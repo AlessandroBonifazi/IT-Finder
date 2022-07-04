@@ -144,9 +144,9 @@
                                     @foreach ($specializations as $specialization)
                                         <li class="list-group-item">{{ $specialization->specialization }}</li>
                                     @endforeach
-                                    @if ($user->contactInfo->github)
+                                    {{-- @if ($user->contactInfo->github)
                                         <li class="list-group-item">Github: {{ $user->contactInfo->github }}</li>
-                                    @endif
+                                    @endif --}}
                                     <li class="list-group-item">Promo</li>
                                 </ul>
                             </div>

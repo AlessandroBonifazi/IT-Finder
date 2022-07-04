@@ -65,9 +65,25 @@ export default {
             },
         };
     },
+    props: {
+        user_id: {
+            type: Number,
+            required: true,
+        },
+    },
     methods: {
         sendMessage() {
-            console.log(this.params);
+            window.axios
+                .post(
+                    `http://127.0.0.1:8000/api/message/send/${this.user_id}`,
+                    this.params
+                )
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         },
     },
 };

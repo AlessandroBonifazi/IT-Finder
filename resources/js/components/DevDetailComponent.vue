@@ -101,7 +101,7 @@
                 </div>
 
                 <div class="col-4 p-0 message-section d-flex flex-column">
-                    <LeaveMessageComponent />
+                    <LeaveMessageComponent :user_id="user.id" />
 
                     <!--CONTACT-->
                     <div class="contact-section mt-5 p-0">
