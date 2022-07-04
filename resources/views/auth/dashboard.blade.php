@@ -18,7 +18,7 @@
                                 <a class="nav-link" href="{{ route('user.messages') }}">Messagges</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Reviews</a>
+                                <a class="nav-link" href="{{ route('user.reviews') }}">Reviews</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Promo</a>
@@ -103,18 +103,15 @@
                                     {{-- title --}}
                                     <h5 class="card-title">Reviews</h5>
 
-                                    <ul class="list-group list-group-horizontal my-1">
-                                        <li class="list-group-item">Contact Name</li>
-                                        <li class="list-group-item w-75">review</li>
-                                    </ul>
-                                    <ul class="list-group list-group-horizontal my-1">
-                                        <li class="list-group-item">Contact Name</li>
-                                        <li class="list-group-item w-75">review</li>
-                                    </ul>
-                                    <ul class="list-group list-group-horizontal my-1">
-                                        <li class="list-group-item">Contact Name</li>
-                                        <li class="list-group-item w-75">review</li>
-                                    </ul>
+                                    @foreach ($reviews as $review)
+                                        <ul class="list-group list-group-horizontal my-1">
+                                            <li class="list-group-item">
+                                                <h5>{{ $review->user_name }}</h5>
+                                                <span>{{ $review->created_at }}</span>
+                                            </li>
+                                            <li class="list-group-item w-75">{{ $review->content }}</li>
+                                        </ul>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
