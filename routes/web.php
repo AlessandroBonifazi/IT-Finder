@@ -38,6 +38,7 @@ Route::middleware("auth")
         Route::get("/{id}/edit", "UserController@edit")->name("edit");
         Route::get("/messages", "UserController@getMessages")->name("messages");
         Route::get("/logout", "UserController@logout")->name("logout");
+        Route::get("/checkin", "UserController@promos")->name("checkin");
         // Route::resource('/', "UserController");
     });
 

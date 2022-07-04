@@ -9,6 +9,7 @@ use App\User;
 use App\Contact;
 use App\Specialization;
 use App\Message;
+use App\Promo;
 
 class UserController extends Controller
 {
@@ -184,5 +185,11 @@ class UserController extends Controller
     {
         Auth::logout();
         return redirect("/");
+    }
+
+    public function promos(){
+        $promos=Promo::all();
+        return view('auth.checkin', compact('promos'));
+
     }
 }

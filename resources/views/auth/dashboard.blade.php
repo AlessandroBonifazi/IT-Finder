@@ -21,7 +21,7 @@
                                 <a class="nav-link" href="#">Reviews</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Promo</a>
+                                <a class="nav-link" href="{{route('user.checkin')}}">Promo</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Statistics</a>
