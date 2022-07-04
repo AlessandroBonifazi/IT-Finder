@@ -40,7 +40,8 @@ Route::middleware("auth")
         Route::get("/reviews", "UserController@getReviews")->name("reviews");
         Route::get("/logout", "UserController@logout")->name("logout");
         Route::delete("/{id}", "UserController@destroy")->name("destroy");
-        // Route::resource('/', "UserController");
+        Route::put("/tech/{id}", "UserController@updateTech")->name("tech");
+        // Route::resource('/', "UserController");  <--credo sia troppo tardi per usarlo *facepalm*
     });
 
 Route::get("{any?}", function () {

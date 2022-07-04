@@ -20,6 +20,13 @@
                 @foreach ($specializations as $specialization)
                     <li class="list-group-item">{{ $specialization->specialization }}</li>
                 @endforeach
+
+                <h6 class="mx-3">Technologies:</h6>
+                <li class="list-group-item">
+                    @foreach ($techs as $tech)
+                        <span>{{ $tech->name }}</span>
+                    @endforeach
+                </li>
                 <li class="list-group-item">Email: {{ $user->email }}</li>
                 <li class="list-group-item">Business Email: {{ $user->contactInfo->contact_email }}</li>
                 <li class="list-group-item">Phone: {{ $user->contactInfo->phone }}</li>
@@ -28,6 +35,7 @@
                 <li class="list-group-item">Linkedin: <a href="">{{ $user->contactInfo->linkedin }}</a></li>
                 <li class="list-group-item">Site: <a href="">{{ $user->contactInfo->site }}</a></li>
                 {{-- <li class="list-group-item">CV: {{ $user->cv }}</li> --}}
+
                 <li class="list-group-item">Promo</li>
                 <li class="list-group-item">
                     <button class="btn btn-primary">

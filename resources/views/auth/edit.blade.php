@@ -7,7 +7,7 @@
             @method('PUT')
             {{-- Name --}}
             <div class="form-group">
-                <label for="content">Name</label>
+                <label for="name">Name</label>
                 <input class="form-control" type="text" name="name" id="name"
                     value="{{ old('name', $user->name) }}">
                 @error('name')
@@ -16,7 +16,7 @@
             </div>
             {{-- Surname --}}
             <div class="form-group">
-                <label for="content">Surname</label>
+                <label for="surname">Surname</label>
                 <input class="form-control" type="text" name="surname" id="surname"
                     value="{{ old('surname', $user->surname) }}">
                 @error('surname')
@@ -88,17 +88,46 @@
             </div>
             {{-- Specializations --}}
             <div class="form-group">
-                <label for="specialization">Specializations</label>
+                <h5>Update your Specializations</h5>
                 <div class="input-group">
                     @foreach ($specializations as $spec)
-                        <input type="checkbox" name="spec[{{ $spec->id }}]" id="{{ $spec->id }}"
-                            value="{{ $spec->id }}">
-                        {{ $spec->specialization }}
+                        <button class="btn">
+                            <input type="checkbox" name="spec[{{ $spec->id }}]" id="{{ $spec->id }}"
+                                value="{{ $spec->id }}">
+                            {{ $spec->specialization }}
+                        </button>
                     @endforeach
                 </div>
                 @error('specialization')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
+            </div>
+
+            {{-- submit --}}
+            <input class="btn btn-primary" type="submit">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        </form>
+    </div>
+    <div class="col-6 offset-1 mb-5">
+        <form action="{{ route('user.tech', $user->id) }}" method="post">
+            @csrf
+            @method('PUT')
+            <h5>Add Technologies you know</h5>
+            <div class="input-group my-3">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input type="radio" name="status">
+                    </div>
+                </div>
+                <input type="text" class="form-control" name="techName">
             </div>
 
             {{-- submit --}}

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Contact;
 use App\Specialization;
+use App\Tecnology;
 use App\Message;
 
 class UserController extends Controller
@@ -134,6 +135,22 @@ class UserController extends Controller
         return redirect()->route("user.dashboard");
     }
 
+    public function updateTech(Request $request, $id)
+    {
+        //
+        // dd($request);
+        $user = User::find($id);
+        if ($request->status = "on") {
+            $user->technologies()->create([
+                // "user_id" => $user->id,
+                "name" => $request->techName,
+                "logo" => null,
+            ]);
+        }
+        $user->save();
+        return redirect()->route("user.dashboard");
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -184,9 +201,9 @@ class UserController extends Controller
         $user = Auth::user();
         $contacts = $user->contactInfo;
         $specializations = $user->specializations;
-        return view(
-            "auth.profile",
-            compact("user", "contacts", "specializations")
+        $techs = $user->technologies;
+        return view( "auth.profile",
+            compact("user", "contacts", "specializations", "techs")
         );
     }
 
