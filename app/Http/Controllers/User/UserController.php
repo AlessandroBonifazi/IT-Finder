@@ -147,9 +147,10 @@ class UserController extends Controller
         $contacts = $user->contactInfo;
         $specializations = $user->specializations;
         $messages = $user->messages->take(3);
+        $reviews = $user->reviews->take(3);
         return view(
             "auth.dashboard",
-            compact("user", "specializations", "messages", "contacts")
+            compact("user", "specializations", "messages", "contacts", "reviews")
         );
     }
 
@@ -180,6 +181,14 @@ class UserController extends Controller
         $messages = $user->messages;
         return view("auth.messages", compact("user", "messages"));
     }
+
+    public function getReviews()
+    {
+        $user = Auth::user();
+        $reviews = $user->reviews;
+        return view("auth.reviews", compact("user", "reviews"));
+    }
+
     public function logout()
     {
         Auth::logout();
