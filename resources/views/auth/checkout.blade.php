@@ -1,32 +1,46 @@
 @extends('layouts.app')
-{{-- @dd($user); --}}
 @section('content')
 
-<div id="dropin-container"></div>
-<button id="submit-button" class="button button--small button--green">Purchase</button>
-<script>
-    var button = document.querySelector('#submit-button');
+    <div class="container">
+@dd($promo)
 
-braintree.dropin.create({
-  authorization: 'sandbox_g42y39zw_348pk9cgf3bgyw2b',
-  selector: '#dropin-container'
-}, function (err, instance) {
-  if (err) {
-    // An error in the create call is likely due to
-    // incorrect configuration values or network issues
-    return;
-  }
 
-  button.addEventListener('click', function () {
-    instance.requestPaymentMethod(function (err, payload) {
-      if (err) {
-        // An appropriate error will be shown in the UI
-        return;
-      }
 
-      // Submit payload.nonce to your server
-    });
-  })
-});
-</script>
+    </div>
+
+
+
+    <!-- includes the Braintree JS client SDK -->
+    {{-- <script src="https://js.braintreegateway.com/web/dropin/1.31.0/js/dropin.min.js"></script>
+
+    <script>
+        var form = document.querySelector('#payment-form');
+        var client_token = "{{ $token }}";
+        // var nonc =  document.querySelector('#nonce');
+        braintree.dropin.create({
+            authorization: client_token,
+            selector: '#bt-dropin',
+        }, function(createErr, instance) {
+            if (createErr) {
+                console.log('Create Error', createErr);
+                // return;
+            }
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                instance.requestPaymentMethod(function(err, payload) {
+                    if (err) {
+                        console.log('Request Payment Method Error', err);
+                        return;
+                    }
+                    //Add the nonce to the form and submit
+                    document.querySelector('input[name="payment_method_nonce"]').value = payload
+                        .nonce;
+                    //  nonc.value = "66";
+                    form.submit();
+                });
+            });
+        });
+
+    </script> --}}
+
 @endsection

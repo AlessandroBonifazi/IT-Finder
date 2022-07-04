@@ -38,9 +38,11 @@ Route::middleware("auth")
         Route::get("/{id}/edit", "UserController@edit")->name("edit");
         Route::get("/messages", "UserController@getMessages")->name("messages");
         Route::get("/logout", "UserController@logout")->name("logout");
+        // CheckIn
         Route::get("/checkin", "UserController@promos")->name("checkin");
-        Route::get("/checkout", "UserController@checkOut")->name("checkout");
-        // Route::resource('/', "UserController");
+        // CheckOut
+        Route::get("/checkout/{id}", "UserController@checkOut")->name("checkout");
+
     });
 
 Route::get("{any?}", function () {

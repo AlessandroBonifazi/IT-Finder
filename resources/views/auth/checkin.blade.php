@@ -55,12 +55,14 @@
                                         <ul class="list-group list-group-horizontal my-1">
 
                                             <li class="list-group-item">
-                                                <a href="{{route('user.checkout')}}">
+                                                <a href="{{ route('user.checkout', $promo->id) }}">
+
+
                                                 <h5>Type: {{ $promo->type }}</h5>
 
 
                                                 <span>Duration: {{ $promo->duration }}</span>
-                                            </a>
+                                                </a>
                                             </li>
                                             <li class="list-group-item w-75">Price: {{ $promo->price }}</li>
 
