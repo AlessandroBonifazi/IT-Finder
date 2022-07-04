@@ -1,7 +1,7 @@
 <template>
     <div class="reviews-container row mt-3 justify-content-center">
         <div class="col-12 d-flex flex-column">
-            <ReviewItemComponent v-for="item in reviews" :key="item.id" :item="item"/>
+            <ReviewItemComponent v-for="review in reviews" :review='review' :key="review.id"/>
 
         </div>
         <button class="load krona dark-grey mt-2">Load More</button>
@@ -12,16 +12,11 @@
 import ReviewItemComponent from "./ReviewItemComponent.vue"
 
 export default {
-    name: 'ReviewsComponent',
+    name: 'ReviewsListComponent',
     components:{
         ReviewItemComponent
     },
-    props:{
-        reviews: {
-            type: Array
-        },
-        
-    }
+    props:['reviews']
 }
 </script>
 

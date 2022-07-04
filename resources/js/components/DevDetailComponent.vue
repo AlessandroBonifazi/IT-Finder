@@ -95,13 +95,13 @@
                                 Leave a new Review
                             </button>
                         </div>
-
-                        <ReviewsListComponent />
+            
+                        <ReviewsListComponent :reviews='user.reviews' />
                     </div>
                 </div>
 
                 <div class="col-4 p-0 message-section d-flex flex-column">
-                    <LeaveMessageComponent :user_id="user.id" />
+                    <LeaveMessageComponent :user_id="user.id"/>
 
                     <!--CONTACT-->
                     <div class="contact-section mt-5 p-0">

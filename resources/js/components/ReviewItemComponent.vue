@@ -3,11 +3,11 @@
                 <!--INFO-->
                 <div class="info col-10 d-flex flex-column">
                     <div class="d-flex">
-                        <h5 class="raleway m-0 dark-grey">{{user.reviews.user_name}}</h5>
-                        <div class="yellow-60 mx-3">stelle</div>
+                        <h5 class="raleway m-0 dark-grey">{{review.user_name}}</h5>
+                        <StarsComponent/>
                     </div>
                     
-                    <p class="raleway m-0 clear-grey">{{reviews.content}}
+                    <p class="raleway m-0 clear-grey">{{review.content}}
                     </p>
                 </div>
 
@@ -18,12 +18,14 @@
                 </div>
             </div>
 </template>
+
 <script>
+import StarsComponent from "./StarsComponent.vue"
+
 export default {
     name: 'ReviewItemComponent',
-    props: {
-        user: Object
-    }
+    components:{StarsComponent},
+    props: ['review']
 }
 </script>
 <style lang="scss" scoped>

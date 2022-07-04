@@ -10,7 +10,6 @@ import UserDashboard from "../js/pages/UserDashboard.vue";
 import SearchPage from "../js/pages/SearchPage.vue";
 import UserProfile from "../js/pages/UserProfile.vue";
 import DevDetail from "../js/pages/DevDetail.vue";
-import StarsComponent from "../js/pages/StarsComponent.vue";
 // ! IMPORTANT: for our convention we import pages like this.
 // ! Its safer and avoid many bugs
 
@@ -51,11 +50,6 @@ const router = new VueRouter({
             path: "/dev-detail/:id",
             name: "dev-detail",
             component: DevDetail,
-        },
-        {
-            path: "/stars",
-            name: "stars",
-            component: StarsComponent,
         },
     ],
 });
