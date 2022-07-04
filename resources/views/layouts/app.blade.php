@@ -52,6 +52,11 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Statistics</a>
                                 </li>
+                                <li class="nav-item">
+                                    <form action="{{ route('user.logout') }}" method="get">
+                                        <button class="nav-link" type="submit">Logout</button>
+                                    </form>
+                                </li>
                             </ul>
                         </div>
                     </nav>

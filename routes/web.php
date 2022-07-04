@@ -39,6 +39,7 @@ Route::middleware("auth")
         Route::get("/messages", "UserController@getMessages")->name("messages");
         Route::get("/reviews", "UserController@getReviews")->name("reviews");
         Route::get("/logout", "UserController@logout")->name("logout");
+        Route::delete("/{id}", "UserController@destroy")->name("destroy");
         // Route::resource('/', "UserController");
     });
 

@@ -31,8 +31,19 @@
                 <li class="list-group-item">Promo</li>
                 <li class="list-group-item">
                     <button class="btn btn-primary">
-                        <a class="text-white" href="{{ route('user.edit', $user->id) }}">Edit</a>
+                        <a class="text-white" href="{{ route('user.edit', $user->id) }}">Edit Details</a>
                     </button>
+                </li>
+                <li class="list-group-item">
+                    {{-- Delete --}}
+                    <form action="{{ route('user.destroy', $user->id) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type='submit' onclick="return confirm('Are you sure you want to delete your account?')"
+                            type="submit" value="" class="btn btn-danger">
+                            Delete Account
+                        </button>
+                    </form>
                 </li>
             </ul>
         </div>

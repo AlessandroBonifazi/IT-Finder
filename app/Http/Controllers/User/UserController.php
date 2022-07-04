@@ -127,7 +127,7 @@ class UserController extends Controller
         }
         $user->save();
 
-        return redirect()->route("user.profile");
+        return redirect()->route("user.dashboard");
     }
 
     /**
@@ -136,9 +136,36 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
         //
+        $user = User::findOrFail($id);
+        if ($user->specializations()->exists()) {
+            $user->specializations()->sync([]);
+        }
+        if ($user->technologies()->exists()) {
+            $user->technologies()->sync([]);
+        }
+        if ($user->messages()->exists()) {
+            $user->messages()->delete();
+        }
+        if ($user->reviews()->exists()) {
+            $user->reviews()->delete();
+        }
+        // if ($user->promos()->exists()) {
+        //     $user->promos()->sync([]);
+        // }
+        if ($user->contactInfo()->exists()) {
+            $user->contactInfo()->delete();
+        }
+        // $user->specializations()->sync([]);
+        // $user->technologies()->sync([]);
+        // $user->messages()->delete();
+        // $user->reviews()->delete();
+        // $user->promos()->sync([]);
+        // $user->contactInfo()->delete();
+        $user->delete();
+        return view('auth.delete');
     }
 
     public function dashboard()
