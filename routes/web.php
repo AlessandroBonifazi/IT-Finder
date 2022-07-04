@@ -39,6 +39,7 @@ Route::middleware("auth")
         Route::get("/messages", "UserController@getMessages")->name("messages");
         Route::get("/logout", "UserController@logout")->name("logout");
         Route::get("/checkin", "UserController@promos")->name("checkin");
+        Route::get("/checkout", "UserController@checkOut")->name("checkout");
         // Route::resource('/', "UserController");
     });
 

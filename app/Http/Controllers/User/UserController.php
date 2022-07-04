@@ -192,4 +192,9 @@ class UserController extends Controller
         return view('auth.checkin', compact('promos'));
 
     }
+    public function checkOut(){
+        $promos=Promo::all();
+        return view('auth.checkout', compact('promos'));
+
+    }
 }
