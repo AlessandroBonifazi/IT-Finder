@@ -91,6 +91,8 @@ class UserController extends Controller
 
     public function updateProfile(Request $request, $id)
     {
+        // dd($request);
+
         $user = User::find($id);
         $user->name = $request->name;
         $user->surname = $request->surname;
@@ -102,6 +104,9 @@ class UserController extends Controller
         $user->cv = $request->cv;
         if ($request->specializations) {
             $user->specializations()->sync($request->specializations);
+        }
+        if ($request->spec) {
+            $user->specializations()->sync($request->spec);
         }
         if ($user->contactInfo()->exists()) {
             $user->contactInfo()->update([
@@ -126,7 +131,6 @@ class UserController extends Controller
             $user->img_path = $request->img_path->store("img_path", "public");
         }
         $user->save();
-
         return redirect()->route("user.dashboard");
     }
 
@@ -158,12 +162,6 @@ class UserController extends Controller
         if ($user->contactInfo()->exists()) {
             $user->contactInfo()->delete();
         }
-        // $user->specializations()->sync([]);
-        // $user->technologies()->sync([]);
-        // $user->messages()->delete();
-        // $user->reviews()->delete();
-        // $user->promos()->sync([]);
-        // $user->contactInfo()->delete();
         $user->delete();
         return view('auth.delete');
     }

@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="col-sm-10 col-md-10 col-lg-6 offset-lg-1 my-5">
-        {{-- @dd($contacts); --}}
         <form action="{{ route('user.update-profile', $user->id) }}" method="post">
             @csrf
             @method('PUT')
@@ -78,17 +77,6 @@
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
-
-
-            {{-- PSW --}}
-            {{-- <div class="form-group">
-                    <label for="content">Password</label>
-                    <input class="form-control" type="password" name="password" id="password"
-                        value="{{ old('password', $user->password) }}">
-                    @error('email')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div> --}}
             {{-- Location --}}
             <div class="form-group">
                 <label for="title">Location</label>
@@ -99,31 +87,19 @@
                 @enderror
             </div>
             {{-- Specializations --}}
-            {{-- <div class="form-group">
-                    <label for="title">Specializations</label>
-                    <select name="specialization_id">
-                        <option value="">Add Specializations</option>
-                        @foreach ($specializations as $specialization)
-                            {
-                            <option value="{{ $specialization->id }}"
-                                {{ $specialization->id == old('specialization_id', $user->specialization_id) ? 'selected' : '' }}>
-                                {{ $specialization->specialization }}</option>
-                            }
-                        @endforeach
-                    </select>
-                    @error('specialization_id')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div> --}}
-            {{-- Contacts --}}
-            {{-- <div class="form-group">
-                    <label for="content">Contenuto</label>
-                    <textarea class="form-control" name="content" id="content" rows="3">{{ old('content', $post->content) }}</textarea>
-                    @error('content')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div> --}}
-
+            <div class="form-group">
+                <label for="specialization">Specializations</label>
+                <div class="input-group">
+                    @foreach ($specializations as $spec)
+                        <input type="checkbox" name="spec[{{ $spec->id }}]" id="{{ $spec->id }}"
+                            value="{{ $spec->id }}">
+                        {{ $spec->specialization }}
+                    @endforeach
+                </div>
+                @error('specialization')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
 
             {{-- submit --}}
             <input class="btn btn-primary" type="submit">
