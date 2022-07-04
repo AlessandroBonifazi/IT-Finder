@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'ITFinder') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/front-app.js') }}" defer></script>
