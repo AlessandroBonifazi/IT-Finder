@@ -23,7 +23,7 @@
         <!-- / hero -->
         <div class="main-section">
             <div class="row m-0 p-0">
-                <div class="col-3 h-100 m-0 p-0">
+                <div class="d-none d-md-block col-3 col-xl-2 h-100 m-0 p-0">
                     <div class="sidebar">
                         <div class="sidebar-header">
                             <h3 class="sidebar-title">Filter by</h3>
@@ -35,7 +35,7 @@
                                         Specialization
                                     </h4>
                                 </div>
-                                <div class="sidebar-item-body">
+                                <div class="sidebar-item-body-list">
                                     <div class="sidebar-item-body-content">
                                         <div
                                             v-for="spec in specializations"
@@ -110,9 +110,28 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-9 m-0 p-0 overflow-hidden">
+                <div class="col-12 col-md-9 col-xl-10 m-0 p-0 overflow-hidden">
                     <div class="search-bar">
                         <div class="search-bar-container">
+                            <div class="search-bar-container d-md-none">
+                                <button
+                                    @click="toggleFilter"
+                                    class="itf-btn itf-btn-tertiary-outline itf-btn-icon"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="16"
+                                        height="16"
+                                        fill="currentColor"
+                                        class="bi bi-filter"
+                                        viewBox="0 0 16 16"
+                                    >
+                                        <path
+                                            d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"
+                                        />
+                                    </svg>
+                                </button>
+                            </div>
                             <div class="search-bar-container-item">
                                 <input
                                     type="text"
@@ -128,6 +147,113 @@
                                 >
                                     Search
                                 </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-if="isFilterShown" class="mobile-filter">
+                        <div class="row justify-content-center">
+                            <div class="col-11">
+                                <div class="sidebar-header">
+                                    <h3 class="sidebar-title">Filter by</h3>
+                                </div>
+                                <div class="sidebar-body">
+                                    <div class="sidebar-item">
+                                        <div class="sidebar-item-header">
+                                            <h4 class="sidebar-item-title">
+                                                Specialization
+                                            </h4>
+                                        </div>
+                                        <div class="sidebar-item-body-list">
+                                            <div
+                                                class="sidebar-item-body-content"
+                                            >
+                                                <div
+                                                    v-for="spec in specializations"
+                                                    :key="spec.id"
+                                                    class="sidebar-item-body-content-item"
+                                                >
+                                                    <input
+                                                        type="checkbox"
+                                                        :id="spec.id"
+                                                        class="sidebar-item-body-content-item-input"
+                                                        @click="
+                                                            () => {
+                                                                handleSpecSelection(
+                                                                    spec.id
+                                                                );
+                                                            }
+                                                        "
+                                                    />
+                                                    <label
+                                                        :for="spec.id"
+                                                        class="sidebar-item-body-content-item-label"
+                                                    >
+                                                        {{
+                                                            spec.specialization
+                                                        }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Valutation/Reviews -->
+                                <div class="sidebar-body">
+                                    <div class="sidebar-item">
+                                        <div class="sidebar-item-header">
+                                            <h4 class="sidebar-item-title">
+                                                Rating
+                                            </h4>
+                                        </div>
+                                        <div class="sidebar-item-body">
+                                            <div
+                                                class="sidebar-item-body-content"
+                                            >
+                                                <select v-model="reviews">
+                                                    <option value="">
+                                                        All
+                                                    </option>
+                                                    <option
+                                                        v-for="valut in valutations"
+                                                        :key="valut"
+                                                        :value="valut"
+                                                    >
+                                                        {{ valut }}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Reviews Number filter -->
+                                <div class="sidebar-body">
+                                    <div class="sidebar-item">
+                                        <div class="sidebar-item-header">
+                                            <h4 class="sidebar-item-title">
+                                                N Reviews
+                                            </h4>
+                                        </div>
+                                        <div class="sidebar-item-body">
+                                            <div
+                                                class="sidebar-item-body-content"
+                                            >
+                                                <select v-model="reviewsNum">
+                                                    <option value="">
+                                                        All
+                                                    </option>
+                                                    <option :value="10">
+                                                        10+
+                                                    </option>
+                                                    <option :value="20">
+                                                        20+
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -249,16 +375,19 @@
                 </div>
             </div>
         </div>
+        <FooterComponent />
     </div>
 </template>
 
 <script>
 import UserCard from "./../components/UserCard.vue";
 import HeaderComponent from "./../components/HeaderComponent.vue";
+import FooterComponent from "./../components/FooterComponent.vue";
 export default {
     components: {
         UserCard,
         HeaderComponent,
+        FooterComponent,
     },
     data() {
         return {
@@ -275,6 +404,7 @@ export default {
             selectedValutations: [],
             reviews: "",
             reviewsNum: "",
+            isFilterShown: false,
         };
     },
     mounted() {
@@ -345,6 +475,9 @@ export default {
                 behavior: "smooth",
             });
         },
+        toggleFilter() {
+            this.isFilterShown = !this.isFilterShown;
+        },
     },
 };
 </script>
@@ -397,8 +530,22 @@ export default {
         font-family: $ff-heading;
     }
 }
+.sidebar-item-body-list {
+    border-radius: $border-radius-small;
+    border: 1px solid $fc-grey-clear;
+    padding: 10px;
+    font-size: 0.8rem;
+    color: $fc-grey-dark;
+    font-family: $ff-body;
+    font-weight: 400;
+    outline: none;
+    width: 100%;
+    max-height: 300px;
+    overflow: auto;
+}
 .search-bar {
     background: $white;
+    position: relative;
     width: 100%;
     max-width: 100%;
     box-shadow: $box-shadow-primary;
@@ -406,12 +553,16 @@ export default {
 
     &-container {
         display: flex;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: center;
         gap: 20px;
+
+        @include media-breakpoint-up(md) {
+            justify-content: flex-start;
+        }
     }
     &-container-item {
-        width: 40%;
+        // width: 40%;
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -420,12 +571,24 @@ export default {
         width: 100%;
         border: 1px solid $green-50;
         outline: none;
-        font-size: 0.8rem;
+        font-size: 0.6rem;
         font-weight: 400;
         font-family: $ff-body;
         padding: 12px 24px;
         border-radius: $border-radius-small;
+
+        @include media-breakpoint-up(md) {
+            font-size: 0.8rem;
+        }
     }
+}
+.mobile-filter {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    background: $white;
 }
 .results-section {
     // background: $white;
