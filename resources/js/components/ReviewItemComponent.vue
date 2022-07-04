@@ -3,24 +3,27 @@
                 <!--INFO-->
                 <div class="info col-10 d-flex flex-column">
                     <div class="d-flex">
-                        <h5 class="raleway m-0 dark-grey">John Cooper</h5>
+                        <h5 class="raleway m-0 dark-grey">{{user.reviews.user_name}}</h5>
                         <div class="yellow-60 mx-3">stelle</div>
                     </div>
                     
-                    <p class="raleway m-0 clear-grey">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
-                        Velit officia consequat duis enim velit mollit. Exercitation
+                    <p class="raleway m-0 clear-grey">{{reviews.content}}
                     </p>
                 </div>
 
                 <!--TIME-->
-                <div class="time col-2 p-0">
+                <div class="time col-2 p-0 text-center">
                     <p class="raleway m-0">3 minutes ago</p>
+                    <i class="fa-solid fa-chevron-down"></i>
                 </div>
             </div>
 </template>
 <script>
 export default {
-    name: 'ReviewItemComponent'
+    name: 'ReviewItemComponent',
+    props: {
+        user: Object
+    }
 }
 </script>
 <style lang="scss" scoped>

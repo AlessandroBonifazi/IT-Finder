@@ -96,7 +96,7 @@
                             </button>
                         </div>
 
-                        <ReviewsComponent />
+                        <ReviewsListComponent />
                     </div>
                 </div>
 
@@ -108,24 +108,20 @@
                         <h5 class="krona green-55 my-2">How to contact me</h5>
 
                         <div class="contact d-flex">
-                            <p class="mx-2">logo</p>
-                            <p class="raleway clear-grey">linkedin</p>
+                            <p class="mx-2">email</p>
+                            <a :href="'mailto:'+ user.contacts.contact_email" class="raleway clear-grey">{{user.contacts.contact_email}}</a>
                         </div>
 
                         <div class="contact d-flex">
-                            <p class="mx-2">logo</p>
-                            <p class="raleway clear-grey">linkedin</p>
+                            <p class="mx-2">linkedin</p>
+                            <a href="user.contacts.linkedin" class="raleway clear-grey">{{user.contacts.linkedin}}</a>
                         </div>
 
                         <div class="contact d-flex">
-                            <p class="mx-2">logo</p>
-                            <p class="raleway clear-grey">linkedin</p>
+                            <p class="mx-2">github</p>
+                            <a href="user.contacts.github" class="raleway clear-grey">{{user.contacts.github}}</a>
                         </div>
 
-                        <div class="contact d-flex">
-                            <p class="mx-2">logo</p>
-                            <p class="raleway clear-grey">linkedin</p>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -134,7 +130,7 @@
 </template>
 
 <script>
-import ReviewsComponent from "./ReviewsListComponent.vue";
+import ReviewsListComponent from "./ReviewsListComponent.vue";
 import LeaveMessageComponent from "./LeaveMessageComponent.vue";
 
 export default {
@@ -146,7 +142,7 @@ export default {
         };
     },
     components: {
-        ReviewsComponent,
+        ReviewsListComponent,
         LeaveMessageComponent,
     },
     mounted() {

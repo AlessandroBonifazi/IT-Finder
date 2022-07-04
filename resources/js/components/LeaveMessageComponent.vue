@@ -1,5 +1,5 @@
 <template>
-    <div class="itf-card mt-2">
+    <div class="itf-card position-relative mt-2">
         <div class="itf-card-header">
             <h4 class="itf-card-title">Leave a Message</h4>
         </div>
@@ -50,6 +50,11 @@
                 </button>
             </div>
         </div>
+        <div 
+        v-if="isNotificationOn" 
+        class="itf-notification itf-notification-success">
+            <p class="m-0">messaggio inviato</p>
+        </div>
     </div>
 </template>
 
@@ -63,6 +68,9 @@ export default {
                 email: "",
                 message: "",
             },
+            isNotificationOn: false,
+            notification: '',
+
         };
     },
     props: {
@@ -80,11 +88,27 @@ export default {
                 )
                 .then((response) => {
                     console.log(response);
+                    if(response.data.sent){
+                        this.notification = response.data.message
+                        this.isNotificationOn = true
+                        this.timerNotification()
+                    }
+                    
                 })
                 .catch((error) => {
                     console.log(error);
                 });
+
         },
+        timerNotification(){
+            if(this.isNotificationOn){
+                setTimeout(this.shutDownNotification, 3000)
+            }
+        },
+        shutDownNotification(){
+            this.isNotificationOn = false
+            console.log('Shut down')
+        }
     },
 };
 </script>
@@ -164,5 +188,21 @@ label {
 }
 .btn:active {
     background-color: $btn-primary-bg-active;
+}
+.itf-notification{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    border-radius: $border-radius-small;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+}
+.itf-notification-success{
+    background-color: $green-40;
+    p{color: $white;}
 }
 </style>

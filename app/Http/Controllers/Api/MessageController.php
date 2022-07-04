@@ -96,6 +96,7 @@ class MessageController extends Controller
         return response()->json([
             "message" => "Message sent",
             "user" => $user,
+            "sent" => true,
         ]);
     }
 }
