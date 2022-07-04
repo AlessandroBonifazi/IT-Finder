@@ -24,7 +24,10 @@
                             the world for your one million project idea or
                             business
                         </p>
-                        <button class="itf-btn itf-btn-primary">
+                        <button
+                            class="itf-btn itf-btn-primary"
+                            @click="redirectSearch"
+                        >
                             Discover More
                         </button>
                     </div>
@@ -81,43 +84,52 @@
                 <div class="col-12 col-md-12 text-center">
                     <h2 class="krona green-55">Our best specialist</h2>
                 </div>
+            </div>
 
-                <div class="row users-wrapper">
-                    <UserCard
-                        class="col-10 col-md-5 col-lg-3"
-                        v-for="user in users"
-                        :key="user.id"
-                        :user="user"
-                    />
-                </div>
-
-                <div class="col-12 col-md-12 d-flex justify-content-center">
-                    <button class="itf-btn itf-btn-primary">
-                        Discover More
-                    </button>
+            <div class="row users-wrapper justify-content-center flex-wrap">
+                <div
+                    class="col-11 col-md-6 col-lg-4 mb-4 d-flex"
+                    :key="user.id"
+                    v-for="user in users"
+                >
+                    <UserCard :user="user" />
                 </div>
             </div>
-            <!-- specialist banner -->
-            <div class="container">
-                <div class="specialist-banner row">
-                    <div class="col-7 specialist-banner-content">
+
+            <div class="col-12 col-md-12 d-flex justify-content-center">
+                <button class="itf-btn itf-btn-primary" @click="redirectSearch">
+                    Discover More
+                </button>
+            </div>
+        </div>
+        <!-- specialist banner -->
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-11 col-sm-12 specialist-banner">
+                    <div class="col-12 col-md-6 specialist-banner-content">
                         <h3>
                             Find the talent needed to get your business
                             <span class="accent">growing</span>.
                         </h3>
-                        <button class="itf-btn itf-btn-tertiary">
+                        <button
+                            class="itf-btn itf-btn-tertiary"
+                            @click="redirectSearch"
+                        >
                             Get Started
                         </button>
                     </div>
-                    <div class="col-5 specialist-banner-img">
+                    <div class="col-6 d-none d-md-block specialist-banner-img">
                         <img src="img\woman-banner.png" alt="" />
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- find next job section -->
+        <!-- find next job section -->
+        <div class="container">
             <div class="row my-5 py-5 justify-content-center">
-                <div class="col-6 col-md-6 p-0">
+                <div class="col-11 col-md-6 p-0">
                     <h2 class="krona green-55 mb-5">Find your next job</h2>
                     <img class="frame-28" src="img\Frame 28.png" alt="" />
                     <img
@@ -126,7 +138,7 @@
                         alt=""
                     />
                 </div>
-                <div class="col-5 col-md-5 d-flex flex-column">
+                <div class="col-11 col-md-5 d-flex flex-column">
                     <div class="next-job">
                         <h3 class="krona green-55">Title</h3>
                         <p>
@@ -157,7 +169,7 @@
                 </div>
             </div>
         </div>
-        <a href="#" @click="logout">logout</a>
+        <!-- <a href="#" @click="logout">logout</a> -->
         <FooterComponent />
         <ScrollerComponent />
     </div>
@@ -180,6 +192,9 @@ export default {
     },
 
     methods: {
+        redirectSearch() {
+            this.$router.push("/search");
+        },
         logout() {
             window.axios.post("/logout").then(() => {
                 // this.$router.push("/");
@@ -343,12 +358,12 @@ export default {
     padding: 100px 0;
 }
 .users-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    // display: flex;
+    // flex-wrap: wrap;
+    // justify-content: center;
     margin-top: 50px;
     margin-bottom: 50px;
-    gap: 20px;
+    // gap: 20px;
 }
 .specialist-banner {
     margin-top: 100px;
@@ -358,18 +373,21 @@ export default {
     overflow: hidden;
     position: relative;
     border-radius: $border-radius;
+    display: flex;
+    padding: 0 36px;
+
     .specialist-banner-content {
-        padding: 50px;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
-        align-items: start;
+        align-items: flex-start;
         height: 100%;
+        padding: 0px;
         width: 100%;
 
         h3 {
             font-family: $ff-heading;
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             font-weight: bold;
             color: $white;
             margin: 0;
@@ -378,9 +396,19 @@ export default {
                 color: $fc-accent-yellow;
             }
         }
+        @include media-breakpoint-up(sm) {
+            h3 {
+                font-size: 2rem;
+            }
+        }
     }
     .specialist-banner-img {
+        margin-bottom: -2%;
+        // overflow: hidden;
         img {
+            position: absolute;
+            bottom: -2%;
+            right: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -453,9 +481,6 @@ export default {
 .talent-img img {
     height: 392px;
     justify-content: center;
-}
-.specialist-banner {
-    border-radius: 9px;
 }
 .jumbotron {
     width: 100px;
