@@ -56,23 +56,23 @@
                     @enderror
                 </div>
                 {{-- Email --}}
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="content">Email</label>
                     <input class="form-control" type="text" name="email" id="email"
                         value="{{ old('email', $user->email) }}">
                     @error('email')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
-                </div>
+                </div> --}}
                 {{-- Contact-Email --}}
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="contact_email">Contact Email</label>
                     <input class="form-control" type="text" name="contact_email" id="contact_email"
                         value="{{ old('contact_email', $user->contactInfo->contact_email) }}">
                     @error('contact_email')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
-                </div>
+                </div> --}}
                 {{-- Contact-phone --}}
                 <div class="form-group">
                     <label for="phone">Phone</label>
@@ -112,14 +112,14 @@
 
 
                 {{-- PSW --}}
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="content">Password</label>
                     <input class="form-control" type="password" name="password" id="password"
                         value="{{ old('password', $user->password) }}">
                     @error('email')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
-                </div>
+                </div> --}}
                 {{-- Location --}}
                 <div class="form-group">
                     <label for="title">Location</label>

@@ -191,9 +191,15 @@ export default {
             });
         },
         getUsers() {
-            window.axios.get("/api/best-users").then((response) => {
-                this.users = response.data;
-            });
+            window.axios
+                .get("/api/best-users")
+                .then((response) => {
+                    this.users = response.data;
+                    console.log(this.users);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         },
     },
     components: {

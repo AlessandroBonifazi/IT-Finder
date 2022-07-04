@@ -106,7 +106,7 @@ class UserController extends Controller
         if ($user->contactInfo()->exists()) {
             $user->contactInfo()->update([
                 "user_id" => $user->id,
-                "contact_email" => $user->email ? $user->email : "/",
+                "contact_email" => $user->email,
                 "phone" => $request->phone,
                 "linkedin" => $request->linkedin,
                 "github" => $request->github,
@@ -115,7 +115,7 @@ class UserController extends Controller
         } else {
             $user->contactInfo()->create([
                 "user_id" => $user->id,
-                "contact_email" => $user->email ? $user->email : "/",
+                "contact_email" => $user->email,
                 "phone" => $request->phone,
                 "linkedin" => $request->linkedin,
                 "github" => $request->github,
