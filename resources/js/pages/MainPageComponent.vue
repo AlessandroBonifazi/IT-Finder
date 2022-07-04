@@ -129,7 +129,7 @@
         <!-- find next job section -->
         <div class="container">
             <div class="row my-5 py-5 justify-content-center">
-                <div class="col-11 col-md-6 p-0">
+                <div class="col-11 col-lg-6 p-0">
                     <h2 class="krona green-55 mb-5">Find your next job</h2>
                     <img class="frame-28" src="img\Frame 28.png" alt="" />
                     <img
@@ -138,7 +138,7 @@
                         alt=""
                     />
                 </div>
-                <div class="col-11 col-md-5 d-flex flex-column">
+                <div class="col-11 col-lg-5 d-flex flex-column">
                     <div class="next-job">
                         <h3 class="krona green-55">Title</h3>
                         <p>
