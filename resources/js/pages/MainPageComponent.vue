@@ -1,5 +1,5 @@
 <template>
-    <div class="m-0 p-0">
+    <div class="m-0 p-0" @wheel="getScrollPosition">
         <div class="hero">
             <HeaderComponent />
             <div class="hero-img-bg d-none d-md-block">
@@ -171,7 +171,7 @@
         </div>
         <!-- <a href="#" @click="logout">logout</a> -->
         <FooterComponent />
-        <ScrollerComponent />
+        <ScrollerComponent :scrollPosition="scrollPosition" />
     </div>
 </template>
 
@@ -185,6 +185,7 @@ export default {
     data() {
         return {
             users: {},
+            scrollPosition: 0,
         };
     },
     mounted() {
@@ -211,6 +212,10 @@ export default {
                 .catch((error) => {
                     console.log(error);
                 });
+        },
+        getScrollPosition() {
+            this.scrollPosition = window.scrollY;
+            // console.log(this.scrollPosition);
         },
     },
     components: {
@@ -271,6 +276,7 @@ export default {
         width: 100%;
         height: 100%;
         z-index: -1;
+
         .hero-color-bg-full {
             background: #f2f4f3da;
             position: absolute;
