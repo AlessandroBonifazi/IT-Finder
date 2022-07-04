@@ -98,27 +98,23 @@
                 </div>
             </div>
             <!-- specialist banner -->
-            <div class="row bg-green my-5 find-talent d-flex">
-                <div
-                    class="col-12 col-md-12 bg-green-55 d-flex specialist-banner"
-                >
-                    <div class="row d-flex">
-                        <div class="col-5 col-md-5 my-5 mx-3">
-                            <h1 class="krona find-talent-title">
-                                Find the talent needed to get your business
-                                <span class="krona yellow-60">growing</span>.
-                            </h1>
-                            <button class="btn get-started px-5 mt-5">
-                                Get Started
-                            </button>
-                        </div>
-
-                        <div class="col-7 col-md-7 talent-img">
-                            <img src="" alt="talent" />
-                        </div>
+            <div class="container">
+                <div class="specialist-banner row">
+                    <div class="col-7 specialist-banner-content">
+                        <h3>
+                            Find the talent needed to get your business
+                            <span class="accent">growing</span>.
+                        </h3>
+                        <button class="itf-btn itf-btn-tertiary">
+                            Get Started
+                        </button>
+                    </div>
+                    <div class="col-5 specialist-banner-img">
+                        <img src="img\woman-banner.png" alt="" />
                     </div>
                 </div>
             </div>
+
             <!-- find next job section -->
             <div class="row my-5 py-5 justify-content-center">
                 <div class="col-6 col-md-6 p-0">
@@ -353,6 +349,43 @@ export default {
     margin-top: 50px;
     margin-bottom: 50px;
     gap: 20px;
+}
+.specialist-banner {
+    margin-top: 100px;
+    height: 400px;
+    width: 100%;
+    background: linear-gradient(262.45deg, #3d7068 -1.43%, #14453d 102.55%);
+    overflow: hidden;
+    position: relative;
+    border-radius: $border-radius;
+    .specialist-banner-content {
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: start;
+        height: 100%;
+        width: 100%;
+
+        h3 {
+            font-family: $ff-heading;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: $white;
+            margin: 0;
+
+            .accent {
+                color: $fc-accent-yellow;
+            }
+        }
+    }
+    .specialist-banner-img {
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
 }
 
 //UTILITIES
