@@ -11,7 +11,9 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/front-app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://js.braintreegateway.com/web/dropin/1.8.1/js/dropin.min.js"></script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,8 +30,37 @@
 <body>
     <div id="app">
         aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-
+        <div id="dropin-container"></div>
+        <button id="submit-button" class="button button--small button--green">Purchase</button>
     </div>
+    <script>
+        var button = document.querySelector('#submit-button');
+
+braintree.dropin.create({
+  authorization: 'sandbox_g42y39zw_348pk9cgf3bgyw2b',
+  selector: '#dropin-container'
+}, function (err, instance) {
+  if (err) {
+    // An error in the create call is likely due to
+    // incorrect configuration values or network issues
+    return;
+  }
+
+  button.addEventListener('click', function () {
+    instance.requestPaymentMethod(function (err, payload) {
+      if (err) {
+        // An appropriate error will be shown in the UI
+        return;
+      }
+
+      // Submit payload.nonce to your server
+    });
+  })
+});
+    </script>
+
+
+</body>
 
 
 </html>
