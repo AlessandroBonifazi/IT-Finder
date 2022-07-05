@@ -78,24 +78,26 @@ Route::middleware("auth")
             ]);
 
             if ($result->success) {
+                $user->promos()->sync($idPromo);
                 $activePromo = $user->promo;
                 if($activePromo){
 
                     $promoCount = $user->promo->count();
 
-                    if ($activePromo == 0) {
+
+                    if (!$activePromo) {
 
                         $dateEnd = Carbon::now()->addHour($promo->duration);
                         $user->promo()->attach($idPromo, [
-                          'date_end' => $dateEnd,
+                          'endDate' => $dateEnd,
                         ]);
 
                       } else {
 
-                        $dateEndLastPromo = $user->promo->last()->pivot->date_end;
+                        $dateEndLastPromo = $user->promo->last()->pivot->endDate;
                         $lastDateEnd = Carbon::parse($dateEndLastPromo)->addHour($promo->duration);
                         $user->promo()->attach($idPromo, [
-                          'date_end' => $lastDateEnd,
+                          'endDate' => $lastDateEnd,
                         ]);
                       }
 
