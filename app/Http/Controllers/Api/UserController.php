@@ -34,7 +34,15 @@ class UserController extends Controller
 
         $user->contacts = $user->contactInfo;
         $user->messages = $user->messages;
-        $user->reviews = $user->reviews;
+        $user->reviews = Review::orderBy("created_at", "desc")
+            ->where("user_id", $id)
+            ->get();
+
+        foreach ($user->reviews as $review) {
+            $review->diff_time = $review->created_at->diffForHumans();
+        }
+
+        $user->valutation = $user->reviews->avg("valutation");
         $user->technologies = $user->technologies;
         $user->specializations = $user->specializations;
         return response()->json($user);
@@ -253,14 +261,5 @@ class UserController extends Controller
             $user->technologies;
         });
         return response()->json($users);
-    }
-    public function saveReview(Request $request, $id)
-    {
-        $user = User::find($id)
-        $user->reviews()->create([
-            "user_name" => $request->name,
-            "valutation" => $request->rating,
-            "content" => $request->review,
-        ]);
     }
 }

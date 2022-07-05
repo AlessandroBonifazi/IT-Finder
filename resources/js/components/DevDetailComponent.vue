@@ -42,7 +42,7 @@
                                 :src="handleImgPath(user.img_path)"
                                 alt=""
                             />
-                            <p class="rating">4.5</p>
+                            <p class="rating">{{ user.valutation }}</p>
                         </div>
 
                         <div class="col-9 info align-self-center mt-3">
