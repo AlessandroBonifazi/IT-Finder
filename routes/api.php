@@ -46,3 +46,4 @@ Route::post(
 );
 
 Route::post("/message/send/{id}", "Api\MessageController@send");
+Route::post("/review/send/{id}", "Api\ReviewController@send");

@@ -67,6 +67,9 @@ export default {
 }
 
 //BODY
+.info{
+    padding-right: 0px;
+}
 .info p{
     font-size: 14px;
 }

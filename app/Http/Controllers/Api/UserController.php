@@ -254,4 +254,13 @@ class UserController extends Controller
         });
         return response()->json($users);
     }
+    public function saveReview(Request $request, $id)
+    {
+        $user = User::find($id)
+        $user->reviews()->create([
+            "user_name" => $request->name,
+            "valutation" => $request->rating,
+            "content" => $request->review,
+        ]);
+    }
 }

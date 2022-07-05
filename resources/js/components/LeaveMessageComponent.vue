@@ -1,5 +1,5 @@
 <template>
-    <div class="itf-card position-relative mt-2">
+    <div class="itf-card position-relative mt-4">
         <div class="itf-card-header">
             <h4 class="itf-card-title">Leave a Message</h4>
         </div>
