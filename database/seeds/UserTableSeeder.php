@@ -61,21 +61,28 @@ class UserTableSeeder extends Seeder
                 "email" => $faker->email(),
             ]);
             // reviews seed
-            $user->reviews()->create([
-                "user_id" => $faker->numberBetween(1, 5),
-                "content" => $faker->realText($maxNbChars = 50, $indexSize = 1),
-                "user_name" => $faker->userName(),
-                "valutation" => $faker->numberBetween(1, 5),
-            ]);
-            // specs seed
+            for ($j = 0; $j < $faker->numberBetween(0, 20); $j++) {
+                $user->reviews()->create([
+                    "content" => $faker->realText(
+                        $maxNbChars = 50,
+                        $indexSize = 1
+                    ),
+                    "user_name" => $faker->userName(),
+                    "valutation" => $faker->numberBetween(1, 5),
+                    // "email" => $faker->email(),
+                ]);
+            }
+
             $specializations = Specialization::all();
 
-            $user->specializations()->attach(
-                $specializations
-                    ->random(1)
-                    ->pluck("id")
-                    ->toArray()
-            );
+            for ($j = 0; $j < $faker->numberBetween(1, 3); $j++) {
+                $user->specializations()->attach(
+                    $specializations
+                        ->random(1)
+                        ->pluck("id")
+                        ->toArray()
+                );
+            }
             // technology seed
             $technologies = App\Technology::all();
 

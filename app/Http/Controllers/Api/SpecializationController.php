@@ -21,7 +21,10 @@ class SpecializationController extends Controller
      */
     public function index()
     {
-        $specializations = Specialization::all();
+        $specializations = Specialization::orderBy(
+            "specialization",
+            "asc"
+        )->get();
         return response()->json($specializations);
     }
 

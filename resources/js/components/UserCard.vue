@@ -3,6 +3,9 @@
         <div class="itf-user-card-header">
             <div class="itf-user-card-header-avatar">
                 <img :src="handleImgPath(user.img_path)" />
+                <p v-if="user.rating" class="rating">
+                    {{ handleRating(user.rating) }}
+                </p>
             </div>
             <div class="itf-user-card-header-content">
                 <h2 class="itf-name">
@@ -32,20 +35,17 @@
             </div>
             <div class="description">
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Pellentesque euismod, nisi eu consectetur consectetur, nisi
-                    nisl consectetur nisi, eu consectetur nisi nisl consectetur
-                    nisi.
+                    {{ user.cv }}
                 </p>
             </div>
-            <div class="button-section">
-                <button
-                    @click="viewProfile"
-                    class="itf-btn itf-btn-primary-outline itf-btn-full-width itf-btn-small"
-                >
-                    View Profile
-                </button>
-            </div>
+        </div>
+        <div class="button-section">
+            <button
+                @click="viewProfile"
+                class="itf-btn itf-btn-primary-outline itf-btn-full-width itf-btn-small"
+            >
+                View Profile
+            </button>
         </div>
     </div>
 </template>
@@ -89,6 +89,11 @@ export default {
                 },
             });
         },
+        handleRating(rating) {
+            if (rating == null) return "/";
+            return rating.toFixed(1);
+            // return Math.round(rating);
+        },
     },
 };
 </script>
@@ -96,28 +101,48 @@ export default {
 <style lang="scss" scoped>
 @import "./../../sass/app";
 .itf-user-card {
+    position: relative;
     background: $white;
     border-radius: $border-radius-small;
     box-shadow: $box-shadow-primary;
     padding: 20px;
+    flex-basis: auto;
     width: 300px;
     overflow: hidden;
     // max-width: 400px;
     flex: 1 1 300px;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
 }
 .itf-user-card-header {
     &-avatar {
         width: 100px;
         height: 100px;
-        border-radius: 50%;
-        overflow: hidden;
         margin: 0 auto;
         margin-bottom: 20px;
+        position: relative;
 
         & img {
+            border-radius: 50%;
             width: 100%;
+            overflow: hidden;
             height: 100%;
             object-fit: cover;
+        }
+        .rating {
+            position: absolute;
+            color: $fc-grey-dark;
+            background-color: $yellow-50;
+            font-family: $ff-body;
+            font-weight: 600;
+            font-size: 12px;
+            right: 0px;
+            top: 0px;
+            padding: 3px 10px 5px 10px;
+            border-radius: 140px;
         }
     }
     &-content {
@@ -139,6 +164,7 @@ export default {
             font-weight: 500;
             font-family: $ff-body;
             color: $fc-accent-green;
+            text-align: center;
         }
         .experience {
             font-size: 0.8rem;

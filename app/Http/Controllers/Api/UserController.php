@@ -223,9 +223,13 @@ class UserController extends Controller
                 ->select("users.*")
                 ->groupBy("reviews.user_id")
                 ->havingRaw("AVG(reviews.valutation) >= ?", [$reviews]);
+
+            if (!empty($reviewsNum)) {
+                $query->havingRaw("COUNT(reviews.user_id) >= ?", [$reviewsNum]);
+            }
         }
         // Filter: reviews number
-        if (!empty($reviewsNum)) {
+        if (!empty($reviewsNum) && empty($reviews)) {
             $query
                 ->join("reviews", "users.id", "=", "reviews.user_id")
                 ->select("users.*")
@@ -239,6 +243,7 @@ class UserController extends Controller
             $user->specializations;
             $user->technologies;
             $user->reviews;
+            $user->rating = $user->reviews->avg("valutation");
             $user->reviewsNum;
         }
 
