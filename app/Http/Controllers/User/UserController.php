@@ -1,15 +1,18 @@
 <?php
 
 namespace App\Http\Controllers\User;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Promo;
 use App\Contact;
 use App\Specialization;
 use App\Tecnology;
 use App\Message;
+use Carbon\Carbon;
+use Braintree\Gateway;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -198,52 +201,6 @@ class UserController extends Controller
         return redirect("/");
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-
-        // return view('auth.dashboard');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        //
-        // $contact = Contact::where("user_id", /*$user->id*/ 1)->first();
-        // dd($contact);
-        // return $user->contactInfo();
-    }
 
 
 }

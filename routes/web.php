@@ -1,7 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\User;
+use App\Promo;
+use Carbon\Carbon;
+use Braintree\Gateway;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +46,9 @@ Route::middleware("auth")
         Route::get("/logout", "UserController@logout")->name("logout");
         Route::delete("/{id}", "UserController@destroy")->name("destroy");
         Route::put("/tech/{id}", "UserController@updateTech")->name("tech");
+        Route::get("/checkin", "PromoController@checkIn")->name("checkin");
+        Route::get("/checkout/{id}", "PromoController@checkOut")->name("checkout");
+        Route::put('/payment', "PromoController@payment")->name('payment');
         // Route::resource('/', "UserController");  <--credo sia troppo tardi per usarlo *facepalm*
         // ======================================== direi proprio di si, anche perche mi sa che praticamente non usiamo le classiche crud
     });
