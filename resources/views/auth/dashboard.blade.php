@@ -1,5 +1,5 @@
 @extends('layouts.app')
-{{-- @dd($user); --}}
+
 @section('content')
     <div class="order-sm-2 order-md-1 col-sm-10 col-md-6 col-lg-8">
         <div class="row">
@@ -98,7 +98,6 @@
                         <p class="card-text">{{ $user->location }}</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                        {{-- @dd($specializations); --}}
                         @foreach ($specializations as $specialization)
                             <li class="list-group-item">{{ $specialization->specialization }}</li>
                         @endforeach
