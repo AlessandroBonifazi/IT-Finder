@@ -40,4 +40,10 @@ Route::get("/getUser/{id}", "Api\UserController@getUser")->name("user.getUser");
 
 Route::get("/products", "Api\Products\ProductController@index");
 Route::get("/payment/generate", "Api\Payment\PaymentController@generate");
-Route::post("/payment/make/payment", "Api\Payment\PaymentController@makePayment");
+Route::post(
+    "/payment/make/payment",
+    "Api\Payment\PaymentController@makePayment"
+);
+
+Route::post("/message/send/{id}", "Api\MessageController@send");
+Route::post("/review/save", "Api\ReviewController@saveReview");

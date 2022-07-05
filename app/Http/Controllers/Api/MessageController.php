@@ -6,13 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\User;
-use App\Contact;
-use App\Message;
-use App\Review;
-use App\Technology;
-use App\Specialization;
 
-class ReviewController extends Controller
+class MessageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +16,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $valutations = Review::all();
-        return response()->json($valutations);
+        //
     }
 
     /**
@@ -90,15 +84,19 @@ class ReviewController extends Controller
     {
         //
     }
-
-    public function saveReview(Request $request)
+    public function send(Request $request, $id)
     {
-        $user = User::find($request->id);
-        $user->reviews()->create([
-            "content" => $request->review,
-            "valutation" => $request->rating,
-            "user_name" => $request->name,
+        $user = User::find($id)
+            ->messages()
+            ->create([
+                "content" => $request->message,
+                "email" => $request->email,
+                "user_name" => $request->name,
+            ]);
+        return response()->json([
+            "message" => "Message sent",
+            "user" => $user,
+            "sent" => true,
         ]);
-        return response()->json($user);
     }
 }
