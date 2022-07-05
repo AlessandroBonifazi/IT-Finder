@@ -195,6 +195,13 @@ class UserController extends Controller
 
     }
     public function checkOut(Gateway $gateway, $id){
+        $user = Auth::user();
+
+        $user->promos()->sync($id);
+        // $user->promos()->create([
+        //     "promo_id" => $id,
+        // ]);
+
         return view('auth.checkout', [
             "id" => $id,
             "token" => $gateway->clientToken()->generate(),
