@@ -154,9 +154,10 @@ class UserController extends Controller
         $specializations = $user->specializations;
         $messages = $user->messages->take(3);
         $reviews = $user->reviews->take(3);
+        $promos = $user->promos;
         return view(
             "auth.dashboard",
-            compact("user", "specializations", "messages", "contacts", "reviews")
+            compact("user", "specializations", "messages", "contacts", "reviews", "promos")
         );
     }
 
