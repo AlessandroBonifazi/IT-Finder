@@ -1,6 +1,10 @@
 <template>
     <div>
-        <button id="btnScrollToTop" @click="scrollToTop">
+        <button
+            v-if="scrollPosition > 600"
+            id="btnScrollToTop"
+            @click="scrollToTop"
+        >
             <i class="fa-solid fa-arrow-up"></i>
         </button>
     </div>
@@ -9,18 +13,18 @@
 <script>
 export default {
     name: "ScrollerComponent",
+    props: {
+        scrollPosition: {
+            type: Number,
+            default: "",
+        },
+    },
     methods: {
         scrollToTop() {
-            let currentScroll = document.documentElement.scrollTop,
-                int = setInterval(frame, 6);
-
-            function frame() {
-                if (10 > currentScroll) clearInterval(int);
-                else {
-                    currentScroll = currentScroll - 12;
-                    document.documentElement.scrollTop = currentScroll;
-                }
-            }
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
         },
     },
 };
@@ -36,10 +40,12 @@ export default {
     height: 50px;
     border-radius: 50%;
     background: $btn-primary-bg;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    color: $green-55;
+    box-shadow: $box-shadow-primary;
+    color: $white;
     border: none;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    opacity: 40%;
 }
 
 #btnScrollToTop:active {
@@ -47,5 +53,6 @@ export default {
 }
 #btnScrollToTop:hover {
     background-color: $btn-primary-bg-hoover;
+    opacity: 100%;
 }
 </style>
