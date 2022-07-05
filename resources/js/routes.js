@@ -47,6 +47,11 @@ const router = new VueRouter({
             component: SearchPage,
         },
         {
+            path: "/search/:specialization",
+            name: "search-specialization",
+            component: SearchPage,
+        },
+        {
             path: "/dev-detail/:id",
             name: "dev-detail",
             component: DevDetail,
