@@ -1,7 +1,7 @@
 <template>
-<div class="container">
-  <div class="row">
-    <div class="col-12 d-flex justify-content-center stars">
+<div class="container d-flex justify-content-start p-0">
+  
+    <div class="d-flex justify-content-center stars px-3">
 
         <input name="stars" type="radio" id="stars1" value="1" />
         <label for="stars1"></label>
@@ -18,7 +18,7 @@
         <input name="stars" type="radio" id="stars5" value="5" checked />
         <label for="stars5"></label>
     </div>
-  </div>
+ 
 </div>
   
 </template>
@@ -30,6 +30,9 @@ export default {
 </script>
 
 <style>
+.stars{
+  font-size: 12px;
+}
 .stars input[name="stars"]{
    display: none; 
   }

@@ -1,10 +1,13 @@
 <template>
     <div class="reviews-container row mt-3 justify-content-center">
         <div class="col-12 d-flex flex-column">
-            <ReviewItemComponent v-for="review in reviews" :review='review' :key="review.id"/>
+            <ul>
+                <li><ReviewItemComponent v-for="review in reviewsLoaded" :review='review' :key="review.id"/></li>
+            </ul>
+            
 
         </div>
-        <button class="load krona dark-grey mt-2">Load More</button>
+        <button class="load krona dark-grey mt-2" @click="loadMore" v-if="lenght < reviews.lenght">Load More</button>
     </div>
 </template>
 
@@ -16,7 +19,23 @@ export default {
     components:{
         ReviewItemComponent
     },
-    props:['reviews']
+    data() {
+        return {
+            length: 5,
+        };
+  },
+    props:['reviews'],
+    methods: {
+    loadMore() {
+      if (this.length > this.reviews.length) return;
+      this.length = this.length + 3;
+    },
+  },
+    computed: {
+    reviewsLoaded() {
+      return this.reviews.slice(0, this.length);
+    },
+  },
 }
 </script>
 

@@ -13,7 +13,7 @@
 
                 <!--TIME-->
                 <div class="time col-2 p-0 text-center">
-                    <p class="raleway m-0">3 minutes ago</p>
+                    <p class="raleway m-0">{{review.updated_at}}</p>
                     <i class="fa-solid fa-chevron-down"></i>
                 </div>
             </div>
