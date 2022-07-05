@@ -78,10 +78,10 @@ Route::middleware("auth")
             ]);
 
             if ($result->success) {
-                $activePromo = $user->promos;
+                $activePromo = $user->promo;
                 if($activePromo){
 
-                    $promoCount = $user->promos->count();
+                    $promoCount = $user->promo->count();
 
                     if ($activePromo == 0) {
 
