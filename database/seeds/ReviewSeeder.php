@@ -17,7 +17,7 @@ class ReviewSeeder extends Seeder
         for ($i = 0; $i < 21; $i++) {
             $review = new Review();
             // specific id      \v/
-            $review->user_id = 3;
+            $review->user_id = 115;
             $review->content = $faker->realText($maxNbChars = 50, $indexSize = 1);
             $review->user_name = $faker->userName();
             $review->created_at = $faker->dateTime();

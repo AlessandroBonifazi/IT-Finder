@@ -37,8 +37,11 @@ Route::middleware("auth")
         Route::get("/profile", "UserController@profile")->name("profile");
         Route::get("/{id}/edit", "UserController@edit")->name("edit");
         Route::get("/messages", "UserController@getMessages")->name("messages");
+        Route::get("/reviews", "UserController@getReviews")->name("reviews");
         Route::get("/logout", "UserController@logout")->name("logout");
-        // Route::resource('/', "UserController");
+        Route::delete("/{id}", "UserController@destroy")->name("destroy");
+        Route::put("/tech/{id}", "UserController@updateTech")->name("tech");
+        // Route::resource('/', "UserController");  <--credo sia troppo tardi per usarlo *facepalm*
     });
 
 Route::get("{any?}", function () {

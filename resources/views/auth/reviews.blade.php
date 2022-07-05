@@ -9,15 +9,16 @@
                 <div class="card">
                     <div class="card-body py-5">
                         {{-- title --}}
-                        <h5 class="card-title">Messages</h5>
+                        <h5 class="card-title">Reviews</h5>
 
-                        @foreach ($messages as $message)
+                        @foreach ($reviews as $review)
                             <ul class="list-group list-group-horizontal my-1">
                                 <li class="list-group-item">
-                                    <h5>{{ $message->user_name }}</h5>
-                                    <span>{{ $message->created_at }}</span>
+                                    <h5>{{ $review->user_name }}</h5>
+                                    <span>{{ $review->valutation }}</span>
+                                    <span>{{ $review->created_at }}</span>
                                 </li>
-                                <li class="list-group-item w-75">{{ $message->content }}</li>
+                                <li class="list-group-item w-75">{{ $review->content }}</li>
                             </ul>
                         @endforeach
                     </div>
