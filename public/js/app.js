@@ -49583,9 +49583,11 @@ module.exports = function(module) {
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js"); // window.axios = require("axios");
-// window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+__webpack_require__(/*! ./backoffice/completeRegistration */ "./resources/js/backoffice/completeRegistration.js");
 
+window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -49606,6 +49608,74 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 var app = new Vue({
   el: "#app"
 });
+
+/***/ }),
+
+/***/ "./resources/js/backoffice/completeRegistration.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/backoffice/completeRegistration.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+window.addEventListener("DOMContentLoaded", function () {
+  var form1 = document.querySelector("#form1");
+  var form2 = document.querySelector("#form2");
+  var form3 = document.querySelector("#form3");
+  var formsList = [form1, form2, form3];
+  var next1 = document.querySelector("#next1");
+  var next2 = document.querySelector("#next2");
+  var prev2 = document.querySelector("#prev2");
+  var prev3 = document.querySelector("#prev3");
+  var displayedForm = 1;
+  displayForm(displayedForm);
+
+  function displayForm(form) {
+    switch (form) {
+      case 1:
+        form1.classList.remove("d-none");
+        form2.classList.add("d-none");
+        form3.classList.add("d-none");
+        break;
+
+      case 2:
+        form1.classList.add("d-none");
+        form2.classList.remove("d-none");
+        form3.classList.add("d-none");
+        break;
+
+      case 3:
+        form1.classList.add("d-none");
+        form2.classList.add("d-none");
+        form3.classList.remove("d-none");
+        break;
+    }
+  }
+
+  function nextForm() {
+    if (displayedForm < 3) {
+      displayedForm++;
+      displayForm(displayedForm);
+    }
+  }
+
+  function previousForm() {
+    if (displayedForm > 1) {
+      displayedForm--;
+      displayForm(displayedForm);
+    }
+  }
+
+  next1.addEventListener("click", nextForm);
+  next2.addEventListener("click", nextForm);
+  prev2.addEventListener("click", previousForm);
+  prev3.addEventListener("click", previousForm);
+}); // function assignDOMElements() {
+//     next1 = document.querySelector("#next1");
+//     next2 = document.querySelector("#next2");
+//     prev2 = document.querySelector("#prev2");
+//     prev3 = document.querySelector("#prev3");
+// }
 
 /***/ }),
 
@@ -49672,8 +49742,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\ale_s\Desktop\Boolean\PHP-Projects\IT-Finder\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\ale_s\Desktop\Boolean\PHP-Projects\IT-Finder\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! H:\Hard disk 6TB\Boolean\LEZIONI\Esercizi\Project\IT-Finder\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! H:\Hard disk 6TB\Boolean\LEZIONI\Esercizi\Project\IT-Finder\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

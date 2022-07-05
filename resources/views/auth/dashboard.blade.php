@@ -24,7 +24,7 @@
                                 <a class="nav-link" href="#">Promo</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Statistics</a>
+                                <a class="nav-link" href="{{ route('user.statistics') }}">Statistics</a>
                             </li>
                             <li class="nav-item">
                                 <form action="{{ route('user.logout') }}" method="get">
