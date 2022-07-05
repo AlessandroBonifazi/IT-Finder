@@ -1,7 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\User;
+use App\Promo;
+use Carbon\Carbon;
+use Braintree\Gateway;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +47,54 @@ Route::middleware("auth")
         Route::get("/checkin", "UserController@promos")->name("checkin");
         // CheckOut
         Route::get("/checkout/{id}", "UserController@checkOut")->name("checkout");
+        //Payment
+        // Route::get('/confirmed', function () {
+        //     return view('auth.confirmed');
+        //   });
+
+        Route::put('/user/payment', function(Request $request, Gateway $gateway){
+
+            $idPromo = $request->id;
+
+            $promo = Promo::find($idPromo);
+
+            $user = User::find(Auth::id());
+
+            $activePromo = $user->sponsorship->count();
+
+            $amount = $promo->price;
+            $nonce = $request->payment_method_nonce;
+            $sponsorshipName = $promo->name;
+
+            $result = $gateway->transaction()->sale([
+              'amount' => $amount,
+              'paymentMethodNonce' => $nonce,
+              'options' => [
+                'submitForSettlement' => true
+              ]
+            ]);
+
+            if ($result->success) {
+                if ($activePromo == 0) {
+                  $dateEnd = Carbon::now()->addHour($promo->duration);
+                  $user->promo()->attach($idPromo, [
+                    'date_end' => $dateEnd,
+                  ]);
+
+                } else {
+
+                  $dateEndLastPromo = $user->promo->last()->pivot->date_end;
+                  $lastDateEnd = Carbon::parse($dateEndLastPromo)->addHour($promo->duration);
+                  $user->promo()->attach($idPromo, [
+                    'date_end' => $lastDateEnd,
+                  ]);
+                }
+                return view('user.confirmed', ['promo' => $promo]);
+
+              }
+
+        });
+
 
     });
 
