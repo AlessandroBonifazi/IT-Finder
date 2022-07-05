@@ -116,18 +116,35 @@
             @endif
         </form>
     </div>
+
+    {{-- Tech --}}
     <div class="col-6 offset-1 mb-5">
         <form action="{{ route('user.tech', $user->id) }}" method="post">
             @csrf
             @method('PUT')
+
             <h5>Add Technologies you know</h5>
-            <div class="input-group my-3">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <input type="radio" name="status">
-                    </div>
+            <div class="input-group">
+                @foreach ($techExample as $techE)
+                    <button class="btn">
+                        <input type="checkbox" id="" name="techName[{{ $techE }}]"
+                            value="{{ $techE }}">
+                        {{ $techE }}
+                    </button>
+                @endforeach
+            </div>
+
+            <div class="my-3">
+                <h5>Cant find your stacks? Add it</h5>
+                <div class="input-group">
+                    <label for="techName[]">Name</label>
+                    <input type="text" class="form-control" name="techName[]">
                 </div>
-                <input type="text" class="form-control" name="techName">
+
+                <div class="mb-3">
+                    <label for="formFileSm" class="form-label">Add Logo</label>
+                    <input name="logo" class="form-control form-control-sm" id="formFileSm" type="file">
+                </div>
             </div>
 
             {{-- submit --}}

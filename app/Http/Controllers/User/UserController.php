@@ -69,16 +69,24 @@ class UserController extends Controller
     public function edit()
     {
         //
-        // if (!$user) {
-        //     abort(404);
-        // }
+        $techExample = [
+            "HTML5",
+            "CSS3",
+            "JavaScript",
+            "PHP",
+            "Bootstrap",
+            "Laravel",
+            "Vue JS",
+            "MySQL",
+        ];
+
         $user = Auth::user();
         $specializations = Specialization::all();
         $contacts = $user->contactInfo;
 
         return view(
             "auth.edit",
-            compact("user", "specializations", "contacts")
+            compact("user", "specializations", "contacts", "techExample")
         );
     }
 
@@ -138,15 +146,15 @@ class UserController extends Controller
     public function updateTech(Request $request, $id)
     {
         //
-        // dd($request);
         $user = User::find($id);
-        if ($request->status = "on") {
+        foreach ($request->techName as $techName) {
             $user->technologies()->create([
                 // "user_id" => $user->id,
-                "name" => $request->techName,
-                "logo" => null,
+                "name" => ($techName),
+                "logo" => $request->logo,
             ]);
         }
+
         $user->save();
         return redirect()->route("user.dashboard");
     }
