@@ -183,31 +183,10 @@ class UserController extends Controller
         $messages = $user->messages;
         return view("auth.messages", compact("user", "messages"));
     }
+
     public function logout()
     {
         Auth::logout();
         return redirect("/");
     }
-
-    public function promos(){
-        $promos=Promo::all();
-        return view('auth.checkin', compact('promos'));
-
-    }
-    public function checkOut(Gateway $gateway, $id){
-        $user = Auth::user();
-
-        $user->promos()->sync($id);
-        // $user->promos()->create([
-        //     "promo_id" => $id,
-        // ]);
-
-        return view('auth.checkout', [
-            "id" => $id,
-            "token" => $gateway->clientToken()->generate(),
-            "promo" => Promo::find($id)
-          ]);
-
-    }
-
 }
