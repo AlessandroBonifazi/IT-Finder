@@ -1,15 +1,17 @@
 <?php
 
 namespace App\Http\Controllers\User;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Auth;
 use App\User;
-use App\Contact;
-use App\Specialization;
-use App\Message;
 use App\Promo;
+use App\Contact;
+use App\Message;
+use Carbon\Carbon;
+use Braintree\Gateway;
+use App\Specialization;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -192,10 +194,13 @@ class UserController extends Controller
         return view('auth.checkin', compact('promos'));
 
     }
-    public function checkOut(Promo $promo){
-
-
-        return view('auth.checkout', compact( 'promo'));
+    public function checkOut(Gateway $gateway, $id){
+        return view('auth.checkout', [
+            "id" => $id,
+            "token" => $gateway->clientToken()->generate(),
+            "promo" => Promo::find($id)
+          ]);
 
     }
+
 }
