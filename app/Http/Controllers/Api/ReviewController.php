@@ -90,23 +90,15 @@ class ReviewController extends Controller
     {
         //
     }
-    public function send(Request $request, $id)
-    {
-        $user = User::find($id);
-        $user->reviews()->create([
-            "user_name" => $request->name,
-            "valutation" => $request->rating,
-            "content" => $request->review,
-        ]);
-        $user = User::find($id);
-        return response()->json([
-            "user_name" => $request->name,
-            "valutation" => $request->rating,
-            "content" => $request->review,
-            "message" => "Review posted",
-            "user" => $user,
-            "sent" => true,
 
+    public function saveReview(Request $request)
+    {
+        $user = User::find($request->id);
+        $user->reviews()->create([
+            "content" => $request->review,
+            "valutation" => $request->rating,
+            "user_name" => $request->name,
         ]);
+        return response()->json($user);
     }
 }

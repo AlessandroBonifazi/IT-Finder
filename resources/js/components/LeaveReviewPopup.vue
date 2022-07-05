@@ -114,17 +114,16 @@ export default {
     methods: {
         sendMessage() {
             window.axios
-                .post(
-                    `http://127.0.0.1:8000/api/message/send/${this.user_id}`,
-                    this.params
-                )
+                .post(`http://127.0.0.1:8000/api/review/send/${this.user_id}`, {
+                    params: this.params,
+                })
                 .then((response) => {
                     console.log(response);
-                    if (response.data.sent) {
-                        this.notification = response.data.message;
-                        this.isNotificationOn = true;
-                        this.timerNotification();
-                    }
+                    // if (response.data.sent) {
+                    //     this.notification = response.data.message;
+                    //     this.isNotificationOn = true;
+                    //     this.timerNotification();
+                    // }
                 })
                 .catch((error) => {
                     console.log(error);
@@ -145,7 +144,8 @@ export default {
         postReview() {
             // console.log("params", this.params);
             window.axios
-                .post(`http://127.0.0.1:8000/api/review/send/${this.user_id}`, {
+                .post(`http://127.0.0.1:8000/api/review/save`, {
+                    id: this.user_id,
                     name: this.params.name,
                     review: this.params.review,
                     rating: parseInt(this.params.rating),
