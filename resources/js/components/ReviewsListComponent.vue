@@ -7,7 +7,8 @@
             
 
         </div>
-        <button class="load krona dark-grey mt-2" @click="loadMore" v-if="lenght < reviews.lenght">Load More</button>
+        <button class="load krona dark-grey mt-2" @click="loadMore" v-if="length < review.length">Load More</button>
+        <button class="load krona dark-grey mt-2" @click="loadLess" v-if="length > 10">Load Less</button>
     </div>
 </template>
 
@@ -21,19 +22,23 @@ export default {
     },
     data() {
         return {
+            review: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             length: 5,
         };
   },
     props:['reviews'],
     methods: {
     loadMore() {
-      if (this.length > this.reviews.length) return;
+      if (this.length > this.review.length) return;
       this.length = this.length + 3;
+    },
+    loadLess() {
+      this.length = 5;
     },
   },
     computed: {
     reviewsLoaded() {
-      return this.reviews.slice(0, this.length);
+      return this.review.slice(0, this.length);
     },
   },
 }
