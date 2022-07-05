@@ -43,76 +43,10 @@ Route::middleware("auth")
         Route::get("/{id}/edit", "UserController@edit")->name("edit");
         Route::get("/messages", "UserController@getMessages")->name("messages");
         Route::get("/logout", "UserController@logout")->name("logout");
-        // CheckIn
-        Route::get("/checkin", "UserController@promos")->name("checkin");
-        // CheckOut
-        Route::get("/checkout/{id}", "UserController@checkOut")->name("checkout");
-        //Payment
-        Route::get('/confirmed', function () {
-            return view('auth.confirmed');
-          })->name('confirmed');
-
-        Route::put('/payment', function(Request $request, Gateway $gateway){
-
-            $idPromo = $request->id;
-
-            $promo = Promo::find($idPromo);
-
-            $user = User::find(Auth::id());
-
-
-            $activePromo = $user->promo;
-
-
-
-            $amount = $promo->price;
-            $nonce = $request->payment_method_nonce;
-            $sponsorshipName = $promo->name;
-
-            $result = $gateway->transaction()->sale([
-              'amount' => $amount,
-              'paymentMethodNonce' => $nonce,
-              'options' => [
-                'submitForSettlement' => true
-              ]
-            ]);
-
-            if ($result->success) {
-                $user->promos()->sync($idPromo);
-                $activePromo = $user->promo;
-                if($activePromo){
-
-                    $promoCount = $user->promo->count();
-
-
-                    if (!$activePromo) {
-
-                        $dateEnd = Carbon::now()->addHour($promo->duration);
-                        $user->promo()->attach($idPromo, [
-                          'endDate' => $dateEnd,
-                        ]);
-
-                      } else {
-
-                        $dateEndLastPromo = $user->promo->last()->pivot->endDate;
-                        $lastDateEnd = Carbon::parse($dateEndLastPromo)->addHour($promo->duration);
-                        $user->promo()->attach($idPromo, [
-                          'endDate' => $lastDateEnd,
-                        ]);
-                      }
-
-                }
-
-
-
-
-              }
-              return view('auth.confirmed', ['promo' => $promo]);
-
-        })->name('payment');
-
-
-    });
+        Route::get("/checkin", "PromoController@checkIn")->name("checkin");
+        Route::get("/checkout/{id}", "PromoController@checkOut")->name("checkout");
+        Route::put('/payment', "PromoController@payment")->name('payment');
+});
 
 Route::get("{any?}", function () {
     return view("guest.home");
