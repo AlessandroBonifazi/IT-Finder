@@ -1,4 +1,4 @@
 @extends('layouts.app')
 @section('content')
-ciao
+<h2>lol</h2>
 @endsection

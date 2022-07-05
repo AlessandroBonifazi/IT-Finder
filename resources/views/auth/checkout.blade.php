@@ -22,9 +22,9 @@
                                 <div>
                                     Are you sure?
                                     <p>Continue here for the payment or <div><a href="{{route ('user.checkin')}}">Go Back</a></div></p>
-                                    <form id="payment-form" action="{{ url('/user/confirmed')}}" method="PUT" enctype="multipart/form-data">
+                                    <form id="payment-form" action="{{ route('user.payment')}}" method="POST" enctype="multipart/form-data">
                                         @csrf
-                                        {{-- @method('PUT') --}}
+                                        @method('PUT')
                                         <section>
                                             <label for="amount">
                                                 <div class="input-wrapper amount-wrapper">

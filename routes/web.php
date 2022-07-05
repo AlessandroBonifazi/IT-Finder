@@ -48,11 +48,11 @@ Route::middleware("auth")
         // CheckOut
         Route::get("/checkout/{id}", "UserController@checkOut")->name("checkout");
         //Payment
-        // Route::get('/confirmed', function () {
-        //     return view('auth.confirmed');
-        //   });
+        Route::get('/confirmed', function () {
+            return view('auth.confirmed');
+          })->name('confirmed');
 
-        Route::put('/user/payment', function(Request $request, Gateway $gateway){
+        Route::put('/payment', function(Request $request, Gateway $gateway){
 
             $idPromo = $request->id;
 
@@ -60,7 +60,10 @@ Route::middleware("auth")
 
             $user = User::find(Auth::id());
 
-            $activePromo = $user->sponsorship->count();
+
+            $activePromo = $user->promo;
+
+
 
             $amount = $promo->price;
             $nonce = $request->payment_method_nonce;
@@ -75,25 +78,36 @@ Route::middleware("auth")
             ]);
 
             if ($result->success) {
-                if ($activePromo == 0) {
-                  $dateEnd = Carbon::now()->addHour($promo->duration);
-                  $user->promo()->attach($idPromo, [
-                    'date_end' => $dateEnd,
-                  ]);
+                $activePromo = $user->promos;
+                if($activePromo){
 
-                } else {
+                    $promoCount = $user->promos->count();
 
-                  $dateEndLastPromo = $user->promo->last()->pivot->date_end;
-                  $lastDateEnd = Carbon::parse($dateEndLastPromo)->addHour($promo->duration);
-                  $user->promo()->attach($idPromo, [
-                    'date_end' => $lastDateEnd,
-                  ]);
+                    if ($activePromo == 0) {
+
+                        $dateEnd = Carbon::now()->addHour($promo->duration);
+                        $user->promo()->attach($idPromo, [
+                          'date_end' => $dateEnd,
+                        ]);
+
+                      } else {
+
+                        $dateEndLastPromo = $user->promo->last()->pivot->date_end;
+                        $lastDateEnd = Carbon::parse($dateEndLastPromo)->addHour($promo->duration);
+                        $user->promo()->attach($idPromo, [
+                          'date_end' => $lastDateEnd,
+                        ]);
+                      }
+
                 }
-                return view('user.confirmed', ['promo' => $promo]);
+
+
+
 
               }
+              return view('auth.confirmed', ['promo' => $promo]);
 
-        });
+        })->name('payment');
 
 
     });
