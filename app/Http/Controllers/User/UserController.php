@@ -14,53 +14,6 @@ use App\Message;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-
-        // return view('auth.dashboard');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        //
-        $contact = Contact::where("user_id", /*$user->id*/ 1)->first();
-        dd($contact);
-        return $user->contactInfo();
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\User  $user
@@ -97,10 +50,9 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-
+    // Function used by registratio and dev update
     public function updateProfile(Request $request, $id)
     {
-        // dd($request);
 
         $user = User::find($id);
         $user->name = $request->name;
@@ -143,6 +95,7 @@ class UserController extends Controller
         return redirect()->route("user.dashboard");
     }
 
+    // Add Technologies
     public function updateTech(Request $request, $id)
     {
         //
@@ -244,4 +197,53 @@ class UserController extends Controller
         Auth::logout();
         return redirect("/");
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+
+        // return view('auth.dashboard');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function show(User $user)
+    {
+        //
+        // $contact = Contact::where("user_id", /*$user->id*/ 1)->first();
+        // dd($contact);
+        // return $user->contactInfo();
+    }
+
+
 }
