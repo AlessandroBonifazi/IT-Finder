@@ -564,6 +564,10 @@ export default {
                 });
         },
         checkForParams() {
+            if (!this.$route.params.specialization) {
+                this.getSearch();
+                return;
+            }
             this.initialSpec = this.$route.params.specialization
                 ? this.$route.params.specialization
                 : "";
