@@ -16,9 +16,9 @@
                                         <p class="text-center">Boost your presence on the platform for {{ $promo->duration }} day.</p>
                                         <p class="font-weight-light text-center" style="font-size: 4rem">  {{ $promo->price }} € </p>
                                         <div class="d-flex justify-content-center">
-                                            <button class="itf-btn">
-                                                <a href="{{ route('user.checkout', $promo->id) }}">I want this!</a>
-                                            </button>
+
+                                                <a class="itf-btn itf-btn-primary" href="{{ route('user.checkout', $promo->id) }}">I want this!</a>
+
                                         </div>
 
                                 </div>
