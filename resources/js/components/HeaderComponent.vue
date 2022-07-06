@@ -110,7 +110,7 @@
                     <a href="/register-front">Join our specialists</a>
                 </div>
                 <div class="itf-dd-menu-item">
-                    <a href="/login">Enter your profile</a>
+                    <a href="/login-front">Enter your profile</a>
                 </div>
             </div>
         </div>
