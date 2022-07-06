@@ -133,7 +133,7 @@ export default {
             });
         },
         login() {
-            this.$router.push("/login");
+            this.$router.push("/login-front");
         },
         register() {
             this.$router.push("/register-front");
