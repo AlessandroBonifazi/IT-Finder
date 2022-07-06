@@ -42,7 +42,7 @@
                     <div class="itf-form-box">
                         <label for="rating" class="itf-form-label">Vote</label>
                         <select
-                            class="form-select"
+                            class="form-select select-style"
                             aria-label="Default select example"
                             v-model="params.rating"
                         >
@@ -72,7 +72,7 @@
                     <button
                         @click="
                             () => {
-                                postReview(), closeModal();
+                                postReview();
                             }
                         "
                         class="itf-btn itf-btn-primary itf-btn-small"
@@ -112,23 +112,6 @@ export default {
         },
     },
     methods: {
-        sendMessage() {
-            window.axios
-                .post(`http://127.0.0.1:8000/api/review/send/${this.user_id}`, {
-                    params: this.params,
-                })
-                .then((response) => {
-                    console.log(response);
-                    // if (response.data.sent) {
-                    //     this.notification = response.data.message;
-                    //     this.isNotificationOn = true;
-                    //     this.timerNotification();
-                    // }
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        },
         timerNotification() {
             if (this.isNotificationOn) {
                 setTimeout(this.shutDownNotification, 3000);
@@ -153,10 +136,15 @@ export default {
 
                 .then((response) => {
                     console.log(response);
+                    this.reviewPosted();
+                    this.closeModal();
                 })
                 .catch((error) => {
                     console.log(error);
                 });
+        },
+        reviewPosted() {
+            this.$emit("reviewPosted");
         },
     },
 };

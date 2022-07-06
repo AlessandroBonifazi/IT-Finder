@@ -178,12 +178,12 @@ export default {
             users: {},
             specializations: [
                 "DevOps Developer",
-                "Web Designer",
+                "Web Design",
                 "Front-End Developer",
                 "Back-End Developer",
                 "Mobile Developer",
                 "Software Developer",
-                "Gama Developer",
+                "Game Developer",
             ],
             scrollPosition: 0,
         };
