@@ -29,56 +29,48 @@
 
 <body>
     <div id="app">
-        <div class="container-fluid">
-                <div class="row" style="height: 100vh">
-                    <div class="col-12 col-sm-12 col-lg-1 bg-light py-0 my-0">
-
-                            {{-- Nav --}}
-
-
-                                    <ul class="nav justify-content-around mt-5">
-                                        <li class="nav-item" >
-                                            <a class="nav-link" href="{{ route('user.dashboard') }}">Dashboard</a>
-                                        </li>
-                                        <li class="nav-item" >
-                                            <a class="nav-link" href="{{ route('user.profile') }}">Profile</a>
-                                        </li>
-                                        <li class="nav-item" >
-                                            <a class="nav-link" href="{{ route('user.messages') }}">Messagges</a>
-                                        </li>
-                                        <li class="nav-item" >
-                                            <a class="nav-link" href="{{ route('user.reviews') }}">Reviews</a>
-                                        </li>
-                                        <li class="nav-item" >
-                                            <a class="nav-link" href="{{ route('user.checkin') }}">Promo</a>
-                                        </li>
-                                        <li class="nav-item" >
-                                            <a class="nav-link" href="#">Statistics</a>
-                                        </li>
-
-                                            <li class="nav-item" >
-                                                <form action="{{ route('user.logout') }}" method="get">
-                                                    <button class="nav-link itf-btn itf-btn-secondary" type="submit">Logout</button>
-                                                </form>
-                                            </li>
-
-
-                                    </ul>
-
-
-
-                    </div>
-
-
-                    @yield('content')
-
+        <div class="row h-100 mt-5">
+            <div class="col-sm-2 col-md-2">
+                <div class="row d-flex flex-column h-100 bg-light py-0 my-0 rounded">
+                    {{-- Nav --}}
+                    <nav id="sidebarMenu" class="col-2 ">
+                        <div class="sidebar-sticky pt-3">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('user.dashboard') }}">Dashboard</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('user.profile') }}">Profile</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('user.messages') }}">Messagges</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('user.reviews') }}">Reviews</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('user.checkin') }}">Promo</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Statistics</a>
+                                </li>
+                                <li class="nav-item">
+                                    <form action="{{ route('user.logout') }}" method="get">
+                                        <button class="nav-link" type="submit">Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
                 </div>
-
-
-
+            </div>
+            <div class="col-sm-10 col-md-10 col-lg-9 offset-lg-1">
+                <div class="row">
+                    @yield('content')
+                </div>
+            </div>
         </div>
-    </div>
-
 </body>
+
 
 </html>
