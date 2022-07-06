@@ -13,12 +13,12 @@ class PromoSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
         //
-        $users = User::all()->random(30);
-        $randomPromoId = random_int(1,3);
+        $users = User::all()->random(10);
         foreach ($users as $user) {
+            $randomPromoId = $faker->numberBetween(1,3);
             $user->promos()->sync($randomPromoId);
         }
     }
