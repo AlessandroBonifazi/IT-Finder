@@ -89,8 +89,9 @@
                     </div>
                     {{-- img --}}
                     <div class="d-flex justify-content-center">
-                        <img src="/img/img-placeholder.png" class="card-img-top rounded-circle" style="width: 190px"
-                            alt="profile-img">
+                        <img src="{{ asset('./storage/' . $user->img_path) }}" alt="profile-img"
+                            class="card-img-top rounded-circle" style="width: 190px" />
+
                     </div>
                     {{-- details --}}
                     <div class="card-body">

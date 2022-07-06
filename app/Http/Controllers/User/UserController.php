@@ -25,17 +25,6 @@ class UserController extends Controller
     public function edit()
     {
         //
-        // $techExample = [
-        //     "HTML5",
-        //     "CSS3",
-        //     "JavaScript",
-        //     "PHP",
-        //     "Bootstrap",
-        //     "Laravel",
-        //     "Vue JS",
-        //     "MySQL",
-        // ];
-
         $user = Auth::user();
         $specializations = Specialization::all();
         $contacts = $user->contactInfo;
@@ -122,6 +111,11 @@ class UserController extends Controller
         $user->save();
         return redirect()->route("user.dashboard");
     }
+    //Image Storage
+    public function storage(){
+        $img = Storage::put('uploads', $data['image']);
+        $data['image'] = $img;
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -145,9 +139,9 @@ class UserController extends Controller
         if ($user->reviews()->exists()) {
             $user->reviews()->delete();
         }
-        // if ($user->promos()->exists()) {
-        //     $user->promos()->sync([]);
-        // }
+        if ($user->promos()->exists()) {
+            $user->promos()->sync([]);
+        }
         if ($user->contactInfo()->exists()) {
             $user->contactInfo()->delete();
         }
