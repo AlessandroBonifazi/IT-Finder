@@ -6,8 +6,8 @@
 
 
 
-            <div class="col-12 col-sm-8 col-md-10 col-lg-11 mt-5">
-                <div class="container">
+            <div class="col-12 col-lg-11 mt-5">
+
 
                     <h3 class="text-center">Choose your Promo</h3>
                 <div class="row">
@@ -33,7 +33,7 @@
 
                    @endforeach
                 </div>
-                </div>
+
 
            </div>
 
