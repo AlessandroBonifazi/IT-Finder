@@ -41,6 +41,7 @@ class UserController extends Controller
         foreach ($user->reviews as $review) {
             $review->diff_time = $review->created_at->diffForHumans();
         }
+        $user->review_number = $user->reviews->count();
 
         $user->valutation = $user->reviews->avg("valutation");
         $user->technologies = $user->technologies;
