@@ -1,28 +1,45 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="order-sm-2 order-md-1 col-sm-10 col-md-6 col-lg-8">
-        <div class="row">
-            {{-- Promo --}}
-            <div style="height: 500px;" class="col-md-12 col-lg-6 grid-margin stretch-card my-3 overflow-auto h-100">
-                <div class="card">
-                    <div class="card-body py-5 overflow-auto">
-                        {{-- title --}}
-                        <h5 class="card-title">Promo</h5>
+
+
+    <div class="container">
+
+
+            <h3 class="text-center">Choose your Promo</h3>
+                <div class="row justify-content-center">
+
                         @foreach ($promos as $promo)
-                            <ul class="list-group list-group-horizontal my-1">
-                                <li class="list-group-item">
-                                    <a href="{{ route('user.checkout', $promo->id) }}">
-                                        <h5>Type: {{ $promo->type }}</h5>
-                                        <span>Duration: {{ $promo->duration }}</span>
-                                    </a>
-                                </li>
-                                <li class="list-group-item w-75">Price: {{ $promo->price }}</li>
-                            </ul>
+                        <div class="col-12 col-sm-4 my-2">
+                                <div class="itf-card p-3">
+                                        <h4 class=" text-center" style="font-family:$ff-heading">{{ $promo->type }}</h4>
+                                        <p class="text-center">Boost your presence on the platform for {{ $promo->duration }} day.</p>
+                                        <p class="font-weight-light text-center" style="font-size: 4rem">  {{ $promo->price }} € </p>
+                                        <div class="d-flex justify-content-center">
+                                            <button class="itf-btn">
+                                                <a href="{{ route('user.checkout', $promo->id) }}">I want this!</a>
+                                            </button>
+                                        </div>
+
+                                </div>
+                            </div>
                         @endforeach
-                    </div>
+
                 </div>
-            </div>
-        </div>
+
+
+
+
+
     </div>
+</div>
+
+
 @endsection
+
+<style lang="scss">
+
+
+
+
+</style>
