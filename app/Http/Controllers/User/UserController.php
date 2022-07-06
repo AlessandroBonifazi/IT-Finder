@@ -4,11 +4,11 @@ namespace App\Http\Controllers\User;
 use App\User;
 use App\Promo;
 use App\Contact;
-use App\Specialization;
-use App\Tecnology;
 use App\Message;
 use Carbon\Carbon;
+use App\Technology;
 use Braintree\Gateway;
+use App\Specialization;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -25,24 +25,14 @@ class UserController extends Controller
     public function edit()
     {
         //
-        $techExample = [
-            "HTML5",
-            "CSS3",
-            "JavaScript",
-            "PHP",
-            "Bootstrap",
-            "Laravel",
-            "Vue JS",
-            "MySQL",
-        ];
-
         $user = Auth::user();
         $specializations = Specialization::all();
         $contacts = $user->contactInfo;
+        $techs = Technology::all();
 
         return view(
             "auth.edit",
-            compact("user", "specializations", "contacts", "techExample")
+            compact("user", "specializations", "contacts", "techs")
         );
     }
 
@@ -103,20 +93,28 @@ class UserController extends Controller
     {
         //
         $user = User::find($id);
-        foreach ($request->techName as $techName) {
-            $user->technologies()->create([
-                // "user_id" => $user->id,
-                "name" => ($techName),
-                "logo" => $request->logo,
-            ]);
-        }
-
+            if ($request->techId) {
+                foreach ($request->techId as $techId) {
+                    $user->technologies()->sync([
+                        ['technology_id' => $techId],
+                    ], false);
+                }
+            } elseif ($request->techName) {
+                foreach ($request->techName as $techName) {
+                    $user->technologies()->create([
+                        // "user_id" => $user->id,
+                        "name" => $techName,
+                        "logo" => $request->logo,
+                    ]);
+                }
+            }
         $user->save();
         return redirect()->route("user.dashboard");
     }
     //Image Storage
     public function storage(){
         $img = Storage::put('uploads', $data['image']);
+        $data['image'] = $img;
     }
 
     /**
