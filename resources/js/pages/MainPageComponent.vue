@@ -49,26 +49,17 @@
                         </div>
                     </div>
                     <div class="row flex-wrap justify-content-center">
-                        <div class="col col-md search-tile">
-                            <h3>Front End</h3>
-                        </div>
-                        <div class="col col-md search-tile">
-                            <h3>Front End</h3>
-                        </div>
-                        <div class="col col-md search-tile">
-                            <h3>Front End</h3>
-                        </div>
-                        <div class="col col-md search-tile">
-                            <h3>Front End</h3>
-                        </div>
-                        <div class="col col-md search-tile">
-                            <h3>Front End</h3>
-                        </div>
-                        <div class="col col-md search-tile">
-                            <h3>Front End</h3>
-                        </div>
-                        <div class="col col-md search-tile">
-                            <h3>Front End</h3>
+                        <div
+                            v-for="spec in specializations"
+                            :key="spec"
+                            class="col col-md search-tile"
+                            @click="
+                                () => {
+                                    redirectSearchAdvanced(spec);
+                                }
+                            "
+                        >
+                            <h3>{{ spec }}</h3>
                         </div>
                     </div>
                 </div>
@@ -185,16 +176,30 @@ export default {
     data() {
         return {
             users: {},
+            specializations: [
+                "DevOps Developer",
+                "Web Design",
+                "Front-End Developer",
+                "Back-End Developer",
+                "Mobile Developer",
+                "Software Developer",
+                "Game Developer",
+            ],
             scrollPosition: 0,
         };
     },
     mounted() {
         this.getUsers();
+        // this.getSpecializations();
     },
 
     methods: {
         redirectSearch() {
             this.$router.push("/search");
+        },
+        redirectSearchAdvanced(name) {
+            name = name.replace(/\s/g, "%20");
+            this.$router.push(`/search/${name}`);
         },
         logout() {
             window.axios.post("/logout").then(() => {
@@ -208,6 +213,17 @@ export default {
                 .then((response) => {
                     this.users = response.data;
                     console.log(this.users);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+        getSpecializations() {
+            window.axios
+                .get("/api/specializations")
+                .then((response) => {
+                    this.specializations = response.data;
+                    console.log(this.specializations);
                 })
                 .catch((error) => {
                     console.log(error);

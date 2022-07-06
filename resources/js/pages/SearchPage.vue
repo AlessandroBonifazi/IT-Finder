@@ -44,6 +44,7 @@
                                         >
                                             <input
                                                 type="checkbox"
+                                                :checked="isChecked(spec.id)"
                                                 :id="spec.id"
                                                 class="sidebar-item-body-content-item-input"
                                                 @click="
@@ -236,6 +237,9 @@
                                                 >
                                                     <input
                                                         type="checkbox"
+                                                        :checked="
+                                                            isChecked(spec.id)
+                                                        "
                                                         :id="
                                                             spec.specialization
                                                         "
@@ -516,11 +520,11 @@ export default {
             reviews: "",
             reviewsNum: "",
             isFilterShown: false,
+            initialSpec: "",
         };
     },
     mounted() {
         this.getSpecializations();
-        this.getSearch();
     },
     methods: {
         getSearch(page) {
@@ -553,10 +557,35 @@ export default {
                 .then((response) => {
                     this.specializations = response.data;
                     console.log("specialization", response.data);
+                    this.checkForParams();
                 })
                 .catch((error) => {
                     console.log(error);
                 });
+        },
+        checkForParams() {
+            if (!this.$route.params.specialization) {
+                this.getSearch();
+                return;
+            }
+            this.initialSpec = this.$route.params.specialization
+                ? this.$route.params.specialization
+                : "";
+            // console.log(this.initialSpec);
+            this.initialSpec = this.initialSpec.split("%20").join(" ");
+            // console.log(this.initialSpec);
+            if (this.initialSpec) {
+                // console.log(this.specializations);
+                let spec = this.specializations.find(
+                    (spec) => spec.specialization == this.initialSpec
+                );
+                if (spec) {
+                    this.selectedSpecializations.push(spec.id);
+                    this.getSearch();
+                } else {
+                    this.getSearch();
+                }
+            }
         },
 
         handleSpecSelection(id) {
@@ -577,6 +606,9 @@ export default {
         },
         toggleFilter() {
             this.isFilterShown = !this.isFilterShown;
+        },
+        isChecked(id) {
+            return this.selectedSpecializations.includes(id);
         },
     },
 };
