@@ -103,18 +103,14 @@ class UserController extends Controller
     public function updateTech(Request $request, $id)
     {
         //
-        // @dd($request);
         $user = User::find($id);
-        // foreach ($request->techId as $techId) {
             if ($request->techId) {
                 foreach ($request->techId as $techId) {
                     $user->technologies()->sync([
                         ['technology_id' => $techId],
                     ], false);
                 }
-            }
-
-            elseif ($request->techName) {
+            } elseif ($request->techName) {
                 foreach ($request->techName as $techName) {
                     $user->technologies()->create([
                         // "user_id" => $user->id,
