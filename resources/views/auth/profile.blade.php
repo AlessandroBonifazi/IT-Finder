@@ -155,6 +155,17 @@
                             {{-- <li class="list-group-item">Promo</li>
 
                         </ul> --}}
+                            <li class="list-group-item">Business Email: {{ $user->contactInfo->contact_email }}</li>
+                            <li class="list-group-item">Phone: {{ $user->contactInfo->phone }}</li>
+                            <li class="list-group-item">Github: <a href="">{{ $user->contactInfo->github }}</a>
+                            </li>
+                            <li class="list-group-item">Linkedin: <a
+                                    href="">{{ $user->contactInfo->linkedin }}</a></li>
+                            <li class="list-group-item">Site: <a href="">{{ $user->contactInfo->site }}</a></li>
+                            {{-- <li class="list-group-item">CV: {{ $user->cv }}</li> --}}
+                            {{-- <li class="list-group-item">Promo</li>
+
+                            </ul> --}}
                         </div>
                     </div>
                 </div>

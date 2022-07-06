@@ -30,13 +30,13 @@
 <body>
     <div id="app">
         <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12 col-sm-4 col-md-2 col-lg-1 bg-light py-0 my-0">
+                <div class="row" style="height: 100vh">
+                    <div class="col-12 col-sm-12 col-lg-1 bg-light py-0 my-0">
 
                             {{-- Nav --}}
 
 
-                                    <ul class="nav justify-content-around">
+                                    <ul class="nav justify-content-around mt-5">
                                         <li class="nav-item" >
                                             <a class="nav-link" href="{{ route('user.dashboard') }}">Dashboard</a>
                                         </li>
