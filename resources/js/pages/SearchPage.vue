@@ -579,9 +579,12 @@ export default {
                 let spec = this.specializations.find(
                     (spec) => spec.specialization == this.initialSpec
                 );
-                this.handleSpecSelection(spec.id);
-                // console.log(this.selectedSpecializations);
-                this.getSearch();
+                if (spec) {
+                    this.selectedSpecializations.push(spec.id);
+                    this.getSearch();
+                } else {
+                    this.getSearch();
+                }
             }
         },
 
