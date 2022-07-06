@@ -125,14 +125,33 @@
 
             <h5>Add Technologies you know</h5>
             <div class="input-group">
-                @foreach ($techExample as $techE)
+                @foreach ($techs as $tech)
                     <button class="btn">
-                        <input type="checkbox" id="" name="techName[{{ $techE }}]"
-                            value="{{ $techE }}">
-                        {{ $techE }}
+                        <input type="checkbox" id="" name="techId[{{ $tech->name }}]"
+                            value="{{ $tech->id }}">
+                        {{ $tech->name }}
                     </button>
                 @endforeach
             </div>
+
+
+
+            {{-- submit --}}
+            <input class="btn btn-primary" type="submit">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        </form>
+
+        <form action="{{ route('user.tech', $user->id) }}" method="post">
+            @csrf
+            @method('PUT')
 
             <div class="my-3">
                 <h5>Cant find your stacks? Add it</h5>
@@ -146,7 +165,6 @@
                     <input name="logo" class="form-control form-control-sm" id="formFileSm" type="file">
                 </div>
             </div>
-
             {{-- submit --}}
             <input class="btn btn-primary" type="submit">
             @if ($errors->any())

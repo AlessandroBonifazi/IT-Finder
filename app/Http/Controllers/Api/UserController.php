@@ -198,6 +198,7 @@ class UserController extends Controller
         $specializationIdArray = $request->specializations;
         $reviews = $request->reviews;
         $reviewsNum = $request->reviewsNum;
+
         $query = $user->newQuery();
         // Filter: name, surname, spec
         if (!empty($request->value) && $request->value != "AllUsers") {
@@ -258,9 +259,12 @@ class UserController extends Controller
         return response()->json($users);
     }
 
-    public function bestUsers()
+    public function bestUsers(User $user)
     {
-        $users = User::take(6)->get();
+        $query = $user->newQuery();
+        $query->join("promo_user", "users.id", "=", "promo_user.user_id")
+              ->select("users.*");
+        $users = $query->take(6)->get();
         $users->each(function ($user) {
             $user->specializations;
             $user->technologies;
