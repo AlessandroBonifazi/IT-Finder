@@ -1,5 +1,5 @@
 <template>
-    <div class="m-0 p-0">
+    <div class="m-0 p-0" @wheel="getScrollPosition">
         <div class="hero">
             <HeaderComponent />
             <div class="hero-img-bg d-none d-md-block">
@@ -24,7 +24,10 @@
                             the world for your one million project idea or
                             business
                         </p>
-                        <button class="itf-btn itf-btn-primary">
+                        <button
+                            class="itf-btn itf-btn-primary"
+                            @click="redirectSearch"
+                        >
                             Discover More
                         </button>
                     </div>
@@ -81,47 +84,52 @@
                 <div class="col-12 col-md-12 text-center">
                     <h2 class="krona green-55">Our best specialist</h2>
                 </div>
+            </div>
 
-                <div class="row users-wrapper">
-                    <UserCard
-                        class="col-10 col-md-5 col-lg-3"
-                        v-for="user in users"
-                        :key="user.id"
-                        :user="user"
-                    />
-                </div>
-
-                <div class="col-12 col-md-12 d-flex justify-content-center">
-                    <button class="itf-btn itf-btn-primary">
-                        Discover More
-                    </button>
+            <div class="row users-wrapper justify-content-center flex-wrap">
+                <div
+                    class="col-11 col-md-6 col-lg-4 mb-4 d-flex"
+                    :key="user.id"
+                    v-for="user in users"
+                >
+                    <UserCard :user="user" />
                 </div>
             </div>
-            <!-- specialist banner -->
-            <div class="row bg-green my-5 find-talent d-flex">
-                <div
-                    class="col-12 col-md-12 bg-green-55 d-flex specialist-banner"
-                >
-                    <div class="row d-flex">
-                        <div class="col-5 col-md-5 my-5 mx-3">
-                            <h1 class="krona find-talent-title">
-                                Find the talent needed to get your business
-                                <span class="krona yellow-60">growing</span>.
-                            </h1>
-                            <button class="btn get-started px-5 mt-5">
-                                Get Started
-                            </button>
-                        </div>
 
-                        <div class="col-7 col-md-7 talent-img">
-                            <img src="" alt="talent" />
-                        </div>
+            <div class="col-12 col-md-12 d-flex justify-content-center">
+                <button class="itf-btn itf-btn-primary" @click="redirectSearch">
+                    Discover More
+                </button>
+            </div>
+        </div>
+        <!-- specialist banner -->
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-11 col-sm-12 specialist-banner">
+                    <div class="col-12 col-md-6 specialist-banner-content">
+                        <h3>
+                            Find the talent needed to get your business
+                            <span class="accent">growing</span>.
+                        </h3>
+                        <button
+                            class="itf-btn itf-btn-tertiary"
+                            @click="redirectSearch"
+                        >
+                            Get Started
+                        </button>
+                    </div>
+                    <div class="col-6 d-none d-md-block specialist-banner-img">
+                        <img src="img\woman-banner.png" alt="" />
                     </div>
                 </div>
             </div>
-            <!-- find next job section -->
+        </div>
+
+        <!-- find next job section -->
+        <div class="container">
             <div class="row my-5 py-5 justify-content-center">
-                <div class="col-6 col-md-6 p-0">
+                <div class="col-11 col-lg-6 p-0">
                     <h2 class="krona green-55 mb-5">Find your next job</h2>
                     <img class="frame-28" src="img\Frame 28.png" alt="" />
                     <img
@@ -130,7 +138,7 @@
                         alt=""
                     />
                 </div>
-                <div class="col-5 col-md-5 d-flex flex-column">
+                <div class="col-11 col-lg-5 d-flex flex-column">
                     <div class="next-job">
                         <h3 class="krona green-55">Title</h3>
                         <p>
@@ -161,9 +169,9 @@
                 </div>
             </div>
         </div>
-        <a href="#" @click="logout">logout</a>
+        <!-- <a href="#" @click="logout">logout</a> -->
         <FooterComponent />
-        <ScrollerComponent />
+        <ScrollerComponent :scrollPosition="scrollPosition" />
     </div>
 </template>
 
@@ -177,6 +185,7 @@ export default {
     data() {
         return {
             users: {},
+            scrollPosition: 0,
         };
     },
     mounted() {
@@ -184,6 +193,9 @@ export default {
     },
 
     methods: {
+        redirectSearch() {
+            this.$router.push("/search");
+        },
         logout() {
             window.axios.post("/logout").then(() => {
                 // this.$router.push("/");
@@ -191,9 +203,19 @@ export default {
             });
         },
         getUsers() {
-            window.axios.get("/api/best-users").then((response) => {
-                this.users = response.data;
-            });
+            window.axios
+                .get("/api/best-users")
+                .then((response) => {
+                    this.users = response.data;
+                    console.log(this.users);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+        getScrollPosition() {
+            this.scrollPosition = window.scrollY;
+            // console.log(this.scrollPosition);
         },
     },
     components: {
@@ -254,6 +276,7 @@ export default {
         width: 100%;
         height: 100%;
         z-index: -1;
+
         .hero-color-bg-full {
             background: #f2f4f3da;
             position: absolute;
@@ -341,12 +364,62 @@ export default {
     padding: 100px 0;
 }
 .users-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    // display: flex;
+    // flex-wrap: wrap;
+    // justify-content: center;
     margin-top: 50px;
     margin-bottom: 50px;
-    gap: 20px;
+    // gap: 20px;
+}
+.specialist-banner {
+    margin-top: 100px;
+    height: 400px;
+    width: 100%;
+    background: linear-gradient(262.45deg, #3d7068 -1.43%, #14453d 102.55%);
+    overflow: hidden;
+    position: relative;
+    border-radius: $border-radius;
+    display: flex;
+    padding: 0 36px;
+
+    .specialist-banner-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        height: 100%;
+        padding: 0px;
+        width: 100%;
+
+        h3 {
+            font-family: $ff-heading;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: $white;
+            margin: 0;
+
+            .accent {
+                color: $fc-accent-yellow;
+            }
+        }
+        @include media-breakpoint-up(sm) {
+            h3 {
+                font-size: 2rem;
+            }
+        }
+    }
+    .specialist-banner-img {
+        margin-bottom: -2%;
+        // overflow: hidden;
+        img {
+            position: absolute;
+            bottom: -2%;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
 }
 
 //UTILITIES
@@ -414,9 +487,6 @@ export default {
 .talent-img img {
     height: 392px;
     justify-content: center;
-}
-.specialist-banner {
-    border-radius: 9px;
 }
 .jumbotron {
     width: 100px;

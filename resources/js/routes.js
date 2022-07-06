@@ -6,6 +6,7 @@ Vue.use(VueRouter);
 import MainPage from "../js/pages/MainPageComponent.vue";
 import CompleteSignup from "../js/pages/CompleteSignup.vue";
 import RegisterPage from "../js/pages/RegisterPage.vue";
+import LoginPage from "../js/pages/LoginPage.vue";
 import UserDashboard from "../js/pages/UserDashboard.vue";
 import SearchPage from "../js/pages/SearchPage.vue";
 import UserProfile from "../js/pages/UserProfile.vue";
@@ -35,6 +36,11 @@ const router = new VueRouter({
             path: "/register-front",
             name: "register",
             component: RegisterPage,
+        },
+        {
+            path: "/login-front",
+            name: "login",
+            component: LoginPage,
         },
         // {
         //     path: "/dashboard/:id",

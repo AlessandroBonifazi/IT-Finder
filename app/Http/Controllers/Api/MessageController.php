@@ -6,13 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\User;
-use App\Contact;
-use App\Message;
-use App\Review;
-use App\Technology;
-use App\Specialization;
 
-class SpecializationController extends Controller
+class MessageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,11 +16,7 @@ class SpecializationController extends Controller
      */
     public function index()
     {
-        $specializations = Specialization::orderBy(
-            "specialization",
-            "asc"
-        )->get();
-        return response()->json($specializations);
+        //
     }
 
     /**
@@ -92,5 +83,20 @@ class SpecializationController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function send(Request $request, $id)
+    {
+        $user = User::find($id)
+            ->messages()
+            ->create([
+                "content" => $request->message,
+                "email" => $request->email,
+                "user_name" => $request->name,
+            ]);
+        return response()->json([
+            "message" => "Message sent",
+            "user" => $user,
+            "sent" => true,
+        ]);
     }
 }

@@ -1,150 +1,176 @@
 <template>
-    <div class="container">
-        <HeaderComponent class="position-absolute" />
-        <div class="row justify-content-end align-items-center vh-100">
-            <div class="col-md-6">
-                <div class="itf-card">
-                    <div class="itf-card-header">
-                        <h3 class="itf-card-title">Register</h3>
-                    </div>
-                    <div class="itf-card-body">
-                        <div class="mb-3 d-flex flex-column">
-                            <div class="itf-form-box">
-                                <label for="user_name" class="itf-form-label"
-                                    >Username*</label
-                                >
-                                <input
-                                    type="text"
-                                    :class="
-                                        !user_nameValidation
-                                            ? 'itf-form-control itf-is-invalid'
-                                            : 'itf-form-control'
-                                    "
-                                    id="user_name"
-                                    placeholder="user_name"
-                                    v-model="user_name"
-                                    required
-                                    @keyup="
-                                        () => {
-                                            user_name.length > 0
-                                                ? (user_nameValidation = true)
-                                                : (user_nameValidation = false);
-                                        }
-                                    "
-                                />
-                                <div
-                                    class="itf-invalid-feedback"
-                                    v-if="!user_nameValidation"
-                                >
-                                    {{ user_nameValidationMessage }}
+    <div class="container-fluid position-relative">
+        <div class="row">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <HeaderComponent class="position-absolute" />
+                </div>
+            </div>
+            <div class="container">
+                <div class="row align-items-center justify-content-end vh-100">
+                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                        <div class="itf-card">
+                            <div class="itf-card-header">
+                                <h3 class="itf-card-title">Register</h3>
+                            </div>
+                            <div class="itf-card-body">
+                                <div class="mb-3 d-flex flex-column">
+                                    <div class="itf-form-box">
+                                        <label
+                                            for="user_name"
+                                            class="itf-form-label"
+                                            >Username*</label
+                                        >
+                                        <input
+                                            type="text"
+                                            :class="
+                                                !user_nameValidation
+                                                    ? 'itf-form-control itf-is-invalid'
+                                                    : 'itf-form-control'
+                                            "
+                                            id="user_name"
+                                            placeholder="user_name"
+                                            v-model="user_name"
+                                            required
+                                            @keyup="
+                                                () => {
+                                                    user_name.length > 0
+                                                        ? (user_nameValidation = true)
+                                                        : (user_nameValidation = false);
+                                                }
+                                            "
+                                        />
+                                        <div
+                                            class="itf-invalid-feedback"
+                                            v-if="!user_nameValidation"
+                                        >
+                                            {{ user_nameValidationMessage }}
+                                        </div>
+                                    </div>
+                                    <div class="itf-form-box">
+                                        <label
+                                            for="email"
+                                            class="itf-form-label"
+                                            >email*</label
+                                        >
+                                        <input
+                                            type="text"
+                                            :class="
+                                                !emailValidation
+                                                    ? 'itf-form-control itf-is-invalid'
+                                                    : 'itf-form-control'
+                                            "
+                                            id="email"
+                                            placeholder="email"
+                                            v-model="email"
+                                            required
+                                            @keyup="
+                                                () => {
+                                                    email.length > 0
+                                                        ? (emailValidation = true)
+                                                        : (emailValidation = false);
+                                                }
+                                            "
+                                        />
+                                        <div
+                                            class="itf-invalid-feedback"
+                                            v-if="!emailValidation"
+                                        >
+                                            {{ emailValidationMessage }}
+                                        </div>
+                                    </div>
+                                    <div class="itf-form-box">
+                                        <label
+                                            for="password"
+                                            class="itf-form-label"
+                                            >password*</label
+                                        >
+                                        <input
+                                            type="password"
+                                            :class="
+                                                !passwordValidation
+                                                    ? 'itf-form-control itf-is-invalid'
+                                                    : 'itf-form-control'
+                                            "
+                                            id="password"
+                                            placeholder="password"
+                                            v-model="password"
+                                            required
+                                            @keyup="
+                                                () => {
+                                                    password.length > 0
+                                                        ? (passwordValidation = true)
+                                                        : (passwordValidation = false);
+                                                }
+                                            "
+                                        />
+                                        <div
+                                            class="itf-invalid-feedback"
+                                            v-if="!passwordValidation"
+                                        >
+                                            {{ passwordValidationMessage }}
+                                        </div>
+                                    </div>
+                                    <div class="itf-form-box">
+                                        <label
+                                            for="password-confirmation"
+                                            class="itf-form-label"
+                                            >confirm password*</label
+                                        >
+                                        <input
+                                            type="password"
+                                            :class="
+                                                !password_confirmationValidation
+                                                    ? 'itf-form-control itf-is-invalid'
+                                                    : 'itf-form-control'
+                                            "
+                                            id="password_confirmation"
+                                            placeholder="password"
+                                            v-model="password_confirmation"
+                                            required
+                                            @keyup="
+                                                () => {
+                                                    password_confirmation.length >
+                                                    0
+                                                        ? (password_confirmationValidation = true)
+                                                        : (password_confirmationValidation = false);
+                                                }
+                                            "
+                                        />
+                                        <div
+                                            class="itf-invalid-feedback"
+                                            v-if="
+                                                !password_confirmationValidation
+                                            "
+                                        >
+                                            {{
+                                                password_confirmationValidationMessage
+                                            }}
+                                        </div>
+                                    </div>
+                                    <button
+                                        class="itf-btn itf-btn-primary"
+                                        @click="
+                                            () => {
+                                                register();
+                                            }
+                                        "
+                                    >
+                                        REGISTER
+                                    </button>
                                 </div>
                             </div>
-                            <div class="itf-form-box">
-                                <label for="email" class="itf-form-label"
-                                    >email*</label
-                                >
-                                <input
-                                    type="text"
-                                    :class="
-                                        !emailValidation
-                                            ? 'itf-form-control itf-is-invalid'
-                                            : 'itf-form-control'
-                                    "
-                                    id="email"
-                                    placeholder="email"
-                                    v-model="email"
-                                    required
-                                    @keyup="
-                                        () => {
-                                            email.length > 0
-                                                ? (emailValidation = true)
-                                                : (emailValidation = false);
-                                        }
-                                    "
-                                />
-                                <div
-                                    class="itf-invalid-feedback"
-                                    v-if="!emailValidation"
-                                >
-                                    {{ emailValidationMessage }}
-                                </div>
-                            </div>
-                            <div class="itf-form-box">
-                                <label for="password" class="itf-form-label"
-                                    >password*</label
-                                >
-                                <input
-                                    type="password"
-                                    :class="
-                                        !passwordValidation
-                                            ? 'itf-form-control itf-is-invalid'
-                                            : 'itf-form-control'
-                                    "
-                                    id="password"
-                                    placeholder="password"
-                                    v-model="password"
-                                    required
-                                    @keyup="
-                                        () => {
-                                            password.length > 0
-                                                ? (passwordValidation = true)
-                                                : (passwordValidation = false);
-                                        }
-                                    "
-                                />
-                                <div
-                                    class="itf-invalid-feedback"
-                                    v-if="!passwordValidation"
-                                >
-                                    {{ passwordValidationMessage }}
-                                </div>
-                            </div>
-                            <div class="itf-form-box">
-                                <label
-                                    for="password-confirmation"
-                                    class="itf-form-label"
-                                    >confirm password*</label
-                                >
-                                <input
-                                    type="password"
-                                    :class="
-                                        !password_confirmationValidation
-                                            ? 'itf-form-control itf-is-invalid'
-                                            : 'itf-form-control'
-                                    "
-                                    id="password_confirmation"
-                                    placeholder="password"
-                                    v-model="password_confirmation"
-                                    required
-                                    @keyup="
-                                        () => {
-                                            password_confirmation.length > 0
-                                                ? (password_confirmationValidation = true)
-                                                : (password_confirmationValidation = false);
-                                        }
-                                    "
-                                />
-                                <div
-                                    class="itf-invalid-feedback"
-                                    v-if="!password_confirmationValidation"
-                                >
-                                    {{ password_confirmationValidationMessage }}
-                                </div>
-                            </div>
-                            <button
-                                class="itf-btn itf-btn-primary"
-                                @click="
-                                    () => {
-                                        register();
-                                    }
-                                "
-                            >
-                                REGISTER
-                            </button>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="registration-img-container">
+            <img
+                src="https://images.unsplash.com/photo-1580894908361-967195033215?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                alt=""
+            />
+            <div class="linear"></div>
         </div>
     </div>
 </template>
@@ -293,4 +319,31 @@ export default {
 <style lang="scss" scoped>
 @import "./../../sass/app";
 @import "./../../sass/_custom-card.scss";
+
+.registration-img-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+
+    img {
+        width: 60%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .linear {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            270deg,
+            #f2f4f3 44.91%,
+            rgba(249, 246, 255, 0) 70.1%
+        );
+    }
+}
 </style>

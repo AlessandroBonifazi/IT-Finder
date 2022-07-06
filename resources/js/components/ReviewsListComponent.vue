@@ -1,11 +1,14 @@
 <template>
     <div class="reviews-container row mt-3 justify-content-center">
         <div class="col-12 d-flex flex-column">
-            <ReviewItemComponent/>
-            <ReviewItemComponent/>
-            <ReviewItemComponent/>
+            <ul>
+                <li><ReviewItemComponent v-for="review in reviewsLoaded" :review='review' :key="review.id"/></li>
+            </ul>
+            
+
         </div>
-        <button class="load krona dark-grey mt-2">Load More</button>
+        <button class="load krona dark-grey mt-2" @click="loadMore" v-if="length < reviews.length">Load More</button>
+        <button class="load krona dark-grey mt-2" @click="loadLess" v-if="length > 10">Load Less</button>
     </div>
 </template>
 
@@ -13,10 +16,30 @@
 import ReviewItemComponent from "./ReviewItemComponent.vue"
 
 export default {
-    name: 'ReviewsComponent',
+    name: 'ReviewsListComponent',
     components:{
         ReviewItemComponent
-    }
+    },
+    data() {
+        return {
+            length: 5,
+        };
+  },
+    props:['reviews'],
+    methods: {
+    loadMore() {
+      if (this.length > this.reviews.length) return;
+      this.length = this.length + 3;
+    },
+    loadLess() {
+      this.length = 5;
+    },
+  },
+    computed: {
+    reviewsLoaded() {
+      return this.reviews.slice(0, this.length);
+    },
+  },
 }
 </script>
 

@@ -69,10 +69,33 @@
   margin: 10px 0;
 }
 
+.itf-checkbox-list {
+  padding: 15px 30px;
+  max-height: 250px;
+  overflow-y: auto;
+  border-radius: 10px;
+  border: 1px solid #77878b;
+}
+
+.itf-checkbox-list .itf-checkbox-list-item {
+  margin-bottom: 10px;
+}
+
+.itf-checkbox-list .itf-checkbox-list-item .itf-checkbox-list-item-label {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #373e40;
+  font-family: "Raleway", sans-serif;
+}
+
+.itf-checkbox-list .itf-checkbox-list-item .itf-checkbox {
+  margin-right: 10px;
+}
+
 .itf-btn {
   border-radius: 10px;
   color: #fff;
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-family: "Krona One", sans-serif;
   font-weight: 400;
   padding: 10px 40px;
@@ -146,13 +169,35 @@
   border: 1px solid #315a53;
 }
 
+.itf-btn-tertiary-outline {
+  background: #d3e3e1;
+  border: 1px solid #3d7068;
+  color: #3d7068;
+}
+
+.itf-btn-tertiary-outline:hover {
+  background: #c3d6d4;
+  border: 1px solid #315a53;
+  color: #315a53;
+}
+
+.itf-btn-tertiary-outline:active {
+  background: #315a53;
+  border: 1px solid #315a53;
+  color: #fff;
+}
+
 .itf-btn-small {
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   padding: 12px 24px;
 }
 
 .itf-btn-full-width {
   width: 100%;
+}
+
+.itf-btn-icon {
+  padding: 8px 9px;
 }
 
 ul {
@@ -11144,7 +11189,43 @@ a.text-dark:focus {
   }
 }
 
+.itf-main-title.itf-main-title {
+  font-size: 1.8rem;
+}
+
+.itf-subtitle.itf-subtitle {
+  font-size: 0.9rem;
+}
+
+@media (min-width: 576px) {
+  .itf-main-title.itf-main-title {
+    font-size: 2rem;
+  }
+
+  .itf-subtitle.itf-subtitle {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .itf-main-title.itf-main-title {
+    font-size: 3rem;
+  }
+
+  .itf-subtitle.itf-subtitle {
+    font-size: 1.3rem;
+  }
+
+  .itf-btn {
+    font-size: 1rem;
+  }
+
+  .itf-btn-small {
+    font-size: 0.8rem;
+  }
+}
+
 body {
-  background: #e8e9eb;
+  background: #f2f4f3;
 }
 

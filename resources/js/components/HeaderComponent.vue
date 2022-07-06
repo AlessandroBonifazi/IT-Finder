@@ -133,7 +133,7 @@ export default {
             });
         },
         login() {
-            this.$router.push("/login");
+            this.$router.push("/login-front");
         },
         register() {
             this.$router.push("/register-front");
@@ -189,7 +189,7 @@ export default {
     width: 100%;
     height: 100%;
     background-color: $bg-secondary;
-    z-index: 1;
+    z-index: 10;
     display: flex;
     flex-direction: column;
     justify-content: center;

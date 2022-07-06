@@ -42,7 +42,7 @@
                                 :src="handleImgPath(user.img_path)"
                                 alt=""
                             />
-                            <p class="rating">4.5</p>
+                            <p class="rating">{{ user.valutation }}</p>
                         </div>
 
                         <div class="col-9 info align-self-center mt-3">
@@ -91,51 +91,65 @@
                             </h5>
                             <button
                                 class="itf-btn itf-btn-tertiary itf-btn-small"
+                                @click="toggleModal"
                             >
                                 Leave a new Review
                             </button>
                         </div>
 
-                        <ReviewsComponent />
+                        <ReviewsListComponent :reviews="user.reviews" />
                     </div>
                 </div>
 
                 <div class="col-4 p-0 message-section d-flex flex-column">
-                    <LeaveMessageComponent />
+                    <LeaveMessageComponent :user_id="user.id" />
 
                     <!--CONTACT-->
                     <div class="contact-section mt-5 p-0">
                         <h5 class="krona green-55 my-2">How to contact me</h5>
 
                         <div class="contact d-flex">
-                            <p class="mx-2">logo</p>
-                            <p class="raleway clear-grey">linkedin</p>
+                            <p class="mx-2">email</p>
+                            <a
+                                :href="'mailto:' + user.contacts.contact_email"
+                                class="raleway clear-grey"
+                                >{{ user.contacts.contact_email }}</a
+                            >
                         </div>
 
                         <div class="contact d-flex">
-                            <p class="mx-2">logo</p>
-                            <p class="raleway clear-grey">linkedin</p>
+                            <p class="mx-2">linkedin</p>
+                            <a
+                                href="user.contacts.linkedin"
+                                class="raleway clear-grey"
+                                >{{ user.contacts.linkedin }}</a
+                            >
                         </div>
 
                         <div class="contact d-flex">
-                            <p class="mx-2">logo</p>
-                            <p class="raleway clear-grey">linkedin</p>
-                        </div>
-
-                        <div class="contact d-flex">
-                            <p class="mx-2">logo</p>
-                            <p class="raleway clear-grey">linkedin</p>
+                            <p class="mx-2">github</p>
+                            <a
+                                href="user.contacts.github"
+                                class="raleway clear-grey"
+                                >{{ user.contacts.github }}</a
+                            >
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <LeaveReviewPopup
+            :user_id="user.id"
+            v-if="isReviewModalVisible"
+            @closeModal="toggleModal"
+        />
     </div>
 </template>
 
 <script>
-import ReviewsComponent from "./ReviewsListComponent.vue";
+import ReviewsListComponent from "./ReviewsListComponent.vue";
 import LeaveMessageComponent from "./LeaveMessageComponent.vue";
+import LeaveReviewPopup from "./LeaveReviewPopup.vue";
 
 export default {
     name: "DevDetailComponent",
@@ -143,11 +157,13 @@ export default {
         return {
             userId: this.$route.params.id,
             user: {},
+            isReviewModalVisible: false,
         };
     },
     components: {
-        ReviewsComponent,
+        ReviewsListComponent,
         LeaveMessageComponent,
+        LeaveReviewPopup,
     },
     mounted() {
         this.getUser();
@@ -184,6 +200,9 @@ export default {
             });
             render = render.slice(0, -2);
             return render;
+        },
+        toggleModal() {
+            this.isReviewModalVisible = !this.isReviewModalVisible;
         },
     },
 };
@@ -226,9 +245,6 @@ export default {
 //BODY
 .info-block {
     margin-top: -40px;
-}
-.dev-detail-container {
-    margin-right: 0px;
 }
 .tech-stack-list {
     display: flex;
