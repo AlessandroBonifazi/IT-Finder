@@ -45,9 +45,25 @@
                                 <div class="row">
                                     <div class="col-12 ff-heading yellow-70">
                                         <h4 class="text-capitalize">
-                                            Your last top three:
+                                            Last Promotion:
                                         </h4>
 
+                                        <div class="ff-body yellow-70">
+                                            @for ($i = $lastPromo - 1; $i >= 0; $i--)
+                                                <ul>
+                                                    <li>
+                                                        @if ($user->promos[$i]->id === 1)
+                                                            <strong>Gold</strong>
+                                                        @elseif ($user->promos[$i]->id === 2)
+                                                            <strong>Premium</strong>
+                                                        @else
+                                                            <strong>Pro</strong>
+                                                        @endif
+                                                    </li>
+                                                </ul>
+                                            @endfor
+
+                                        </div>
 
                                     </div>
 
