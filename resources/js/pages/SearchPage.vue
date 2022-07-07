@@ -95,9 +95,8 @@
                                             class="sidebar-item-body-content-item-input"
                                             @click="
                                                 () => {
-                                                    handleSelection(
-                                                        tech.id,
-                                                        selectedTechnologies
+                                                    handleTechSelection(
+                                                        tech.id
                                                     );
                                                 }
                                             "
@@ -160,7 +159,7 @@
                                             <input
                                                 type="range"
                                                 min="0"
-                                                max="100"
+                                                max="30"
                                                 value="0"
                                                 class="slider"
                                                 v-model="reviewsNum"
@@ -176,6 +175,7 @@
                                     @click="
                                         () => {
                                             getSearch();
+                                            getPremiumUsers();
                                         }
                                     "
                                     class="itf-btn itf-btn-tertiary itf-btn-full-width itf-btn-small"
@@ -232,7 +232,12 @@
                             <div class="search-bar-container-item">
                                 <button
                                     class="itf-btn itf-btn-primary itf-btn-small"
-                                    @click="getSearch"
+                                    @click="
+                                        () => {
+                                            getSearch();
+                                            getPremiumUsers();
+                                        }
+                                    "
                                 >
                                     Search
                                 </button>
@@ -344,9 +349,12 @@
                                                     class="sidebar-item-body-content-item-input"
                                                     @click="
                                                         () => {
-                                                            handleSelection(
-                                                                tech.id,
-                                                                selectedTechnologies
+                                                            // handleSelection(
+                                                            //     tech.id,
+                                                            //     selectedTechnologies
+                                                            // );
+                                                            handleTechSelection(
+                                                                tech.id
                                                             );
                                                         }
                                                     "
@@ -421,7 +429,7 @@
                                                     <input
                                                         type="range"
                                                         min="0"
-                                                        max="100"
+                                                        max="30"
                                                         value="0"
                                                         class="slider"
                                                         v-model="reviewsNum"
@@ -440,6 +448,7 @@
                                         () => {
                                             toggleFilter();
                                             getSearch();
+                                            getPremiumUsers();
                                         }
                                     "
                                     class="itf-btn itf-btn-tertiary itf-btn-full-width"
@@ -463,6 +472,12 @@
                     </div>
                     <div class="results-section">
                         <div v-if="users.length > 0" class="results">
+                            <UserCard
+                                v-for="premiumUser in premiumUsers"
+                                :key="premiumUser.id"
+                                :user="premiumUser"
+                                :premium="true"
+                            />
                             <UserCard
                                 v-for="user in users"
                                 :key="user.id"
@@ -609,6 +624,7 @@ export default {
             selectedSpecializations: [],
             selectedTechnologies: [],
             users: [],
+            premiumUsers: [],
 
             pagination: {
                 currentPage: 1,
@@ -636,9 +652,22 @@ export default {
     },
     methods: {
         getPremiumUsers() {
-            axios.get("/api/best-users").then((response) => {
-                this.premiumUsers = response.data;
-            });
+            axios
+                .get("/api/searchPremiumUsers", {
+                    params: {
+                        value: this.searchQuery,
+                        specializations: this.selectedSpecializations,
+                        technologies: this.selectedTechnologies,
+                        reviews: this.reviews,
+                    },
+                })
+                .then((response) => {
+                    this.premiumUsers = response.data;
+                    console.log("premium users", this.premiumUsers);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         },
         getSearch(page) {
             // console.log(this.searchQuery, specializations);
@@ -700,6 +729,7 @@ export default {
         checkForParams() {
             if (!this.$route.params.specialization) {
                 this.getSearch();
+                this.getPremiumUsers();
                 return;
             }
             this.initialSpec = this.$route.params.specialization
@@ -716,8 +746,10 @@ export default {
                 if (spec) {
                     this.selectedSpecializations.push(spec.id);
                     this.getSearch();
+                    this.getPremiumUsers();
                 } else {
                     this.getSearch();
+                    this.getPremiumUsers();
                 }
             }
         },
@@ -730,6 +762,16 @@ export default {
                 this.selectedSpecializations.push(id);
             }
             console.log(this.selectedSpecializations);
+        },
+        handleTechSelection(id) {
+            if (this.selectedTechnologies.includes(id)) {
+                this.selectedTechnologies = this.selectedTechnologies.filter(
+                    (item) => item !== id
+                );
+            } else {
+                this.selectedTechnologies.push(id);
+            }
+            console.log(this.selectedTechnologies);
         },
         handleSelection(id, list) {
             if (list.includes(id)) {
