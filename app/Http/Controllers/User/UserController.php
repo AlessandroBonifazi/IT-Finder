@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Braintree\Gateway;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Review;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -46,7 +47,6 @@ class UserController extends Controller
     // Function used by registratio and dev update
     public function updateProfile(Request $request, $id)
     {
-
         $user = User::find($id);
         $user->name = $request->name;
         $user->surname = $request->surname;
@@ -93,29 +93,31 @@ class UserController extends Controller
     {
         //
         $user = User::find($id);
-            if ($request->techId) {
-                foreach ($request->techId as $techId) {
-                    $user->technologies()->sync([
-                        ['technology_id' => $techId],
-                    ], false);
-                }
-            } elseif ($request->techName) {
-                foreach ($request->techName as $techName) {
-                    $user->technologies()->create([
-                        // "user_id" => $user->id,
-                        "name" => $techName,
-                        "logo" => $request->logo,
-                    ]);
-                }
+        if ($request->techId) {
+            foreach ($request->techId as $techId) {
+                $user
+                    ->technologies()
+                    ->sync([["technology_id" => $techId]], false);
             }
+        } elseif ($request->techName) {
+            foreach ($request->techName as $techName) {
+                $user->technologies()->create([
+                    // "user_id" => $user->id,
+                    "name" => $techName,
+                    "logo" => $request->logo,
+                ]);
+            }
+        }
         $user->save();
         return redirect()->route("user.dashboard");
     }
     //Image Storage
-    public function storage(){
-        $img = Storage::put('uploads', $data['image']);
-        $data['image'] = $img;
-    }
+    // ?------------------------------- Is this function used?
+    // public function storage()
+    // {
+    //     $img = Storage::put("uploads", $data["image"]);
+    //     $data["image"] = $img;
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -146,7 +148,7 @@ class UserController extends Controller
             $user->contactInfo()->delete();
         }
         $user->delete();
-        return view('auth.delete');
+        return view("auth.delete");
     }
 
     public function dashboard()
@@ -157,9 +159,26 @@ class UserController extends Controller
         $messages = $user->messages->take(3);
         $reviews = $user->reviews->take(3);
         $promos = $user->promos;
+
+        // ! I don't know why but this is not working
+        // $avg_rating = $user->reviews->avg("valutation");
+        $totalReviews = $user->reviews->count();
+        $totalMessages = $user->messages->count();
+        $avg_rating = Review::where("user_id", $user->id)->avg("valutation");
+
         return view(
             "auth.dashboard",
-            compact("user", "specializations", "messages", "contacts", "reviews", "promos")
+            compact(
+                "user",
+                "specializations",
+                "messages",
+                "contacts",
+                "reviews",
+                "promos",
+                "avg_rating",
+                "totalReviews",
+                "totalMessages"
+            )
         );
     }
 
@@ -169,7 +188,8 @@ class UserController extends Controller
         $contacts = $user->contactInfo;
         $specializations = $user->specializations;
         $techs = $user->technologies;
-        return view( "auth.profile",
+        return view(
+            "auth.profile",
             compact("user", "contacts", "specializations", "techs")
         );
     }
@@ -203,7 +223,4 @@ class UserController extends Controller
         Auth::logout();
         return redirect("/");
     }
-
-
-
 }
