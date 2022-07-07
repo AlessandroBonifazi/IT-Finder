@@ -40,7 +40,12 @@
                     v-for="tech in user.technologies.slice(0, 5)"
                     :key="tech.name + '-' + user.name"
                 >
-                    <div class="tech-stack-list-item-icon">
+                    <div
+                        class="tech-stack-list-item-icon"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        :title="tech.name"
+                    >
                         <img :src="tech.logo" />
                     </div>
                 </div>
