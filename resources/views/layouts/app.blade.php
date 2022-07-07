@@ -29,44 +29,51 @@
 
 <body>
     <div id="app">
-        <div class="row h-100 mt-5">
+        <div class="row h-100 mt-5 mx-1">
             <div class="col-sm-2 col-md-2">
-                <div class="row bg-light py-0 my-0 rounded">
+                <div class="itf-card">
+                    {{-- title --}}
+                    <div class="itf-card-header">
+                        <h3 class="itf-card-title">ITFinder</h3>
+                    </div>
                     {{-- Nav --}}
-                    <nav class="navbar py-5 navbar-expand-md">
-                        <div class="container-fluid">
-                            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"><i class="bi bi-list"></i></span>
-                            </button>
-                            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                                <ul>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('user.dashboard') }}">Dashboard</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('user.profile') }}">Profile</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('user.messages') }}">Messagges</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('user.reviews') }}">Reviews</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('user.checkin') }}">Promo</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Statistics</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <form action="{{ route('user.logout') }}" method="get">
-                                            <button class="nav-link" type="submit">Logout</button>
-                                        </form>
-                                    </li>
-                                </ul>
-                            </div>
+                    <nav class="navbar navbar-expand-md">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"><i class="bi bi-list"></i></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                            <ul>
+                                <li class="nav-item">
+                                    <a class="nav-link ff-body text-dark font-weight-bold"
+                                        href="{{ route('user.dashboard') }}">Dashboard</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link ff-body text-dark font-weight-bold"
+                                        href="{{ route('user.profile') }}">Profile</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link ff-body text-dark font-weight-bold"
+                                        href="{{ route('user.messages') }}">Messagges</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link ff-body text-dark font-weight-bold"
+                                        href="{{ route('user.reviews') }}">Reviews</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link ff-body text-dark font-weight-bold"
+                                        href="{{ route('user.checkin') }}">Promo</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link ff-body text-dark font-weight-bold" href="#">Statistics</a>
+                                </li>
+                                <li class="nav-item mt-5">
+                                    <form action="{{ route('user.logout') }}" method="get">
+                                        <button class="itf-btn itf-btn-primary m-2 p-2" type="submit">Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
                         </div>
                     </nav>
                 </div>
