@@ -25,6 +25,15 @@ class StoricController extends Controller
         //Ultima sponsorizzazione
         $lastPromo = (($user->promos->count())-1);
 
+        //Se è già presente una promo attiva
+        if($lastPromo>0){
+            //Seleziono la tipologia
+            $lastPromoType= $user->promos[$lastPromo]->type;
+            //Seleziono la durata dell'ultima promo
+            $lastPromoDuration = $user->promos[$lastPromo]->duration;
+
+        }
+
 
 
        return view('auth.storic');
