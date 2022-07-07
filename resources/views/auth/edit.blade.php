@@ -7,17 +7,14 @@
                 <h3 class="itf-card-title">Edit User</h3>
             </div>
             <div class="itf-card-body">
-
                 <form action="{{ route('user.update-profile', $user->id) }}" method="post">
                     @csrf
                     @method('PUT')
                     {{-- Name --}}
                     <div class="row">
                         <div class="col-6">
-
                             <div class="itf-form-box">
                                 <label for="name" class="itf-form-label">Name*</label>
-
                                 <input class="itf-form-control" type="text" name="name" id="name"
                                     value="{{ old('name', $user->name) }}" required>
                                 @error('name')
@@ -25,8 +22,6 @@
                                 @enderror
                             </div>
                         </div>
-
-
                         {{-- Surname --}}
                         <div class="col-6">
                             <div class="itf-form-box">
@@ -50,7 +45,6 @@
                             </div>
                         </div>
                     </div>
-
                     {{-- Contact-phone --}}
                     <div class="row">
                         <div class="col-6">
@@ -97,7 +91,6 @@
                             </div>
                         </div>
                     </div>
-
                     {{-- Location --}}
                     <div class="row">
                         <div class="col-12">
@@ -113,7 +106,6 @@
                     </div>
                     {{-- Specializations --}}
                     <div class="itf-form-box">
-
                         <h5 class="itf-form-label">Update your Specializations</h5>
                         <div class="itf-checkbox-list yellow-95">
                             @foreach ($specializations as $spec)
@@ -159,9 +151,7 @@
                         @method('PUT')
                         <div class="itf-card-header">
                             <h5 class="itf-card-title">Add Technologies you know</h5>
-
                         </div>
-
                         <div class="itf-card-body">
                             <div class="itf-checkbox-list">
                                 @foreach ($techs as $tech)
@@ -188,7 +178,6 @@
                                 @endif
                             </div>
                         </div>
-
                         {{-- submit --}}
                     </form>
                 </div>
@@ -203,7 +192,6 @@
                         </div>
                         <div class="itf-card-body">
                             <div class="my-3">
-
                                 <div class="itf-form-box">
                                     <label for="techName[]" class="itf-form-label">Name*</label>
                                     <input type="text" class="itf-form-control" name="techName[]" required>
@@ -211,7 +199,6 @@
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-
                                 <div class="itf-form-box">
                                     <label for="formFileSm"class="itf-form-label">Add Logo*</label>
                                     <input name="logo" class="itf-form-control" id="formFileSm" type="file"
@@ -241,7 +228,5 @@
                 </div>
             </div>
         </div>
-
-    </div>
     </div>
 @endsection

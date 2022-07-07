@@ -21,10 +21,6 @@ Route::middleware("auth:api")->group(function () {
     });
 });
 
-// Route::get("/user/{id}/edit", "Api\UserController@edit")->name("user.edit");
-// Route::get("/contact", "Api\UserController@update")->name("user.index");
-// Route::get("/user", "Api\UserController@show")->name("user.show");
-
 Route::post(
     "/{id}/completeRegistration",
     "Api\UserController@completeRegistration"

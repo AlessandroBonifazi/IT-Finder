@@ -10,7 +10,6 @@
                         <a class="text-decoration-none text-white p-2" href="/">Return to Home</a>
                     </button>
                 </div>
-
             </div>
         </div>
     </div>
