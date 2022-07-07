@@ -51,7 +51,7 @@ class StoricController extends Controller
             $lastPromoDuration = "";
             $lastEndDate = "";
         }
-       return view('auth.storic',compact('lastPromoType', 'lastPromoDuration', 'lastPromo','promos','user'));
+       return view('auth.storic',compact('lastPromoType', 'lastPromoDuration','lastEndDate', 'lastPromo','promos','user'));
     }
 
 
