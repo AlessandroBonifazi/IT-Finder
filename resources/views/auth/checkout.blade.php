@@ -5,19 +5,19 @@
             <div class="row">
                 {{-- Promo --}}
                 <div style="height: 500px; " class="col-md-12 col-lg-6 grid-margin stretch-card my-3 overflow-auto h-100">
-                    <div class="card p-3">
-                        <div class="card-body  overflow-auto">
+                    <div class="itf-card">
+                        <div class="itf-card-header">
                             {{-- title --}}
-                            <h5 class="card-title">You choose Type: {{ $promo->type }}</h5>
+                            <h5 class="itf-card-title">You choose Type: {{ $promo->type }}</h5>
+                        </div>
+                        <div class="itf-card-body">
                             <li class="list-group-item w-75">
                                 <p>Duration: {{ $promo->duration }} days</p>
                                 Price: {{ $promo->price }}$
                             </li>
-                        </div>
-                        <div>
                             Are you sure?
                             <p>Continue here for the payment or
-                            <div><a href="{{ route('user.checkin') }}">Go Back</a></div>
+                                <a href="{{ route('user.checkin') }}">Go Back</a>
                             </p>
                             <form id="payment-form" action="{{ route('user.payment') }}" method="POST"
                                 enctype="multipart/form-data">
@@ -47,7 +47,6 @@
                                     <button class="button btn btn-success" type="submit"><span>BUY</span></button>
                                 </div>
                             </form>
-
                         </div>
                     </div>
                 </div>
