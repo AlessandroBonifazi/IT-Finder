@@ -94,19 +94,12 @@ class UserController extends Controller
         //
         $user = User::find($id);
         if ($request->techId) {
-            foreach ($request->techId as $techId) {
-                $user
-                    ->technologies()
-                    ->sync([["technology_id" => $techId]], false);
-            }
+                $user->technologies()->sync($request->techId);
         } elseif ($request->techName) {
-            foreach ($request->techName as $techName) {
                 $user->technologies()->create([
-                    // "user_id" => $user->id,
-                    "name" => $techName,
+                    "name" => $request->techName,
                     "logo" => $request->logo,
                 ]);
-            }
         }
         $user->save();
         return redirect()->route("user.dashboard");
