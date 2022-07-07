@@ -44,7 +44,12 @@
                                         >
                                             <input
                                                 type="checkbox"
-                                                :checked="isChecked(spec.id)"
+                                                :checked="
+                                                    isChecked(
+                                                        spec.id,
+                                                        selectedSpecializations
+                                                    )
+                                                "
                                                 :id="spec.id"
                                                 class="sidebar-item-body-content-item-input"
                                                 @click="
@@ -62,6 +67,47 @@
                                                 {{ spec.specialization }}
                                             </label>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sidebar-item">
+                            <!-- Technologies filter -->
+                            <div class="sidebar-item-header">
+                                <h4 class="sidebar-item-title">Technologies</h4>
+                            </div>
+                            <div class="sidebar-item-body-list">
+                                <div class="sidebar-item-body-content">
+                                    <div
+                                        v-for="tech in technologies"
+                                        :key="tech.id"
+                                        class="sidebar-item-body-content-item"
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            :checked="
+                                                isChecked(
+                                                    tech.id,
+                                                    selectedTechnologies
+                                                )
+                                            "
+                                            :id="tech.name"
+                                            class="sidebar-item-body-content-item-input"
+                                            @click="
+                                                () => {
+                                                    handleSelection(
+                                                        tech.id,
+                                                        selectedTechnologies
+                                                    );
+                                                }
+                                            "
+                                        />
+                                        <label
+                                            :for="tech.name"
+                                            class="sidebar-item-body-content-item-label"
+                                        >
+                                            {{ tech.name }}
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -175,11 +221,12 @@
                                 </button>
                             </div>
                             <div class="search-bar-container-item">
-                                <input
-                                    type="text"
-                                    class="search-bar-container-item-input"
-                                    placeholder="Search"
+                                <vue-bootstrap-typeahead
                                     v-model="searchQuery"
+                                    placeholder="Search"
+                                    :data="searchList"
+                                    :inputClass="'itf-form-control'"
+                                    class="search-bar-container-item-input"
                                 />
                             </div>
                             <div class="search-bar-container-item">
@@ -238,7 +285,10 @@
                                                     <input
                                                         type="checkbox"
                                                         :checked="
-                                                            isChecked(spec.id)
+                                                            isChecked(
+                                                                spec.id,
+                                                                selectedSpecializations
+                                                            )
                                                         "
                                                         :id="
                                                             spec.specialization
@@ -246,8 +296,9 @@
                                                         class="sidebar-item-body-content-item-input"
                                                         @click="
                                                             () => {
-                                                                handleSpecSelection(
-                                                                    spec.id
+                                                                handleSelection(
+                                                                    spec.id,
+                                                                    selectedSpecializations
                                                                 );
                                                             }
                                                         "
@@ -263,6 +314,49 @@
                                                         }}
                                                     </label>
                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sidebar-item">
+                                    <!-- Technologies filter -->
+                                    <div class="sidebar-item-header">
+                                        <h4 class="sidebar-item-title">
+                                            Technologies
+                                        </h4>
+                                    </div>
+                                    <div class="sidebar-item-body-list">
+                                        <div class="sidebar-item-body-content">
+                                            <div
+                                                v-for="tech in technologies"
+                                                :key="tech.id"
+                                                class="sidebar-item-body-content-item"
+                                            >
+                                                <input
+                                                    type="checkbox"
+                                                    :checked="
+                                                        isChecked(
+                                                            tech.id,
+                                                            selectedTechnologies
+                                                        )
+                                                    "
+                                                    :id="tech.name"
+                                                    class="sidebar-item-body-content-item-input"
+                                                    @click="
+                                                        () => {
+                                                            handleSelection(
+                                                                tech.id,
+                                                                selectedTechnologies
+                                                            );
+                                                        }
+                                                    "
+                                                />
+                                                <label
+                                                    :for="tech.name"
+                                                    class="sidebar-item-body-content-item-label"
+                                                >
+                                                    {{ tech.name }}
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
@@ -498,18 +592,24 @@
 import UserCard from "./../components/UserCard.vue";
 import HeaderComponent from "./../components/HeaderComponent.vue";
 import FooterComponent from "./../components/FooterComponent.vue";
+import VueBootstrapTypeahead from "vue-bootstrap-typeahead";
+
 export default {
     components: {
         UserCard,
         HeaderComponent,
         FooterComponent,
+        VueBootstrapTypeahead,
     },
     data() {
         return {
             searchQuery: "",
             specializations: {},
+            technologies: {},
             selectedSpecializations: [],
+            selectedTechnologies: [],
             users: [],
+
             pagination: {
                 currentPage: 1,
                 totalPages: 1,
@@ -521,12 +621,25 @@ export default {
             reviewsNum: "",
             isFilterShown: false,
             initialSpec: "",
+            searchList: [],
+            selectedSearch: "",
         };
     },
-    mounted() {
+    computed: {
+        searchData() {
+            return this.searchList;
+        },
+    },
+    created() {
         this.getSpecializations();
+        this.getTechnologies();
     },
     methods: {
+        getPremiumUsers() {
+            axios.get("/api/best-users").then((response) => {
+                this.premiumUsers = response.data;
+            });
+        },
         getSearch(page) {
             // console.log(this.searchQuery, specializations);
             window.axios
@@ -534,6 +647,7 @@ export default {
                     params: {
                         value: this.searchQuery,
                         specializations: this.selectedSpecializations,
+                        technologies: this.selectedTechnologies,
                         reviews: this.reviews,
                         reviewsNum: this.reviewsNum,
                         page: page || 1,
@@ -556,6 +670,11 @@ export default {
                 .get("http://127.0.0.1:8000/api/specializations")
                 .then((response) => {
                     this.specializations = response.data;
+
+                    this.specializations.forEach((specialization) => {
+                        this.searchList.push(specialization.specialization);
+                    });
+                    console.log(this.searchList);
                     console.log("specialization", response.data);
                     this.checkForParams();
                 })
@@ -563,6 +682,21 @@ export default {
                     console.log(error);
                 });
         },
+        getTechnologies() {
+            window.axios
+                .get("http://127.0.0.1:8000/api/technologies")
+                .then((response) => {
+                    this.technologies = response.data;
+                    this.technologies.forEach((technology) => {
+                        this.searchList.push(technology.name);
+                    });
+                    console.log("technologies", response.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+
         checkForParams() {
             if (!this.$route.params.specialization) {
                 this.getSearch();
@@ -597,6 +731,14 @@ export default {
             }
             console.log(this.selectedSpecializations);
         },
+        handleSelection(id, list) {
+            if (list.includes(id)) {
+                list = list.filter((item) => item !== id);
+            } else {
+                list.push(id);
+            }
+            console.log(list);
+        },
 
         scrollToTop() {
             window.scrollTo({
@@ -607,8 +749,8 @@ export default {
         toggleFilter() {
             this.isFilterShown = !this.isFilterShown;
         },
-        isChecked(id) {
-            return this.selectedSpecializations.includes(id);
+        isChecked(id, list) {
+            return list.includes(id);
         },
     },
 };
@@ -729,7 +871,8 @@ export default {
     top: 0;
     right: 0;
     left: 0;
-    z-index: 5;
+    z-index: 20;
+
     background: $white;
     box-shadow: $box-shadow-primary;
     border-bottom-left-radius: 10px;
@@ -831,7 +974,7 @@ export default {
     width: 100%;
     padding: 20px;
     position: relative;
-    min-height: 60vh;
+    min-height: 100vh;
 
     .results {
         align-content: stretch;
