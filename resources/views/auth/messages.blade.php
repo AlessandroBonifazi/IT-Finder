@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- Messages --}}
-    <div class="order-sm-2 order-md-1 col-sm-10 col-md-6 col-lg-8">
+    <div class="col-sm-10 order-sm-2 offset-sm-2 col-md-8 order-md-1 offset-md-1 col-lg-8">
         <div class="row">
             <div class="col-12">
                 <div class="itf-card">
