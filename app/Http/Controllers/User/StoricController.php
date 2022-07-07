@@ -19,6 +19,13 @@ class StoricController extends Controller
      */
     public function storic()
     {
+        //Per richiamare il nome dell'utente
+        $user = User::find(Auth::id());
+        $promos = $user->promos;
+        //Ultima sponsorizzazione
+        $lastPromo = (($user->promos->count())-1);
+
+
 
        return view('auth.storic');
     }
