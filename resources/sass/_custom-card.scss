@@ -28,32 +28,31 @@
             color: $fc-grey-dark;
             font-family: $ff-heading;
         }
+    }
+    .itf-is-invalid {
+        border: 1px solid $coral-50;
+        outline: 2px solid $coral-50;
+    }
+    .itf-invalid-feedback {
+        color: $coral-50;
+        font-size: 0.9rem;
+        font-family: $ff-body;
+    }
+}
+.itf-form-control {
+    border-radius: $border-radius-small;
+    border: 1px solid $fc-grey-clear;
+    padding: 10px;
+    font-size: 1.2rem;
+    color: $fc-grey-dark;
+    font-family: $ff-body;
+    font-weight: 400;
+    outline: none;
+    width: 100%;
 
-        .itf-form-control {
-            border-radius: $border-radius-small;
-            border: 1px solid $fc-grey-clear;
-            padding: 10px;
-            font-size: 1.2rem;
-            color: $fc-grey-dark;
-            font-family: $ff-body;
-            font-weight: 400;
-            outline: none;
-            width: 100%;
-
-            &:focus {
-                border: 1px solid $fc-accent-yellow;
-                outline: 2px solid $fc-accent-yellow;
-            }
-        }
-        .itf-is-invalid {
-            border: 1px solid $coral-50;
-            outline: 2px solid $coral-50;
-        }
-        .itf-invalid-feedback {
-            color: $coral-50;
-            font-size: 0.9rem;
-            font-family: $ff-body;
-        }
+    &:focus {
+        border: 1px solid $fc-accent-yellow;
+        outline: 2px solid $fc-accent-yellow !important;
     }
     .itf-skip-link {
         color: $green-40;
