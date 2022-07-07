@@ -30,8 +30,7 @@
 <body>
     <div id="app">
         <div class="row mt-5 mx-1">
-            <div class="col-12 col-sm-6 offset-sm-3 col-md-2 offset-md-0 col-lg-2">
-
+            <div class="col-12 col-sm-6 offset-sm-3 col-md-2 offset-md-0 col-lg-2 mb-3">
                 <div class="itf-card">
                     {{-- title --}}
                     <div class="itf-card-header">
@@ -79,7 +78,6 @@
                         </div>
                     </nav>
                 </div>
-
             </div>
             <div class="col-12 col-sm-10 col-md-10 col-lg-10 offset-lg-0 ">
                 @yield('content')
