@@ -197,10 +197,12 @@ class UserController extends Controller
     {
         $search = $request->value;
         $specializationIdArray = $request->specializations;
+        $technologiesIdArray = $request->technologies;
         $reviews = $request->reviews;
         $reviewsNum = $request->reviewsNum;
 
         $query = $user->newQuery();
+        // $sponsoredQuery = $user->newQuery();
         // Filter: name, surname, spec
         if (!empty($request->value) && $request->value != "AllUsers") {
             $query->where(function (EloquentBuilder $query) use ($search) {
@@ -215,6 +217,9 @@ class UserController extends Controller
                             "like",
                             "%" . $search . "%"
                         );
+                    })
+                    ->orWhereHas("technologies", function ($q) use ($search) {
+                        $q->where("name", "like", "%" . $search . "%");
                     });
             });
         }
@@ -224,28 +229,49 @@ class UserController extends Controller
                 $specializationIdArray
             ) {
                 $q->whereIn("id", $specializationIdArray);
+                // $q->where("id", $specializationIdArray)->a
+            });
+        }
+        // Filter: Technologies
+        if (!empty($technologiesIdArray)) {
+            $query->whereHas("technologies", function ($q) use (
+                $technologiesIdArray
+            ) {
+                $q->whereIn("id", $technologiesIdArray);
             });
         }
         // Filter: valutation avg
         if (!empty($reviews)) {
             $query
                 ->join("reviews", "users.id", "=", "reviews.user_id")
-                ->select("users.*")
+                ->selectRaw("users.*, AVG(reviews.valutation) as avg_rating")
                 ->groupBy("reviews.user_id")
-                ->havingRaw("AVG(reviews.valutation) >= ?", [$reviews]);
-
-            if (!empty($reviewsNum)) {
-                $query->havingRaw("COUNT(reviews.user_id) >= ?", [$reviewsNum]);
-            }
-        }
-        // Filter: reviews number
-        if (!empty($reviewsNum) && empty($reviews)) {
+                ->orderBy("avg_rating", "desc")
+                ->havingRaw("avg_rating >= ?", [$reviews]);
+        } else {
             $query
                 ->join("reviews", "users.id", "=", "reviews.user_id")
-                ->select("users.*")
+                ->selectRaw("users.*, AVG(reviews.valutation) as avg_rating")
                 ->groupBy("reviews.user_id")
-                ->havingRaw("COUNT(reviews.user_id) >= ?", [$reviewsNum]);
+                ->orderBy("avg_rating", "desc");
         }
+        // Filter: reviews number
+        if (!empty($reviewsNum)) {
+            $query
+                // ->join("reviews", "users.id", "=", "reviews.user_id")
+                ->selectRaw("COUNT(reviews.user_id) as reviews_number")
+                ->groupBy("reviews.user_id")
+                ->orderBy("review_number", "desc")
+                ->havingRaw("reviews_number >= ?", [$reviewsNum]);
+        } else {
+            $query
+                // ->join("reviews", "users.id", "=", "reviews.user_id")
+                ->selectRaw("COUNT(reviews.user_id) as reviews_number")
+                ->groupBy("reviews.user_id")
+                ->orderBy("reviews_number", "desc");
+        }
+
+        // ->groupBy("promo_id");
 
         $users = $query->paginate(12);
 
@@ -255,6 +281,7 @@ class UserController extends Controller
             $user->reviews;
             $user->rating = $user->reviews->avg("valutation");
             $user->reviewsNum;
+            $user->promos;
         }
 
         return response()->json($users);
@@ -266,10 +293,14 @@ class UserController extends Controller
         $query
             ->join("promo_user", "users.id", "=", "promo_user.user_id")
             ->select("users.*");
-        $users = $query->take(6)->get();
+        $users = $query->get();
+
+        // take only random
+        $users = $users->random(6);
         $users->each(function ($user) {
             $user->specializations;
             $user->technologies;
+            $user->promos;
         });
         return response()->json($users);
     }
