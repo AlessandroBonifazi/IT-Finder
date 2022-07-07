@@ -1,18 +1,20 @@
 <?php
 
 namespace App\Http\Controllers\User;
-use \Braintree\Gateway;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use Carbon\Carbon;
 use App\User;
 use App\Promo;
+use Carbon\Carbon;
+use Braintree\Gateway;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 
 class PromoController extends Controller
 {
     //
+    private $db;
     public function checkIn(){
         $promos=Promo::all();
         return view('auth.checkin', compact('promos'));
@@ -45,24 +47,43 @@ class PromoController extends Controller
           'options' => ['submitForSettlement' => true]
         ]);
         if ($result->success) {
-            $user->promos()->sync($idPromo);
-            $activePromo = $user->promo;
-            if($activePromo){
-                $promoCount = $user->promo->count();
-                if (!$activePromo) {
-                    $dateEnd = Carbon::now()->addHour($promo->duration);
-                    $user->promo()->attach($idPromo, [
-                      'endDate' => $dateEnd,
-                    ]);
-                } else {
-                    $dateEndLastPromo = $user->promo->last()->pivot->endDate;
-                    $lastDateEnd = Carbon::parse($dateEndLastPromo)->addHour($promo->duration);
-                    $user->promo()->attach($idPromo, [
-                      'endDate' => $lastDateEnd,
-                    ]);
-                }
-            }
+            $dateEnd = Carbon::now()->addHour($promo->duration);
+            $user->promos()->attach($idPromo, [
+                'endDate'=> $dateEnd,
+            ]);
+            $lastPromoDateEnd = $user->promos->last()->pivot->endDate;
+            dd($lastPromoDateEnd);
+
+            // $lastPromoEndDate =Carbon::parse($lastDate)->addHour($promo->duration);
+
+
+
+            // $user->promos()->sync($idPromo);
+            // $activePromo = $user->promo;
+            // $today = now();
+            // if($activePromo){
+
+                // $user->promos()->sync($idPromo)->getTimestamp();
+            // }
+            // $dateEndLastPromo = $user->promo->created_at;
+            // dd($dateEndLastPromo);
+            // $promoCount = $user->promo->count();
+            // if (!$activePromo) {
+                // $dateEnd = Carbon::parse($dateEndLastPromo)->addHour();
+
+
+                // $user->promo()->sync([
+                //   'endDate' => $dateEnd,
+                // ]);
+            // } else {
+                // $lastDateEnd = Carbon::parse($dateEndLastPromo)->addHour($promo->duration);
+                // $user->promo()->attach($idPromo, [
+                //   'endDate' => $lastDateEnd,
+                // ]);
+            // }
         }
+
         return view('auth.confirmed', ['promo' => $promo]);
     }
+
 }
