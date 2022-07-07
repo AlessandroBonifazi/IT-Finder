@@ -1,5 +1,8 @@
 <template>
     <div class="itf-user-card">
+        <div v-if="premium" class="premium-tag">
+            <span>Promotion</span>
+        </div>
         <div class="itf-user-card-header">
             <div class="itf-user-card-header-avatar">
                 <img :src="handleImgPath(user.img_path)" />
@@ -75,6 +78,11 @@ export default {
             type: Object,
             required: true,
         },
+        premium: {
+            type: Boolean,
+            required: false,
+            default: false,
+        },
     },
     methods: {
         handleImgPath(imgPath) {
@@ -133,6 +141,18 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     align-items: stretch;
+}
+.premium-tag {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: $coral-50;
+    color: $white;
+    padding: 5px 10px;
+    border-bottom-right-radius: $border-radius-small;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 .itf-user-card-header {
     &-avatar {
