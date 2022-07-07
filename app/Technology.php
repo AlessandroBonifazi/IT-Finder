@@ -14,6 +14,6 @@ class Technology extends Model
 
     public function users()
     {
-        return $this->belongsToMany("App\User");
+        return $this->belongsToMany("App\User")->withPivot('user_id', 'technology_id');;
     }
 }
