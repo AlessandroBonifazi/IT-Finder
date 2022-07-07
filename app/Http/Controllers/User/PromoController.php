@@ -37,50 +37,33 @@ class PromoController extends Controller
         $idPromo = $request->id;
         $promo = Promo::find($idPromo);
         $user = User::find(Auth::id());
-        $activePromo = $user->promo;
+        $activePromo = $user->promos->count();
         $amount = $promo->price;
         $nonce = $request->payment_method_nonce;
-        $sponsorshipName = $promo->name;
+        $promoType = $promo->type;
         $result = $gateway->transaction()->sale([
           'amount' => $amount,
           'paymentMethodNonce' => $nonce,
           'options' => ['submitForSettlement' => true]
         ]);
         if ($result->success) {
-            $dateEnd = Carbon::now()->addHour($promo->duration);
-            $user->promos()->attach($idPromo, [
-                'endDate'=> $dateEnd,
-            ]);
-            $lastPromoDateEnd = $user->promos->last()->pivot->endDate;
-            dd($lastPromoDateEnd);
 
-            // $lastPromoEndDate =Carbon::parse($lastDate)->addHour($promo->duration);
+                if($activePromo==0){
 
+                    $endDate = Carbon::now()->addHour($promo->duration);
 
+                    $user->promos()->attach($idPromo, [
+                        'endDate'=> $endDate,
+                    ]);
 
-            // $user->promos()->sync($idPromo);
-            // $activePromo = $user->promo;
-            // $today = now();
-            // if($activePromo){
+                }else{
+                    $lastPromoDateEnd = $user->promos->last()->pivot->endDate;
+                    $lastEndDate = Carbon::parse($lastPromoDateEnd)->addHour($promo->duration);
+                    $user->promos()->attach($idPromo, [
+                      'endDate' => $lastEndDate,
+                    ]);
 
-                // $user->promos()->sync($idPromo)->getTimestamp();
-            // }
-            // $dateEndLastPromo = $user->promo->created_at;
-            // dd($dateEndLastPromo);
-            // $promoCount = $user->promo->count();
-            // if (!$activePromo) {
-                // $dateEnd = Carbon::parse($dateEndLastPromo)->addHour();
-
-
-                // $user->promo()->sync([
-                //   'endDate' => $dateEnd,
-                // ]);
-            // } else {
-                // $lastDateEnd = Carbon::parse($dateEndLastPromo)->addHour($promo->duration);
-                // $user->promo()->attach($idPromo, [
-                //   'endDate' => $lastDateEnd,
-                // ]);
-            // }
+                }
         }
 
         return view('auth.confirmed', ['promo' => $promo]);
