@@ -30,7 +30,8 @@ class StoricController extends Controller
         // dd($promos);
 
         //Ultima sponsorizzazione
-        $lastPromo = (($user->promos->count())-1);
+        $lastPromo= (($user->promos->count())-1);
+        // dd($lastPromo);
 
 
         //Se è già presente una promo attiva
@@ -39,19 +40,21 @@ class StoricController extends Controller
             $lastPromoType= $user->promos[$lastPromo]->type;
             //Seleziono la durata dell'ultima promo
             $lastPromoDuration = $user->promos[$lastPromo]->duration;
+
             //Data scadenza
             $lastEndDatePromo = $user->promos[$lastPromo]->pivot->endDate;
-            $lastEndDate = Carbon::parse($lastEndDatePromo)->addHour($promos);
+            $lastEndDate = Carbon::parse($lastEndDatePromo)->addHour($lastPromoDuration);
             $user->promos()->attach($idPromo, [
                 'endDate' => $lastEndDate,
-            ]);
+              ]);
             // dd($lastEndDate);
+
         }else{
             $lastPromoType = "";
             $lastPromoDuration = "";
             $lastEndDate = "";
         }
-       return view('auth.storic',compact('lastPromoType', 'lastPromoDuration','lastEndDate', 'lastPromo','promos','user'));
+       return view('auth.storic',compact('lastPromoType', 'lastPromoDuration','lastEndDate', 'lastPromo','promos','user','lastEndDatePromo'));
     }
 
 
