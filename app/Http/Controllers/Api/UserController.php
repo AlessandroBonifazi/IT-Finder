@@ -263,8 +263,9 @@ class UserController extends Controller
     public function bestUsers(User $user)
     {
         $query = $user->newQuery();
-        $query->join("promo_user", "users.id", "=", "promo_user.user_id")
-              ->select("users.*");
+        $query
+            ->join("promo_user", "users.id", "=", "promo_user.user_id")
+            ->select("users.*");
         $users = $query->take(6)->get();
         $users->each(function ($user) {
             $user->specializations;

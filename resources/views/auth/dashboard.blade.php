@@ -10,28 +10,22 @@
                         <h4 class="card-title font-weight-medium mb-0">Statistics</h4>
 
                         <div class="row">
-                            <div class="col-sm-12 col-md-6 col-lg-3">
-                                <div>
-                                    <h2>4.5</h2>
+                            <div class="col-sm-12 col-md-6 col-lg-4">
+                                <div class="text-center">
+                                    <h2>{{ $avg_rating || 0 }}</h2>
                                     <h5>Valutation</h5>
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-md-6 col-lg-3">
-                                <div>
-                                    <h2>21</h2>
+                            <div class="col-sm-12 col-md-6 col-lg-4">
+                                <div class="text-center">
+                                    <h2>{{ $totalReviews || 0 }}</h2>
                                     <h5>Total Reviews</h5>
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-md-6 col-lg-3">
-                                <div>
-                                    <h2>21</h2>
+                            <div class="col-sm-12 col-md-6 col-lg-4">
+                                <div class="text-center">
+                                    <h2>{{ $totalMessages || 0 }}</h2>
                                     <h5>Total Messages</h5>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-3">
-                                <div>
-                                    <h2>21</h2>
-                                    <h5>Total Views</h5>
                                 </div>
                             </div>
                         </div>
