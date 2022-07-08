@@ -158,7 +158,15 @@ class UserController extends Controller
         $specializations = $user->specializations;
         $messages = $user->messages->take(3);
         $reviews = $user->reviews->take(3);
-        $promos = $user->promos;
+        $promoQuery = $user
+            ->promos()
+            ->wherePivot("endDate", ">", Carbon::now())
+            ->select("*")
+            ->get();
+        $promo = $promoQuery->count() > 0 ? $promoQuery->last() : null;
+        $promo->timeToEnd = Carbon::parse($promo->endDate)->diffForHumans();
+
+        // $promo->timeToEnd = $promo->endDate->diffForHumans();
 
         // ! I don't know why but this is not working
         // $avg_rating = $user->reviews->avg("valutation");
@@ -174,7 +182,7 @@ class UserController extends Controller
                 "messages",
                 "contacts",
                 "reviews",
-                "promos",
+                "promo",
                 "avg_rating",
                 "totalReviews",
                 "totalMessages"
