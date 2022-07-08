@@ -15,9 +15,11 @@
                                 <p>Duration: {{ $promo->duration }} days</p>
                                 Price: {{ $promo->price }}$
                             </li>
-                            Are you sure?
                             <p>Continue here for the payment or
-                                <a href="{{ route('user.checkin') }}">Go Back</a>
+                            <div class="itf-btn itf-btn-primary w-50 display-4 p-1 text-center">
+                                <a class="text-white" href="{{ route('user.checkin') }}">Go Back</a>
+
+                            </div>
                             </p>
                             <form id="payment-form" action="{{ route('user.payment') }}" method="POST"
                                 enctype="multipart/form-data">
