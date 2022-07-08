@@ -10,30 +10,34 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-
 class PromoController extends Controller
 {
     //
     private $db;
-    public function checkIn(){
-        $promos=Promo::all();
-        return view('auth.checkin', compact('promos'));
+    public function checkIn()
+    {
+        $promos = Promo::all();
+        return view("auth.checkin", compact("promos"));
     }
 
-    public function checkOut(Gateway $gateway, $id){
-        $user = Auth::user();
-        $user->promos()->sync($id);
+    public function checkOut(Gateway $gateway, $id)
+    {
+        // ! this was the thing that was causing the error
+        // ! keep in mind that payment is a many step process so the errors con be in different places
+        // $user = Auth::user();
+        // $user->promos()->sync($id);
         // $user->promos()->create([
         //     "promo_id" => $id,
         // ]);
-        return view('auth.checkout', [
+        return view("auth.checkout", [
             "id" => $id,
             "token" => $gateway->clientToken()->generate(),
-            "promo" => Promo::find($id)
-          ]);
+            "promo" => Promo::find($id),
+        ]);
     }
 
-    public function payment(Request $request, Gateway $gateway) {
+    public function payment(Request $request, Gateway $gateway)
+    {
         // $idPromo = $request->id;
         $promo = Promo::find($request->id);
         // dd($promo);
@@ -43,39 +47,17 @@ class PromoController extends Controller
         $nonce = $request->payment_method_nonce;
         $promoType = $promo->type;
         $result = $gateway->transaction()->sale([
-          'amount' => $amount,
-          'paymentMethodNonce' => $nonce,
-          'options' => ['submitForSettlement' => true]
+            "amount" => $amount,
+            "paymentMethodNonce" => $nonce,
+            "options" => ["submitForSettlement" => true],
         ]);
         if ($result->success) {
-
-
-
-                    $endDate = Carbon::now()->addHour($promo->duration);
-                    $promo->users()->attach($user->id);
-
-                    // $user->promos()->attach($promo->id);
-
-
-
-                    // $lastPromoDateEnd = $user->promos->last()->pivot->endDate;
-                    // $lastEndDate = Carbon::parse($lastPromoDateEnd)->addHour($promo->duration);
-                    // $user->promos()->attach($idPromo, [
-                    //   'endDate' => $lastEndDate,
-                    // ]);
-
-
+            $endDate = Carbon::now()->addDays($promo->duration);
+            $promo->users()->attach($user->id, [
+                "endDate" => $endDate, // ! be constant with variables names, if all the columns have name in snake_case, then use snake_case for all the new columns too
+            ]);
         }
 
-        return view('auth.confirmed', ['promo' => $promo]);
+        return view("auth.confirmed", ["promo" => $promo]);
     }
-    public function free(){
-        $user = Auth::user();
-        $promoId = 2;
-        $user->promos()->attach($promoId);
-return redirect()->route('user.dashboard', $user->id);
-
-
-    }
-
 }
