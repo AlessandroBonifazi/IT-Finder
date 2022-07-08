@@ -4,28 +4,28 @@
     <div class="row">
         <div class="order-1 col-sm-12 order-sm-2 offset-sm-1 col-md-6 order-md-0 offset-md-0 col-lg-8 col-xl-6 offset-xl-1">
             <div class="row">
-                {{-- Statistiche --}}
+                {{-- Activity --}}
                 <div class="col-md-12 col-lg-12 my-3">
                     <div class="itf-card">
                         <div class="itf-card-header">
-                            <h5 class="itf-card-title">Statistics</h5>
+                            <h5 class="itf-card-title">Your Activity</h5>
                         </div>
                         <div class="row itf-card-body py-5">
                             <div class="col-sm-12 col-md-6 col-lg-4">
                                 <div class="text-center">
-                                    <h2>{{ $avg_rating || 0 }}</h2>
+                                    <h2>{{ round($avg_rating, 1) }}</h2>
                                     <h5>Valutation</h5>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-4">
                                 <div class="text-center">
-                                    <h2>{{ $totalReviews || 0 }}</h2>
+                                    <h2>{{ $totalReviews }}</h2>
                                     <h5>Total Reviews</h5>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-4">
                                 <div class="text-center">
-                                    <h2>{{ $totalMessages || 0 }}</h2>
+                                    <h2>{{ $totalMessages }}</h2>
                                     <h5>Total Messages</h5>
                                 </div>
                             </div>

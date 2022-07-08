@@ -152,13 +152,11 @@ class UserController extends Controller
         $messages = $user->messages->take(3);
         $reviews = $user->reviews->take(3);
         $promos = $user->promos;
-
-        // ! I don't know why but this is not working
-        // $avg_rating = $user->reviews->avg("valutation");
-        $totalReviews = $user->reviews->count();
-        $totalMessages = $user->messages->count();
-        $avg_rating = Review::where("user_id", $user->id)->avg("valutation");
-
+        // Activity
+        $avg_rating = $user->reviews()->avg('valutation');
+        // $avg_rating = (int)$avg_rating;
+        $totalReviews = $user->reviews()->count();
+        $totalMessages = $user->messages()->count();
         return view(
             "auth.dashboard",
             compact(
@@ -201,6 +199,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $messages = $user->messages;
+        // dd($messages);
         return view("auth.messages", compact("user", "messages"));
     }
 
