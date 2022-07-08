@@ -65,7 +65,7 @@ class User extends Authenticatable
 
     public function promos()
     {
-        return $this->belongsToMany("App\Promo");
+        return $this->belongsToMany("App\Promo")->withPivot( "user_id", "promo_id");
     }
 
     public function specializations()

@@ -34,10 +34,11 @@ class PromoController extends Controller
     }
 
     public function payment(Request $request, Gateway $gateway) {
-        $idPromo = $request->id;
-        $promo = Promo::find($idPromo);
+        // $idPromo = $request->id;
+        $promo = Promo::find($request->id);
+        // dd($promo);
         $user = User::find(Auth::id());
-        $activePromo = $user->promos->count();
+        // $activePromoNumber = $user->promos->count();
         $amount = $promo->price;
         $nonce = $request->payment_method_nonce;
         $promoType = $promo->type;
@@ -48,25 +49,33 @@ class PromoController extends Controller
         ]);
         if ($result->success) {
 
-                if($activePromo==0){
+
 
                     $endDate = Carbon::now()->addHour($promo->duration);
+                    $promo->users()->attach($user->id);
 
-                    $user->promos()->attach($idPromo, [
-                        'endDate'=> $endDate,
-                    ]);
+                    // $user->promos()->attach($promo->id);
 
-                }else{
-                    $lastPromoDateEnd = $user->promos->last()->pivot->endDate;
-                    $lastEndDate = Carbon::parse($lastPromoDateEnd)->addHour($promo->duration);
-                    $user->promos()->attach($idPromo, [
-                      'endDate' => $lastEndDate,
-                    ]);
 
-                }
+
+                    // $lastPromoDateEnd = $user->promos->last()->pivot->endDate;
+                    // $lastEndDate = Carbon::parse($lastPromoDateEnd)->addHour($promo->duration);
+                    // $user->promos()->attach($idPromo, [
+                    //   'endDate' => $lastEndDate,
+                    // ]);
+
+
         }
 
         return view('auth.confirmed', ['promo' => $promo]);
+    }
+    public function free(){
+        $user = Auth::user();
+        $promoId = 2;
+        $user->promos()->attach($promoId);
+return redirect()->route('user.dashboard', $user->id);
+
+
     }
 
 }

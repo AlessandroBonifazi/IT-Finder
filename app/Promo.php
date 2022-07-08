@@ -13,6 +13,6 @@ class Promo extends Model
     ];
     public function users()
     {
-        return $this->belongsToMany("App\User")->withTimestamps();
+        return $this->belongsToMany("App\User")->withTimestamps()->withPivot( "user_id", "promo_id");
     }
 }

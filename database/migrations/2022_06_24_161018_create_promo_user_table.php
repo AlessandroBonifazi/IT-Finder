@@ -18,6 +18,7 @@ class CreatePromoUserTable extends Migration
             $table->foreign('user_id')->unsigned()->references('id')->on('users');
 
             $table->unsignedBigInteger('promo_id');
+            $table->id();
             $table->foreign('promo_id')->unsigned()->references('id')->on('promos');
             $table->date('endDate')->nullable();
             $table->timestamps();

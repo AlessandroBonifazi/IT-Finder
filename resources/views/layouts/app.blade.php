@@ -66,12 +66,12 @@
                                         href="{{ route('user.checkin') }}">Promo</a>
                                 </li>
                                 <li class="nav-item">
-                                <li class="nav-item">
+                                    {{-- <li class="nav-item">
                                     <a class="nav-link ff-body text-dark font-weight-bold"
                                         href="{{ route('user.storic') }}">Storic Box</a>
-                                </li>
+                                </li> --}}
 
-                                <a class="nav-link ff-body text-dark font-weight-bold" href="#">Statistics</a>
+                                    <a class="nav-link ff-body text-dark font-weight-bold" href="#">Statistics</a>
                                 </li>
                                 <li class="nav-item mt-5">
                                     <form action="{{ route('user.logout') }}" method="get">
