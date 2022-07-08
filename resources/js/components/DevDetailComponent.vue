@@ -379,6 +379,7 @@ export default {
     font-weight: bold;
     color: $fc-grey-dark;
     font-family: $ff-heading;
+    margin-top: 24px;
 
     @include media-breakpoint-up(md) {
         font-size: 3rem;
