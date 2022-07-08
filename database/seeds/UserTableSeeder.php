@@ -88,7 +88,7 @@ class UserTableSeeder extends Seeder
 
             $user->technologies()->attach(
                 $technologies
-                    ->random(rand(1, count($technologies)))
+                    ->random(rand(1, 20))
                     ->pluck("id")
                     ->toArray()
             );

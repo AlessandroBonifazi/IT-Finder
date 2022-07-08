@@ -197,11 +197,15 @@ class UserController extends Controller
     {
         $search = $request->value;
         $specializationIdArray = $request->specializations;
+        $technologiesIdArray = $request->technologies;
         $reviews = $request->reviews;
         $reviewsNum = $request->reviewsNum;
 
         $query = $user->newQuery();
-        // Filter: name, surname, spec
+
+        // remove user with promo
+        $query->whereDoesntHave("promos");
+
         if (!empty($request->value) && $request->value != "AllUsers") {
             $query->where(function (EloquentBuilder $query) use ($search) {
                 $query
@@ -215,6 +219,9 @@ class UserController extends Controller
                             "like",
                             "%" . $search . "%"
                         );
+                    })
+                    ->orWhereHas("technologies", function ($q) use ($search) {
+                        $q->where("name", "like", "%" . $search . "%");
                     });
             });
         }
@@ -224,28 +231,50 @@ class UserController extends Controller
                 $specializationIdArray
             ) {
                 $q->whereIn("id", $specializationIdArray);
+                // $q->where("id", $specializationIdArray)->a
+            });
+        }
+        // Filter: Technologies
+        if (!empty($technologiesIdArray)) {
+            $query->whereHas("technologies", function ($q) use (
+                $technologiesIdArray
+            ) {
+                $q->whereIn("id", $technologiesIdArray);
             });
         }
         // Filter: valutation avg
+        $query->join("reviews", "users.id", "=", "reviews.user_id");
         if (!empty($reviews)) {
             $query
-                ->join("reviews", "users.id", "=", "reviews.user_id")
-                ->select("users.*")
+                // ->join("reviews", "users.id", "=", "reviews.user_id")
+                ->selectRaw("users.*, AVG(reviews.valutation) as avg_rating")
                 ->groupBy("reviews.user_id")
-                ->havingRaw("AVG(reviews.valutation) >= ?", [$reviews]);
-
-            if (!empty($reviewsNum)) {
-                $query->havingRaw("COUNT(reviews.user_id) >= ?", [$reviewsNum]);
-            }
+                ->orderBy("avg_rating", "desc")
+                ->havingRaw("avg_rating >= ?", [$reviews]);
+        } else {
+            $query
+                // ->join("reviews", "users.id", "=", "reviews.user_id")
+                ->selectRaw("users.*, AVG(reviews.valutation) as avg_rating")
+                ->groupBy("reviews.user_id")
+                ->orderBy("avg_rating", "desc");
         }
         // Filter: reviews number
-        if (!empty($reviewsNum) && empty($reviews)) {
+        if (!empty($reviewsNum)) {
             $query
-                ->join("reviews", "users.id", "=", "reviews.user_id")
-                ->select("users.*")
+                // ->join("reviews", "users.id", "=", "reviews.user_id")
+                ->selectRaw("COUNT(reviews.user_id) as reviews_number")
                 ->groupBy("reviews.user_id")
-                ->havingRaw("COUNT(reviews.user_id) >= ?", [$reviewsNum]);
+                ->orderBy("reviews_number", "desc")
+                ->havingRaw("reviews_number >= ?", [$reviewsNum]);
+        } else {
+            $query
+                // ->join("reviews", "users.id", "=", "reviews.user_id")
+                ->selectRaw("COUNT(reviews.user_id) as reviews_number")
+                ->groupBy("reviews.user_id")
+                ->orderBy("reviews_number", "desc");
         }
+
+        // ->groupBy("promo_id");
 
         $users = $query->paginate(12);
 
@@ -255,6 +284,7 @@ class UserController extends Controller
             $user->reviews;
             $user->rating = $user->reviews->avg("valutation");
             $user->reviewsNum;
+            $user->promos;
         }
 
         return response()->json($users);
@@ -266,11 +296,103 @@ class UserController extends Controller
         $query
             ->join("promo_user", "users.id", "=", "promo_user.user_id")
             ->select("users.*");
-        $users = $query->take(6)->get();
+        $users = $query->get();
+
+        // take only random
+        $users = $users->random(6);
         $users->each(function ($user) {
             $user->specializations;
             $user->technologies;
+            $user->promos;
         });
+        return response()->json($users);
+    }
+    public function searchPremiumUsers(Request $request, User $user)
+    {
+        $search = $request->value;
+        $specializationIdArray = $request->specializations;
+        $technologiesIdArray = $request->technologies;
+        $reviews = $request->reviews;
+        $reviewsNum = $request->reviewsNum;
+
+        $query = $user->newQuery();
+        // $sponsoredQuery = $user->newQuery();
+        // Filter: name, surname, spec
+        $query
+            ->join("promo_user", "users.id", "=", "promo_user.user_id")
+            ->select("users.*");
+
+        if (!empty($request->value) && $request->value != "AllUsers") {
+            $query->where(function (EloquentBuilder $query) use ($search) {
+                $query
+                    ->where("name", "like", "%" . $search . "%")
+                    ->orWhere("surname", "like", "%" . $search . "%")
+                    ->orWhereHas("specializations", function ($q) use (
+                        $search
+                    ) {
+                        $q->where(
+                            "specialization",
+                            "like",
+                            "%" . $search . "%"
+                        );
+                    })
+                    ->orWhereHas("technologies", function ($q) use ($search) {
+                        $q->where("name", "like", "%" . $search . "%");
+                    });
+            });
+        }
+        // Filter: spec
+        if (!empty($specializationIdArray)) {
+            $query->whereHas("specializations", function ($q) use (
+                $specializationIdArray
+            ) {
+                $q->whereIn("id", $specializationIdArray);
+                // $q->where("id", $specializationIdArray)->a
+            });
+        }
+        // Filter: Technologies
+        if (!empty($technologiesIdArray)) {
+            $query->whereHas("technologies", function ($q) use (
+                $technologiesIdArray
+            ) {
+                $q->whereIn("id", $technologiesIdArray);
+            });
+        }
+        // Filter: valutation avg
+        if (!empty($reviews)) {
+            $query
+                ->join("reviews", "users.id", "=", "reviews.user_id")
+                ->selectRaw("users.*, AVG(reviews.valutation) as avg_rating")
+                ->groupBy("reviews.user_id")
+                ->havingRaw("avg_rating >= ?", [$reviews]);
+
+            if (!empty($reviewsNum)) {
+                $query->havingRaw("reviews_number >= ?", [$reviewsNum]);
+            }
+        }
+        // Filter: reviews number
+        if (!empty($reviewsNum) && empty($reviews)) {
+            $query
+                ->join("reviews", "users.id", "=", "reviews.user_id")
+                ->selectRaw("COUNT(reviews.user_id) as reviews_number")
+                ->groupBy("reviews.user_id")
+                ->havingRaw("reviews_number >= ?", [$reviewsNum]);
+        }
+
+        // ->groupBy("promo_id");
+
+        $users = $query->limit(3)->get();
+        // $users = $users->random(max(count($users), 6));
+
+        foreach ($users as $user) {
+            $user->specializations;
+            $user->technologies;
+            $user->reviews;
+            $user->rating = $user->reviews->avg("valutation");
+            $user->reviewsNum;
+            $user->promos;
+        }
+
         return response()->json($users);
     }
 }

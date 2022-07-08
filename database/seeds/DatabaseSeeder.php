@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             SpecializationsTableSeeder::class,
             UserTableSeeder::class,
             PromoTableSeeder::class,
+            PromoSeeder::class,
         ]);
     }
 }

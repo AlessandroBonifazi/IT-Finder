@@ -15,8 +15,8 @@ class CreateTechnologiesTable extends Migration
     {
         Schema::create("technologies", function (Blueprint $table) {
             $table->id();
-            $table->string("name", 20);
-            $table->string("logo")->nullable();;
+            $table->string("name", 40);
+            $table->string("logo")->nullable();
             $table->timestamps();
         });
     }

@@ -6,10 +6,15 @@
 
 require("./bootstrap");
 
+// window.VueAutosuggest = require("vue-autosuggest");
+
 window.Vue = require("vue");
 window.axios = require("axios");
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
+import VueBootstrapTypeahead from "vue-bootstrap-typeahead";
+Vue.component("vue-bootstrap-typeahead", VueBootstrapTypeahead);
+import Vue from "vue";
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

@@ -61,7 +61,7 @@
                             </p>
                         </div>
 
-                        <div class="col-12 col-sm-8 col-lg-9">
+                        <div class="col-12 col-sm-8 col-lg-8">
                             <h1 class="dev-name">
                                 {{ user.name }} {{ user.surname }}
                             </h1>
@@ -92,7 +92,12 @@
                                 v-for="tech in user.technologies"
                                 :key="tech.name + '-' + user.name"
                             >
-                                <div class="tech-stack-list-item-icon">
+                                <div
+                                    class="tech-stack-list-item-icon"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    :title="tech.name"
+                                >
                                     <img :src="tech.logo" />
                                 </div>
                             </div>
@@ -317,6 +322,7 @@ export default {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    flex-wrap: wrap;
     gap: 5px;
 
     &-item {
@@ -356,7 +362,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: -40px;
+    // margin-top: -40px;
 }
 .dev-img-rating {
     z-index: 1;
@@ -382,7 +388,10 @@ export default {
     margin-top: 24px;
 
     @include media-breakpoint-up(md) {
-        font-size: 3rem;
+        font-size: 1.7rem;
+    }
+    @include media-breakpoint-up(lg) {
+        font-size: 2rem;
     }
 }
 .dev-spec {
@@ -391,7 +400,7 @@ export default {
     margin-top: -10px;
     line-height: 1.1;
     @include media-breakpoint-up(md) {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
 }
 .rating {

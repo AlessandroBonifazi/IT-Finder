@@ -27,8 +27,15 @@ Route::post(
 );
 Route::get("/user/{id}", "Api\UserController@getUser")->name("user.index");
 Route::get("/advancedSearch", "Api\UserController@search")->name("search");
+Route::get(
+    "/searchPremiumUsers",
+    "Api\UserController@searchPremiumUsers"
+)->name("searchPremiumUsers");
 Route::get("/specializations", "Api\SpecializationController@index")->name(
     "specialization.index"
+);
+Route::get("/technologies", "Api\TechnologyController@index")->name(
+    "technology.index"
 );
 Route::get("/best-users", "Api\UserController@bestUsers")->name("best-users");
 Route::get("/reviews", "Api\ReviewController@index")->name("review.index");
