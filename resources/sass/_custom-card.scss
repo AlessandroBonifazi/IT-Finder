@@ -17,9 +17,26 @@
             color: $white;
             font-family: $ff-heading;
         }
+        .itf-card-title-small {
+            font-size: 0.8rem;
+        }
     }
     &-body {
         padding: 15px 30px;
+
+        .itf-card-title {
+            font-size: 1.2rem;
+            color: $fc-grey-dark;
+            font-family: $ff-heading;
+        }
+        .itf-card-title-small {
+            font-size: 0.8rem;
+        }
+        .itf-card-subtitle {
+            font-size: 0.8rem;
+            color: $fc-grey-clear;
+            font-family: $ff-heading;
+        }
     }
     .itf-form-box {
         padding: 15px 0px;
@@ -39,6 +56,7 @@
         font-family: $ff-body;
     }
 }
+
 .itf-form-control {
     border-radius: $border-radius-small;
     border: 1px solid $fc-grey-clear;
