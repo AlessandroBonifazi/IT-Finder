@@ -47,6 +47,7 @@ class StatisticController extends Controller
                 return Carbon::parse($item->created_at)->format("M");
             });
 
+        // reviews
         $reviewQuery = $user
             ->reviews()
             ->select("id", "created_at")
@@ -79,32 +80,7 @@ class StatisticController extends Controller
                 $monthReviewsCount[] = 0;
             }
         }
-        // foreach ($data as $month => $values) {
-        //     $months[] = $month;
-        //     $monthMessagesCount[] = count($values);
-        // }
-        // foreach ($reviewData as $month => $values) {
-        //     $reviewMonths[] = $month;
-        //     // assign the count of messages to the month
-        //     $monthReviewsCount[] = count($values);
-        // }
-        // dd($monthReviewsCount);
-
-        // $valutation = Review::user();
-        // $voto = $review -> all();
-
-        // dd($valutation);
-        // dd(count($reviews));
-
-        // compare months and concatinate them
-        // $months = array_unique(array_merge($months, $reviewMonths));
-
         $generalMonths = array_unique(array_merge($months, $reviewMonths));
-
-        // dd($generalMonths);
-        // $generalMonths = array_unique($generalMonths);
-
-        // $generalMonths->unique();
 
         $chartjs = app()
             ->chartjs->name("lineChartTest")
@@ -114,9 +90,9 @@ class StatisticController extends Controller
             ->datasets([
                 [
                     "label" => "Messages",
-                    "backgroundColor" => "rgba(38, 185, 255, 0.31)",
-                    "borderColor" => "rgba(38, 185, 0, 0.7)",
-                    "pointBorderColor" => "rgba(38, 185, 154, 0.7)",
+                    "backgroundColor" => "#b2cac6",
+                    "borderColor" => "#3d7068",
+                    "pointBorderColor" => "#3d7068",
                     "pointBackgroundColor" => "rgba(38, 185, 154, 0.7)",
                     "pointHoverBackgroundColor" => "#fff",
                     "pointHoverBorderColor" => "rgba(220,220,220,1)",
@@ -124,9 +100,9 @@ class StatisticController extends Controller
                 ],
                 [
                     "label" => "Reviews",
-                    "backgroundColor" => "rgba(38, 185, 154, 0.31)",
-                    "borderColor" => "rgba(38, 185, 154, 0.7)",
-                    "pointBorderColor" => "rgba(38, 185, 154, 0.7)",
+                    "backgroundColor" => "#ffe4b3",
+                    "borderColor" => "#d99f35",
+                    "pointBorderColor" => "#d99f35",
                     "pointBackgroundColor" => "rgba(38, 185, 154, 0.7)",
                     "pointHoverBackgroundColor" => "#fff",
                     "pointHoverBorderColor" => "rgba(220,220,220,1)",
@@ -138,30 +114,73 @@ class StatisticController extends Controller
                 "maintainAspectRatio" => false,
             ]);
 
+        // messages
+        $queryData = $user
+            ->messages()
+            ->select("id", "created_at")
+            ->get()
+            ->groupBy(function ($item) {
+                return Carbon::parse($item->created_at)->format("Y");
+            });
+        $yearMessagesData = $queryData;
+
+        // reviews
+        $reviewQuery = $user
+            ->reviews()
+            ->select("id", "created_at")
+            ->get()
+            ->groupBy(function ($item) {
+                return Carbon::parse($item->created_at)->format("Y");
+            });
+        $yearReviewsData = $reviewQuery;
+
+        $messagesYears = [];
+        $reviewsYears = [];
+        $yearMessagesCount = [];
+        $yearReviewsCount = [];
+        foreach ($yearMessagesData as $year => $messages) {
+            $messagesYears[] = $year;
+            $yearMessagesCount[] = count($messages);
+        }
+        foreach ($yearReviewsData as $year => $reviews) {
+            $reviewsYears[] = $year;
+            $yearReviewsCount[] = count($reviews);
+        }
+        $generalYears = array_unique(
+            array_merge($messagesYears, $reviewsYears)
+        );
+
         $chart2js = app()
             ->chartjs->name("barChartTest")
             ->type("bar")
             ->size(["width" => 400, "height" => 200])
-            ->labels(["Label x", "Label y"])
+            ->labels([...$generalYears])
             ->datasets([
                 [
-                    "label" => "Valutation",
-                    "backgroundColor" => [
-                        "rgba(255, 99, 132, 0.2)",
-                        "rgba(54, 162, 235, 0.2)",
-                    ],
-                    "data" => [15, 85, 96, 35, 65],
+                    "label" => "Messages",
+                    "backgroundColor" => "#b2cac6",
+                    "borderColor" => "#3d7068",
+                    "pointBorderColor" => "#3d7068",
+                    "pointBackgroundColor" => "rgba(38, 185, 154, 0.7)",
+                    "pointHoverBackgroundColor" => "#fff",
+                    "pointHoverBorderColor" => "rgba(220,220,220,1)",
+                    "data" => [...$yearMessagesCount],
                 ],
                 [
-                    "label" => "My First dataset",
-                    "backgroundColor" => [
-                        "rgba(255, 99, 132, 0.3)",
-                        "rgba(54, 162, 235, 0.3)",
-                    ],
-                    "data" => [65, 12],
+                    "label" => "Reviews",
+                    "backgroundColor" => "#ffe4b3",
+                    "borderColor" => "#d99f35",
+                    "pointBorderColor" => "#d99f35",
+                    "pointBackgroundColor" => "rgba(38, 185, 154, 0.7)",
+                    "pointHoverBackgroundColor" => "#fff",
+                    "pointHoverBorderColor" => "rgba(220,220,220,1)",
+                    "data" => [...$yearReviewsCount],
                 ],
             ])
-            ->options([]);
+            ->options([
+                "responsive" => true,
+                "maintainAspectRatio" => false,
+            ]);
 
         return view("auth.statistics", compact("chartjs", "chart2js", "user"));
     }
