@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="col-10">
-        <div class="itf-card">
+        <div class="itf-card mb-4">
             <div class="itf-card-header">
                 <h3 class="itf-card-title">Edit User</h3>
             </div>

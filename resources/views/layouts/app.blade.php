@@ -40,7 +40,8 @@
                         </a>
                     </div>
                     {{-- Nav --}}
-                    <nav class="navbar navbar-expand-md">
+                    <nav class="navbar navbar-expand-lg">
+                        {{-- Toggle --}}
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false"
                             aria-label="Toggle navigation">
