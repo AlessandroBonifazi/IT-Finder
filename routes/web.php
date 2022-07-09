@@ -43,12 +43,19 @@ Route::middleware("auth")
         Route::get("/{id}/edit", "UserController@edit")->name("edit");
         Route::get("/messages", "UserController@getMessages")->name("messages");
         Route::get("/reviews", "UserController@getReviews")->name("reviews");
+
+        Route::get("/statistics", "StatisticController@getStatistics")->name(
+            "statistics"
+        );
+
         Route::get("/logout", "UserController@logout")->name("logout");
         Route::delete("/{id}", "UserController@destroy")->name("destroy");
         Route::put("/tech/{id}", "UserController@updateTech")->name("tech");
         Route::get("/checkin", "PromoController@checkIn")->name("checkin");
-        Route::get("/checkout/{id}", "PromoController@checkOut")->name("checkout");
-        Route::put('/payment', "PromoController@payment")->name('payment');
+        Route::get("/checkout/{id}", "PromoController@checkOut")->name(
+            "checkout"
+        );
+        Route::put("/payment", "PromoController@payment")->name("payment");
         // Route::resource('/', "UserController");  <--credo sia troppo tardi per usarlo *facepalm*
         // ======================================== direi proprio di si, anche perche mi sa che praticamente non usiamo le classiche crud
     });
