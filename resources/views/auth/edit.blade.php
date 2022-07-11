@@ -7,7 +7,7 @@
                 <h3 class="itf-card-title">Edit User</h3>
             </div>
             <div class="itf-card-body">
-                <form action="{{ route('user.update-profile', $user->id) }}" method="post">
+                <form action="{{ route('user.update-profile', $user->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     {{-- Name --}}
@@ -29,6 +29,17 @@
                                 <input class="itf-form-control" type="text" name="surname" id="surname"
                                     value="{{ old('surname', $user->surname) }}" required>
                                 @error('surname')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="itf-form-box">
+                                <label for="img_path" class="itf-form-label">Image</label>
+                                <input class="itf-form-control" type="file" name="img_path" id="img_path">
+                                @error('img_path')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -110,8 +121,8 @@
                         <div class="itf-checkbox-list yellow-95">
                             @foreach ($specializations as $spec)
                                 <div class="itf-checkbox-list-item">
-                                    <input type="checkbox" name="spec[{{ $spec->id }}]" id="spec[{{ $spec->id }}]"
-                                        value="{{ $spec->id }}"
+                                    <input type="checkbox" name="spec[{{ $spec->id }}]"
+                                        id="spec[{{ $spec->id }}]" value="{{ $spec->id }}"
                                         {{ $user->specializations->contains($spec->id) ? 'checked' : '' }}>
                                     <label for="spec[{{ $spec->id }}]" class="itf-checkbox-list-item-label">
                                         {{ $spec->specialization }}</label>
