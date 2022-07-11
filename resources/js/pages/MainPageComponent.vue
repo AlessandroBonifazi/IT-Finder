@@ -120,7 +120,7 @@
         <!-- find next job section -->
         <div class="container">
             <div class="row my-5 py-5 justify-content-center">
-                <div class="col-11 col-lg-6 p-0">
+                <div class="d-none d-lg-block col-11 col-lg-6 p-0">
                     <h2 class="krona green-55 mb-5">Find your next job</h2>
                     <img class="frame-28" src="img\Frame 28.png" alt="" />
                     <img
@@ -510,6 +510,7 @@ export default {
 }
 .frame-28 {
     height: 60%;
+    max-width: 90%;
 }
 .frame-29 {
     height: 28%;
