@@ -258,18 +258,25 @@ export default {
             this.getUser();
         },
         handleImgPath(imgPath) {
-            if (imgPath.includes("http") && !imgPath.includes("licdn.com")) {
-                imgPath = imgPath.split("/");
-                imgPath[imgPath.length - 1] = "300";
-                imgPath[imgPath.length - 2] = "300";
-                imgPath = imgPath.join("/");
-                return imgPath;
-            } else if (imgPath.includes("img_path")) {
-                return "/storage/" + imgPath;
-            } else if (imgPath.includes("licdn.com")) {
-                return imgPath;
+            if (imgPath) {
+                if (
+                    imgPath.includes("http") &&
+                    !imgPath.includes("licdn.com")
+                ) {
+                    imgPath = imgPath.split("/");
+                    imgPath[imgPath.length - 1] = "300";
+                    imgPath[imgPath.length - 2] = "300";
+                    imgPath = imgPath.join("/");
+                    return imgPath;
+                } else if (imgPath.includes("img_path")) {
+                    return "/storage/" + imgPath;
+                } else if (imgPath.includes("licdn.com")) {
+                    return imgPath;
+                } else {
+                    return "https://via.placeholder.com/150";
+                }
             } else {
-                return "https://via.placeholder.com/150";
+                return "https://picsum.photos/200/300";
             }
         },
         handleSpecializations(specialization) {
