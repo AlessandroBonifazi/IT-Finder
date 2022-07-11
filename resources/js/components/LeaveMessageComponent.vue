@@ -13,6 +13,7 @@
                         id="name"
                         name="name"
                         placeholder="name"
+                        ref="name"
                         v-model="params.name"
                     />
                 </div>
@@ -25,6 +26,7 @@
                         id="email"
                         name="email"
                         placeholder="email"
+                        ref="email"
                         v-model="params.email"
                     />
                 </div>
@@ -36,6 +38,7 @@
                         class="itf-form-control"
                         id="message"
                         placeholder="message"
+                        ref="message"
                         v-model="params.message"
                     >
                     </textarea>
@@ -43,7 +46,7 @@
             </form>
             <div class="d-flex justify-content-end">
                 <button
-                    @click="sendMessage, emptyText"
+                    @click="sendMessage"
                     class="itf-btn itf-btn-primary itf-btn-small"
                 >
                     Send
@@ -92,6 +95,9 @@ export default {
                         this.notification = response.data.message;
                         this.isNotificationOn = true;
                         this.timerNotification();
+                        this.params.name = " ";
+                        this.params.email = " ";
+                        this.params.message = " ";
                     }
                 })
                 .catch((error) => {
@@ -108,9 +114,7 @@ export default {
             console.log("Shut down");
         },
         emptyText() {
-            (this.name.value = ""),
-                (this.email.value = ""),
-                (this.message.value = "");
+            console.log(this.$refs.email);
         },
     },
 };
