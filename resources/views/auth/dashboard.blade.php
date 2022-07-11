@@ -193,14 +193,9 @@
                         <h5 class="itf-card-title itf-card-title-small">Specializations</h5>
                         <ul class="list-group list-group-flush">
                             @if (isset($user->specializations))
-                                @if ($user->specializations->count() > 1)
-                                    @foreach ($user->specializations as $specialization)
-                                        <li class="list-group-item">{{ $specialization->specialization }}</li>
-                                    @endforeach
-                                @else
-                                    <li class="list-group-item">{{ $user->specializations[0]->specialization }}</li>
-                                @endif
-
+                                @foreach ($user->specializations as $specialization)
+                                    <li class="list-group-item">{{ $specialization->specialization }}</li>
+                                @endforeach
                             @endif
                         </ul>
                     </div>
