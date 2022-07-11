@@ -169,9 +169,9 @@
                     <div class="itf-card-body">
                         {{-- img --}}
                         <div class="d-flex justify-content-center">
-                            <img src="{{ asset('./storage/' . $user->img_path) }}" alt="profile-img"
-                                class="card-img-top rounded-circle" style="width: 190px" />
-
+                            <div class="itf-card-img">
+                                <img src="{{ asset('./storage/' . $user->img_path) }}" alt="profile-img" />
+                            </div>
                         </div>
                         {{-- details --}}
                         <div class="text-center mb-2">

@@ -11,8 +11,9 @@
                     {{-- img --}}
                     <div class="row p-3">
                         <div class="w-100 col-3">
-                            <img src="{{ asset('./storage/' . $user->img_path) }}" alt="profile-img"
-                                class="card-img-top rounded-circle" style="width: 190px" />
+                            <div class="itf-card-img">
+                                <img src="{{ asset('./storage/' . $user->img_path) }}" alt="profile-img" />
+                            </div>
                         </div>
                         <div class="px-2 col-9">
                             <h5 class="itf-card-title">{{ $user->name }}
