@@ -47,15 +47,21 @@ class UserController extends Controller
     // Function used by registratio and dev update
     public function updateProfile(Request $request, $id)
     {
+        $request->validate([
+            "name" => "max:30",
+            "surname" => "max:50",
+            "img_path" => "mimes:jpeg,png,jpg,gif,svg|max:2048",
+        ]);
+
         $user = User::find($id);
-        $user->name = $request->name;
-        $user->surname = $request->surname;
+        $user->name = $request->name ?? "/";
+        $user->surname = $request->surname ?? "/";
         // ! comment lines creates a bug and we cant update the password like this
         // $user->email = $request->email;
         // $user->password = $request->password;
-        $user->job_experience = $request->job_experience;
-        $user->location = $request->location;
-        $user->cv = $request->cv;
+        $user->job_experience = $request->job_experience ?? 0;
+        $user->location = $request->location ?? "/";
+        $user->cv = $request->cv ?? "/";
         if ($request->specializations) {
             $user->specializations()->sync($request->specializations);
         }
@@ -64,21 +70,21 @@ class UserController extends Controller
         }
         if ($user->contactInfo()->exists()) {
             $user->contactInfo()->update([
-                "user_id" => $user->id,
-                "contact_email" => $user->email,
-                "phone" => $request->phone,
-                "linkedin" => $request->linkedin,
-                "github" => $request->github,
-                "site" => $request->site,
+                "user_id" => $user->id ?? "/",
+                "contact_email" => $user->email ?? "/",
+                "phone" => $request->phone ?? "/",
+                "linkedin" => $request->linkedin ?? "/",
+                "github" => $request->github ?? "/",
+                "site" => $request->site ?? "/",
             ]);
         } else {
             $user->contactInfo()->create([
-                "user_id" => $user->id,
-                "contact_email" => $user->email,
-                "phone" => $request->phone,
-                "linkedin" => $request->linkedin,
-                "github" => $request->github,
-                "site" => $request->site,
+                "user_id" => $user->id ?? "/",
+                "contact_email" => $user->email ?? "/",
+                "phone" => $request->phone ?? "/",
+                "linkedin" => $request->linkedin ?? "/",
+                "github" => $request->github ?? "/",
+                "site" => $request->site ?? "/",
             ]);
         }
         if ($request->hasFile("img_path")) {
