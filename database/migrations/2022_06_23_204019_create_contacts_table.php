@@ -15,11 +15,26 @@ class CreateContactsTable extends Migration
     {
         Schema::create("contacts", function (Blueprint $table) {
             $table->id();
-            $table->string("contact_email")->default("");
-            $table->string("phone")->default("");
-            $table->string("linkedin")->default("");
-            $table->string("github")->default("");
-            $table->string("site")->default("");
+            $table
+                ->string("contact_email")
+                ->default("")
+                ->nullable();
+            $table
+                ->string("phone")
+                ->default("")
+                ->nullable();
+            $table
+                ->string("linkedin")
+                ->default("")
+                ->nullable();
+            $table
+                ->string("github")
+                ->default("")
+                ->nullable();
+            $table
+                ->string("site")
+                ->default("")
+                ->nullable();
             $table->timestamps();
 
             $table->unsignedBigInteger("user_id");
