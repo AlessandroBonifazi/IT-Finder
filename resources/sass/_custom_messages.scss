@@ -3,6 +3,11 @@
         margin-bottom: 10px;
         border-bottom: 1px solid $green-05;
 
+        &:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+
         .itf-message-item-header {
             display: flex;
             justify-content: space-between;

@@ -1,0 +1,60 @@
+.itf {
+    &-review-item {
+        margin-bottom: 10px;
+        border-bottom: 1px solid $green-05;
+        &:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+
+        .itf-review-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .itf-review-name {
+                font-size: 1rem;
+                font-family: $ff-body;
+                font-weight: 500;
+                color: $fc-grey-dark;
+                text-transform: capitalize;
+                margin: 0;
+            }
+            .itf-review-date {
+                font-size: 0.8rem;
+                font-family: $ff-body;
+                font-weight: 400;
+                color: $fc-grey-clear;
+                user-select: none;
+            }
+            .itf-star-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-left: 10px;
+                margin-bottom: 5px;
+
+                .itf-star-fill {
+                    color: $yellow-40;
+                    // font-size: 1.5rem;
+                    margin-right: 2px;
+                }
+                .itf-star-empty {
+                    color: $yellow-40;
+                    // font-size: 1.5rem;
+                    margin-right: 2px;
+                }
+            }
+        }
+        .itf-review-item-body {
+            width: 90%;
+
+            .itf-review-content {
+                font-size: 0.9rem;
+                font-family: $ff-body;
+                font-weight: 400;
+                color: $fc-grey-dark;
+            }
+        }
+    }
+}
