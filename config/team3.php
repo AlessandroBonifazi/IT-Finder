@@ -10,7 +10,7 @@ return[
         'password'=>'12345678',
         'location'=>'Venezia',
         'job_experience'=> 1,
-        'cv'=>'Ciao sono Gioia del team 3. Sono aperta a qualsaisi posizione lavorativa. 
+        'cv'=>'Ciao sono Gioia del team 3. Sono aperta a qualsaisi posizione lavorativa.
         Sono una persona solare ma nei momenti difficili sono intrattabile. Mi piace imparare ogni giorno cose nuove.',
         'contact_email'=>'gioia.ascari96@gmail.com',
         'linkedin'=>'https://www.linkedin.com/in/gioia-ascari-978199196/',
@@ -47,9 +47,9 @@ return[
             'specializations'=>[
                 3
             ]
-    
+
         ],
-        
+
     [
                 'name'=>'Mykhaylo',
                 'surname'=>'Tymofyeyev ',
@@ -71,19 +71,19 @@ return[
                 'specializations'=>[
                     3
                 ]
-        
+
     ],
 
     [
             'name'=>'Erik',
             'surname'=>'Schievenin',
             'user_name'=>'Eriksioxx',
-            'img_path'=>'https://media-exp2.licdn.com/dms/image/C4E03AQExA_AAqG2BLQ/profile-displayphoto-shrink_800_800/0/1655504084635?e=1663200000&v=beta&t=lVLJcc0Yl7057Q6E7R3XW_pmIjucsMcocvNF194fNa0',
+            'img_path'=>'https://media-exp2.licdn.com/dms/image/C4E03AQFjzoWfGcmcHw/profile-displayphoto-shrink_200_200/0/1657558728787?e=1663200000&v=beta&t=H5UhFfydXqDORHA9DhAjqGDJiljC3-y2kEPNYQVKJKU',
             'email'=>'erik.schievenin@gmail.com',
             'password'=>'12345678',
             'location'=>'Treviso',
             'job_experience'=>1,
-            'cv'=>'Ciao ragazzi, son Erik del team 3, Son un ragazzo intraprendente che si è cimentato in diversi campi lavorativi, realizzando negli anni importanti progetti in ambito artistico e multiculturale.',
+            'cv'=>'Ciao ragazzi, sono Erik del team 3, Sono un ragazzo intraprendente che si è cimentato in diversi campi lavorativi, realizzando negli anni importanti progetti in ambito artistico e multiculturale.',
             'contact_email'=>'erik.schievenin@gmail.com',
             'linkedin'=>'https://www.linkedin.com/in/erik-schievenin-8971256b',
             'phone'=>'3469607521',
@@ -95,19 +95,19 @@ return[
             'specializations'=>[
                 3,13
             ]
-    
+
     ],
 
     [
         'name'=>'Robin',
         'surname'=>'Costanzo',
         'user_name'=>'Rob',
-        'img_path'=>'https://media.licdn.com/media/AAYQAQSOAAgAAQAAAAAAAB-zrMZEDXI2T62PSuT6kpB6qg.png',
+        'img_path'=>'https://media-exp2.licdn.com/dms/image/C4E03AQHLPbL7ghElsA/profile-displayphoto-shrink_800_800/0/1643759733442?e=1663200000&v=beta&t=QnDJp5bWKW2_OevMmjXTFxsdo3ZVyuEXHwZD0dBqDyo',
         'email'=>'robin.costanzo@gmail.com',
         'password'=>'12345678',
         'location'=>'Napoli',
-        'job_experience'=> 1,
-        'cv'=>'Ciao ragazzi, son Robin del team 3, Son un ragazzo intraprendente che si è cimentato in diversi campi lavorativi.',
+        'job_experience'=> 6,
+        'cv'=>'Ciao ragazzi, sono Robin del team 3, Sono un ragazzo intraprendente che si è cimentato in diversi campi lavorativi.',
         'contact_email'=>'robin.costanzo@gmail.com',
         'linkedin'=>'https://www.linkedin.com/in/robin-costanzo-0502a11b9/',
         'phone'=>'3469607521',
