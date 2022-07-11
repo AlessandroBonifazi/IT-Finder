@@ -201,8 +201,8 @@
                     </div>
                     <div class="itf-card-body">
                         @if ($is_premium)
-                            <h5 class="itf-card-title">You are a {{ $promo->type }} member</h5>
-                            <span>{{ $promo->timeToEnd }}</span>
+                            <h5 class="itf-card-title">You are a {{ $user->promo->type }} member</h5>
+                            <span>{{ $user->promo->timeToEnd }}</span>
                         @else
                             <p class="itf-card-title itf-card-title-small">
 
