@@ -1,0 +1,40 @@
+.itf {
+    &-message-item {
+        margin-bottom: 10px;
+        border-bottom: 1px solid $green-05;
+
+        &:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+
+        .itf-message-item-header {
+            display: flex;
+            justify-content: space-between;
+
+            .itf-message-name {
+                font-size: 1rem;
+                font-family: $ff-body;
+                font-weight: 500;
+                color: $fc-grey-dark;
+            }
+            .itf-message-date {
+                font-size: 0.8rem;
+                font-family: $ff-body;
+                font-weight: 400;
+                color: $fc-grey-clear;
+                user-select: none;
+            }
+        }
+        .itf-message-item-body {
+            width: 90%;
+
+            .itf-message-content {
+                font-size: 0.9rem;
+                font-family: $ff-body;
+                font-weight: 400;
+                color: $fc-grey-dark;
+            }
+        }
+    }
+}

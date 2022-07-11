@@ -13,6 +13,16 @@
         text-decoration: none;
     }
 }
+a.itf-btn {
+    color: $white;
+    text-decoration: none;
+    // display: block;
+
+    &:hover {
+        color: $white;
+        text-decoration: none;
+    }
+}
 .itf-btn-primary {
     border: 1px solid $btn-primary-bg;
     background: $btn-primary-bg;
