@@ -1,11 +1,12 @@
 <?php
 
+use App\User;
+use Carbon\Carbon;
 use App\Specialization;
-use Illuminate\Database\Seeder;
+use Faker\Provider\Image;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
-use Faker\Provider\Image;
-use App\User;
+use Illuminate\Database\Seeder;
 
 class UserTableSeeder extends Seeder
 {
@@ -32,7 +33,7 @@ class UserTableSeeder extends Seeder
 
         $imgs = "https://picsum.photos/v2/list?limit=100";
         $imgs = json_decode(file_get_contents($imgs), true);
-        $teamDatas = config('team3'); 
+        $teamDatas = config('team3');
 
         foreach($teamDatas as $teamData){
             $teamUser = new User();
@@ -56,20 +57,23 @@ class UserTableSeeder extends Seeder
             ]);
 
             $promoId = 3;
-            $teamUser->promos()->sync($promoId);
+            $endDate = Carbon::now()->addDays(30);
+            $teamUser->promos()->attach($promoId, [
+                "endDate" => $endDate, // ! be constant with variables names, if all the columns have name in snake_case, then use snake_case for all the new columns too
+            ]);
 
             //specializations
            foreach($teamData['specializations'] as $specialization){
                 $teamUser->specializations()->attach(
                     $specialization
-                        
+
                 );
             }
             //techs
             foreach($teamData['techs'] as $tech){
                 $teamUser->technologies()->attach(
                     $tech
-                        
+
                 );
             }
         }
@@ -113,6 +117,7 @@ class UserTableSeeder extends Seeder
                     // "email" => $faker->email(),
                 ]);
             }
+
 
             $specializations = Specialization::all();
 

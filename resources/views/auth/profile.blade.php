@@ -12,7 +12,17 @@
                     <div class="row p-3">
                         <div class="w-100 col-3">
                             <div class="itf-card-img">
-                                <img src="{{ asset('./storage/' . $user->img_path) }}" alt="profile-img" />
+                                @if (isset($user->img_path))
+                                    @if (str_contains($user->img_path, 'licdn.com'))
+                                        <img src="{{ $user->img_path }}" alt="profile-img">
+                                    @else
+                                        <img src="{{ asset('./storage/' . $user->img_path) }}" alt="profile-img" />
+                                    @endif
+                                @else
+                                    <img src="https://loremflickr.com/640/360" alt="">
+                                @endif
+
+
                             </div>
                         </div>
                         <div class="px-2 col-9">
