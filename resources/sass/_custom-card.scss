@@ -10,6 +10,10 @@
         padding: 15px 30px;
         background: $green-60;
 
+        &-secondary {
+            background: $coral-50;
+        }
+
         .itf-card-title {
             line-height: 1;
             margin: 0;
@@ -21,6 +25,7 @@
             font-size: 0.8rem;
         }
     }
+
     &-body {
         padding: 15px 30px;
 
@@ -28,9 +33,10 @@
             font-size: 1.2rem;
             color: $fc-grey-dark;
             font-family: $ff-heading;
-        }
-        .itf-card-title-small {
-            font-size: 0.8rem;
+
+            &-small {
+                font-size: 0.8rem;
+            }
         }
         .itf-card-subtitle {
             font-size: 0.8rem;
