@@ -118,11 +118,10 @@
                                                     {{-- @if ($user->contactInfo->github)
                             <li class="list-group-item">Github: {{ $user->contactInfo->github }}</li>
                         @endif --}}
+                                                    {{-- @dd($promo) --}}
                                                     <li class="list-group-item">
-                                                        @foreach ($promos as $promo)
-                                                            <h6>Promo: {{ $promo->type }}</h6>
-                                                            <span>Duration: {{ $promo->duration }} days</span>
-                                                        @endforeach
+                                                        <h6>Promo: {{ $promo->type }}</h6>
+                                                        <span>{{ $promo->timeToEnd }}</span>
                                                     </li>
                                                 </ul>
                                             </div>

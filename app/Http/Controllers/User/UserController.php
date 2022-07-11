@@ -94,12 +94,12 @@ class UserController extends Controller
         //
         $user = User::find($id);
         if ($request->techId) {
-                $user->technologies()->sync($request->techId);
+            $user->technologies()->sync($request->techId);
         } elseif ($request->techName) {
-                $user->technologies()->create([
-                    "name" => $request->techName,
-                    "logo" => $request->logo,
-                ]);
+            $user->technologies()->create([
+                "name" => $request->techName,
+                "logo" => $request->logo,
+            ]);
         }
         $user->save();
         return redirect()->route("user.dashboard");
@@ -153,10 +153,26 @@ class UserController extends Controller
         $reviews = $user->reviews->take(3);
         $promos = $user->promos;
         // Activity
-        $avg_rating = $user->reviews()->avg('valutation');
+        $avg_rating = $user->reviews()->avg("valutation");
         // $avg_rating = (int)$avg_rating;
         $totalReviews = $user->reviews()->count();
         $totalMessages = $user->messages()->count();
+        $promoQuery = $user
+            ->promos()
+            ->wherePivot("endDate", ">", Carbon::now())
+            ->select("*")
+            ->get();
+        $promo = $promoQuery->count() > 0 ? $promoQuery->last() : null;
+        $promo->timeToEnd = Carbon::parse($promo->endDate)->diffForHumans();
+
+        // $promo->timeToEnd = $promo->endDate->diffForHumans();
+
+        // ! I don't know why but this is not working
+        // $avg_rating = $user->reviews->avg("valutation");
+        // $totalReviews = $user->reviews->count();
+        // $totalMessages = $user->messages->count();
+        // $avg_rating = Review::where("user_id", $user->id)->avg("valutation");
+
         return view(
             "auth.dashboard",
             compact(
@@ -165,7 +181,7 @@ class UserController extends Controller
                 "messages",
                 "contacts",
                 "reviews",
-                "promos",
+                "promo",
                 "avg_rating",
                 "totalReviews",
                 "totalMessages"

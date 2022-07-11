@@ -56,6 +56,7 @@ Route::middleware("auth")
             "checkout"
         );
         Route::put("/payment", "PromoController@payment")->name("payment");
+        // Route::get('/storic', "StoricController@storic")->name('storic');
         // Route::resource('/', "UserController");  <--credo sia troppo tardi per usarlo *facepalm*
         // ======================================== direi proprio di si, anche perche mi sa che praticamente non usiamo le classiche crud
     });

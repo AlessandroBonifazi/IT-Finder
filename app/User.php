@@ -50,7 +50,10 @@ class User extends Authenticatable
 
     public function technologies()
     {
-        return $this->belongsToMany("App\Technology")->withPivot('user_id', 'technology_id');
+        return $this->belongsToMany("App\Technology")->withPivot(
+            "user_id",
+            "technology_id"
+        );
     }
 
     public function messages()
@@ -65,11 +68,17 @@ class User extends Authenticatable
 
     public function promos()
     {
-        return $this->belongsToMany("App\Promo")->withPivot('user_id', 'promo_id');
+        return $this->belongsToMany("App\Promo")->withPivot(
+            "user_id",
+            "promo_id"
+        );
     }
 
     public function specializations()
     {
-        return $this->belongsToMany("App\Specialization")->withPivot('user_id', 'specialization_id');
+        return $this->belongsToMany("App\Specialization")->withPivot(
+            "user_id",
+            "specialization_id"
+        );
     }
 }
