@@ -149,24 +149,31 @@ class UserController extends Controller
         $user = Auth::user();
         $contacts = $user->contactInfo;
         $specializations = $user->specializations;
-        $messages = $user->messages->take(3);
-        $reviews = $user->reviews->take(3);
+        $messages = $user->messages;
+        $messages = $messages->sortByDesc("created_at")->take(3);
+        $reviews = $user->reviews;
+        $reviews = $reviews->sortByDesc("created_at")->take(3);
         $promos = $user->promos;
         // Activity
         $avg_rating = $user->reviews()->avg("valutation");
         // $avg_rating = (int)$avg_rating;
         $totalReviews = $user->reviews()->count();
         $totalMessages = $user->messages()->count();
-        $promoQuery = $user
-            ->promos()
-            ->wherePivot("endDate", ">", Carbon::now())
-            ->select("*")
-            ->get();
-        $promo = $promoQuery->count() > 0 ? $promoQuery->last() : null;
-        $promo->timeToEnd = Carbon::parse($promo->endDate)->diffForHumans();
+        if ($user->promos()->exists()) {
+            $promoQuery = $user
+                ->promos()
+                ->wherePivot("endDate", ">", Carbon::now())
+                ->select("*")
+                ->get();
+            $user->promo =
+                $promoQuery->count() > 0 ? $promoQuery->last() : null;
+            $user->promo->timeToEnd = Carbon::parse(
+                $promo->endDate
+            )->diffForHumans();
+        }
+        $is_premium = $user->promos()->exists();
 
         // $promo->timeToEnd = $promo->endDate->diffForHumans();
-
         // ! I don't know why but this is not working
         // $avg_rating = $user->reviews->avg("valutation");
         // $totalReviews = $user->reviews->count();
@@ -181,10 +188,10 @@ class UserController extends Controller
                 "messages",
                 "contacts",
                 "reviews",
-                "promo",
                 "avg_rating",
                 "totalReviews",
-                "totalMessages"
+                "totalMessages",
+                "is_premium"
             )
         );
     }
@@ -215,15 +222,21 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $messages = $user->messages;
+        $messages = $messages->sortByDesc("created_at");
+        $messages->total_messages = $messages->count();
+        $is_premium = $user->promos()->exists();
         // dd($messages);
-        return view("auth.messages", compact("user", "messages"));
+        return view("auth.messages", compact("user", "messages", "is_premium"));
     }
 
     public function getReviews()
     {
         $user = Auth::user();
         $reviews = $user->reviews;
-        return view("auth.reviews", compact("user", "reviews"));
+        $reviews = $reviews->sortByDesc("created_at");
+        $reviews->total_reviews = $reviews->count();
+        $is_premium = $user->promos()->exists();
+        return view("auth.reviews", compact("user", "reviews", "is_premium"));
     }
 
     public function logout()
