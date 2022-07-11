@@ -43,16 +43,17 @@
             </form>
             <div class="d-flex justify-content-end">
                 <button
-                    @click="sendMessage"
+                    @click="sendMessage, emptyText"
                     class="itf-btn itf-btn-primary itf-btn-small"
                 >
                     Send
                 </button>
             </div>
         </div>
-        <div 
-        v-if="isNotificationOn" 
-        class="itf-notification itf-notification-success">
+        <div
+            v-if="isNotificationOn"
+            class="itf-notification itf-notification-success"
+        >
             <p class="m-0">messaggio inviato</p>
         </div>
     </div>
@@ -69,8 +70,7 @@ export default {
                 message: "",
             },
             isNotificationOn: false,
-            notification: '',
-
+            notification: "",
         };
     },
     props: {
@@ -88,27 +88,30 @@ export default {
                 )
                 .then((response) => {
                     console.log(response);
-                    if(response.data.sent){
-                        this.notification = response.data.message
-                        this.isNotificationOn = true
-                        this.timerNotification()
+                    if (response.data.sent) {
+                        this.notification = response.data.message;
+                        this.isNotificationOn = true;
+                        this.timerNotification();
                     }
-                    
                 })
                 .catch((error) => {
                     console.log(error);
                 });
-
         },
-        timerNotification(){
-            if(this.isNotificationOn){
-                setTimeout(this.shutDownNotification, 3000)
+        timerNotification() {
+            if (this.isNotificationOn) {
+                setTimeout(this.shutDownNotification, 3000);
             }
         },
-        shutDownNotification(){
-            this.isNotificationOn = false
-            console.log('Shut down')
-        }
+        shutDownNotification() {
+            this.isNotificationOn = false;
+            console.log("Shut down");
+        },
+        emptyText() {
+            (this.name.value = ""),
+                (this.email.value = ""),
+                (this.message.value = "");
+        },
     },
 };
 </script>
@@ -189,7 +192,7 @@ label {
 .btn:active {
     background-color: $btn-primary-bg-active;
 }
-.itf-notification{
+.itf-notification {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -201,8 +204,10 @@ label {
     align-items: center;
     height: 50px;
 }
-.itf-notification-success{
+.itf-notification-success {
     background-color: $green-40;
-    p{color: $white;}
+    p {
+        color: $white;
+    }
 }
 </style>
