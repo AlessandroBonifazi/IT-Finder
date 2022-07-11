@@ -168,7 +168,7 @@ class UserController extends Controller
             $user->promo =
                 $promoQuery->count() > 0 ? $promoQuery->last() : null;
             $user->promo->timeToEnd = Carbon::parse(
-                $promo->endDate
+                $user->promo->endDate
             )->diffForHumans();
         }
         $is_premium = $user->promos()->exists();
