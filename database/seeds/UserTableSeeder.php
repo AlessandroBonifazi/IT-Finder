@@ -32,6 +32,47 @@ class UserTableSeeder extends Seeder
 
         $imgs = "https://picsum.photos/v2/list?limit=100";
         $imgs = json_decode(file_get_contents($imgs), true);
+        $teamDatas = config('team3'); 
+
+        foreach($teamDatas as $teamData){
+            $teamUser = new User();
+            $teamUser->name = $teamData['name'];
+            $teamUser->surname = $teamData['surname'];
+            $teamUser->user_name = $teamData['user_name'];
+            $teamUser->img_path = $teamData['img_path'];
+            $teamUser->email = $teamData['email'];
+            $teamUser->password = Hash::make($teamData['password']);
+            $teamUser->cv = $teamData['cv'];
+            $teamUser->location = $teamData['location'];
+            $teamUser->job_experience = $teamData['job_experience'];
+            $teamUser->save();
+
+            $teamUser->contactInfo()->create([
+                "contact_email" => $teamData['contact_email'],
+                "phone" => $teamData['phone'],
+                "linkedin" => $teamData['linkedin'],
+                "github" => $teamData['github'],
+                "site" => $teamData['site'],
+            ]);
+
+            $promoId = 3;
+            $teamUser->promos()->sync($promoId);
+
+            //specializations
+           foreach($teamData['specializations'] as $specialization){
+                $teamUser->specializations()->attach(
+                    $specialization
+                        
+                );
+            }
+            //techs
+            foreach($teamData['techs'] as $tech){
+                $teamUser->technologies()->attach(
+                    $tech
+                        
+                );
+            }
+        }
         //
         for ($i = 0; $i < 100; $i++) {
             $user = new User();

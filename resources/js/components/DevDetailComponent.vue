@@ -197,6 +197,16 @@
                                 Github
                             </a>
                         </div>
+
+                        <div class="contact d-flex">
+                            <a
+                                :href="user.contacts.site"
+                                class="raleway clear-grey"
+                            >
+                                <i class="fa fa-desktop"></i>
+                                Site
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -414,18 +424,6 @@ export default {
     top: 18px;
     padding: 3px 10px 5px 10px;
     border-radius: 140px;
-}
-.btn {
-    background-color: $btn-tertiary-bg;
-    color: white;
-    border-radius: 8px;
-    box-shadow: $box-shadow-primary;
-}
-.btn:hover {
-    background-color: $btn-tertiary-bg-hoover;
-}
-.btn:active {
-    background-color: $btn-tertiary-bg-active;
 }
 .about-me p {
     font-size: 14px;

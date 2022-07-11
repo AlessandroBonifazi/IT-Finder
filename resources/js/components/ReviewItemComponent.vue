@@ -50,7 +50,6 @@
         <!--TIME-->
         <div class="time col-2 p-0 text-center">
             <p class="raleway m-0">{{ review.diff_time }}</p>
-            <i class="fa-solid fa-chevron-down"></i>
         </div>
     </div>
 </template>
