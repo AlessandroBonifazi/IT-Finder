@@ -35,3 +35,32 @@
     color: $fc-grey-dark;
     font-family: $ff-heading;
 }
+
+.stat-number {
+    font-size: 2rem;
+    color: $fc-accent-yellow;
+    font-family: $ff-heading;
+}
+.stat-title {
+    font-size: 0.8rem;
+    color: $fc-grey-dark;
+    font-family: $ff-heading;
+}
+
+.tech-logo {
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+}
+.navigation-link {
+    font-size: 1rem;
+    color: $fc-grey-dark;
+    font-family: $ff-body;
+    transition: all 200ms ease-in-out;
+
+    &:hover {
+        color: $fc-accent-yellow;
+        text-transform: none;
+        text-decoration: none;
+    }
+}

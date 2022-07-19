@@ -13,6 +13,7 @@
                         id="name"
                         name="name"
                         placeholder="name"
+                        ref="name"
                         v-model="params.name"
                     />
                 </div>
@@ -25,6 +26,7 @@
                         id="email"
                         name="email"
                         placeholder="email"
+                        ref="email"
                         v-model="params.email"
                     />
                 </div>
@@ -36,6 +38,7 @@
                         class="itf-form-control"
                         id="message"
                         placeholder="message"
+                        ref="message"
                         v-model="params.message"
                     >
                     </textarea>
@@ -50,9 +53,10 @@
                 </button>
             </div>
         </div>
-        <div 
-        v-if="isNotificationOn" 
-        class="itf-notification itf-notification-success">
+        <div
+            v-if="isNotificationOn"
+            class="itf-notification itf-notification-success"
+        >
             <p class="m-0">messaggio inviato</p>
         </div>
     </div>
@@ -69,8 +73,7 @@ export default {
                 message: "",
             },
             isNotificationOn: false,
-            notification: '',
-
+            notification: "",
         };
     },
     props: {
@@ -88,27 +91,31 @@ export default {
                 )
                 .then((response) => {
                     console.log(response);
-                    if(response.data.sent){
-                        this.notification = response.data.message
-                        this.isNotificationOn = true
-                        this.timerNotification()
+                    if (response.data.sent) {
+                        this.notification = response.data.message;
+                        this.isNotificationOn = true;
+                        this.timerNotification();
+                        this.params.name = " ";
+                        this.params.email = " ";
+                        this.params.message = " ";
                     }
-                    
                 })
                 .catch((error) => {
                     console.log(error);
                 });
-
         },
-        timerNotification(){
-            if(this.isNotificationOn){
-                setTimeout(this.shutDownNotification, 3000)
+        timerNotification() {
+            if (this.isNotificationOn) {
+                setTimeout(this.shutDownNotification, 3000);
             }
         },
-        shutDownNotification(){
-            this.isNotificationOn = false
-            console.log('Shut down')
-        }
+        shutDownNotification() {
+            this.isNotificationOn = false;
+            console.log("Shut down");
+        },
+        emptyText() {
+            console.log(this.$refs.email);
+        },
     },
 };
 </script>
@@ -189,7 +196,7 @@ label {
 .btn:active {
     background-color: $btn-primary-bg-active;
 }
-.itf-notification{
+.itf-notification {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -201,8 +208,10 @@ label {
     align-items: center;
     height: 50px;
 }
-.itf-notification-success{
+.itf-notification-success {
     background-color: $green-40;
-    p{color: $white;}
+    p {
+        color: $white;
+    }
 }
 </style>

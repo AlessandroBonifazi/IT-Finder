@@ -10,6 +10,10 @@
         padding: 15px 30px;
         background: $green-60;
 
+        &-secondary {
+            background: $coral-50;
+        }
+
         .itf-card-title {
             line-height: 1;
             margin: 0;
@@ -21,6 +25,26 @@
             font-size: 0.8rem;
         }
     }
+    &-info-bar {
+        padding: 7px 30px;
+        background: $coral-50;
+        .itf-card-title {
+            line-height: 1;
+            margin: 0;
+            font-size: 1.2rem;
+            color: $white;
+            font-family: $ff-heading;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+        .itf-card-title-small {
+            font-size: 0.8rem;
+        }
+    }
+
     &-body {
         padding: 15px 30px;
 
@@ -28,14 +52,33 @@
             font-size: 1.2rem;
             color: $fc-grey-dark;
             font-family: $ff-heading;
-        }
-        .itf-card-title-small {
-            font-size: 0.8rem;
+
+            &-small {
+                font-size: 0.8rem;
+            }
         }
         .itf-card-subtitle {
             font-size: 0.8rem;
             color: $fc-grey-clear;
             font-family: $ff-heading;
+        }
+        .itf-card-text {
+            font-size: 0.8rem;
+            color: $fc-grey-dark;
+            font-family: $ff-body;
+        }
+        .itf-card-img {
+            border-radius: 50%;
+            overflow: hidden;
+            width: 90%;
+            min-width: 150px;
+            max-width: 250px;
+            aspect-ratio: 1;
+            img{
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+            }
         }
     }
     .itf-form-box {

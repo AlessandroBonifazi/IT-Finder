@@ -66,7 +66,7 @@
                             <div class="itf-form-box">
                                 <label for="name" class="itf-form-label">What is your name?</label>
                                 <input type="text" class="itf-form-control" id="name" name="name"
-                                    placeholder="Jhon" />
+                                    placeholder="John" />
                             </div>
                             <div class="itf-form-box">
                                 <label for="surname" class="itf-form-label">And your last name?</label>

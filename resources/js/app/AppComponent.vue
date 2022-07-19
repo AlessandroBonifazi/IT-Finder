@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="app-container">
         <router-view></router-view>
     </div>
 </template>
@@ -9,5 +9,9 @@ export default {
     name: "AppComponent",
 };
 </script>
-
-<style></style>
+<style lang="scss" scoped>
+.app-container {
+    overflow: hidden;
+    width: 100%;
+}
+</style>

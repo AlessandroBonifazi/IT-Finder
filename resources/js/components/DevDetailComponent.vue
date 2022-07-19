@@ -197,6 +197,16 @@
                                 Github
                             </a>
                         </div>
+
+                        <div class="contact d-flex">
+                            <a
+                                :href="user.contacts.site"
+                                class="raleway clear-grey"
+                            >
+                                <i class="fa fa-desktop"></i>
+                                Site
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -248,16 +258,25 @@ export default {
             this.getUser();
         },
         handleImgPath(imgPath) {
-            if (imgPath.includes("http")) {
-                imgPath = imgPath.split("/");
-                imgPath[imgPath.length - 1] = "300";
-                imgPath[imgPath.length - 2] = "300";
-                imgPath = imgPath.join("/");
-                return imgPath;
-            } else if (imgPath.includes("img_path")) {
-                return "/storage/" + imgPath;
+            if (imgPath) {
+                if (
+                    imgPath.includes("http") &&
+                    !imgPath.includes("licdn.com")
+                ) {
+                    imgPath = imgPath.split("/");
+                    imgPath[imgPath.length - 1] = "300";
+                    imgPath[imgPath.length - 2] = "300";
+                    imgPath = imgPath.join("/");
+                    return imgPath;
+                } else if (imgPath.includes("img_path")) {
+                    return "/storage/" + imgPath;
+                } else if (imgPath.includes("licdn.com")) {
+                    return imgPath;
+                } else {
+                    return "https://via.placeholder.com/150";
+                }
             } else {
-                return "https://via.placeholder.com/150";
+                return "https://picsum.photos/200/300";
             }
         },
         handleSpecializations(specialization) {
@@ -414,18 +433,6 @@ export default {
     top: 18px;
     padding: 3px 10px 5px 10px;
     border-radius: 140px;
-}
-.btn {
-    background-color: $btn-tertiary-bg;
-    color: white;
-    border-radius: 8px;
-    box-shadow: $box-shadow-primary;
-}
-.btn:hover {
-    background-color: $btn-tertiary-bg-hoover;
-}
-.btn:active {
-    background-color: $btn-tertiary-bg-active;
 }
 .about-me p {
     font-size: 14px;

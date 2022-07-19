@@ -122,6 +122,11 @@
                                                 Search your specialist
                                             </a>
                                         </li>
+                                        <li>
+                                            <a href="" @click="logout">
+                                                About
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -146,7 +151,7 @@ export default {
     methods: {
         logout() {
             window.axios.post("/logout").then(() => {
-                // this.$router.push("/");
+                this.$router.push("/");
             });
         },
         login() {

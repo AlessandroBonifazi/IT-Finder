@@ -16,7 +16,7 @@
             <div class="col-12 col-lg-6">
                 <div class="itf-card h-100">
                     <div class="itf-card-header">
-                        <h2 class="itf-card-title">Messages and Reviews number per month</h2>
+                        <h2 class="itf-card-title">Messages and Reviews number per year</h2>
                     </div>
                     <div class="itf-card-body">
                         {!! $chart2js->render() !!}

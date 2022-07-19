@@ -381,7 +381,8 @@ class UserController extends Controller
 
         // ->groupBy("promo_id");
 
-        $users = $query->limit(3)->get();
+        $users = $query->get();
+        $users = $users->random($users->count(),6);
         // $users = $users->random(max(count($users), 6));
 
         foreach ($users as $user) {

@@ -1,11 +1,12 @@
 <?php
 
+use App\User;
+use Carbon\Carbon;
 use App\Specialization;
-use Illuminate\Database\Seeder;
+use Faker\Provider\Image;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
-use Faker\Provider\Image;
-use App\User;
+use Illuminate\Database\Seeder;
 
 class UserTableSeeder extends Seeder
 {
@@ -17,21 +18,194 @@ class UserTableSeeder extends Seeder
 
     public function run(Faker $faker)
     {
-        // $imgs = [
-        //     'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-        //     "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-        //     "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-        //     "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-        //     "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60" ,
-        //     "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" ,
-        //     "https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" ,
-        //     "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=761&q=80",
-        //     "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-        //     "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=761&q=80",
-        // ];
-
         $imgs = "https://picsum.photos/v2/list?limit=100";
         $imgs = json_decode(file_get_contents($imgs), true);
+
+        $teamDatas = [
+            [
+                "name" => "Gioia",
+                "surname" => "Ascari",
+                "user_name" => "gioiascari",
+                "img_path" =>
+                    "https://media-exp2.licdn.com/dms/image/C4D03AQEuzZrF-mIoqA/profile-displayphoto-shrink_800_800/0/1571049815915?e=1663200000&v=beta&t=c2Is8fG4kD3L_lTl3T0XpzCnq6HKWYRJ_ScMvHT0lsI",
+                "email" => "gioia.ascari96@gmail.com",
+                "password" => "12345678",
+                "location" => "Venezia",
+                "job_experience" => 1,
+                "cv" => 'Ciao sono Gioia del team 3. Sono aperta a qualsaisi posizione lavorativa.
+        Sono una persona solare ma nei momenti difficili sono intrattabile. Mi piace imparare ogni giorno cose nuove.',
+                "contact_email" => "gioia.ascari96@gmail.com",
+                "linkedin" =>
+                    "https://www.linkedin.com/in/gioia-ascari-978199196/",
+                "phone" => "1234566789",
+                "github" => "https://github.com/gioiascari",
+                "site" => "/",
+                "techs" => [
+                    23,
+                    32,
+                    58,
+                    57,
+                    72,
+                    76,
+                    84,
+                    95,
+                    114,
+                    139,
+                    166,
+                    165,
+                    74,
+                    4,
+                    113,
+                ],
+                "specializations" => [3, 13],
+            ],
+
+            [
+                "name" => "Alessandro",
+                "surname" => "Bonifazi",
+                "user_name" => "ale",
+                "img_path" =>
+                    "https://media-exp2.licdn.com/dms/image/C4E03AQHIREhCt-0PVQ/profile-displayphoto-shrink_800_800/0/1656463994837?e=1663200000&v=beta&t=HJIN6Dh3Gtprc6ohqdDzEPBRFi5yS52BCr5GMxKGAnc",
+                "email" => "alessandrobonifazi21@gmail.com",
+                "password" => "12345678",
+                "location" => "Roma",
+                "job_experience" => 1,
+                "cv" =>
+                    "Ciao sono Alessandro del team 3. Sono aperto a qualsaisi posizione lavorativa. Mi piace imparare ogni giorno cose nuove.",
+                "contact_email" => "alessandrobonifazi21@gmail.com",
+                "linkedin" =>
+                    "https://www.linkedin.com/in/alessandro-bonifazi-0693b6217/",
+                "phone" => "1234566789",
+                "github" => "https://github.com/AlessandroBonifazi",
+                "site" => "/",
+                "techs" => [23, 32, 58, 57, 72, 76, 84, 95, 114, 139, 166, 165],
+                "specializations" => [3],
+            ],
+
+            [
+                "name" => "Mykhaylo",
+                "surname" => "Tymofyeyev ",
+                "user_name" => "Mykhaylo",
+                "img_path" =>
+                    "https://media-exp2.licdn.com/dms/image/C4E03AQFch0TTXJFITA/profile-displayphoto-shrink_800_800/0/1655739170035?e=1663200000&v=beta&t=gXVo2djbA5Rlq4oLiD5ruZFdoBfHFtY_00DxTCCCLjc",
+                "email" => "mykhaylo.tymofyeyev@gmail.com",
+                "password" => "12345678",
+                "location" => "Milano",
+                "job_experience" => 1,
+                "cv" =>
+                    "Sono fortemente interessato dello sviluppo web, principalmente lato client. Per costruire conoscenze di base solide ho preso parte ad un corso di FullStack Web Developer proposto da Boolean Careers Italia.",
+                "contact_email" => "mykhaylo.tymofyeyev@gmail.com",
+                "linkedin" => "https://www.linkedin.com/in/tymofyeyev/",
+                "phone" => "1234566789",
+                "github" => "https://github.com/sargon17",
+                "site" => "https://sargon17.github.io/my-portfolio/",
+                "techs" => [23, 32, 58, 57, 72, 76, 84, 95, 114, 139, 166, 165],
+                "specializations" => [3],
+            ],
+
+            [
+                "name" => "Erik",
+                "surname" => "Schievenin",
+                "user_name" => "Eriksioxx",
+                "img_path" =>
+                    "https://media-exp2.licdn.com/dms/image/C4E03AQFjzoWfGcmcHw/profile-displayphoto-shrink_200_200/0/1657558728787?e=1663200000&v=beta&t=H5UhFfydXqDORHA9DhAjqGDJiljC3-y2kEPNYQVKJKU",
+                "email" => "erik.schievenin@gmail.com",
+                "password" => "12345678",
+                "location" => "Treviso",
+                "job_experience" => 1,
+                "cv" =>
+                    "Ciao ragazzi, sono Erik del team 3, Sono un ragazzo intraprendente che si è cimentato in diversi campi lavorativi, realizzando negli anni importanti progetti in ambito artistico e multiculturale.",
+                "contact_email" => "erik.schievenin@gmail.com",
+                "linkedin" =>
+                    "https://www.linkedin.com/in/erik-schievenin-8971256b",
+                "phone" => "3469607521",
+                "github" => "https://github.com/Eriksioxx",
+                "site" => "/",
+                "techs" => [23, 32, 58, 57, 72, 76, 84, 95, 114, 139, 166, 165],
+                "specializations" => [3, 13],
+            ],
+
+            [
+                "name" => "Robin",
+                "surname" => "Costanzo",
+                "user_name" => "Rob",
+                "img_path" =>
+                    "https://media-exp2.licdn.com/dms/image/C4E03AQHLPbL7ghElsA/profile-displayphoto-shrink_800_800/0/1643759733442?e=1663200000&v=beta&t=QnDJp5bWKW2_OevMmjXTFxsdo3ZVyuEXHwZD0dBqDyo",
+                "email" => "robin.costanzo@gmail.com",
+                "password" => "12345678",
+                "location" => "Napoli",
+                "job_experience" => 6,
+                "cv" =>
+                    "Ciao ragazzi, sono Robin del team 3, Sono un ragazzo intraprendente che si è cimentato in diversi campi lavorativi.",
+                "contact_email" => "robin.costanzo@gmail.com",
+                "linkedin" =>
+                    "https://www.linkedin.com/in/robin-costanzo-0502a11b9/",
+                "phone" => "3469607521",
+                "github" => "https://github.com/Robin9800",
+                "site" => "/",
+                "techs" => [23, 32, 58, 57, 72, 76, 84, 95, 114, 139, 166, 165],
+                "specializations" => [3],
+            ],
+
+            [
+                "name" => "Antonio",
+                "surname" => "Iorio",
+                "user_name" => "Dev Antoine",
+                "img_path" =>
+                    "https://media-exp2.licdn.com/dms/image/C4E03AQEWjb7VtNX91w/profile-displayphoto-shrink_800_800/0/1655661588133?e=1663200000&v=beta&t=rB3XO1T3JLPheAqUinwMySWxMvCGzXweTRDfH5xx73w",
+                "email" => "antonio.iorio@gmail.com",
+                "password" => "12345678",
+                "location" => "Cosenza",
+                "job_experience" => 1,
+                "cv" =>
+                    "Ciao ragazzi, son Antoine del team 3, Son un ragazzo intraprendente che si è cimentato in diversi campi lavorativi.",
+                "contact_email" => "antonio.iorio@gmail.com",
+                "linkedin" =>
+                    "https://www.linkedin.com/in/antonio-iorio-8954bb242/",
+                "phone" => "3469607521",
+                "github" => "https://github.com/antonioiorio94",
+                "site" => "/",
+                "techs" => [23, 32, 58, 57, 72, 76, 84, 95, 114, 139, 166, 165],
+                "specializations" => [3],
+            ],
+        ];
+
+        foreach ($teamDatas as $teamData) {
+            $teamUser = new User();
+            $teamUser->name = $teamData["name"];
+            $teamUser->surname = $teamData["surname"];
+            $teamUser->user_name = $teamData["user_name"];
+            $teamUser->img_path = $teamData["img_path"];
+            $teamUser->email = $teamData["email"];
+            $teamUser->password = Hash::make($teamData["password"]);
+            $teamUser->cv = $teamData["cv"];
+            $teamUser->location = $teamData["location"];
+            $teamUser->job_experience = $teamData["job_experience"];
+            $teamUser->save();
+
+            $teamUser->contactInfo()->create([
+                "contact_email" => $teamData["contact_email"],
+                "phone" => $teamData["phone"],
+                "linkedin" => $teamData["linkedin"],
+                "github" => $teamData["github"],
+                "site" => $teamData["site"],
+            ]);
+
+            $promoId = 3;
+            $endDate = Carbon::now()->addDays(30);
+            $teamUser->promos()->attach($promoId, [
+                "endDate" => $endDate, // ! be constant with variables names, if all the columns have name in snake_case, then use snake_case for all the new columns too
+            ]);
+
+            //specializations
+            foreach ($teamData["specializations"] as $specialization) {
+                $teamUser->specializations()->attach($specialization);
+            }
+            //techs
+            foreach ($teamData["techs"] as $tech) {
+                $teamUser->technologies()->attach($tech);
+            }
+        }
         //
         for ($i = 0; $i < 100; $i++) {
             $user = new User();

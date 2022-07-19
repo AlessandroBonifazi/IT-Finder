@@ -57,6 +57,8 @@
                                                         handleSpecSelection(
                                                             spec.id
                                                         );
+                                                        getSearch();
+                                                        getPremiumUsers();
                                                     }
                                                 "
                                             />
@@ -98,6 +100,8 @@
                                                     handleTechSelection(
                                                         tech.id
                                                     );
+                                                    getSearch();
+                                                    getPremiumUsers();
                                                 }
                                             "
                                         />
@@ -305,6 +309,8 @@
                                                                     spec.id,
                                                                     selectedSpecializations
                                                                 );
+                                                                getSearch();
+                                                                getPremiumUsers();
                                                             }
                                                         "
                                                     />
@@ -356,6 +362,8 @@
                                                             handleTechSelection(
                                                                 tech.id
                                                             );
+                                                            getSearch();
+                                                            getPremiumUsers();
                                                         }
                                                     "
                                                 />

@@ -47,15 +47,21 @@ class UserController extends Controller
     // Function used by registratio and dev update
     public function updateProfile(Request $request, $id)
     {
+        $request->validate([
+            "name" => "max:30",
+            "surname" => "max:50",
+            "img_path" => "mimes:jpeg,png,jpg,gif,svg|max:2048",
+        ]);
+
         $user = User::find($id);
-        $user->name = $request->name;
-        $user->surname = $request->surname;
+        $user->name = $request->name ?? "/";
+        $user->surname = $request->surname ?? "/";
         // ! comment lines creates a bug and we cant update the password like this
         // $user->email = $request->email;
         // $user->password = $request->password;
-        $user->job_experience = $request->job_experience;
-        $user->location = $request->location;
-        $user->cv = $request->cv;
+        $user->job_experience = $request->job_experience ?? 0;
+        $user->location = $request->location ?? "/";
+        $user->cv = $request->cv ?? "/";
         if ($request->specializations) {
             $user->specializations()->sync($request->specializations);
         }
@@ -64,21 +70,21 @@ class UserController extends Controller
         }
         if ($user->contactInfo()->exists()) {
             $user->contactInfo()->update([
-                "user_id" => $user->id,
-                "contact_email" => $user->email,
-                "phone" => $request->phone,
-                "linkedin" => $request->linkedin,
-                "github" => $request->github,
-                "site" => $request->site,
+                "user_id" => $user->id ?? "/",
+                "contact_email" => $user->email ?? "/",
+                "phone" => $request->phone ?? "/",
+                "linkedin" => $request->linkedin ?? "/",
+                "github" => $request->github ?? "/",
+                "site" => $request->site ?? "/",
             ]);
         } else {
             $user->contactInfo()->create([
-                "user_id" => $user->id,
-                "contact_email" => $user->email,
-                "phone" => $request->phone,
-                "linkedin" => $request->linkedin,
-                "github" => $request->github,
-                "site" => $request->site,
+                "user_id" => $user->id ?? "/",
+                "contact_email" => $user->email ?? "/",
+                "phone" => $request->phone ?? "/",
+                "linkedin" => $request->linkedin ?? "/",
+                "github" => $request->github ?? "/",
+                "site" => $request->site ?? "/",
             ]);
         }
         if ($request->hasFile("img_path")) {
@@ -94,12 +100,12 @@ class UserController extends Controller
         //
         $user = User::find($id);
         if ($request->techId) {
-                $user->technologies()->sync($request->techId);
+            $user->technologies()->sync($request->techId);
         } elseif ($request->techName) {
-                $user->technologies()->create([
-                    "name" => $request->techName,
-                    "logo" => $request->logo,
-                ]);
+            $user->technologies()->create([
+                "name" => $request->techName,
+                "logo" => $request->logo,
+            ]);
         }
         $user->save();
         return redirect()->route("user.dashboard");
@@ -149,14 +155,37 @@ class UserController extends Controller
         $user = Auth::user();
         $contacts = $user->contactInfo;
         $specializations = $user->specializations;
-        $messages = $user->messages->take(3);
-        $reviews = $user->reviews->take(3);
+        $messages = $user->messages;
+        $messages = $messages->sortByDesc("created_at")->take(3);
+        $reviews = $user->reviews;
+        $reviews = $reviews->sortByDesc("created_at")->take(3);
         $promos = $user->promos;
         // Activity
-        $avg_rating = $user->reviews()->avg('valutation');
+        $avg_rating = $user->reviews()->avg("valutation");
         // $avg_rating = (int)$avg_rating;
         $totalReviews = $user->reviews()->count();
         $totalMessages = $user->messages()->count();
+        if ($user->promos()->exists()) {
+            $promoQuery = $user
+                ->promos()
+                ->wherePivot("endDate", ">", Carbon::now())
+                ->select("*")
+                ->get();
+            $user->promo =
+                $promoQuery->count() > 0 ? $promoQuery->last() : null;
+            $user->promo->timeToEnd = Carbon::parse(
+                $user->promo->endDate
+            )->diffForHumans();
+        }
+        $is_premium = $user->promos()->exists();
+
+        // $promo->timeToEnd = $promo->endDate->diffForHumans();
+        // ! I don't know why but this is not working
+        // $avg_rating = $user->reviews->avg("valutation");
+        // $totalReviews = $user->reviews->count();
+        // $totalMessages = $user->messages->count();
+        // $avg_rating = Review::where("user_id", $user->id)->avg("valutation");
+
         return view(
             "auth.dashboard",
             compact(
@@ -165,10 +194,10 @@ class UserController extends Controller
                 "messages",
                 "contacts",
                 "reviews",
-                "promos",
                 "avg_rating",
                 "totalReviews",
-                "totalMessages"
+                "totalMessages",
+                "is_premium"
             )
         );
     }
@@ -199,15 +228,21 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $messages = $user->messages;
+        $messages = $messages->sortByDesc("created_at");
+        $messages->total_messages = $messages->count();
+        $is_premium = $user->promos()->exists();
         // dd($messages);
-        return view("auth.messages", compact("user", "messages"));
+        return view("auth.messages", compact("user", "messages", "is_premium"));
     }
 
     public function getReviews()
     {
         $user = Auth::user();
         $reviews = $user->reviews;
-        return view("auth.reviews", compact("user", "reviews"));
+        $reviews = $reviews->sortByDesc("created_at");
+        $reviews->total_reviews = $reviews->count();
+        $is_premium = $user->promos()->exists();
+        return view("auth.reviews", compact("user", "reviews", "is_premium"));
     }
 
     public function logout()
