@@ -46,13 +46,32 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-6">
                             <div class="itf-form-box">
                                 <label for="cv" class="itf-form-label">About You</label>
                                 <textarea class="itf-form-control" name="cv" id="cv" cols="20" rows="8">{{ old('email', $user->cv) }}</textarea>
                                 @error('cv')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="itf-form-box">
+                                <label class="itf-form-label">Specializations</label>
+                                <div class="itf-checkbox-list yellow-95">
+                                    @foreach ($specializations as $spec)
+                                        <div class="itf-checkbox-list-item">
+                                            <input type="checkbox" name="spec[{{ $spec->id }}]"
+                                                id="spec[{{ $spec->id }}]" value="{{ $spec->id }}"
+                                                {{ $user->specializations->contains($spec->id) ? 'checked' : '' }}>
+                                            <label for="spec[{{ $spec->id }}]" class="itf-checkbox-list-item-label">
+                                                {{ $spec->specialization }}</label>
+                                        </div>
+                                    @endforeach
+                                    @error('specialization')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -104,7 +123,7 @@
                     </div>
                     {{-- Location --}}
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-6">
                             <div class="itf-form-box">
                                 <label for="location" class="itf-form-label">Location</label>
                                 <input type="text" class="itf-form-control" name="location" id="location"
@@ -114,23 +133,15 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
-                    {{-- Specializations --}}
-                    <div class="itf-form-box">
-                        <h5 class="itf-form-label">Update your Specializations</h5>
-                        <div class="itf-checkbox-list yellow-95">
-                            @foreach ($specializations as $spec)
-                                <div class="itf-checkbox-list-item">
-                                    <input type="checkbox" name="spec[{{ $spec->id }}]"
-                                        id="spec[{{ $spec->id }}]" value="{{ $spec->id }}"
-                                        {{ $user->specializations->contains($spec->id) ? 'checked' : '' }}>
-                                    <label for="spec[{{ $spec->id }}]" class="itf-checkbox-list-item-label">
-                                        {{ $spec->specialization }}</label>
-                                </div>
-                            @endforeach
-                            @error('specialization')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                        <div class="col-6">
+                            <div class="itf-form-box">
+                                <label for="job_experience" class="itf-form-label">Job Experience</label>
+                                <input type="number" class="itf-form-control" name="job_experience" id="job_experience"
+                                    value="{{ old('job_experience', $user->job_experience) }}">
+                                @error('job_experience')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
                     </div>
                     {{-- submit --}}
