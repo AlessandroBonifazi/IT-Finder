@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="col-10">
+    <div class="col-12">
         <div class="itf-card mb-4">
             <div class="itf-card-header">
-                <h3 class="itf-card-title">Edit User</h3>
+                <h3 class="itf-card-title">Edit Personal Data</h3>
             </div>
             <div class="itf-card-body">
                 <form action="{{ route('user.update-profile', $user->id) }}" method="post" enctype="multipart/form-data">
@@ -12,7 +12,7 @@
                     @method('PUT')
                     {{-- Name --}}
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-12 col-md-6">
                             <div class="itf-form-box">
                                 <label for="name" class="itf-form-label">Name*</label>
                                 <input class="itf-form-control" type="text" name="name" id="name"
@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         {{-- Surname --}}
-                        <div class="col-6">
+                        <div class="col-12 col-md-6">
                             <div class="itf-form-box">
                                 <label for="surname" class="itf-form-label">Lastname*</label>
                                 <input class="itf-form-control" type="text" name="surname" id="surname"
@@ -45,8 +45,21 @@
                             </div>
                         </div>
                     </div>
+                    {{-- email --}}
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-12">
+                            <div class="itf-form-box">
+                                <label for="email" class="itf-form-label">Email*</label>
+                                <input class="itf-form-control" type="email" name="email" id="email"
+                                    value="{{ old('email', $user->email) }}" required>
+                                @error('email')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
                             <div class="itf-form-box">
                                 <label for="cv" class="itf-form-label">About You</label>
                                 <textarea class="itf-form-control" name="cv" id="cv" cols="20" rows="8">{{ old('email', $user->cv) }}</textarea>
@@ -55,7 +68,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-12 col-md-6">
                             <div class="itf-form-box">
                                 <label class="itf-form-label">Specializations</label>
                                 <div class="itf-checkbox-list yellow-95">
@@ -75,55 +88,9 @@
                             </div>
                         </div>
                     </div>
-                    {{-- Contact-phone --}}
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="itf-form-box">
-                                <label for="phone" class="itf-form-label">Phone</label>
-                                <input class="itf-form-control" type="text" name="phone" id="phone"
-                                    value="{{ old('phone', $user->contactInfo->phone) }}">
-                                @error('phone')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        {{-- Contact-linkedin --}}
-                        <div class="col-6">
-                            <div class="itf-form-box">
-                                <label for="linkedin" class="itf-form-label">Linkedin</label>
-                                <input class="itf-form-control" type="text" name="linkedin" id="linkedin"
-                                    value="{{ old('linkedin', $user->contactInfo->linkedin) }}">
-                                @error('linkedin')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="itf-form-box">
-                                <label for="github" class="itf-form-label">Github</label>
-                                <input class="itf-form-control" type="text" name="github" id="github"
-                                    value="{{ old('github', $user->contactInfo->github) }}">
-                                @error('github')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="itf-form-box">
-                                <label for="site" class="itf-form-label">Site</label>
-                                <input class="itf-form-control" type="text" name="site" id="site"
-                                    value="{{ old('site', $user->contactInfo->site) }}">
-                                @error('site')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
                     {{-- Location --}}
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-12 col-md-6">
                             <div class="itf-form-box">
                                 <label for="location" class="itf-form-label">Location</label>
                                 <input type="text" class="itf-form-control" name="location" id="location"
@@ -133,7 +100,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-12 col-md-6">
                             <div class="itf-form-box">
                                 <label for="job_experience" class="itf-form-label">Job Experience</label>
                                 <input type="number" class="itf-form-control" name="job_experience" id="job_experience"
@@ -162,6 +129,80 @@
                         </div>
                     @endif
                 </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="itf-card my-2">
+                    <form action="{{ route('user.contacts', $user->id) }}" method="post">
+                        @csrf
+                        @method('PUT')
+                        <div class="itf-card-header">
+                            <h5 class="itf-card-title">Contacts</h5>
+                        </div>
+                        <div class="itf-card-body">
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <div class="itf-form-box">
+                                        <label for="phone" class="itf-form-label">Phone</label>
+                                        <input class="itf-form-control" type="text" name="phone" id="phone"
+                                            value="{{ old('phone', $user->contactInfo->phone) }}">
+                                        @error('phone')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                {{-- Contact-linkedin --}}
+                                <div class="col-12 col-md-6">
+                                    <div class="itf-form-box">
+                                        <label for="linkedin" class="itf-form-label">Linkedin</label>
+                                        <input class="itf-form-control" type="text" name="linkedin" id="linkedin"
+                                            value="{{ old('linkedin', $user->contactInfo->linkedin) }}">
+                                        @error('linkedin')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <div class="itf-form-box">
+                                        <label for="github" class="itf-form-label">Github</label>
+                                        <input class="itf-form-control" type="text" name="github" id="github"
+                                            value="{{ old('github', $user->contactInfo->github) }}">
+                                        @error('github')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="itf-form-box">
+                                        <label for="site" class="itf-form-label">Site</label>
+                                        <input class="itf-form-control" type="text" name="site" id="site"
+                                            value="{{ old('site', $user->contactInfo->site) }}">
+                                        @error('site')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- submit --}}
+                            <div class="itf-form-box">
+
+                                <button class="itf-btn itf-btn-primary" type="submit">Save</button>
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
         {{-- Tech --}}

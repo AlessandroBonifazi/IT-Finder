@@ -58,6 +58,9 @@ class UserController extends Controller
         $user->surname = $request->surname ?? "/";
         // ! comment lines creates a bug and we cant update the password like this
         // $user->email = $request->email;
+        if ($request->email) {
+            $user->email = $request->email;
+        }
         // $user->password = $request->password;
         $user->job_experience = $request->job_experience ?? 0;
         $user->location = $request->location ?? "/";
@@ -91,6 +94,26 @@ class UserController extends Controller
             $user->img_path = $request->img_path->store("img_path", "public");
         }
         $user->save();
+        return redirect()->route("user.dashboard");
+    }
+
+    public function updateUserContacts(Request $request, $id)
+    {
+        $request->validate([
+            "contact_email" => "email",
+            "phone" => "numeric",
+            "linkedin" => "url",
+            "github" => "url",
+            "site" => "url",
+        ]);
+        $user = User::find($id);
+        $user->contactInfo()->update([
+            "contact_email" => $request->contact_email ?? "/",
+            "phone" => $request->phone ?? "/",
+            "linkedin" => $request->linkedin ?? "/",
+            "github" => $request->github ?? "/",
+            "site" => $request->site ?? "/",
+        ]);
         return redirect()->route("user.dashboard");
     }
 
