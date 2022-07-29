@@ -490,6 +490,17 @@ ul {
   text-decoration: none;
 }
 
+.personal-card--title {
+  margin-bottom: 40px;
+}
+
+.personal-card--title img {
+  width: 175px;
+  height: 175px;
+  margin: 0;
+  border-radius: 50%;
+}
+
 .itf-message-item {
   margin-bottom: 10px;
   border-bottom: 1px solid #d3e3e1;

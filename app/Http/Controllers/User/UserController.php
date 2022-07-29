@@ -73,21 +73,21 @@ class UserController extends Controller
         }
         if ($user->contactInfo()->exists()) {
             $user->contactInfo()->update([
-                "user_id" => $user->id ?? "/",
-                "contact_email" => $user->email ?? "/",
-                "phone" => $request->phone ?? "/",
-                "linkedin" => $request->linkedin ?? "/",
-                "github" => $request->github ?? "/",
-                "site" => $request->site ?? "/",
+                "user_id" => $user->id,
+                "contact_email" => $user->email,
+                "phone" => $request->phone,
+                "linkedin" => $request->linkedin,
+                "github" => $request->github,
+                "site" => $request->site,
             ]);
         } else {
             $user->contactInfo()->create([
-                "user_id" => $user->id ?? "/",
-                "contact_email" => $user->email ?? "/",
-                "phone" => $request->phone ?? "/",
-                "linkedin" => $request->linkedin ?? "/",
-                "github" => $request->github ?? "/",
-                "site" => $request->site ?? "/",
+                "user_id" => $user->id,
+                "contact_email" => $user->email,
+                "phone" => $request->phone,
+                "linkedin" => $request->linkedin,
+                "github" => $request->github,
+                "site" => $request->site,
             ]);
         }
         if ($request->hasFile("img_path")) {
@@ -100,7 +100,6 @@ class UserController extends Controller
     public function updateUserContacts(Request $request, $id)
     {
         $request->validate([
-            "contact_email" => "email",
             "phone" => "numeric",
             "linkedin" => "url",
             "github" => "url",
@@ -108,11 +107,10 @@ class UserController extends Controller
         ]);
         $user = User::find($id);
         $user->contactInfo()->update([
-            "contact_email" => $request->contact_email ?? "/",
-            "phone" => $request->phone ?? "/",
-            "linkedin" => $request->linkedin ?? "/",
-            "github" => $request->github ?? "/",
-            "site" => $request->site ?? "/",
+            "phone" => $request->phone,
+            "linkedin" => $request->linkedin,
+            "github" => $request->github,
+            "site" => $request->site,
         ]);
         return redirect()->route("user.dashboard");
     }

@@ -9,23 +9,19 @@
                 </div>
                 <div class="itf-card-body">
                     {{-- img --}}
-                    <div class="row p-3">
-                        <div class="w-100 col-3">
-                            <div class="itf-card-img">
-                                @if (isset($user->img_path))
-                                    @if (str_contains($user->img_path, 'licdn.com'))
-                                        <img src="{{ $user->img_path }}" alt="profile-img">
-                                    @else
-                                        <img src="{{ asset('./storage/' . $user->img_path) }}" alt="profile-img" />
-                                    @endif
+                    <div class="personal-card--title">
+                        <div>
+                            @if (isset($user->img_path))
+                                @if (str_contains($user->img_path, 'licdn.com'))
+                                    <img src="{{ $user->img_path }}" alt="profile-img">
                                 @else
-                                    <img src="https://loremflickr.com/640/360" alt="">
+                                    <img src="{{ asset('./storage/' . $user->img_path) }}" alt="profile-img" />
                                 @endif
-
-
-                            </div>
+                            @else
+                                <img src="https://fakeimg.pl/360x360" alt="">
+                            @endif
                         </div>
-                        <div class="px-2 col-9">
+                        <div class="px-2">
                             <h5 class="itf-card-title">{{ $user->name }}
                                 {{ $user->surname }}</h5>
                             @foreach ($specializations as $specialization)
@@ -43,7 +39,7 @@
                                 <h4 class="itf-card-title">
                                     Tech Stack
                                 </h4>
-                            </div class="d-flex flex-wrap">
+                            </div>
                             {{-- Tech stack user da implementare --}}
                             @if ($techs->count() > 0)
                                 @foreach ($techs as $tech)
